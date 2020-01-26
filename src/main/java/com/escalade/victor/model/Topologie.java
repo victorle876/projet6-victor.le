@@ -17,10 +17,6 @@ public class Topologie {
     private Long id;
 
 
-    private Long id_site; //
-
-    private Long id_secteur; //
-
     @NotBlank(message = "L'auteur'est requis.")
     private String auteur;
 
@@ -41,14 +37,6 @@ public class Topologie {
 
     @OneToOne
     private Site site ;
-
-    public Long getId_secteur() {
-        return id_secteur;
-    }
-
-    public void setId_secteur(Long id_secteur) {
-        this.id_secteur = id_secteur;
-    }
 
     public String getAuteur() {
         return auteur;
@@ -94,8 +82,6 @@ public class Topologie {
     public String toString() {
         return "Topologie{" +
                 "id=" + id +
-                ", id_site=" + id_site +
-                ", id_secteur=" + id_secteur +
                 ", auteur='" + auteur + '\'' +
                 ", nombre_page=" + nombre_page +
                 ", CreatedAt=" + CreatedAt +

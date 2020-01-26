@@ -15,7 +15,7 @@ public class UtilisateurService {
     @Autowired
     UtilisateurRepository UtilisateurRepository;
 
-    public List<Utilisateur> getAllUsers()
+    public List<Utilisateur> getAllSites()
     {
         List<Utilisateur> utilisateurList = UtilisateurRepository.findAll();
 
@@ -26,13 +26,14 @@ public class UtilisateurService {
         }
     }
 
-    public Utilisateur getUserById(Long id)
+    public void getUserById(Long id)
     {
         Optional<Utilisateur> utilisateur1 = UtilisateurRepository.findById(id);
 
         if(utilisateur1.isPresent()) {
             return utilisateur1.get();
         }
+
     }
 
     public Utilisateur createOrUpdateUser(Utilisateur utilisateur)
@@ -59,7 +60,7 @@ public class UtilisateurService {
         }
     }
 
-    public void deleteEmployeeById(Long id)
+    public void deleteUserById(Long id)
     {
         Optional<Utilisateur> UtilisateurEfface = UtilisateurRepository.findById(id);
 

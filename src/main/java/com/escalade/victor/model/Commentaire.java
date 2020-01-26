@@ -21,6 +21,16 @@ public class Commentaire {
     @JoinColumn(name="secteur_id")
     private Secteur secteur1;
 
+    private String Zone_Commentaire;
+
+    public String getZone_Commentaire() {
+        return Zone_Commentaire;
+    }
+
+    public void setZone_Commentaire(String zone_Commentaire) {
+        Zone_Commentaire = zone_Commentaire;
+    }
+
     public Long getId() {
         return id;
     }
@@ -28,7 +38,6 @@ public class Commentaire {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getAuteur_commentaire() {
         return auteur_commentaire;

@@ -13,7 +13,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String nom_preteur;
 
     private Date date_debut;

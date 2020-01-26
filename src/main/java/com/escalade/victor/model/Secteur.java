@@ -42,11 +42,11 @@ public class Secteur {
     }
 
 
-    public String getNom_secteur() {
+    public String getNom_Secteur() {
         return nom_secteur;
     }
 
-    public void setNom_secteur(String nom_secteur) {
+    public void setNom_Secteur(String nom_secteur) {
         this.nom_secteur = nom_secteur;
     }
 

@@ -17,9 +17,6 @@ public class Site {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long id_secteur;
-
-
     @NotBlank(message = "La région du site est requise.")
     private String region_site ;
 
@@ -36,14 +33,6 @@ public class Site {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId_secteur() {
-        return id_secteur;
-    }
-
-    public void setId_secteur(Long id_secteur) {
-        this.id_secteur = id_secteur;
     }
 
     public String getRegion_site() {
@@ -86,7 +75,6 @@ public class Site {
     public String toString() {
         return "Site{" +
                 "id=" + id +
-                ", id_secteur=" + id_secteur +
                 ", region_site='" + region_site + '\'' +
                 ", nom_site='" + nom_site + '\'' +
                 ", CreatedAt=" + CreatedAt +

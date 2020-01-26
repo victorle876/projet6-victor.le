@@ -16,7 +16,7 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "utilisateurs")
+@Table(name = "Sites")
 public class Utilisateur {
 
     @Id
