@@ -73,6 +73,15 @@ public class Utilisateur {
         this.mail = mail;
     }*/
 
+    @OneToMany(mappedBy="topologie")
+    private List<Topologie> topologies;
+
+    @OneToMany(mappedBy="commentaire")
+    private List<Commentaire> commentaires;
+
+    @OneToMany(mappedBy="reservation")
+    private List<Reservation> reservationss;
+
     public Long getId() {
         return id;
     }
@@ -102,7 +111,7 @@ public class Utilisateur {
         return date_naissance;
     }
 
-    public void setAge(Date date_naissance) {
+    public void setDateNaissance(Date date_naissance) {
         this.date_naissance = date_naissance;
     }
 

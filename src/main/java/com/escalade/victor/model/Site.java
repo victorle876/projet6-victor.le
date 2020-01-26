@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "site")
@@ -25,17 +26,9 @@ public class Site {
     @NotBlank(message = "Le nom du site est requise.")
     private String nom_site ;
 
-    @Override
-    public String toString() {
-        return "Site{" +
-                "id=" + id +
-                ", id_secteur=" + id_secteur +
-                ", region_site='" + region_site + '\'' +
-                ", nom_site='" + nom_site + '\'' +
-                ", CreatedAt=" + CreatedAt +
-                ", UpdatedAt=" + UpdatedAt +
-                '}';
-    }
+    @OneToMany(mappedBy="secteur")
+    private List<Secteur> secteurs;
+
 
     public Long getId() {
         return id;
@@ -88,5 +81,17 @@ public class Site {
     private Timestamp CreatedAt;
 
     private Timestamp UpdatedAt;
+
+    @Override
+    public String toString() {
+        return "Site{" +
+                "id=" + id +
+                ", id_secteur=" + id_secteur +
+                ", region_site='" + region_site + '\'' +
+                ", nom_site='" + nom_site + '\'' +
+                ", CreatedAt=" + CreatedAt +
+                ", UpdatedAt=" + UpdatedAt +
+                '}';
+    }
 
 }

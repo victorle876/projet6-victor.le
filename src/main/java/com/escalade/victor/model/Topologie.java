@@ -17,9 +17,9 @@ public class Topologie {
     private Long id;
 
 
-    private Long id_site;
+    private Long id_site; //
 
-    private Long id_secteur;
+    private Long id_secteur; //
 
     @NotBlank(message = "L'auteur'est requis.")
     private String auteur;
@@ -31,6 +31,16 @@ public class Topologie {
 
     private Timestamp UpdatedAt;
 
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="utilisateur_id")
+    private Utilisateur utilisateur1;
+
+    @OneToOne
+    private Reservation reservation ;
+
+    @OneToOne
+    private Site site ;
 
     public Long getId_secteur() {
         return id_secteur;

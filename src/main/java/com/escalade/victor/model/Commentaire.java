@@ -13,9 +13,13 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long id_secteur;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="utilisateur_id")
+    private Utilisateur utilisateur1;
 
-    private Long id_utilisateur;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="secteur_id")
+    private Secteur secteur1;
 
     public Long getId() {
         return id;
@@ -25,21 +29,6 @@ public class Commentaire {
         this.id = id;
     }
 
-    public Long getId_secteur() {
-        return id_secteur;
-    }
-
-    public void setId_secteur(Long id_secteur) {
-        this.id_secteur = id_secteur;
-    }
-
-    public Long getId_utilisateur() {
-        return id_utilisateur;
-    }
-
-    public void setId_utilisateur(Long id_utilisateur) {
-        this.id_utilisateur = id_utilisateur;
-    }
 
     public String getAuteur_commentaire() {
         return auteur_commentaire;

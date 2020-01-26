@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "secteur")
@@ -15,11 +16,6 @@ public class Secteur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long id_site;
-
-    private Long id_commentaire;
-
 
     @NotBlank(message = "Le nom du secteur est requis.")
     private String nom_secteur;
@@ -30,6 +26,13 @@ public class Secteur {
     @NotNull(message = "La cotation est requise.")
     private Integer cotation;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="site_id")
+    private Site site1;
+
+    @OneToMany(mappedBy="commentaire")
+    private List<Commentaire> commentaires;
+
     public Long getId() {
         return id;
     }
@@ -38,21 +41,6 @@ public class Secteur {
         this.id = id;
     }
 
-    public Long getId_site() {
-        return id_site;
-    }
-
-    public void setId_site(Long id_site) {
-        this.id_site = id_site;
-    }
-
-    public Long getId_commentaire() {
-        return id_commentaire;
-    }
-
-    public void setId_commentaire(Long id_commentaire) {
-        this.id_commentaire = id_commentaire;
-    }
 
     public String getNom_secteur() {
         return nom_secteur;
@@ -113,8 +101,6 @@ public class Secteur {
     public String toString() {
         return "Secteur{" +
                 "id=" + id +
-                ", id_site=" + id_site +
-                ", id_commentaire=" + id_commentaire +
                 ", nom_secteur='" + nom_secteur + '\'' +
                 ", hauteur=" + hauteur +
                 ", cotation=" + cotation +

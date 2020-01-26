@@ -13,9 +13,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long id_utilisateur;
-
-    private Long id_topologie;
 
     private String nom_preteur;
 
@@ -24,6 +21,10 @@ public class Reservation {
     private Date date_fin ;
 
     private Integer duree ;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="utilisateur_id")
+    private Utilisateur utilisateur1;
 
 
     public Long getId() {
@@ -34,21 +35,6 @@ public class Reservation {
         this.id = id;
     }
 
-    public Long getId_utilisateur() {
-        return id_utilisateur;
-    }
-
-    public void setId_utilisateur(Long id_utilisateur) {
-        this.id_utilisateur = id_utilisateur;
-    }
-
-    public Long getId_topologie() {
-        return id_topologie;
-    }
-
-    public void setId_topologie(Long id_topologie) {
-        this.id_topologie = id_topologie;
-    }
 
     public String getNom_preteur() {
         return nom_preteur;
@@ -86,8 +72,6 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", id_utilisateur=" + id_utilisateur +
-                ", id_topologie=" + id_topologie +
                 ", nom_preteur='" + nom_preteur + '\'' +
                 ", date_debut=" + date_debut +
                 ", date_fin=" + date_fin +
