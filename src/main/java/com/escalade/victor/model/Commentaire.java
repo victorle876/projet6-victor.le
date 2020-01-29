@@ -13,23 +13,19 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="utilisateur_id")
-    private Utilisateur utilisateur1;
+    @OneToOne
+    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="secteur_id")
-    private Secteur secteur1;
+    @OneToOne
+    @JoinColumn(name = "secteur_id", referencedColumnName = "id")
+    private Secteur secteur;
 
-    private String Zone_Commentaire;
+    private String zoneCommentaire;
 
-    public String getZone_Commentaire() {
-        return Zone_Commentaire;
-    }
+    private Timestamp CreatedAt;
 
-    public void setZone_Commentaire(String zone_Commentaire) {
-        Zone_Commentaire = zone_Commentaire;
-    }
+    private Timestamp UpdatedAt;
 
     public Long getId() {
         return id;
@@ -39,34 +35,29 @@ public class Commentaire {
         this.id = id;
     }
 
-    public String getAuteur_commentaire() {
-        return auteur_commentaire;
+    public String getZoneCommentaire() {
+        return zoneCommentaire;
     }
 
-    public void setAuteur_commentaire(String auteur_commentaire) {
-        this.auteur_commentaire = auteur_commentaire;
-    }
+/*    public void setZoneCommentaire(String zoneCommentaire) {
+        zoneCommentaire = zoneCommentaire;
+    }*/
 
     public Timestamp getCreatedAt() {
         return CreatedAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        CreatedAt = createdAt;
-    }
+/*    public void setCreatedAt(Timestamp CreatedAt) {
+        CreatedAt = CreatedAt;
+    }*/
 
     public Timestamp getUpdatedAt() {
         return UpdatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+/*    public void setUpdatedAt(Timestamp updatedAt) {
         UpdatedAt = updatedAt;
-    }
+    }*/
 
-    private String auteur_commentaire;
-
-    private Timestamp CreatedAt;
-
-    private Timestamp UpdatedAt;
 
 }

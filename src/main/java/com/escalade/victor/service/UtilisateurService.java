@@ -15,7 +15,7 @@ public class UtilisateurService {
     @Autowired
     UtilisateurRepository UtilisateurRepository;
 
-    public List<Utilisateur> getAllSites()
+    public List<Utilisateur> getAllUsers()
     {
         List<Utilisateur> utilisateurList = UtilisateurRepository.findAll();
 
@@ -28,10 +28,10 @@ public class UtilisateurService {
 
     public void getUserById(Long id)
     {
-        Optional<Utilisateur> utilisateur1 = UtilisateurRepository.findById(id);
+        Optional<Utilisateur> utilisateur = UtilisateurRepository.findById(id);
 
-        if(utilisateur1.isPresent()) {
-            return utilisateur1.get();
+        if(utilisateur.isPresent()) {
+            return utilisateur.get();
         }
 
     }

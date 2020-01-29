@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creation d''un utilisateur</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <form action="#" th:action="@{/save}" th:object="${utilisateur}" method="post">
+        <div class="form-group">
+            <!-- <label for="exampleInputId">Id</label>
+             <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+        </div>
+        <div class="form-group">
+            <label for="exampleInputNom">Nom</label>
+            <input type="text" class="form-control" th:field="*{username}" id="exampleInputNom" aria-describedby="WarningNom">
+            <small id="WarningNom" class="form-text text-muted" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPrenom">prenom</label>
+            <input type="text" class="form-control" th:field="*{prenom}" id="exampleInputPrenom" aria-describedby="WarningPrenom" >
+            <small id="WarningPrenom" class="form-text text-muted" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputMotP">mot de passe</label>
+            <input type="text" class="form-control" th:field="*{password}" id="exampleInputMotP" aria-describedby="WarningMotP" >
+            <small id="WarningMotP" class="form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputAge">Age</label>
+            <input type="number" class="form-control" th:field="*{age}" id="exampleInputAge" aria-describedby="WarningAge" >
+            <small id="WarningAge" class="form-text text-muted" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
+        </div>
+<!--        <div class="form-group">
+            <label for="exampleInputSexe">Sexe</label>
+            <input type="text" class="form-control" th:field="*{sexe}" id="exampleInputSexe" aria-describedby="WarningSexe" >
+            <small id="WarningSexe" class="form-text text-muted" th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}"></small>
+        </div>-->
+
+        <div class="form-group">
+            <label for="exampleInputMail">Mail</label>
+            <input type="email" class="form-control" th:field="*{mail}"  id="exampleInputMail" aria-describedby="WarningMail">
+            <small id="WarningMail" class="form-text text-muted" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></small>
+        </div>
+
+        <!--        <div class="form-group">
+                    <label for="exampleInputRole">Role</label>
+                    <input type="text" class="form-control" th:field="*{role}"  id="exampleInputRole" aria-describedby="WarningRole">
+                    <small id="WarningRole" class="form-text text-muted" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></small>
+                </div>-->
+        <div>
+            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

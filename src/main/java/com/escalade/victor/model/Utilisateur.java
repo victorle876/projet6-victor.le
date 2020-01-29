@@ -33,7 +33,7 @@ public class Utilisateur {
     private String prenom;
 
     @NotNull(message = "La date de naissance est requise.")
-    private Date date_naissance;
+    private Date dateNaissance;
 
 
     @NotBlank(message = "L'adresse mail est requis.")
@@ -62,16 +62,6 @@ public class Utilisateur {
 
     }
 
-/*//    public Utilisateur(Long id, String nom, String prenom, Integer age, String sexe, String mail) {
-        public Utilisateur(Long id, String username, String prenom, Integer age, String sexe, String mail) {
-        this.id = id;
-//        this.nom = nom;
-        this.username = username;
-        this.prenom = prenom;
-        this.age = age;
-        this.sexe = sexe;
-        this.mail = mail;
-    }*/
 
     @OneToMany(mappedBy="topologie")
     private List<Topologie> topologies;
@@ -108,11 +98,11 @@ public class Utilisateur {
     }
 
     public Date getDateNaissance() {
-        return date_naissance;
+        return dateNaissance;
     }
 
-    public void setDateNaissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
 
@@ -141,7 +131,7 @@ public class Utilisateur {
         this.role = role;
     }
 
-    /*public Date getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
@@ -155,20 +145,7 @@ public class Utilisateur {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }*/
-
-
-/*    @Override
-    public String toString() {
-        return "Utilisateur{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", age=" + age +
-                ", sexe='" + sexe + '\'' +
-                ", mail='" + mail + '\'' +
-                '}';
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -176,7 +153,7 @@ public class Utilisateur {
                 "id=" + id +
                 ", nom='" + username + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", date-naissance=" + date_naissance +
+                ", dateNaissance=" + dateNaissance +
                 ", password'" + password + '\'' +
                 ", mail='" + mail + '\'' +
                 '}';

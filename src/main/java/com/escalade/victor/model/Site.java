@@ -18,10 +18,17 @@ public class Site {
     private Long id;
 
     @NotBlank(message = "La région du site est requise.")
-    private String region_site ;
+    private String regionSite ;
 
     @NotBlank(message = "Le nom du site est requise.")
-    private String nom_site ;
+    private String nomSite ;
+
+    @NotBlank(message = "Le nom du site est requise.")
+    private String pays ;
+
+    private Timestamp CreatedAt;
+
+    private Timestamp UpdatedAt;
 
     @OneToMany(mappedBy="secteur")
     private List<Secteur> secteurs;
@@ -35,20 +42,20 @@ public class Site {
         this.id = id;
     }
 
-    public String getRegion_site() {
-        return region_site;
+    public String getRegionSite() {
+        return regionSite;
     }
 
-    public void setRegion_site(String region_site) {
-        this.region_site = region_site;
+    public void setRegionSite(String region_site) {
+        this.regionSite = regionSite;
     }
 
-    public String getNom_site() {
-        return nom_site;
+    public String getNomSite() {
+        return nomSite;
     }
 
-    public void setNom_site(String nom_site) {
-        this.nom_site = nom_site;
+    public void setNomSite(String nomSite) {
+        this.nomSite = nomSite;
     }
 
     public Timestamp getCreatedAt() {
@@ -67,16 +74,21 @@ public class Site {
         UpdatedAt = updatedAt;
     }
 
-    private Timestamp CreatedAt;
 
-    private Timestamp UpdatedAt;
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
 
     @Override
     public String toString() {
         return "Site{" +
                 "id=" + id +
-                ", region_site='" + region_site + '\'' +
-                ", nom_site='" + nom_site + '\'' +
+                ", region_site='" + regionSite + '\'' +
+                ", nom_site='" + nomSite + '\'' +
                 ", CreatedAt=" + CreatedAt +
                 ", UpdatedAt=" + UpdatedAt +
                 '}';

@@ -16,26 +16,26 @@ public class Topologie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @NotBlank(message = "L'auteur'est requis.")
     private String auteur;
 
-    @NotNull(message = "Le nombre de page est requis.")
-    private Integer nombre_page;
+    @NotNull(message = "Le nom de la topologie est requise.")
+    private String nomTopolgie;
 
     private Timestamp CreatedAt;
 
     private Timestamp UpdatedAt;
 
-
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="utilisateur_id")
-    private Utilisateur utilisateur1;
+    @OneToOne
+    @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;
 
     @OneToOne
+    @JoinColumn(name="reservation_id", referencedColumnName = "id")
     private Reservation reservation ;
 
     @OneToOne
+    @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site ;
 
     public String getAuteur() {
@@ -44,14 +44,6 @@ public class Topologie {
 
     public void setAuteur(String auteur) {
         this.auteur = auteur;
-    }
-
-    public Integer getNombre_page() {
-        return nombre_page;
-    }
-
-    public void setNombre_page(Integer nombre_page) {
-        this.nombre_page = nombre_page;
     }
 
     public Timestamp getCreatedAt() {
@@ -78,12 +70,17 @@ public class Topologie {
         this.id = id;
     }
 
+    public String getNomTopolgie() {
+        return nomTopolgie;
+    }
+
+    public void setNomTopolgie(String nomTopolgie) {
+        this.nomTopolgie = nomTopolgie;
+    }
     @Override
     public String toString() {
         return "Topologie{" +
                 "id=" + id +
-                ", auteur='" + auteur + '\'' +
-                ", nombre_page=" + nombre_page +
                 ", CreatedAt=" + CreatedAt +
                 ", UpdatedAt=" + UpdatedAt +
                 '}';

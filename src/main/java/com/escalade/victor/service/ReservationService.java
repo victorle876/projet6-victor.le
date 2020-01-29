@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ReservationService {
 
     @Autowired
-    com.escalade.victor.repository.ReservationRepository ReservationRepository;
+    ReservationRepository ReservationRepository;
 
     public List<Reservation> getAllReservations()
     {
@@ -28,10 +28,10 @@ public class ReservationService {
 
     public void getReservationById(Long id)
     {
-        Optional<Reservation> Reservation1 = ReservationRepository.findById(id);
+        Optional<Reservation> Reservation = ReservationRepository.findById(id);
 
         if(Reservation1.isPresent()) {
-            return Reservation1.get();
+            return Reservation.get();
         }
 
     }
@@ -48,7 +48,7 @@ public class ReservationService {
             nouvelReservation.setDate_fin(Reservation.getDate_fin());
             nouvelReservation.setDuree(Reservation.getDuree());
 
-            nouvelReservation = ReservationRepository.save(nouvelReservation);
+ //           nouvelReservation = ReservationRepository.save(nouvelReservation);
 
             return nouvelReservation;
         } else {

@@ -13,18 +13,20 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom_preteur;
+/*    private Date date_debut;
 
-    private Date date_debut;
-
-    private Date date_fin ;
+    private Date date_fin ;*/
 
     private Integer duree ;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="utilisateur_id")
-    private Utilisateur utilisateur1;
 
+    @OneToOne
+    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;
+
+    @OneToOne
+    @JoinColumn(name = "topologie_id", referencedColumnName = "id")
+    private Topologie topologie;
 
     public Long getId() {
         return id;
@@ -35,29 +37,21 @@ public class Reservation {
     }
 
 
-    public String getNom_preteur() {
-        return nom_preteur;
+/*    public Date getDateDebut() {
+        return dateDebut;
     }
 
-    public void setNom_preteur(String nom_preteur) {
-        this.nom_preteur = nom_preteur;
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public Date getDate_debut() {
-        return date_debut;
-    }
+    public Date getDateFin() {
+        return dateFin;
+    }*/
 
-    public void setDate_debut(Date date_debut) {
-        this.date_debut = date_debut;
-    }
-
-    public Date getDate_fin() {
-        return date_fin;
-    }
-
-    public void setDate_fin(Date date_fin) {
-        this.date_fin = date_fin;
-    }
+//    public void setDateFin(Date dateFin) {
+//        this.dateFin = dateFin;
+//    }
 
     public Integer getDuree() {
         return duree;
@@ -71,9 +65,8 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", nom_preteur='" + nom_preteur + '\'' +
-                ", date_debut=" + date_debut +
-                ", date_fin=" + date_fin +
+/*                ", date_debut=" + date_debut +
+                ", date_fin=" + date_fin +*/
                 ", duree=" + duree +
                 '}';
     }

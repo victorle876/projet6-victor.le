@@ -18,7 +18,7 @@ public class Secteur {
     private Long id;
 
     @NotBlank(message = "Le nom du secteur est requis.")
-    private String nom_secteur;
+    private String nomSecteur;
 
     @NotNull(message = "La hauteur est requise.")
     private Integer hauteur;
@@ -28,7 +28,7 @@ public class Secteur {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="site_id")
-    private Site site1;
+    private Site site;
 
     @OneToMany(mappedBy="commentaire")
     private List<Commentaire> commentaires;
@@ -41,13 +41,20 @@ public class Secteur {
         this.id = id;
     }
 
+    @NotNull(message = "La longueur est requise.")
+    private Integer Longueur;
 
-    public String getNom_Secteur() {
-        return nom_secteur;
+    private Timestamp CreatedAt;
+
+    private Timestamp UpdatedAt;
+
+
+    public String getNomSecteur() {
+        return nomSecteur;
     }
 
-    public void setNom_Secteur(String nom_secteur) {
-        this.nom_secteur = nom_secteur;
+    public void setNomSecteur(String nomSecteur) {
+        this.nomSecteur = nomSecteur;
     }
 
     public Integer getHauteur() {
@@ -90,18 +97,11 @@ public class Secteur {
         UpdatedAt = updatedAt;
     }
 
-    @NotNull(message = "La longueur est requise.")
-    private Integer Longueur;
-
-    private Timestamp CreatedAt;
-
-    private Timestamp UpdatedAt;
-
     @Override
     public String toString() {
         return "Secteur{" +
                 "id=" + id +
-                ", nom_secteur='" + nom_secteur + '\'' +
+                ", nomSecteur='" + nomSecteur + '\'' +
                 ", hauteur=" + hauteur +
                 ", cotation=" + cotation +
                 ", Longueur=" + Longueur +
