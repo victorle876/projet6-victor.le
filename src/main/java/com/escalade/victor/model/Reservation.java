@@ -13,10 +13,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-/*    private Date date_debut;
-
-    private Date date_fin ;*/
-
     private Integer duree ;
 
 
@@ -36,22 +32,6 @@ public class Reservation {
         this.id = id;
     }
 
-
-/*    public Date getDateDebut() {
-        return dateDebut;
-    }
-
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Date getDateFin() {
-        return dateFin;
-    }*/
-
-//    public void setDateFin(Date dateFin) {
-//        this.dateFin = dateFin;
-//    }
 
     public Integer getDuree() {
         return duree;

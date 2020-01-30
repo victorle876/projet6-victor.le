@@ -1,6 +1,7 @@
 package com.escalade.victor.service;
 
 import com.escalade.victor.model.Reservation;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,9 @@ public class ReservationService {
     {
         Optional<Reservation> Reservation = ReservationRepository.findById(id);
 
-        if(Reservation1.isPresent()) {
-            return Reservation.get();
+        if(Reservation.isPresent()) {
+
+            Reservation existantReservation= Reservation.get();
         }
 
     }
@@ -43,9 +45,8 @@ public class ReservationService {
         if(ReservationRecherche.isPresent())
         {
             Reservation nouvelReservation = ReservationRecherche.get();
-            nouvelReservation.setNom_preteur(Reservation.getNom_preteur());
-            nouvelReservation.setDate_debut(Reservation.getDate_debut());
-            nouvelReservation.setDate_fin(Reservation.getDate_fin());
+/*            nouvelReservation.setDateDebut(Reservation.getDateDebut());
+            nouvelReservation.setDateFin(Reservation.getDateFin());*/
             nouvelReservation.setDuree(Reservation.getDuree());
 
  //           nouvelReservation = ReservationRepository.save(nouvelReservation);

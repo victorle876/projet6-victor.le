@@ -29,10 +29,11 @@ public class SecteurService {
 
     public void getSecteurById(Long id)
     {
-        Optional<Secteur> Secteur1 = SecteurRepository.findById(id);
+        Optional<Secteur> Secteur = SecteurRepository.findById(id);
 
-        if(Secteur1.isPresent()) {
-            return Secteur1.get();
+        if(Secteur.isPresent()) {
+            return Secteur.get();
+
         }
 
     }
@@ -44,12 +45,12 @@ public class SecteurService {
         if(SecteurRecherche.isPresent())
         {
             Secteur nouvelSecteur = SecteurRecherche.get();
-            nouvelSecteur.setNom_Secteur(Secteur.getNom_Secteur());
+/*            nouvelSecteur.setNom_Secteur(Secteur.getNom_Secteur());
             nouvelSecteur.setHauteur(Secteur.getHauteur());
             nouvelSecteur.setCotation(Secteur.getCotation());
             nouvelSecteur.setLongueur(Secteur.getLongueur());
             nouvelSecteur.setCreatedAt(Secteur.getCreatedAt());
-            nouvelSecteur.setUpdatedAt(Secteur.getUpdatedAt());
+            nouvelSecteur.setUpdatedAt(Secteur.getUpdatedAt());*/
 
             nouvelSecteur = SecteurRepository.save(nouvelSecteur);
 

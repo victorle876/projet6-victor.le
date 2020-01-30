@@ -28,10 +28,10 @@ public class TopologieService {
 
     public void getTopologieById(Long id)
     {
-        Optional<Topologie> Topologie1 = topologieRepository.findById(id);
+        Optional<Topologie> Topologie = topologieRepository.findById(id);
 
-        if(Topologie1.isPresent()) {
-            return Topologie1.get();
+        if(Topologie.isPresent()) {
+            return Topologie.get();
         }
 
     }
@@ -43,10 +43,7 @@ public class TopologieService {
         if(TopologieRecherche.isPresent())
         {
             Topologie nouvelTopologie = TopologieRecherche.get();
-            nouvelTopologie.setAuteur(Topologie.getAuteur());
-            nouvelTopologie.setNombre_page(Topologie.getNombre_page());
-            nouvelTopologie.setUpdatedAt(Topologie.getUpdatedAt());
-            nouvelTopologie.setCreatedAt(Topologie.getCreatedAt());
+           // nouvelTopologie.setAuteur(Topologie.getAuteur());
 
             nouvelTopologie = topologieRepository.save(nouvelTopologie);
 

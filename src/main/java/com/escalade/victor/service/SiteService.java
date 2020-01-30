@@ -28,10 +28,10 @@ public class SiteService {
 
     public void getSiteById(Long id)
     {
-        Optional<Site> Site1 = SiteRepository.findById(id);
+        Optional<Site> Site = SiteRepository.findById(id);
 
-        if(Site1.isPresent()) {
-            return Site1.get();
+        if(Site.isPresent()) {
+            return Site.get();
         }
 
     }
@@ -43,8 +43,8 @@ public class SiteService {
         if(SiteRecherche.isPresent())
         {
             Site nouvelSite = SiteRecherche.get();
-            nouvelSite.setNom_site(Site.getNom_site());
-            nouvelSite.setRegion_site(Site.getRegion_site());
+            nouvelSite.setNomSite(Site.getNomSite());
+            nouvelSite.setRegionSite(Site.getRegionSite());
             nouvelSite.setCreatedAt(Site.getCreatedAt());
             nouvelSite.setUpdatedAt(Site.getUpdatedAt());
 

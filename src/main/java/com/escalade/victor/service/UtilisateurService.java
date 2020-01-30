@@ -31,7 +31,8 @@ public class UtilisateurService {
         Optional<Utilisateur> utilisateur = UtilisateurRepository.findById(id);
 
         if(utilisateur.isPresent()) {
-            return utilisateur.get();
+
+            Utilisateur existantUtilisateur = utilisateur.get();
         }
 
     }
@@ -42,17 +43,17 @@ public class UtilisateurService {
 
         if(UtilisateurRecherche.isPresent())
         {
-            Utilisateur nouvelUtilisateur = UtilisateurRecherche.get();
-            nouvelUtilisateur.setMail(utilisateur.getMail());
+            Utilisateur existantUtilisateur = UtilisateurRecherche.get();
+/*            nouvelUtilisateur.setMail(utilisateur.getMail());
             nouvelUtilisateur.setUsername(utilisateur.getUsername());
             nouvelUtilisateur.setPrenom(utilisateur.getPrenom());
             nouvelUtilisateur.setPassword(utilisateur.getPassword());
             nouvelUtilisateur.setDateNaissance(utilisateur.getDateNaissance());
-            nouvelUtilisateur.setRoles(utilisateur.getRoles());
+            nouvelUtilisateur.setRoles(utilisateur.getRoles());*/
 
-            nouvelUtilisateur = UtilisateurRepository.save(nouvelUtilisateur);
+            existantUtilisateur= UtilisateurRepository.save(existantUtilisateur);
+            return existantUtilisateur;
 
-            return nouvelUtilisateur;
         } else {
             utilisateur = UtilisateurRepository.save(utilisateur);
 

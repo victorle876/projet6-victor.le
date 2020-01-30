@@ -1,6 +1,7 @@
 package com.escalade.victor.service;
 
 import com.escalade.victor.model.Commentaire;
+import com.escalade.victor.model.Reservation;
 import com.escalade.victor.repository.CommentaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,11 @@ public class CommentaireService {
 
     public void getCommentaireById(Long id)
     {
-        Optional<Commentaire> Commentaire1 = CommentaireRepository.findById(id);
+        Optional<Commentaire> Commentaire = CommentaireRepository.findById(id);
 
-        if(Commentaire1.isPresent()) {
-            return Commentaire1.get();
+        if(Commentaire.isPresent()) {
+            Commentaire existantCommentaire= Commentaire.get();
+
         }
 
     }
@@ -44,10 +46,6 @@ public class CommentaireService {
         if(CommentaireRecherche.isPresent())
         {
             Commentaire nouvelCommentaire = CommentaireRecherche.get();
-            nouvelCommentaire.setZone_Commentaire(Commentaire.getZone_Commentaire());
-            nouvelCommentaire.setAuteur_commentaire(Commentaire.getAuteur_commentaire());
-            nouvelCommentaire.setCreatedAt(Commentaire.getCreatedAt());
-            nouvelCommentaire.setUpdatedAt(Commentaire.getUpdatedAt());
 
             nouvelCommentaire = CommentaireRepository.save(nouvelCommentaire);
 

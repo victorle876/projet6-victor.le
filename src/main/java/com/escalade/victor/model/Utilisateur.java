@@ -16,15 +16,13 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "Sites")
+@Table(name = "Utilisateurs")
 public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-/*    @NotBlank(message = "Le nom est requis.")
-    private String nom;*/
 
     @NotBlank(message = "Le nom est requis.")
     private String username;
