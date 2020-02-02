@@ -42,21 +42,12 @@ public class ReservationService {
     {
         Optional<Reservation> ReservationRecherche = ReservationRepository.findById(Reservation.getId());
 
-        if(ReservationRecherche.isPresent())
-        {
             Reservation nouvelReservation = ReservationRecherche.get();
-/*            nouvelReservation.setDateDebut(Reservation.getDateDebut());
-            nouvelReservation.setDateFin(Reservation.getDateFin());*/
             nouvelReservation.setDuree(Reservation.getDuree());
 
- //           nouvelReservation = ReservationRepository.save(nouvelReservation);
+            nouvelReservation = ReservationRepository.save(nouvelReservation);
 
             return nouvelReservation;
-        } else {
-            Reservation = ReservationRepository.save(Reservation);
-
-            return Reservation;
-        }
     }
 
     public void deleteReservationById(Long id)

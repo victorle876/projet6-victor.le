@@ -37,15 +37,10 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputAge">Age</label>
-            <input type="number" class="form-control" th:field="*{age}" id="exampleInputAge" aria-describedby="WarningAge" >
-            <small id="WarningAge" class="form-text text-muted" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
+            <label for="exampleInputdateNaissance">Age</label>
+            <input type="text" class="form-control" th:field="*{dateNaissance}" id="exampleInputdateNaissance" aria-describedby="WarningdateNaissance" >
+            <small id="WarningdateNaissance" class="form-text text-muted" th:if="${#fields.hasErrors('dateNaissance')}" th:errors="*{dateNaissance}"></small>
         </div>
-<!--        <div class="form-group">
-            <label for="exampleInputSexe">Sexe</label>
-            <input type="text" class="form-control" th:field="*{sexe}" id="exampleInputSexe" aria-describedby="WarningSexe" >
-            <small id="WarningSexe" class="form-text text-muted" th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}"></small>
-        </div>-->
 
         <div class="form-group">
             <label for="exampleInputMail">Mail</label>
@@ -53,11 +48,12 @@
             <small id="WarningMail" class="form-text text-muted" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></small>
         </div>
 
-        <!--        <div class="form-group">
-                    <label for="exampleInputRole">Role</label>
-                    <input type="text" class="form-control" th:field="*{role}"  id="exampleInputRole" aria-describedby="WarningRole">
-                    <small id="WarningRole" class="form-text text-muted" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></small>
-                </div>-->
+        <div class="form-group">
+            <label for="exampleInputMail">Role</label>
+            <input type="email" class="form-control" th:field="*{role}"  id="exampleInputRole" aria-describedby="WarningRole">
+            <small id="WarningRole" class="form-text text-muted" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></small>
+        </div>
+
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
         </div>

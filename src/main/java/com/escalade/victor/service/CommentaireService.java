@@ -43,18 +43,11 @@ public class CommentaireService {
     {
         Optional<Commentaire> CommentaireRecherche = CommentaireRepository.findById(Commentaire.getId());
 
-        if(CommentaireRecherche.isPresent())
-        {
             Commentaire nouvelCommentaire = CommentaireRecherche.get();
 
             nouvelCommentaire = CommentaireRepository.save(nouvelCommentaire);
 
             return nouvelCommentaire;
-        } else {
-            Commentaire = CommentaireRepository.save(Commentaire);
-
-            return Commentaire;
-        }
     }
 
     public void deleteCommentaireById(Long id)

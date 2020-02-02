@@ -1,5 +1,6 @@
 package com.escalade.victor.service;
 
+import com.escalade.victor.model.Secteur;
 import com.escalade.victor.model.Site;
 import com.escalade.victor.repository.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class SiteService {
         Optional<Site> Site = SiteRepository.findById(id);
 
         if(Site.isPresent()) {
-            return Site.get();
+            Site existantSite= Site.get();
         }
 
     }
@@ -40,8 +41,6 @@ public class SiteService {
     {
         Optional<Site> SiteRecherche = SiteRepository.findById(Site.getId());
 
-        if(SiteRecherche.isPresent())
-        {
             Site nouvelSite = SiteRecherche.get();
             nouvelSite.setNomSite(Site.getNomSite());
             nouvelSite.setRegionSite(Site.getRegionSite());
@@ -51,11 +50,7 @@ public class SiteService {
             nouvelSite = SiteRepository.save(nouvelSite);
 
             return nouvelSite;
-        } else {
-            Site = SiteRepository.save(Site);
 
-            return Site;
-        }
     }
 
     public void deleteSiteById(Long id)

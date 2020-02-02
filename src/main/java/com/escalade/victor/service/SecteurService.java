@@ -1,5 +1,6 @@
 package com.escalade.victor.service;
 
+import com.escalade.victor.model.Reservation;
 import com.escalade.victor.model.Secteur;
 import com.escalade.victor.repository.SecteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class SecteurService {
         Optional<Secteur> Secteur = SecteurRepository.findById(id);
 
         if(Secteur.isPresent()) {
-            return Secteur.get();
+
+            Secteur existantSecteur= Secteur.get();
 
         }
 
@@ -42,24 +44,18 @@ public class SecteurService {
     {
         Optional<Secteur> SecteurRecherche = SecteurRepository.findById(Secteur.getId());
 
-        if(SecteurRecherche.isPresent())
-        {
             Secteur nouvelSecteur = SecteurRecherche.get();
-/*            nouvelSecteur.setNom_Secteur(Secteur.getNom_Secteur());
+            nouvelSecteur.setNomSecteur(Secteur.getNomSecteur());
             nouvelSecteur.setHauteur(Secteur.getHauteur());
             nouvelSecteur.setCotation(Secteur.getCotation());
             nouvelSecteur.setLongueur(Secteur.getLongueur());
             nouvelSecteur.setCreatedAt(Secteur.getCreatedAt());
-            nouvelSecteur.setUpdatedAt(Secteur.getUpdatedAt());*/
+            nouvelSecteur.setUpdatedAt(Secteur.getUpdatedAt());
 
             nouvelSecteur = SecteurRepository.save(nouvelSecteur);
 
             return nouvelSecteur;
-        } else {
-            Secteur = SecteurRepository.save(Secteur);
 
-            return Secteur;
-        }
     }
 
     public void deleteSecteurById(Long id)

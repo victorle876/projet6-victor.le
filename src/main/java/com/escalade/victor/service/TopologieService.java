@@ -1,6 +1,7 @@
 package com.escalade.victor.service;
 
 import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.TopologieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,9 @@ public class TopologieService {
         Optional<Topologie> Topologie = topologieRepository.findById(id);
 
         if(Topologie.isPresent()) {
-            return Topologie.get();
+
+            Topologie existantTopologie = Topologie.get();
+
         }
 
     }

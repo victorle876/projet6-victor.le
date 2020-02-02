@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Homepage</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<h1>Detail utilisateur</h1>
+
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label for="exampleInputId">Id</label>
+            <input type="number" disabled class="form-control" id="exampleInputId" th:value="${utilisateur.id}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputNom">Nom</label>
+            <input type="text" class="form-control" id="exampleInputNom" th:value="${utilisateur.username}"
+                   aria-describedby="WarningNom" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPrenom">Prenom</label>
+            <input type="text" class="form-control" id="exampleInputPrenom" th:value="${utilisateur.prenom}"
+                   aria-describedby="WarningPrenom" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputNom">mot de passe</label>
+            <input type="text" class="form-control" id="exampleInputMotP" th:value="${utilisateur.password}"
+                   aria-describedby="MotP" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputDateNaissance">Age</label>
+            <input type="text" class="form-control" id="exampleInputDateNaissance" th:value="${utilisateur.dateNaissance}"
+                   aria-describedby="WarningAge" disabled>
+        </div>
+<!--        <div class="form-group">
+            <label for="exampleInputSexe">Sexe</label>
+            <input type="text" class="form-control" id="exampleInputSexe" th:value="${utilisateur.sexe}"
+                   aria-describedby="WarningSexe" disabled>
+        </div>-->
+
+        <div class="form-group">
+            <label for="exampleInputMail">Mail</label>
+            <input type="email" class="form-control" id="exampleInputMail" th:value="${utilisateur.mail}"
+                   aria-describedby="WarningMail" disabled>
+        </div>
+        <!--        <div class="form-group">
+                    <label for="exampleInputRole">Role</label>
+                    <input type="text" class="form-control" id="exampleInputRole" th:value="${utilisateur.role}" aria-describedby="WarningRole" disabled>
+                </div>-->
+
+        <div>
+
+            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

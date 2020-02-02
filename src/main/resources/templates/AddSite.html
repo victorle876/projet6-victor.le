@@ -26,16 +26,17 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputRegionSite">Hauteur</label>
+            <label for="exampleInputRegionSite">Region Site</label>
             <input type="text" class="form-control" th:field="*{region-site}" id="exampleInputRegionSite" aria-describedby="WarningRegionSite" >
             <small id="WarningRegionSite" class="form-text text-muted" th:if="${#fields.hasErrors('region-site')}" th:errors="*{region-site}"></small>
         </div>
 
-        <!--        <div class="form-group">
-                    <label for="exampleInputSexe">Sexe</label>
-                    <input type="text" class="form-control" th:field="*{sexe}" id="exampleInputSexe" aria-describedby="WarningSexe" >
-                    <small id="WarningSexe" class="form-text text-muted" th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}"></small>
-                </div>-->
+        <div class="form-group">
+            <label for="exampleInputPays">Pays</label>
+            <input type="text" class="form-control" th:field="*{region-site}" id="exampleInputPays" aria-describedby="WarningPays" >
+            <small id="WarningPays" class="form-text text-muted" th:if="${#fields.hasErrors('pays')}" th:errors="*{pays}"></small>
+        </div>
+
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
         </div>

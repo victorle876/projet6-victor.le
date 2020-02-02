@@ -74,7 +74,6 @@ public class Site {
         UpdatedAt = updatedAt;
     }
 
-
     public String getPays() {
         return pays;
     }

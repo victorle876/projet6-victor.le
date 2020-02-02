@@ -41,24 +41,17 @@ public class UtilisateurService {
     {
         Optional<Utilisateur> UtilisateurRecherche = UtilisateurRepository.findById(utilisateur.getId());
 
-        if(UtilisateurRecherche.isPresent())
-        {
             Utilisateur existantUtilisateur = UtilisateurRecherche.get();
-/*            nouvelUtilisateur.setMail(utilisateur.getMail());
-            nouvelUtilisateur.setUsername(utilisateur.getUsername());
-            nouvelUtilisateur.setPrenom(utilisateur.getPrenom());
-            nouvelUtilisateur.setPassword(utilisateur.getPassword());
-            nouvelUtilisateur.setDateNaissance(utilisateur.getDateNaissance());
-            nouvelUtilisateur.setRoles(utilisateur.getRoles());*/
+            existantUtilisateur.setMail(utilisateur.getMail());
+            existantUtilisateur.setUsername(utilisateur.getUsername());
+            existantUtilisateur.setPrenom(utilisateur.getPrenom());
+            existantUtilisateur.setPassword(utilisateur.getPassword());
+            existantUtilisateur.setDateNaissance(utilisateur.getDateNaissance());
+            existantUtilisateur.setRoles(utilisateur.getRoles());
 
             existantUtilisateur= UtilisateurRepository.save(existantUtilisateur);
             return existantUtilisateur;
 
-        } else {
-            utilisateur = UtilisateurRepository.save(utilisateur);
-
-            return utilisateur;
-        }
     }
 
     public void deleteUserById(Long id)
