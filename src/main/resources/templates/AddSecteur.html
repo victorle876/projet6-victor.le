@@ -21,18 +21,13 @@
         </div>
         <div class="form-group">
             <label for="exampleInputNomSecteur">Nom du secteur</label>
-            <input type="text" class="form-control" th:field="*{nom-secteur}" id="exampleInputNomSecteur" aria-describedby="WarningNomSecteur">
-            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('nom-secteur')}" th:errors="*{nom-secteur}"></small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputNomSite">Nom du site</label>
-            <input type="text" class="form-control" th:field="*{nom-site}" id="exampleInputNomSite" aria-describedby="WarningNomSite">
-            <small id="WarningNomSite" class="form-text text-muted" th:if="${#fields.hasErrors('nom-site')}" th:errors="*{nom-site}"></small>
+            <input type="text" class="form-control" th:field="*{nomSecteur}" id="exampleInputNomSecteur" aria-describedby="WarningNomSecteur">
+            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('noSecteur')}" th:errors="*{nomSecteur}"></small>
         </div>
 
         <div class="form-group">
             <label for="exampleInputHauteur">Hauteur</label>
-            <input type="number" class="form-control" th:field="*{hauteur}" id="exampleInputHauteur" aria-describedby="WarningHauteur" >
+            <input type="number" class="form-control" th:field="*{Hauteur}" id="exampleInputHauteur" aria-describedby="WarningHauteur" >
             <small id="WarningHauteur" class="form-text text-muted" th:if="${#fields.hasErrors('hauteur')}" th:errors="*{hauteur}"></small>
         </div>
 
@@ -41,15 +36,10 @@
             <input type="number" class="form-control" th:field="*{longueur}" id="exampleInputLongueur" aria-describedby="WarningLongueur" >
             <small id="WarningLongueur" class="form-text text-muted" th:if="${#fields.hasErrors('longueur')}" th:errors="*{longueur}"></small>
         </div>
-        <!--        <div class="form-group">
-                    <label for="exampleInputSexe">Sexe</label>
-                    <input type="text" class="form-control" th:field="*{sexe}" id="exampleInputSexe" aria-describedby="WarningSexe" >
-                    <small id="WarningSexe" class="form-text text-muted" th:if="${#fields.hasErrors('sexe')}" th:errors="*{sexe}"></small>
-                </div>-->
 
         <div class="form-group">
             <label for="exampleInputCotation">Cotation</label>
-            <input type="email" class="form-control" th:field="*{cotation}"  id="exampleInputCotation" aria-describedby="WarningCotation">
+            <input type="text" class="form-control" th:field="*{cotation}"  id="exampleInputCotation" aria-describedby="WarningCotation">
             <small id="WarningCotation" class="form-text text-muted" th:if="${#fields.hasErrors('cotation')}" th:errors="*{cotation}"></small>
         </div>
 
