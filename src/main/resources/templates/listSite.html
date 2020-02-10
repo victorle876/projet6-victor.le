@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Homepage</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<br>
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-body">
+            <h1> Liste des sites</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                    <th>id</th>
+                    <th>nom du site</th>
+                    <th>region du site</th>
+                    <th>rnumero du secteur</th>
+                    <th>pays</th>
+                    <th>detail</th>
+                    <th>editer</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="site, rowStat: ${sites}"
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        <td th:text="${site.id}"/>
+                        <td th:text="${site.nomSite}"/>
+                        <td th:text="${site.regionSite}"/>
+                        <td th:text="${site.secteur}"/>
+                        <td th:text="${site.pays}"/>
+
+                        <td><a th:href="@{/detailSite?id={id}(id=${site.id})}">Détails</a></td>
+                        <td><a th:href="@{/editionSite?id={id}(id=${site.id})}">Editer</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="align-self-xl-end">
+    <br> <a th:href="@{/add}" class="btn btn-primary" role="button">Ajouter</a> </br>
+</div>
+</body>
+</html>

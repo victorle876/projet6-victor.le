@@ -22,9 +22,15 @@ public class Topologie {
     @NotNull(message = "Le nom de la topologie est requise.")
     private String nomTopolgie;
 
-    private Timestamp CreatedAt;
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Timestamp createdAt;
 
-    private Timestamp UpdatedAt;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Timestamp updatedAt;
 
     @OneToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
@@ -38,28 +44,20 @@ public class Topologie {
     @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site ;
 
-    public String getAuteur() {
-        return auteur;
-    }
-
-    public void setAuteur(String auteur) {
-        this.auteur = auteur;
-    }
-
     public Timestamp getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
-        CreatedAt = createdAt;
+        createdAt = createdAt;
     }
 
     public Timestamp getUpdatedAt() {
-        return UpdatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Timestamp updatedAt) {
-        UpdatedAt = updatedAt;
+        updatedAt = updatedAt;
     }
 
     public Long getId() {
@@ -81,8 +79,8 @@ public class Topologie {
     public String toString() {
         return "Topologie{" +
                 "id=" + id +
-                ", CreatedAt=" + CreatedAt +
-                ", UpdatedAt=" + UpdatedAt +
+                ", CreatedAt=" + createdAt +
+                ", UpdatedAt=" + updatedAt +
                 '}';
     }
 }

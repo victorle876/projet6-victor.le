@@ -15,11 +15,11 @@ import java.util.Optional;
 public class CommentaireService {
 
     @Autowired
-    CommentaireRepository CommentaireRepository;
+    CommentaireRepository commentaireRepository;
 
     public List<Commentaire> getAllCommentaires()
     {
-        List<Commentaire> CommentaireList = CommentaireRepository.findAll();
+        List<Commentaire> CommentaireList = commentaireRepository.findAll();
 
         if(CommentaireList.size() > 0) {
             return CommentaireList;
@@ -28,36 +28,26 @@ public class CommentaireService {
         }
     }
 
-    public void getCommentaireById(Long id)
+    public Commentaire getCommentaireById(Long id)
     {
-        Optional<Commentaire> Commentaire = CommentaireRepository.findById(id);
-
-        if(Commentaire.isPresent()) {
-            Commentaire existantCommentaire= Commentaire.get();
-
-        }
+        return this.commentaireRepository.findById(id).get();
 
     }
 
-    public Commentaire createOrUpdateCommentaire(Commentaire Commentaire)
+    public Commentaire saveCommentaire(Commentaire commentaire)
     {
-        Optional<Commentaire> CommentaireRecherche = CommentaireRepository.findById(Commentaire.getId());
 
-            Commentaire nouvelCommentaire = CommentaireRecherche.get();
-
-            nouvelCommentaire = CommentaireRepository.save(nouvelCommentaire);
-
-            return nouvelCommentaire;
+            return this.commentaireRepository.save(commentaire);
     }
 
     public void deleteCommentaireById(Long id)
     {
-        Optional<Commentaire> CommentaireEfface = CommentaireRepository.findById(id);
+/*        Optional<Commentaire> CommentaireEfface = commentaireRepository.findById(id);
 
         if(CommentaireEfface.isPresent())
-        {
-            CommentaireRepository.deleteById(id);
-        }
+        {*/
+            commentaireRepository.deleteById(id);
+   //     }
     }
 }
 

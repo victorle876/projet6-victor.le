@@ -1,4 +1,7 @@
 package com.escalade.victor.model;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,8 +26,14 @@ public class Commentaire {
 
     private String zoneCommentaire;
 
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Timestamp CreatedAt;
 
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private Timestamp UpdatedAt;
 
     public Long getId() {

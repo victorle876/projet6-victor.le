@@ -14,11 +14,11 @@ import java.util.Optional;
 public class SiteService {
 
     @Autowired
-    SiteRepository SiteRepository;
+    SiteRepository siteRepository;
 
     public List<Site> getAllSites()
     {
-        List<Site> SiteList = SiteRepository.findAll();
+        List<Site> SiteList = siteRepository.findAll();
 
         if(SiteList.size() > 0) {
             return SiteList;
@@ -27,40 +27,27 @@ public class SiteService {
         }
     }
 
-    public void getSiteById(Long id)
+    public Site getSiteById(Long id)
     {
-        Optional<Site> Site = SiteRepository.findById(id);
-
-        if(Site.isPresent()) {
-            Site existantSite= Site.get();
-        }
+         return this.siteRepository.findById(id).get();
 
     }
 
-    public Site createOrUpdateSite(Site Site)
+    public Site saveSite(Site site)
     {
-        Optional<Site> SiteRecherche = SiteRepository.findById(Site.getId());
+        return this.siteRepository.save(site);
 
-            Site nouvelSite = SiteRecherche.get();
-            nouvelSite.setNomSite(Site.getNomSite());
-            nouvelSite.setRegionSite(Site.getRegionSite());
-            nouvelSite.setCreatedAt(Site.getCreatedAt());
-            nouvelSite.setUpdatedAt(Site.getUpdatedAt());
-
-            nouvelSite = SiteRepository.save(nouvelSite);
-
-            return nouvelSite;
 
     }
 
     public void deleteSiteById(Long id)
     {
-        Optional<Site> SiteEfface = SiteRepository.findById(id);
+/*        Optional<Site> SiteEfface = siteRepository.findById(id);
 
         if(SiteEfface.isPresent())
-        {
-            SiteRepository.deleteById(id);
-        }
+        {*/
+            siteRepository.deleteById(id);
+    //    }
     }
 }
 

@@ -14,11 +14,11 @@ import java.util.Optional;
 public class ReservationService {
 
     @Autowired
-    ReservationRepository ReservationRepository;
+    ReservationRepository reservationRepository;
 
     public List<Reservation> getAllReservations()
     {
-        List<Reservation> ReservationList = ReservationRepository.findAll();
+        List<Reservation> ReservationList = reservationRepository.findAll();
 
         if(ReservationList.size() > 0) {
             return ReservationList;
@@ -27,37 +27,25 @@ public class ReservationService {
         }
     }
 
-    public void getReservationById(Long id)
+    public Reservation getReservationById(Long id)
     {
-        Optional<Reservation> Reservation = ReservationRepository.findById(id);
-
-        if(Reservation.isPresent()) {
-
-            Reservation existantReservation= Reservation.get();
-        }
+        return this.reservationRepository.findById(id).get();
 
     }
 
-    public Reservation createOrUpdateReservation(Reservation Reservation)
+    public Reservation saveReservation(Reservation reservation)
     {
-        Optional<Reservation> ReservationRecherche = ReservationRepository.findById(Reservation.getId());
-
-            Reservation nouvelReservation = ReservationRecherche.get();
-            nouvelReservation.setDuree(Reservation.getDuree());
-
-            nouvelReservation = ReservationRepository.save(nouvelReservation);
-
-            return nouvelReservation;
+            return this.reservationRepository.save(reservation);
     }
 
     public void deleteReservationById(Long id)
     {
-        Optional<Reservation> ReservationEfface = ReservationRepository.findById(id);
+/*        Optional<Reservation> ReservationEfface = reservationRepository.findById(id);
 
         if(ReservationEfface.isPresent())
-        {
-            ReservationRepository.deleteById(id);
-        }
+        {*/
+            reservationRepository.deleteById(id);
+   //     }
     }
 }
 

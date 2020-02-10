@@ -1,9 +1,8 @@
 package com.escalade.victor.controller;
 
-import com.escalade.victor.model.Utilisateur;
+import com.escalade.victor.model.*;
 import com.escalade.victor.config.*;
-
-import com.escalade.victor.repository.UtilisateurRepository;
+import com.escalade.victor.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +21,95 @@ import java.util.List;
 @Controller
 public class UtilisateurController {
 
+    @Autowired
+    private UtilisateurService utilisateurService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model) {
+        model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication);
+        return "home";
+    }
+
+    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public String AdminHome(Model model) {
+        return "adminhome";
+    }
+
+    @RequestMapping(value = "/user/home", method = RequestMethod.GET)
+    public String UserHome(Model model) {
+        return "userhome";
+    }
+
+    @RequestMapping(value = "/detailsUser", method = RequestMethod.GET)
+    public String detail(@RequestParam(value = "id") Long id, Model model) {
+        Utilisateur utilisateur = utilisateurService.getUserById(id);
+        if (utilisateur == null) {
+            System.out.println("l'utilisateur n'existe pas");
+        }
+        model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
+        return "detailUtilisateur";
+
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
+    public String ajouterUser(Model model) {
+        model.addAttribute("utilisateur", new Utilisateur());
+        return "add";
+    }
+
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    public String save(@Valid @ModelAttribute Utilisateur utilisateur, Model model, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "add";
+        } else {
+            utilisateur.setPassword(this.passwordEncoder.encode(utilisateur.getPassword()));
+            this.utilisateurService.saveUser(utilisateur);
+            model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
+            return "home";
+        }
+    }
+
+    @RequestMapping(value = "/editionUser", method = RequestMethod.GET)
+    public String editionUser(@RequestParam(value = "id") Long id, Model model) {
+        model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
+        return "editUser";
+
+    }
+
+    @RequestMapping(value = "/editionUser", method = RequestMethod.POST)
+    public String editionUser(@RequestParam(value = "id") long id, @Valid @ModelAttribute Utilisateur utilisateur, BindingResult errors, Model model) {
+        if (errors.hasErrors()) {
+            return "editUser";
+        } else {
+            this.utilisateurService.saveUser(utilisateur);
+            model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping(value = "/editionUser1", method = RequestMethod.GET)
+    public String editionUser1(@RequestParam(value = "id") Long id, Model model) {
+        model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
+        return "editUser";
+
+    }
+
+    @RequestMapping(value = "/deleteUser1", method = RequestMethod.POST)
+    public String deleteUser(@RequestParam(value = "id") long id, @Valid @ModelAttribute Utilisateur utilisateur, BindingResult errors, Model model) {
+        if (errors.hasErrors()) {
+            return "editUser";
+        } else {
+            this.utilisateurService.deleteUserById(utilisateur.getId());
+          //  model.addAttribute("utilisateurs", this.utilisateurService.deleteUserById(id));
+            return "redirect:/";
+        }
+    }
 
 
 
-}
+    }

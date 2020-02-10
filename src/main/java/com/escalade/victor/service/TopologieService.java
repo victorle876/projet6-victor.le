@@ -27,44 +27,25 @@ public class TopologieService {
         }
     }
 
-    public void getTopologieById(Long id)
+    public Topologie getTopologieById(Long id)
     {
-        Optional<Topologie> Topologie = topologieRepository.findById(id);
-
-        if(Topologie.isPresent()) {
-
-            Topologie existantTopologie = Topologie.get();
-
-        }
+       return this.topologieRepository.findById(id).get();
 
     }
 
-    public Topologie createOrUpdateTopologie(Topologie Topologie)
+    public Topologie saveTopologie(Topologie topologie)
     {
-        Optional<Topologie> TopologieRecherche = topologieRepository.findById(Topologie.getId());
+        return this.topologieRepository.save(topologie);
 
-        if(TopologieRecherche.isPresent())
-        {
-            Topologie nouvelTopologie = TopologieRecherche.get();
-           // nouvelTopologie.setAuteur(Topologie.getAuteur());
-
-            nouvelTopologie = topologieRepository.save(nouvelTopologie);
-
-            return nouvelTopologie;
-        } else {
-            Topologie = topologieRepository.save(Topologie);
-
-            return Topologie;
-        }
     }
 
-    public void deleteTopologiesById(Long id)
+    public Topologie deleteTopologiesById(Long id)
     {
         Optional<Topologie> TopologieEfface = topologieRepository.findById(id);
 
         if(TopologieEfface.isPresent())
         {
-            topologieRepository.deleteById(id);
+            return this.topologieRepository.deleteById(id);
         }
     }
 }

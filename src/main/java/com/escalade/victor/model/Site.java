@@ -26,9 +26,15 @@ public class Site {
     @NotBlank(message = "Le nom du site est requise.")
     private String pays ;
 
-    private Timestamp CreatedAt;
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Timestamp createdAt;
 
-    private Timestamp UpdatedAt;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Timestamp updatedAt;
 
     @OneToMany(mappedBy="secteur")
     private List<Secteur> secteurs;
@@ -59,19 +65,19 @@ public class Site {
     }
 
     public Timestamp getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
-        CreatedAt = createdAt;
+        createdAt = createdAt;
     }
 
     public Timestamp getUpdatedAt() {
-        return UpdatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Timestamp updatedAt) {
-        UpdatedAt = updatedAt;
+        updatedAt = updatedAt;
     }
 
     public String getPays() {
@@ -88,8 +94,8 @@ public class Site {
                 "id=" + id +
                 ", region_site='" + regionSite + '\'' +
                 ", nom_site='" + nomSite + '\'' +
-                ", CreatedAt=" + CreatedAt +
-                ", UpdatedAt=" + UpdatedAt +
+                ", CreatedAt=" + createdAt +
+                ", UpdatedAt=" + updatedAt +
                 '}';
     }
 

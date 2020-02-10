@@ -15,11 +15,11 @@ import java.util.Optional;
 public class SecteurService {
 
     @Autowired
-    SecteurRepository SecteurRepository;
+    SecteurRepository secteurRepository;
 
     public List<Secteur> getAllSecteurs()
     {
-        List<Secteur> SecteurList = SecteurRepository.findAll();
+        List<Secteur> SecteurList = secteurRepository.findAll();
 
         if(SecteurList.size() > 0) {
             return SecteurList;
@@ -28,44 +28,26 @@ public class SecteurService {
         }
     }
 
-    public void getSecteurById(Long id)
+    public Secteur getSecteurById(Long id)
     {
-        Optional<Secteur> Secteur = SecteurRepository.findById(id);
-
-        if(Secteur.isPresent()) {
-
-            Secteur existantSecteur= Secteur.get();
-
-        }
+        return this.secteurRepository.findById(id).get();
 
     }
 
-    public Secteur createOrUpdateSecteur(Secteur Secteur)
+    public Secteur saveSecteur(Secteur secteur)
     {
-        Optional<Secteur> SecteurRecherche = SecteurRepository.findById(Secteur.getId());
-
-            Secteur nouvelSecteur = SecteurRecherche.get();
-            nouvelSecteur.setNomSecteur(Secteur.getNomSecteur());
-            nouvelSecteur.setHauteur(Secteur.getHauteur());
-            nouvelSecteur.setCotation(Secteur.getCotation());
-            nouvelSecteur.setLongueur(Secteur.getLongueur());
-            nouvelSecteur.setCreatedAt(Secteur.getCreatedAt());
-            nouvelSecteur.setUpdatedAt(Secteur.getUpdatedAt());
-
-            nouvelSecteur = SecteurRepository.save(nouvelSecteur);
-
-            return nouvelSecteur;
+        return this.secteurRepository.save(secteur);
 
     }
 
     public void deleteSecteurById(Long id)
     {
-        Optional<Secteur> SecteurEfface = SecteurRepository.findById(id);
+  /*      Optional<Secteur> SecteurEfface = secteurRepository.findById(id);
 
         if(SecteurEfface.isPresent())
-        {
-            SecteurRepository.deleteById(id);
-        }
+        {*/
+            secteurRepository.deleteById(id);
+  //      }
     }
 }
 

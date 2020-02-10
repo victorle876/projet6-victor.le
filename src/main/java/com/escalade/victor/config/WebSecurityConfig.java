@@ -22,8 +22,6 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*    @Autowired
-    private UtilisateurService userDetailsService;*/
 
     @Autowired
     private UserDetailsService customUserDetailsService;
@@ -43,4 +41,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .headers()
+                .frameOptions().sameOrigin()
+                .and()
+                .authorizeRequests()
+//                .antMatchers("/resources/**", "/webjars/**","/assets/**").permitAll()
+                .antMatchers("/edition/**", "/details/**","/save/**","/add/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN") //
+//                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/connect")
+                .defaultSuccessUrl("/")
+                .failureUrl("/connect?error")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("my-remember-me-cookie")
+                .permitAll()
+                .and()
+                .rememberMe()
+                //.key("my-secure-key")
+                .rememberMeCookieName("my-remember-me-cookie")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(24 * 60 * 60)
+                .and()
+                .exceptionHandling()
+        ;
+    }
+
+    PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
+    }
 }

@@ -13,11 +13,11 @@ import java.util.Optional;
 public class UtilisateurService {
 
     @Autowired
-    UtilisateurRepository UtilisateurRepository;
+    UtilisateurRepository utilisateurRepository;
 
     public List<Utilisateur> getAllUsers()
     {
-        List<Utilisateur> utilisateurList = UtilisateurRepository.findAll();
+        List<Utilisateur> utilisateurList = utilisateurRepository.findAll();
 
         if(utilisateurList.size() > 0) {
             return utilisateurList;
@@ -26,41 +26,27 @@ public class UtilisateurService {
         }
     }
 
-    public void getUserById(Long id)
+    public Utilisateur getUserById(Long id)
     {
-        Optional<Utilisateur> utilisateur = UtilisateurRepository.findById(id);
-
-        if(utilisateur.isPresent()) {
-
-            Utilisateur existantUtilisateur = utilisateur.get();
-        }
+        return this.utilisateurRepository.findById(id).get();
 
     }
 
-    public Utilisateur createOrUpdateUser(Utilisateur utilisateur)
+    public Utilisateur saveUser(Utilisateur utilisateur)
     {
-        Optional<Utilisateur> UtilisateurRecherche = UtilisateurRepository.findById(utilisateur.getId());
+        Optional<Utilisateur> UtilisateurRecherche = utilisateurRepository.findById(utilisateur.getId());
 
-            Utilisateur existantUtilisateur = UtilisateurRecherche.get();
-            existantUtilisateur.setMail(utilisateur.getMail());
-            existantUtilisateur.setUsername(utilisateur.getUsername());
-            existantUtilisateur.setPrenom(utilisateur.getPrenom());
-            existantUtilisateur.setPassword(utilisateur.getPassword());
-            existantUtilisateur.setDateNaissance(utilisateur.getDateNaissance());
-            existantUtilisateur.setRoles(utilisateur.getRoles());
-
-            existantUtilisateur= UtilisateurRepository.save(existantUtilisateur);
-            return existantUtilisateur;
+            return this.utilisateurRepository.save(utilisateur);
 
     }
 
     public void deleteUserById(Long id)
     {
-        Optional<Utilisateur> UtilisateurEfface = UtilisateurRepository.findById(id);
+/*          Optional<Utilisateur> UtilisateurEfface = utilisateurRepository.findById(id);
 
-        if(UtilisateurEfface.isPresent())
-        {
-            UtilisateurRepository.deleteById(id);
-        }
+          if(UtilisateurEfface.isPresent())
+        {*/
+           utilisateurRepository.deleteById(id);
+       // }
     }
 }
