@@ -17,8 +17,6 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/detailsReservation", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {

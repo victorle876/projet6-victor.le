@@ -17,8 +17,6 @@ public class SecteurController {
     @Autowired
     private SecteurService secteurService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/detailsSecteur", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {

@@ -17,9 +17,6 @@ public class CommentaireController {
     @Autowired
     private CommentaireService commentaireService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @RequestMapping(value = "/detailsCommentaire", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Commentaire commentaire = commentaireService.getCommentaireById(id);
