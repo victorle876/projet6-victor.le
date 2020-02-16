@@ -24,7 +24,7 @@ public class SiteController {
             System.out.println("le site n'existe pas");
         }
         model.addAttribute("site", this.siteService.getSiteById(id));
-        return "detailSite";
+        return "detailsSite";
 
     }
 
@@ -49,14 +49,14 @@ public class SiteController {
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
     public String editionSite(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("site", this.siteService.getSiteById(id));
-        return "editSite";
+        return "editionSite";
 
     }
 
     @RequestMapping(value = "/editionSite", method = RequestMethod.POST)
     public String editionSite(@RequestParam(value = "id") long id, @Valid @ModelAttribute Site site, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editSite";
+            return "editionSite";
         } else {
             this.siteService.saveSite(site);
             model.addAttribute("sites", this.siteService.getAllSites());
@@ -67,14 +67,14 @@ public class SiteController {
     @RequestMapping(value = "/editionSite1", method = RequestMethod.GET)
     public String editionSite2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("site", this.siteService.getSiteById(id));
-        return "editSite";
+        return "editionSite";
 
     }
 
     @RequestMapping(value = "/deleteSite1", method = RequestMethod.POST)
     public String deleteSite(@RequestParam(value = "id") long id, @Valid @ModelAttribute Site site, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editSite";
+            return "editionSite";
         } else {
             this.siteService.deleteSiteById(site.getId());
   //          model.addAttribute("sites", this.siteService.deleteSiteById(id));

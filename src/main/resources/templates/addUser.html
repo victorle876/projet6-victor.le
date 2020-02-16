@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Creation d''un utilisateur</title>
+    <title>Homepage</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -36,10 +35,16 @@
             <small id="WarningMotP" class="form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
         </div>
 
-        <div class="form-group">
+<!--        <div class="form-group">
             <label for="exampleInputdateNaissance">Age</label>
             <input type="text" class="form-control" th:field="*{dateNaissance}" id="exampleInputdateNaissance" aria-describedby="WarningdateNaissance" >
             <small id="WarningdateNaissance" class="form-text text-muted" th:if="${#fields.hasErrors('dateNaissance')}" th:errors="*{dateNaissance}"></small>
+        </div>-->
+
+        <div class="form-group">
+            <label for="exampleInputdateNaissance">Age</label>
+            <input type="text" class="form-control" th:field="*{age}" id="exampleInputdateNaissance" aria-describedby="WarningdateNaissance" >
+            <small id="WarningdateNaissance" class="form-text text-muted" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
         </div>
 
         <div class="form-group">
@@ -48,11 +53,11 @@
             <small id="WarningMail" class="form-text text-muted" th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></small>
         </div>
 
-        <div class="form-group">
+<!--        <div class="form-group">
             <label for="exampleInputMail">Role</label>
             <input type="email" class="form-control" th:field="*{role}"  id="exampleInputRole" aria-describedby="WarningRole">
             <small id="WarningRole" class="form-text text-muted" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></small>
-        </div>
+        </div>-->
 
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">

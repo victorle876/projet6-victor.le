@@ -12,13 +12,13 @@
 </head>
 
 <body>
-<h1>Modifier detail utilisateur</h1>
+<h1>Modifier detail Site</h1>
 
 <div class="container">
 
 
     <!--    <form>-->
-    <form action="#" th:action="@{/edition?id={id}(id=${site.id})}" th:object="${site}" method="post" >
+    <form action="#" th:action="@{/editionSite?id={id}(id=${site.id})}" th:object="${site}" method="post" >
         <div class="form-group">
             <label for="exampleInputId">Id</label>
             <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">

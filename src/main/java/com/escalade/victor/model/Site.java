@@ -5,8 +5,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -15,6 +15,7 @@ public class Site {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
     @NotBlank(message = "La région du site est requise.")
@@ -52,7 +53,7 @@ public class Site {
         return regionSite;
     }
 
-    public void setRegionSite(String region_site) {
+    public void setRegionSite(String regionSite) {
         this.regionSite = regionSite;
     }
 

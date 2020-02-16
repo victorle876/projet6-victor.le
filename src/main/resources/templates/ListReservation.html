@@ -31,7 +31,7 @@
                         <td th:text="${reservation.id}"/>
                         <td th:text="${reservation.topologie}"/>
                         <td th:text="${reservation.utilisateur}"/>
-                        <td><a th:href="@{/details?id={id}(id=${utilisateur.id})}">Détails</a></td>
+                        <td><a th:href="@{/detailsReservation?id={id}(id=${reservation.id})}">Détails</a></td>
                         <!--                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>-->
                     </tr>
                     </tbody>

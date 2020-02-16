@@ -20,7 +20,7 @@ import java.util.Collection;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
@@ -30,14 +30,17 @@ public class Utilisateur {
     @NotBlank(message = "Le prenom est requis.")
     private String prenom;
 
-    @NotNull(message = "La date de naissance est requise.")
-    private Date dateNaissance;
+/*    @NotNull(message = "La date de naissance est requise.")
+    private Date dateNaissance;*/
 
 
     @NotBlank(message = "L'adresse mail est requis.")
     private String mail;
 
     private String password;
+
+    @NotNull(message = "L''age est requis.")
+    private Integer age;
 
    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -47,12 +50,12 @@ public class Utilisateur {
    private List<Role> roles;
 
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @CreatedDate
     private Date createdAt;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @LastModifiedDate
     private Date updatedAt;
 
@@ -95,12 +98,20 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
+/*    public Date getDateNaissance() {
         return dateNaissance;
     }
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }*/
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
 
@@ -151,7 +162,7 @@ public class Utilisateur {
                 "id=" + id +
                 ", nom='" + username + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", dateNaissance=" + dateNaissance +
+                ", age=" + age +
                 ", password'" + password + '\'' +
                 ", mail='" + mail + '\'' +
                 '}';

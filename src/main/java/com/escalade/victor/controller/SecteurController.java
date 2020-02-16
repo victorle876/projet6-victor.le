@@ -32,14 +32,14 @@ public class SecteurController {
     @RequestMapping(value = "/addSecteur", method = RequestMethod.GET)
     public String ajouterSecteur(Model model) {
         model.addAttribute("secteur", new Secteur());
-        return "addSecteur";
+        return "AddSecteur";
     }
 
     @RequestMapping(value = "/saveSecteur", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Secteur secteur, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "add";
+            return "AddSecteur";
         } else {
             this.secteurService.saveSecteur(secteur);
             model.addAttribute("secteurs", this.secteurService.getAllSecteurs());
@@ -50,14 +50,14 @@ public class SecteurController {
     @RequestMapping(value = "/editionSecteur", method = RequestMethod.GET)
     public String editionSecteur(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("secteur", this.secteurService.getSecteurById(id));
-        return "editSecteur";
+        return "EditSecteur";
 
     }
 
     @RequestMapping(value = "/editionSecteur", method = RequestMethod.POST)
     public String editionSecteur(@RequestParam(value = "id") long id, @Valid @ModelAttribute Secteur Secteur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editSecteur";
+            return "EditSecteur";
         } else {
             this.secteurService.saveSecteur(Secteur);
             model.addAttribute("secteurs", this.secteurService.getAllSecteurs());
@@ -75,7 +75,7 @@ public class SecteurController {
     @RequestMapping(value = "/deleteSecteur1", method = RequestMethod.POST)
     public String deleteSecteur(@RequestParam(value = "id") long id, @Valid @ModelAttribute Secteur secteur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editSecteur";
+            return "EditSecteur";
         } else {
             this.secteurService.deleteSecteurById(secteur.getId());
  //           model.addAttribute("Secteurs", this.secteurService.deleteSecteurById(id));

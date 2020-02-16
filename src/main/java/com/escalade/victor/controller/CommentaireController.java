@@ -31,14 +31,14 @@ public class CommentaireController {
     @RequestMapping(value = "/addCommentaire", method = RequestMethod.GET)
     public String ajouterCommentaire(Model model) {
         model.addAttribute("commentaire", new Commentaire());
-        return "addCommentaire";
+        return "AddCommentaire";
     }
 
     @RequestMapping(value = "/saveCommentaire", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Commentaire commentaire, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "addCommentaire";
+            return "AddCommentaire";
         } else {
             this.commentaireService.saveCommentaire(commentaire);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
@@ -49,7 +49,7 @@ public class CommentaireController {
     @RequestMapping(value = "/editionCommentaire", method = RequestMethod.GET)
     public String editionCommentaire(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "editUser";
+        return "EditCommentaire";
 
     }
 
@@ -67,14 +67,14 @@ public class CommentaireController {
     @RequestMapping(value = "/editionCommentaire1", method = RequestMethod.GET)
     public String editionCommentaire2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "editCommentaire";
+        return "EditCommentaire";
 
     }
 
     @RequestMapping(value = "/deleteCommentaire1", method = RequestMethod.POST)
     public String deleteCommentaire(@RequestParam(value = "id") long id, @Valid @ModelAttribute Commentaire Commentaire, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editCommentaire";
+            return "EditCommentaire";
         } else {
             this.commentaireService.deleteCommentaireById(Commentaire.getId());
         //    model.addAttribute("Commentaires", this.commentaireService.deleteCommentaireById(id));

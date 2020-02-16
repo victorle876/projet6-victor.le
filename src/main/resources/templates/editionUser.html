@@ -18,7 +18,7 @@
 
 
     <!--    <form>-->
-    <form action="#" th:action="@{/edition?id={id}(id=${utilisateur.id})}" th:object="${utilisateur}" method="post" >
+    <form action="#" th:action="@{/editionUser?id={id}(id=${utilisateur.id})}" th:object="${utilisateur}" method="post" >
         <div class="form-group">
             <label for="exampleInputId">Id</label>
             <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">

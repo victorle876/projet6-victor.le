@@ -40,8 +40,8 @@
                         <td th:text="${utilisateur.dateNaissance}"/>
                         <td th:text="${utilisateur.password}"/>
                         <td th:text="${utilisateur.mail}"/>
-                        <td><a th:href="@{/details?id={id}(id=${utilisateur.id})}">Détails</a></td>
-                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>
+                        <td><a th:href="@{/detailsUser?id={id}(id=${utilisateur.id})}">Détails</a></td>
+                        <td><a th:href="@{/editionUser?id={id}(id=${utilisateur.id})}">Editer</a></td>
                     </tr>
                     </tbody>
                 </table>

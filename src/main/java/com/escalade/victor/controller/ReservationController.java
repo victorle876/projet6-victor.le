@@ -39,7 +39,7 @@ public class ReservationController {
     public String save(@Valid @ModelAttribute Reservation reservation, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "addReservation";
+            return "AddReservation";
         } else {
             this.reservationService.saveReservation(reservation);
             model.addAttribute("Reservations", this.reservationService.getAllReservations());
@@ -50,14 +50,14 @@ public class ReservationController {
     @RequestMapping(value = "/editionReservation", method = RequestMethod.GET)
     public String editionReservation(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("Reservation", this.reservationService.getReservationById(id));
-        return "editUser";
+        return "EditReservation";
 
     }
 
     @RequestMapping(value = "/editionReservation", method = RequestMethod.POST)
     public String editionReservation(@RequestParam(value = "id") long id, @Valid @ModelAttribute Reservation Reservation, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editReservation";
+            return "EditReservation";
         } else {
             this.reservationService.saveReservation(Reservation);
             model.addAttribute("Reservations", this.reservationService.getAllReservations());
@@ -68,14 +68,14 @@ public class ReservationController {
     @RequestMapping(value = "/editionReservation1", method = RequestMethod.GET)
     public String editionReservation2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("Reservation", this.reservationService.getReservationById(id));
-        return "editReservation";
+        return "EditReservation";
 
     }
 
     @RequestMapping(value = "/deleteReservation1", method = RequestMethod.POST)
     public String deleteReservation(@RequestParam(value = "id") long id, @Valid @ModelAttribute Reservation reservation, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editReservation";
+            return "EditReservation";
         } else {
             this.reservationService.deleteReservationById(reservation.getId());
     //        model.addAttribute("Reservations", this.reservationService.deleteReservationById(id));
