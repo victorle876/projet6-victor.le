@@ -16,25 +16,27 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+/*    @OneToOne
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;
+    private Utilisateur utilisateur;*/
 
-    @OneToOne
-    @JoinColumn(name = "secteur_id", referencedColumnName = "id")
+    @ManyToOne
     private Secteur secteur;
+
+    @ManyToOne
+    private Utilisateur utilisateur;
 
     private String zoneCommentaire;
 
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @CreatedDate
-    private Timestamp CreatedAt;
+    private Date CreatedAt;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @LastModifiedDate
-    private Timestamp UpdatedAt;
+    private Date UpdatedAt;
 
     public Long getId() {
         return id;
@@ -52,7 +54,7 @@ public class Commentaire {
         zoneCommentaire = zoneCommentaire;
     }*/
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return CreatedAt;
     }
 
@@ -60,7 +62,7 @@ public class Commentaire {
         CreatedAt = CreatedAt;
     }*/
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return UpdatedAt;
     }
 

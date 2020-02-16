@@ -5,7 +5,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+//import java.sql.Date;
 import java.util.Date;
 import java.util.List;
 
@@ -26,11 +26,10 @@ public class Secteur {
     @NotNull(message = "La cotation est requise.")
     private Integer cotation;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="site_id")
+    @ManyToOne
     private Site site;
 
-    @OneToMany(mappedBy="commentaire")
+    @OneToMany(mappedBy="secteur")
     private List<Commentaire> commentaires;
 
     public Long getId() {
@@ -45,14 +44,14 @@ public class Secteur {
     private Integer Longueur;
 
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @CreatedDate
-    private Timestamp createdAt;
+    private Date createdAt;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @LastModifiedDate
-    private Timestamp updatedAt;
+    private Date updatedAt;
 
 
     public String getNomSecteur() {
@@ -87,19 +86,19 @@ public class Secteur {
         Longueur = longueur;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         updatedAt = updatedAt;
     }
 

@@ -18,8 +18,11 @@ public class Reservation {
 
     private Integer duree ;
 
-    @OneToOne
+/*    @OneToOne
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;*/
+
+    @ManyToOne
     private Utilisateur utilisateur;
 
     @OneToOne

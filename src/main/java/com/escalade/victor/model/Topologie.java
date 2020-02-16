@@ -23,14 +23,14 @@ public class Topologie {
     private String nomTopolgie;
 
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @CreatedDate
-    private Timestamp createdAt;
+    private Date createdAt;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @LastModifiedDate
-    private Timestamp updatedAt;
+    private Date updatedAt;
 
     @OneToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
@@ -44,7 +44,7 @@ public class Topologie {
     @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site ;
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
@@ -52,7 +52,7 @@ public class Topologie {
         createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 

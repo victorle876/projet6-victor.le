@@ -39,14 +39,14 @@ public class TopologieService {
 
     }
 
-    public Topologie deleteTopologiesById(Long id)
+    public void deleteTopologiesById(Long id)
     {
-        Optional<Topologie> TopologieEfface = topologieRepository.findById(id);
+/*        Optional<Topologie> TopologieEfface = topologieRepository.findById(id);
 
         if(TopologieEfface.isPresent())
-        {
-            return this.topologieRepository.deleteById(id);
-        }
+        {*/
+           topologieRepository.deleteById(id);
+      //  }
     }
 }
 

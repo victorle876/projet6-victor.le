@@ -110,6 +110,11 @@ public class UtilisateurController {
         }
     }
 
+    @RequestMapping(value = "/connect", method = RequestMethod.GET)
+    public String connect(Model model)  {
+        model.addAttribute("utilisateur", new Utilisateur());
+        return "connexion";
 
+    }
 
     }

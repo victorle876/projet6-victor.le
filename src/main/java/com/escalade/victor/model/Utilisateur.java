@@ -39,12 +39,12 @@ public class Utilisateur {
 
     private String password;
 
-/*    @ManyToMany(cascade = CascadeType.MERGE)
+   @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})*/
-    private String role;
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+   private List<Role> roles;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -61,14 +61,14 @@ public class Utilisateur {
     }
 
 
-    @OneToMany(mappedBy="topologie")
+    @OneToMany(mappedBy="utilisateur")
     private List<Topologie> topologies;
 
-    @OneToMany(mappedBy="commentaire")
+    @OneToMany(mappedBy="utilisateur")
     private List<Commentaire> commentaires;
 
-    @OneToMany(mappedBy="reservation")
-    private List<Reservation> reservationss;
+    @OneToMany(mappedBy="utilisateur")
+    private List<Reservation> reservations;
 
     public Long getId() {
         return id;
@@ -121,12 +121,12 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String getRoles() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRoles( String role) {
-        this.role = role;
+    public void setRoles( List<Role> roles) {
+        this.roles = roles;
     }
 
     public Date getCreatedAt() {

@@ -17,9 +17,6 @@ public class SiteController {
     @Autowired
     private SiteService siteService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @RequestMapping(value = "/detailsSite", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Site site = siteService.getSiteById(id);

@@ -27,16 +27,16 @@ public class Site {
     private String pays ;
 
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @CreatedDate
-    private Timestamp createdAt;
+    private Date createdAt;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @LastModifiedDate
-    private Timestamp updatedAt;
+    private Date updatedAt;
 
-    @OneToMany(mappedBy="secteur")
+    @OneToMany(mappedBy="site")
     private List<Secteur> secteurs;
 
 
@@ -64,7 +64,7 @@ public class Site {
         this.nomSite = nomSite;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
@@ -72,7 +72,7 @@ public class Site {
         createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
