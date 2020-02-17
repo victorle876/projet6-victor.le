@@ -4,6 +4,7 @@ import com.escalade.victor.model.Secteur;
 import com.escalade.victor.service.SecteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
+@RequestMapping("/secteur")
+@Controller
 public class SecteurController {
     @Autowired
     private SecteurService secteurService;
@@ -25,21 +28,21 @@ public class SecteurController {
             System.out.println("le Secteur n'existe pas");
         }
         model.addAttribute("secteur", this.secteurService.getSecteurById(id));
-        return "detailSecteur";
+        return "detailsSecteur";
 
     }
 
     @RequestMapping(value = "/addSecteur", method = RequestMethod.GET)
     public String ajouterSecteur(Model model) {
         model.addAttribute("secteur", new Secteur());
-        return "AddSecteur";
+        return "addSecteur";
     }
 
     @RequestMapping(value = "/saveSecteur", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Secteur secteur, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "AddSecteur";
+            return "addSecteur";
         } else {
             this.secteurService.saveSecteur(secteur);
             model.addAttribute("secteurs", this.secteurService.getAllSecteurs());
@@ -50,14 +53,14 @@ public class SecteurController {
     @RequestMapping(value = "/editionSecteur", method = RequestMethod.GET)
     public String editionSecteur(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("secteur", this.secteurService.getSecteurById(id));
-        return "EditSecteur";
+        return "editionSecteur";
 
     }
 
     @RequestMapping(value = "/editionSecteur", method = RequestMethod.POST)
     public String editionSecteur(@RequestParam(value = "id") long id, @Valid @ModelAttribute Secteur Secteur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "EditSecteur";
+            return "editionSecteur";
         } else {
             this.secteurService.saveSecteur(Secteur);
             model.addAttribute("secteurs", this.secteurService.getAllSecteurs());
@@ -68,14 +71,14 @@ public class SecteurController {
     @RequestMapping(value = "/editionSecteur1", method = RequestMethod.GET)
     public String editionSecteur2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("Secteur", this.secteurService.getSecteurById(id));
-        return "editSecteur";
+        return "editionSecteur";
 
     }
 
     @RequestMapping(value = "/deleteSecteur1", method = RequestMethod.POST)
     public String deleteSecteur(@RequestParam(value = "id") long id, @Valid @ModelAttribute Secteur secteur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "EditSecteur";
+            return "editionSecteur";
         } else {
             this.secteurService.deleteSecteurById(secteur.getId());
  //           model.addAttribute("Secteurs", this.secteurService.deleteSecteurById(id));

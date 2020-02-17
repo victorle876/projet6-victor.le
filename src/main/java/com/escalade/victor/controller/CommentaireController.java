@@ -4,6 +4,7 @@ import com.escalade.victor.model.Commentaire;
 import com.escalade.victor.service.CommentaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
+@RequestMapping("/commentaire")
+@Controller
 public class CommentaireController {
     @Autowired
     private CommentaireService commentaireService;
@@ -31,14 +34,14 @@ public class CommentaireController {
     @RequestMapping(value = "/addCommentaire", method = RequestMethod.GET)
     public String ajouterCommentaire(Model model) {
         model.addAttribute("commentaire", new Commentaire());
-        return "AddCommentaire";
+        return "addCommentaire";
     }
 
     @RequestMapping(value = "/saveCommentaire", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Commentaire commentaire, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "AddCommentaire";
+            return "addCommentaire";
         } else {
             this.commentaireService.saveCommentaire(commentaire);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());

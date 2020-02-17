@@ -46,7 +46,7 @@ public class SiteController {
         }
     }
 
-    @RequestMapping(value = "/edition", method = RequestMethod.GET)
+    @RequestMapping(value = "/editionSite", method = RequestMethod.GET)
     public String editionSite(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("site", this.siteService.getSiteById(id));
         return "editionSite";

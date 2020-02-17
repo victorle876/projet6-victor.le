@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Homepage</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<h1>Detail Reservation</h1>
+
+    <div class="container">
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputId">Id</label>
+                <input type="number" disabled class="form-control" id="exampleInputId" th:value="${reservation.id}">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputTopologie">Nom du secteur</label>
+                <input type="text" class="form-control" id="exampleInputTopologie" th:value="${reservation.topologie}"
+                       aria-describedby="WarningInputTopologie" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputAuteur">Auteur</label>
+                <input type="number" class="form-control" id="exampleInputAuteur" th:value="${reservation.duree}"
+                       aria-describedby="WarningAuteur" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEtat">Longueur</label>
+                <input type="number" class="form-control" id="exampleInputEtat" th:value="${reservation.Etat}"
+                       aria-describedby="WarningEtat" disabled>
+            </div>
+
+            <div>
+
+                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

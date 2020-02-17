@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Creation du commentaire</title>
+    <title>Homepage</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -19,17 +18,17 @@
             <!-- <label for="exampleInputId">Id</label>
              <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
         </div>
-        <div class="form-group">
+<!--        <div class="form-group">
             <label for="exampleInputNomSecteur">Nom du secteur</label>
-            <input type="text" class="form-control" th:field="*{nomSecteur}" id="exampleInputNomSecteur" aria-describedby="WarningNomSecteur">
-            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('nomSecteur')}" th:errors="*{nomSecteur}"></small>
-        </div>
+            <input type="text" class="form-control" id="exampleInputNomSecteur" th:value="${commentaire.secteur}"
+                   aria-describedby="WarningNomSecteur" disabled>
+        </div>-->
 
-        <div class="form-group">
-        <label for="exampleInputCommentaire">Auteur du commentaire</label>
-        <input type="text" class="form-control" th:field="*{zone-commentaire}" id="exampleInputCommentaire" aria-describedby="WarningCommentaire">
-        <small id="WarningCommentaire" class="form-text text-muted" th:if="${#fields.hasErrors('zone-commentaire')}" th:errors="*{zone-commentaire}"></small>
-    </div>
+<!--        <div class="form-group">
+        <label for="exampleInputAuteur">Auteur du commentaire</label>
+            <input type="text" class="form-control" id="exampleInputAuteur" th:value="${commentaire.utilisateur}"
+                   aria-describedby="WarningAuteur" disabled>
+        </div>-->
 
         <div class="form-group">
             <label for="exampleInputZoneCommentaire">Zone du commentaire</label>

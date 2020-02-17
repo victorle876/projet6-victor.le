@@ -19,20 +19,23 @@ public class Site {
     private Long id;
 
     @NotBlank(message = "La région du site est requise.")
+    @Column(name="regionSite")
     private String regionSite ;
 
     @NotBlank(message = "Le nom du site est requise.")
+    @Column(name="nomSite")
     private String nomSite ;
 
-    @NotBlank(message = "Le nom du site est requise.")
+    @NotBlank(message = "Le pays est requise.")
+    @Column(name="pays")
     private String pays ;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false,name = "created_at")
     @Temporal(TemporalType.DATE)
     @CreatedDate
     private Date createdAt;
 
-    @Column(nullable = false)
+    @Column(nullable = false,name = "updated_at")
     @Temporal(TemporalType.DATE)
     @LastModifiedDate
     private Date updatedAt;
@@ -93,8 +96,8 @@ public class Site {
     public String toString() {
         return "Site{" +
                 "id=" + id +
-                ", region_site='" + regionSite + '\'' +
-                ", nom_site='" + nomSite + '\'' +
+                ", regionSite='" + regionSite + '\'' +
+                ", nomSite='" + nomSite + '\'' +
                 ", CreatedAt=" + createdAt +
                 ", UpdatedAt=" + updatedAt +
                 '}';

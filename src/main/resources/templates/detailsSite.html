@@ -33,8 +33,13 @@
                    aria-describedby="WarningRegionSite" disabled>
         </div>
 
-        <div>
+        <div class="form-group">
+            <label for="exampleInputPays">Pays</label>
+            <input type="text" class="form-control" id="exampleInputPays" th:value="${site.pays}"
+                   aria-describedby="WarningPays" disabled>
+        </div>
 
+        <div>
             <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
 
         </div>

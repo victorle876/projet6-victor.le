@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Creation du secteur</title>
+    <title>Homepage</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -27,7 +26,7 @@
 
         <div class="form-group">
             <label for="exampleInputHauteur">Hauteur</label>
-            <input type="number" class="form-control" th:field="*{Hauteur}" id="exampleInputHauteur" aria-describedby="WarningHauteur" >
+            <input type="number" class="form-control" th:field="*{hauteur}" id="exampleInputHauteur" aria-describedby="WarningHauteur" >
             <small id="WarningHauteur" class="form-text text-muted" th:if="${#fields.hasErrors('hauteur')}" th:errors="*{hauteur}"></small>
         </div>
 

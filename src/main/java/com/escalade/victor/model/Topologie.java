@@ -20,7 +20,7 @@ public class Topologie {
     private String auteur;
 
     @NotNull(message = "Le nom de la topologie est requise.")
-    private String nomTopolgie;
+    private String nomTopologie;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
@@ -69,11 +69,11 @@ public class Topologie {
     }
 
     public String getNomTopolgie() {
-        return nomTopolgie;
+        return nomTopologie;
     }
 
     public void setNomTopolgie(String nomTopolgie) {
-        this.nomTopolgie = nomTopolgie;
+        this.nomTopologie = nomTopolgie;
     }
     @Override
     public String toString() {
