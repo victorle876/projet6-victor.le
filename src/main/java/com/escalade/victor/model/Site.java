@@ -30,15 +30,22 @@ public class Site {
     @Column(name="pays")
     private String pays ;
 
-    @Column(nullable = false, updatable = false,name = "created_at")
-    @Temporal(TemporalType.DATE)
     @CreatedDate
     private Date createdAt;
 
-    @Column(nullable = false,name = "updated_at")
-    @Temporal(TemporalType.DATE)
     @LastModifiedDate
     private Date updatedAt;
+
+    @PrePersist
+    protected void prePersist() {
+        if (this.createdAt == null) createdAt = new Date();
+        if (this.updatedAt == null) updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        this.updatedAt = new Date();
+    }
 
     @OneToMany(mappedBy="site")
     private List<Secteur> secteurs;
@@ -90,6 +97,14 @@ public class Site {
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
     }
 
     @Override

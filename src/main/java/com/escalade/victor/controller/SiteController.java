@@ -42,7 +42,8 @@ public class SiteController {
         } else {
             this.siteService.saveSite(site);
             model.addAttribute("sites", this.siteService.getAllSites());
-            return "home";
+    //        return "home";
+             return "listSite";
         }
     }
 

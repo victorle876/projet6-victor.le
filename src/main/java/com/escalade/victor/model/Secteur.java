@@ -24,13 +24,16 @@ public class Secteur {
     private Integer hauteur;
 
     @NotNull(message = "La cotation est requise.")
-    private Integer cotation;
+    private String cotation;
 
     @ManyToOne
     private Site site;
 
     @OneToMany(mappedBy="secteur")
     private List<Commentaire> commentaires;
+
+    @OneToMany(mappedBy="secteur")
+    private List<Voie> voies;
 
     public Long getId() {
         return id;
@@ -43,15 +46,22 @@ public class Secteur {
     @NotNull(message = "La longueur est requise.")
     private Integer Longueur;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.DATE)
     @CreatedDate
     private Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     @LastModifiedDate
     private Date updatedAt;
+
+    @PrePersist
+    protected void prePersist() {
+        if (this.createdAt == null) createdAt = new Date();
+        if (this.updatedAt == null) updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        this.updatedAt = new Date();
+    }
 
 
     public String getNomSecteur() {
@@ -70,11 +80,11 @@ public class Secteur {
         this.hauteur = hauteur;
     }
 
-    public Integer getCotation() {
+    public String getCotation() {
         return cotation;
     }
 
-    public void setCotation(Integer cotation) {
+    public void setCotation(String cotation) {
         this.cotation = cotation;
     }
 
@@ -83,7 +93,7 @@ public class Secteur {
     }
 
     public void setLongueur(Integer longueur) {
-        Longueur = longueur;
+        this.Longueur = longueur;
     }
 
     public Date getCreatedAt() {

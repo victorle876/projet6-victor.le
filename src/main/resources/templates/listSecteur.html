@@ -31,6 +31,7 @@
 
                     <th>detail</th>
                     <th>editer</th>
+                    <th>Ajouter</th>
                     </thead>
                     <tbody>
                     <tr th:each="secteur, rowStat: ${secteurs}"
@@ -43,6 +44,7 @@
                         <td th:text="${secteur.longueur}"/>
                         <td><a th:href="@{/detailsSecteur?id={id}(id=${secteur.id})}">Détails</a></td>
                         <td><a th:href="@{/editionSecteur?id={id}(id=${secteur.id})}">Editer</a></td>
+                        <td><a th:href="@{/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a></td>
                     </tr>
                     </tbody>
                 </table>

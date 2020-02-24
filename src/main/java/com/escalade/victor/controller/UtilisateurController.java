@@ -57,6 +57,7 @@ public class UtilisateurController {
             return "addUser";
         } else {
     //        utilisateur.setPassword(this.passwordEncoder.encode(utilisateur.getPassword()));
+            System.out.println(utilisateur);
             this.utilisateurService.saveUser(utilisateur);
             model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
             return "home";

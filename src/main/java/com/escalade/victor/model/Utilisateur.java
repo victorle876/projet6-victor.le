@@ -49,16 +49,25 @@ public class Utilisateur {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
    private List<Role> roles;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.DATE)
     @CreatedDate
+    @Column(name = "createdAt")
     private Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+
     @LastModifiedDate
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
+    @PrePersist
+    protected void prePersist() {
+        if (this.createdAt == null) createdAt = new Date();
+        if (this.updatedAt == null) updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        this.updatedAt = new Date();
+    }
     public Utilisateur() {
 
     }

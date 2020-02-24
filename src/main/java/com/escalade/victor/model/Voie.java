@@ -1,32 +1,23 @@
 package com.escalade.victor.model;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "commentaire")
-public class Commentaire {
+@Table(name = "secteur")
+public class Voie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-/*    @OneToOne
-    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;*/
+    private String nomVoie;
 
     @ManyToOne
     private Secteur secteur;
-
-    @ManyToOne
-    private Utilisateur utilisateur;
-
-    private String zoneCommentaire;
 
     @CreatedDate
     private Date createdAt;
@@ -53,29 +44,48 @@ public class Commentaire {
         this.id = id;
     }
 
-    public String getZoneCommentaire() {
-        return zoneCommentaire;
+    public String getNomVoie() {
+        return nomVoie;
     }
 
-    public void setZoneCommentaire(String zoneCommentaire) {
-        this.zoneCommentaire = zoneCommentaire;
+    public void setNomVoie(String nomVoie) {
+        this.nomVoie = nomVoie;
+    }
+
+    public Secteur getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        createdAt = createdAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
-   public void setUpdatedAt(Timestamp updatedAt) {
-        updatedAt = updatedAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
+
+    @Override
+    public String toString() {
+        return "Voie{" +
+                "id=" + id +
+                ", nomVoie='" + nomVoie + '\'' +
+                ", secteur=" + secteur +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 
 }

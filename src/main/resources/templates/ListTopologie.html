@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>Homepage</title>
+    <title>Userhome</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -11,47 +11,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-
-<br>
 <div class="container-fluid">
     <div class="card text-center">
         <div class="card-body">
-            <h1> Liste des sites</h1>
+            <h1> Liste des topologies</h1>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
                     <th>id</th>
-                    <th>nom du site</th>
-                    <th>region du site</th>
-                    <th>rnumero du secteur</th>
-                    <th>pays</th>
+                    <th>Numero Topologie</th>
+                    <th>Utilisateur</th>
                     <th>detail</th>
-                    <th>editer</th>
+                    <!--                    <th>editer</th>-->
                     <th>Ajouter</th>
                     </thead>
                     <tbody>
-                    <tr th:each="site, rowStat: ${sites}"
+                    <tr th:each="topologie, rowStat: ${topologies}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${site.id}"/>
-                        <td th:text="${site.nomSite}"/>
-                        <td th:text="${site.regionSite}"/>
-                        <td th:text="${site.secteurs}"/>
-                        <td th:text="${site.pays}"/>
-
-                        <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                        <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                        <td><a th:href="@{/addSecteur}" class="btn btn-primary" role="button">Ajouter</a></td>
+                        <td th:text="${topologie.id}"/>
+                        <td th:text="${topologie.topologie}"/>
+                        <td th:text="${topologie.utilisateur}"/>
+                        <td><a th:href="@{/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
+                        <!--                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>-->
+                        <td><a th:href="@{/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</div>
-<div class="align-self-xl-end">
-    <br> <a th:href="@{/add}" class="btn btn-primary" role="button">Ajouter</a> </br>
 </div>
 </body>
 </html>

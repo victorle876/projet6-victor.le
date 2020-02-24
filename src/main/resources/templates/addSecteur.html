@@ -13,15 +13,15 @@
 <body>
 <div class="container">
 
-    <form action="#" th:action="@{/saveSecteur}" th:object="${secteur}" method="post">
+    <form action="#" th:action="@{/secteur/saveSecteur}" th:object="${secteur}" method="post">
         <div class="form-group">
-            <!-- <label for="exampleInputId">Id</label>
-             <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+<!--            <input type="text" class="form-control" id="exampleInputNom" th:value="${site.secteur}"
+                   aria-describedby="WarningNom" disabled>-->
         </div>
         <div class="form-group">
             <label for="exampleInputNomSecteur">Nom du secteur</label>
             <input type="text" class="form-control" th:field="*{nomSecteur}" id="exampleInputNomSecteur" aria-describedby="WarningNomSecteur">
-            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('noSecteur')}" th:errors="*{nomSecteur}"></small>
+            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('nomSecteur')}" th:errors="*{nomSecteur}"></small>
         </div>
 
         <div class="form-group">
