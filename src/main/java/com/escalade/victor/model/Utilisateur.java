@@ -165,6 +165,30 @@ public class Utilisateur {
         this.updatedAt = updatedAt;
     }
 
+    public List<Topologie> getTopologies() {
+        return topologies;
+    }
+
+    public void setTopologies(List<Topologie> topologies) {
+        this.topologies = topologies;
+    }
+
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +

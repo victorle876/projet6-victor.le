@@ -24,6 +24,22 @@
                    aria-describedby="WarningNomSecteur" disabled>
         </div>
 
+        <div class="form-group">
+            <label for="exampleInputUtilisateur">Utilisateur</label>
+            <input type="text" class="form-control" id="exampleInputUtilisateur" th:value="${topologie.utilisateur}"
+                   aria-describedby="WarningUtilisateur" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputSite">Site</label>
+            <input type="text" class="form-control" id="exampleInputSite" th:value="${topologie.site}"
+                   aria-describedby="WarningSite" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputReservation">Reservation</label>
+            <input type="text" class="form-control" id="exampleInputReservation" th:value="${topologie.reservation}"
+                   aria-describedby="WarningReservation" disabled>
+        </div>
+
 
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">

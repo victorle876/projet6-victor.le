@@ -25,6 +25,7 @@ public class Reservation {
     @ManyToOne
     private Utilisateur utilisateur;
 
+
     @OneToOne
     @JoinColumn(name = "topologie_id", referencedColumnName = "id")
     private Topologie topologie;
@@ -88,6 +89,22 @@ public class Reservation {
 
     public void setEtat(String etat) {
         Etat = etat;
+    }
+
+    public Topologie getTopologie() {
+        return topologie;
+    }
+
+    public void setTopologie(Topologie topologie) {
+        this.topologie = topologie;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     @Override

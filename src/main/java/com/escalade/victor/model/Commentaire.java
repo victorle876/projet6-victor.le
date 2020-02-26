@@ -20,6 +20,7 @@ public class Commentaire {
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;*/
 
+
     @ManyToOne
     private Secteur secteur;
 
@@ -75,6 +76,22 @@ public class Commentaire {
 
    public void setUpdatedAt(Timestamp updatedAt) {
         updatedAt = updatedAt;
+    }
+
+    public Secteur getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
 

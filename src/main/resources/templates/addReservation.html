@@ -20,18 +20,18 @@
         </div>
         <div class="form-group">
             <label for="exampleInputNomTopologie">Nom du secteur</label>
-            <input type="text" class="form-control" id="exampleInputNomTopologie" th:value="${Reservation.nomTopologie}"
+            <input type="text" class="form-control" id="exampleInputNomTopologie" th:value="${reservation.nomTopologie}"
                    aria-describedby="WarningNomTopologie" disabled>
         </div>
         <div class="form-group">
             <label for="exampleInputUtilisateur">Utilisateur</label>
-            <input type="text" class="form-control" id="exampleInputUtilisateur" th:value="${Reservation.utilisateur}"
+            <input type="text" class="form-control" id="exampleInputUtilisateur" th:value="${reservation.utilisateur}"
                    aria-describedby="WarningUtilisateur" disabled>
         </div>
         <div class="form-group">
             <label for="exampleInputEtat">Etat</label>
             <input type="text" class="form-control" th:field="*{Etat}" id="exampleInputEtat" aria-describedby="WarningexampleInputEtat">
-            <small id="WarningexampleInputEtat" class="form-text text-muted" th:if="${#fields.hasErrors('Etat')}" th:errors="*{nom-emprunteur}"></small>
+            <small id="WarningexampleInputEtat" class="form-text text-muted" th:if="${#fields.hasErrors('Etat')}" th:errors="*{Etat}"></small>
         </div>
 
 

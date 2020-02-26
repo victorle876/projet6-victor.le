@@ -21,7 +21,8 @@
     <form action="#" th:action="@{/editionSecteur?id={id}(id=${secteur.id})}" th:object="${secteur}" method="post">
         <div class="form-group">
             <label for="exampleInputId">Id</label>
-            <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">
+            <input type="number" class="form-control" id="exampleInputId" th:field="*{id}"
+                   aria-describedby="WarningInputId" disabled>
         </div>
         <div class="form-group">
             <label for="exampleInputNomSecteur">Nom</label>

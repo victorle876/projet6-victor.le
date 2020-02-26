@@ -112,6 +112,30 @@ public class Secteur {
         updatedAt = updatedAt;
     }
 
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+    public List<Voie> getVoies() {
+        return voies;
+    }
+
+    public void setVoies(List<Voie> voies) {
+        this.voies = voies;
+    }
+
     @Override
     public String toString() {
         return "Secteur{" +

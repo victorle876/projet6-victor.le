@@ -19,7 +19,8 @@
     <form>
         <div class="form-group">
             <label for="exampleInputId">Id</label>
-            <input type="number" disabled class="form-control" id="exampleInputId" th:value="${secteur.id}">
+            <input type="number" disabled class="form-control" id="exampleInputId" th:value="${secteur.id}"
+                   aria-describedby="WarningInputId" disabled>
         </div>
         <div class="form-group">
             <label for="exampleInputNomSecteur">Nom du secteur</label>
@@ -40,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputCotation">Longueur</label>
+            <label for="exampleInputCotation">Cotation</label>
             <input type="text" class="form-control" id="exampleInputCotation" th:value="${secteur.cotation}"
                    aria-describedby="WarningCotation" disabled>
         </div>

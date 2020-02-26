@@ -75,6 +75,30 @@ public class Topologie {
     public void setNomTopolgie(String nomTopolgie) {
         this.nomTopologie = nomTopolgie;
     }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
     @Override
     public String toString() {
         return "Topologie{" +

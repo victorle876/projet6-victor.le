@@ -52,14 +52,14 @@ public class CommentaireController {
     @RequestMapping(value = "/editionCommentaire", method = RequestMethod.GET)
     public String editionCommentaire(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "EditCommentaire";
+        return "editCommentaire";
 
     }
 
     @RequestMapping(value = "/editionCommentaire", method = RequestMethod.POST)
     public String editionCommentaire(@RequestParam(value = "id") long id, @Valid @ModelAttribute Commentaire commentaire, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            return "editUser";
+            return "editCommentaire";
         } else {
             this.commentaireService.saveCommentaire(commentaire);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());

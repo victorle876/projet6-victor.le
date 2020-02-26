@@ -4,6 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -15,6 +16,9 @@ public class Voie {
     private Long id;
 
     private String nomVoie;
+
+    @NotNull(message = "La cotation est requise.")
+    private String cotation;
 
     @ManyToOne
     private Secteur secteur;
@@ -74,6 +78,14 @@ public class Voie {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCotation() {
+        return cotation;
+    }
+
+    public void setCotation(String cotation) {
+        this.cotation = cotation;
     }
 
 

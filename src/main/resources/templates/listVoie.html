@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Userhome</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-body">
+            <h1> Liste des voies</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                    <th>id</th>
+                    <th>Numero voie</th>
+                    <th>Nom Voie</th>
+                    <th>Secteur</th>
+                    <th>Cotation</th>
+                    <th>detail</th>
+                    <!--                    <th>editer</th>-->
+                    <th>Ajouter</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="voie, rowStat: ${voies}"
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        <td th:text="${voie.id}"/>
+                        <td th:text="${voie.nomVoie}"/>
+                        <td th:text="${voie.secteur}"/>
+                        <td th:text="${voie.cotation}"/>
+                        <td><a th:href="@{/detailsVoie?id={id}(id=${voie.id})}">Détails</a></td>
+                        <!--                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>-->
+                        <td><a th:href="@{/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
