@@ -39,10 +39,11 @@
             <input type="text" class="form-control" id="exampleInputReservation" th:value="${topologie.reservation}"
                    aria-describedby="WarningReservation" disabled>
         </div>
-
-
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+        </div>
+        <div>
+            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
         </div>
     </form>
 </div>

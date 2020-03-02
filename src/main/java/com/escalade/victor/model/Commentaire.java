@@ -22,7 +22,7 @@ public class Commentaire {
 
 
     @ManyToOne
-    private Secteur secteur;
+    private Site site;
 
     @ManyToOne
     private Utilisateur utilisateur;
@@ -78,12 +78,12 @@ public class Commentaire {
         updatedAt = updatedAt;
     }
 
-    public Secteur getSecteur() {
-        return secteur;
+    public Site getSite() {
+        return site;
     }
 
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
+    public void setSite(Site site) {
+        this.site = site;
     }
 
     public Utilisateur getUtilisateur() {
@@ -93,6 +93,19 @@ public class Commentaire {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
+
+    @Override
+    public String toString() {
+        return "Commentaire{" +
+                "id=" + id +
+                ", site=" + site +
+                ", utilisateur=" + utilisateur +
+                ", zoneCommentaire='" + zoneCommentaire + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
 
 
 }

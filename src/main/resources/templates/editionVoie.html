@@ -29,15 +29,26 @@
             <input type="text" class="form-control" id="exampleInputCotation" th:field="*{cotation}">
             <small id="WarningCotation" class="form-text text-muted" th:if="${#fields.hasErrors('cotation')}" th:errors="*{cotation}"></small>
         </div>
-
         <div class="form-group">
-            <label for="exampleInputSecteur">Id</label>
-            <input type="text" disabled class="form-control" id="exampleInputSecteur" th:field="*{secteur}"
+            <label for="exampleInputSecteur">Secteur</label>
+            <input type="text" disabled class="form-control" id="exampleInputSecteur" th:field="*{site}"
                    aria-describedby="WarningInputSecteur" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputHauteur">Hauteur</label>
+            <input type="text" class="form-control" id="exampleInputHauteur" th:field="*{hauteur}">
+            <small id="WarningHauteur" class="form-text text-muted" th:if="${#fields.hasErrors('hauteur')}" th:errors="*{hauteur}"></small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputDistance">Distance</label>
+            <input type="text" class="form-control" id="exampleInputDistance" th:field="*{distance}">
+            <small id="WarningDistance" class="form-text text-muted" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}"></small>
         </div>
 
         <div>
             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+        </div>
+        <div>
             <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
         </div>
     </form>

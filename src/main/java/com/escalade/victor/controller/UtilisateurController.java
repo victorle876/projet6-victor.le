@@ -24,8 +24,8 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-/*    @Autowired
-    private PasswordEncoder passwordEncoder;*/
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
@@ -44,6 +44,11 @@ public class UtilisateurController {
         return "userhome";
     }
 
+    @RequestMapping(value = "/listUser", method = RequestMethod.GET)
+    public String UserList(Model model) {
+        return "listUser";
+    }
+
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     public String ajouterUser(Model model) {
         model.addAttribute("utilisateur", new Utilisateur());
@@ -60,7 +65,7 @@ public class UtilisateurController {
             System.out.println(utilisateur);
             this.utilisateurService.saveUser(utilisateur);
             model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
-            return "home";
+            return "listUser";
         }
     }
 
@@ -72,9 +77,7 @@ public class UtilisateurController {
         }
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
         return "detailUser";
-
     }
-
 
     @RequestMapping(value = "/editionUser", method = RequestMethod.GET)
     public String editionUser(@RequestParam(value = "id") Long id, Model model) {

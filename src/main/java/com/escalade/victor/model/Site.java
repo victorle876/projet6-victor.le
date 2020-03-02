@@ -18,15 +18,15 @@ public class Site {
     @Column(name="id")
     private Long id;
 
-    @NotBlank(message = "La région du site est requise.")
-    @Column(name="regionSite")
-    private String regionSite ;
-
     @NotBlank(message = "Le nom du site est requise.")
     @Column(name="nomSite")
     private String nomSite ;
 
-    @NotBlank(message = "Le pays est requise.")
+    @NotBlank(message = "Le secteur du site est requis.")
+    @Column(name="secteur")
+    private String secteur ;
+
+    @NotBlank(message = "Le pays est requis.")
     @Column(name="pays")
     private String pays ;
 
@@ -47,8 +47,12 @@ public class Site {
         this.updatedAt = new Date();
     }
 
+
     @OneToMany(mappedBy="site")
-    private List<Secteur> secteurs;
+    private List<Voie> voies;
+
+    @OneToMany(mappedBy="site")
+    private List<Commentaire> commentaires;
 
 
     public Long getId() {
@@ -59,13 +63,6 @@ public class Site {
         this.id = id;
     }
 
-    public String getRegionSite() {
-        return regionSite;
-    }
-
-    public void setRegionSite(String regionSite) {
-        this.regionSite = regionSite;
-    }
 
     public String getNomSite() {
         return nomSite;
@@ -73,6 +70,14 @@ public class Site {
 
     public void setNomSite(String nomSite) {
         this.nomSite = nomSite;
+    }
+
+    public String getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(String secteur) {
+        this.secteur = secteur;
     }
 
     public Date getCreatedAt() {
@@ -99,23 +104,36 @@ public class Site {
         this.pays = pays;
     }
 
-    public List<Secteur> getSecteurs() {
-        return secteurs;
+    public List<Voie> getVoies() {
+        return voies;
     }
 
-    public void setSecteurs(List<Secteur> secteurs) {
-        this.secteurs = secteurs;
+    public void setVoies(List<Voie> voies) {
+        this.voies = voies;
     }
+
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
+
 
     @Override
     public String toString() {
         return "Site{" +
                 "id=" + id +
-                ", regionSite='" + regionSite + '\'' +
                 ", nomSite='" + nomSite + '\'' +
-                ", CreatedAt=" + createdAt +
-                ", UpdatedAt=" + updatedAt +
+                ", secteur='" + secteur + '\'' +
+                ", pays='" + pays + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", voies=" + voies +
+                ", commentaires=" + commentaires +
                 '}';
     }
+
 
 }

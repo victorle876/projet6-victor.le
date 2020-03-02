@@ -16,6 +16,15 @@ import javax.validation.Valid;
 public class SiteController {
     @Autowired
     private SiteService siteService;
+    @RequestMapping(value = "/listSite", method = RequestMethod.GET)
+    public String TopoList(Model model) {
+        return "listSite";
+    }
+
+    @RequestMapping(value = "/siteHome", method = RequestMethod.GET)
+    public String siteHome(Model model) {
+        return "siteHome";
+    }
 
     @RequestMapping(value = "/detailsSite", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {

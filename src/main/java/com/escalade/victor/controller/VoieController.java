@@ -14,10 +14,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
+@RequestMapping("/voie")
 @Controller
 public class VoieController {
     @Autowired
     private VoieService voieService;
+
+    @RequestMapping(value = "/listVoie", method = RequestMethod.GET)
+    public String VoieList(Model model) {
+        return "listVoie";
+    }
+
+    @RequestMapping(value = "/siteHome", method = RequestMethod.GET)
+    public String voieHome(Model model) {
+        return "voieHome";
+    }
 
     @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {

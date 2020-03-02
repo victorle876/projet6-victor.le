@@ -20,6 +20,16 @@ public class TopologieController {
     @Autowired
     private TopologieService topologieService;
 
+    @RequestMapping(value = "/listTopologie", method = RequestMethod.GET)
+    public String TopoList(Model model) {
+        return "listTopologie";
+    }
+
+    @RequestMapping(value = "/topologieHome", method = RequestMethod.GET)
+    public String TopoHome(Model model) {
+        return "topologieHome";
+    }
+
     @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Topologie Topologie = topologieService.getTopologieById(id);

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "secteur")
+@Table(name = "voie")
 public class Voie {
 
     @Id
@@ -21,7 +21,13 @@ public class Voie {
     private String cotation;
 
     @ManyToOne
-    private Secteur secteur;
+    private Site site;
+
+    @NotNull(message = "La hauteur est requise.")
+    private Integer hauteur;
+
+    @NotNull(message = "La distance est requise.")
+    private Integer Distance;
 
     @CreatedDate
     private Date createdAt;
@@ -56,12 +62,12 @@ public class Voie {
         this.nomVoie = nomVoie;
     }
 
-    public Secteur getSecteur() {
-        return secteur;
+    public Site getSite() {
+        return site;
     }
 
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
+    public void setSite(Site site) {
+        this.site = site;
     }
 
     public Date getCreatedAt() {
@@ -88,16 +94,20 @@ public class Voie {
         this.cotation = cotation;
     }
 
-
     @Override
     public String toString() {
         return "Voie{" +
                 "id=" + id +
                 ", nomVoie='" + nomVoie + '\'' +
-                ", secteur=" + secteur +
+                ", cotation='" + cotation + '\'' +
+                ", site=" + site +
+                ", hauteur=" + hauteur +
+                ", Distance=" + Distance+
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
+
 
 }

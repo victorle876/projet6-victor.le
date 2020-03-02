@@ -28,21 +28,24 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputCotation">Auteur</label>
-            <input type="number" class="form-control" id="exampleInputCotation" th:value="${voie.nomVoie}"
+            <label for="exampleInputCotation">Cotation</label>
+            <input type="number" class="form-control" id="exampleInputCotation" th:value="${voie.cotation}"
                    aria-describedby="WarningCotation" disabled>
         </div>
-
         <div class="form-group">
-            <label for="exampleInputSecteur">Secteur</label>
-            <input type="number" class="form-control" id="exampleInputSecteur" th:value="${voie.secteur}"
-                   aria-describedby="WarningSecteur" disabled>
+            <label for="exampleInputHauteur">Hauteur</label>
+            <input type="number" class="form-control" id="exampleInputHauteur" th:value="${voie.hauteur}"
+                   aria-describedby="WarningHauteur" disabled>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputDistance">Auteur</label>
+            <input type="number" class="form-control" id="exampleInputDistance" th:value="${voie.distance}"
+                   aria-describedby="WarningDistance" disabled>
         </div>
 
+
         <div>
-
             <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-
         </div>
 
     </form>
