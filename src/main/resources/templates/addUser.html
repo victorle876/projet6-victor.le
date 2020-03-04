@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="exampleInputdateNaissance">Age</label>
-            <input type="text" class="form-control" th:field="*{age}" id="exampleInputdateNaissance" aria-describedby="WarningdateNaissance" >
+            <input type="number" class="form-control" th:field="*{age}" id="exampleInputdateNaissance" aria-describedby="WarningdateNaissance" >
             <small id="WarningdateNaissance" class="form-text text-muted" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
         </div>
 

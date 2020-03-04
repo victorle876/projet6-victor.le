@@ -30,7 +30,7 @@
                     <tr th:each="topologie, rowStat: ${topologies}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                         <td th:text="${topologie.id}"/>
-                        <td th:text="${topologie.topologie}"/>
+                        <td th:text="${topologie.nomTopologie}"/>
                         <td th:text="${topologie.utilisateur}"/>
                         <td><a th:href="@{/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                         <!--                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>-->

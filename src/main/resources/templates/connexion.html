@@ -21,7 +21,7 @@
             <div class="panel-body">
                 <form action="home" th:action="@{/connect}" method="post">
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" name="username"
+                        <input type="email" class="form-control" name="mail"
                                placeholder="Email" /> <span
                             class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
@@ -47,7 +47,7 @@
                                  class="alert alert-danger alert-dismissable">
                                 <p>
                                     <i class="icon fa fa-ban"></i> <span
-                                        th:text="${error.login_failed}">Invalid Email and
+                                        th:text="#{error.login_failed}">Invalid Email and
            Password.</span>
                                 </p>
                             </div>

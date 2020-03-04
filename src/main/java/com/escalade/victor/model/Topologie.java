@@ -19,7 +19,7 @@ public class Topologie {
     @NotBlank(message = "L'auteur'est requis.")
     private String auteur;
 
-    @NotNull(message = "Le nom de la topologie est requise.")
+    @NotBlank(message = "Le nom de la topologie est requise.")
     private String nomTopologie;
 
     @Column(nullable = false, updatable = false)
@@ -68,13 +68,14 @@ public class Topologie {
         this.id = id;
     }
 
-    public String getNomTopolgie() {
+    public String getNomTopologie() {
         return nomTopologie;
     }
 
-    public void setNomTopolgie(String nomTopolgie) {
-        this.nomTopologie = nomTopolgie;
+    public void setNomTopologie(String nomTopologie) {
+        this.nomTopologie = nomTopologie;
     }
+
 
     public Utilisateur getUtilisateur() {
         return utilisateur;

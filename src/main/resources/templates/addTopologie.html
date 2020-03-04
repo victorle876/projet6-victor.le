@@ -13,15 +13,15 @@
 <body>
 <div class="container">
 
-    <form action="#" th:action="@{/commentaire/saveTopologie}" th:object="${topologie}" method="post">
+    <form action="#" th:action="@{/topologie/saveTopologie}" th:object="${topologie}" method="post">
         <div class="form-group">
             <!-- <label for="exampleInputId">Id</label>
              <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
         </div>
         <div class="form-group">
             <label for="exampleInputNomTopologie">Nom du secteur</label>
-            <input type="text" class="form-control" id="exampleInputNomTopologie" th:value="${topologie.nomTopologie}"
-                   aria-describedby="WarningNomSecteur" disabled>
+            <input type="text" class="form-control" th:field="*{nomTopologie}" id="exampleInputNomTopologie" aria-describedby="WarningNomTopologie">
+            <small id="WarningNomTopologie" class="form-text text-muted" th:if="${#fields.hasErrors('nomTopologie')}" th:errors="*{nomTopologie}"></small>
         </div>
 
         <div class="form-group">
