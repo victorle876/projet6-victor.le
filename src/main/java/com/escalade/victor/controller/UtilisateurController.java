@@ -46,7 +46,9 @@ public class UtilisateurController {
 
     @RequestMapping(value = "/listUser", method = RequestMethod.GET)
     public String UserList(Model model) {
+        model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
         return "listUser";
+
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)

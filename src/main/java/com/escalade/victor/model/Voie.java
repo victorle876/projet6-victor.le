@@ -94,6 +94,22 @@ public class Voie {
         this.cotation = cotation;
     }
 
+    public Integer getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(Integer hauteur) {
+        this.hauteur = hauteur;
+    }
+
+    public Integer getDistance() {
+        return Distance;
+    }
+
+    public void setDistance(Integer distance) {
+        Distance = distance;
+    }
+
     @Override
     public String toString() {
         return "Voie{" +

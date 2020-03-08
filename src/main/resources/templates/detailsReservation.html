@@ -12,40 +12,54 @@
 </head>
 
 <body>
-<h1>Detail Reservation</h1>
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Detail Reservation</h3>
+            <div class="col-md-6">
 
-    <div class="container">
-
-        <form>
-            <div class="form-group">
-                <label for="exampleInputId">Id</label>
-                <input type="number" disabled class="form-control" id="exampleInputId" th:value="${reservation.id}">
+                <form>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputId"
+                                   th:value="${reservation.id}">
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputTopologie" class="col-sm-2 col-form-label">Nom du secteur</label>
+                        <input type="text" class="form-control" id="exampleInputTopologie"
+                               th:value="${reservation.topologie}"
+                               aria-describedby="WarningInputTopologie" disabled>
+                    </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputTopologie">Nom du secteur</label>
-                <input type="text" class="form-control" id="exampleInputTopologie" th:value="${reservation.topologie}"
-                       aria-describedby="WarningInputTopologie" disabled>
+
+            <div class="form-group row has-feedback">
+                <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="exampleInputAuteur" th:value="${reservation.duree}"
+                           aria-describedby="WarningAuteur" disabled>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleInputAuteur">Auteur</label>
-                <input type="number" class="form-control" id="exampleInputAuteur" th:value="${reservation.duree}"
-                       aria-describedby="WarningAuteur" disabled>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputEtat">Etat</label>
-                <input type="number" class="form-control" id="exampleInputEtat" th:value="${reservation.Etat}"
-                       aria-describedby="WarningEtat" disabled>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputEtat" class="col-sm-2 col-form-label">Etat</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="exampleInputEtat" th:value="${reservation.Etat}"
+                           aria-describedby="WarningEtat" disabled>
+                </div>
             </div>
 
             <div>
 
-                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+                <a th:href="@{/reservation/listReservation}" class="btn btn-info" role="button">Retour</a>
 
             </div>
 
-        </form>
+            </form>
+        </div>
     </div>
+</div>
+</div>
 </body>
 </html>

@@ -12,39 +12,52 @@
 </head>
 
 <body>
-<h1>Detail site</h1>
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Detail site</h3>
+            <div class="col-md-6">
 
-<div class="container">
+                <form>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputId">Id</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputId"
+                                   th:value="${site.id}">
+                        </div>
+                        <div class="form-group row has-feedback">
+                            <label for="exampleInputNomSite" class="col-sm-2 col-form-label">Nom</label>
+                            <input type="text" class="form-control" id="exampleInputNomSite" th:value="${site.nomSite}"
+                                   aria-describedby="WarningInputNomSite" disabled>
+                        </div>
+                    </div>
 
-    <form>
-        <div class="form-group">
-            <label for="exampleInputId">Id</label>
-            <input type="number" disabled class="form-control" id="exampleInputId" th:value="${site.id}">
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputRegionSite" class="col-sm-2 col-form-label">Nom</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputRegionSite"
+                                   th:value="${site.regionSite}"
+                                   aria-describedby="WarningRegionSite" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputPays" th:value="${site.pays}"
+                                   aria-describedby="WarningPays" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <a th:href="@{/site/listSite}" class="btn btn-info" role="button">Retour</a>
+
+                    </div>
+
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputNomSite">Nom</label>
-            <input type="text" class="form-control" id="exampleInputNomSite" th:value="${site.nomSite}"
-                   aria-describedby="WarningInputNomSite" disabled>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputRegionSite">Nom</label>
-            <input type="text" class="form-control" id="exampleInputRegionSite" th:value="${site.regionSite}"
-                   aria-describedby="WarningRegionSite" disabled>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputPays">Pays</label>
-            <input type="text" class="form-control" id="exampleInputPays" th:value="${site.pays}"
-                   aria-describedby="WarningPays" disabled>
-        </div>
-
-        <div>
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-
-        </div>
-
-    </form>
+    </div>
 </div>
 </body>
 </html>

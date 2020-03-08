@@ -15,59 +15,73 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="panel col-md-5">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Login Form</div>
-            <div class="panel-body">
-                <form action="home" th:action="@{/connect}" method="post">
-                    <div class="form-group has-feedback">
-                        <input type="email" class="form-control" name="mail"
-                               placeholder="Email" /> <span
-                            class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="password" class="form-control" name="password"
-                               placeholder="Password" /> <span
-                            class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="remember-me"> Remember Me
-                        </label>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-xs-offset-8 col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat"
-                                    th:text="#{label.login}">LogIn</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div th:if="${param.error}"
-                                 class="alert alert-danger alert-dismissable">
-                                <p>
-                                    <i class="icon fa fa-ban"></i> <span
-                                        th:text="#{error.login_failed}">Invalid Email and
-           Password.</span>
-                                </p>
+    <div class="container-xl">
+<!--        <div class="panel col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Login Form</div>
+                <br>
+                <div class="panel-body">-->
+
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <h3>Login Form</h3>
+                <div class="col-md-6">
+                    <form action="home" th:action="@{/connect}" method="post">
+ <!--                       <div class="form-group has-feedback">
+                            <input type="email" class="form-control" name="username"
+                                   placeholder="Email"/> <span
+                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        </div>-->
+
+                        <div class="form-group row has-feedback">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="username"
+                                       placeholder="Email" id="inputEmail3"/> <span
+                                    class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             </div>
-                            <div th:if="${param.logout}"
-                                 class="alert alert-info alert-dismissable">
-                                <p>
-                                    <i class="icon fa fa-info"></i> <span
-                                        th:text="${info.logout_success}">You have been logged
+                        </div>
+
+
+<!--                        <div class="form-group has-feedback">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Password"/> <span
+                                class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>-->
+
+                        <div class="form-group row has-feedback">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="password"
+                                       placeholder="Password" id="inputPassword3"/> <span
+                                    class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="remember-me"> Remember Me
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-offset-8 col-xs-4">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div th:if="${param.logout}"
+                                     class="alert alert-info alert-dismissable">
+                                    <p>
+                                        <i class="icon fa fa-info"></i> <span
+                                            th:text="${info.logout_success}">You have been logged
            out.</span>
-                                </p>
-                            </div>
-                            <div th:if="${msg!=null}"
-                                 class="alert alert-warning alert-dismissable">
-                                <p>
-                                    <i class="icon fa fa-warning"></i> <span th:text="${msg}"></span>
-                                </p>
+                                    </p>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

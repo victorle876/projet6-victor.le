@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>Userhome</title>
+    <title>Site home</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -12,24 +12,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container-xl">
     <div class="card rounded-0 shadow">
         <div class="card-body">
-            <h3>Home user</h3>
+            <h3>Home voie</h3>
             <div class="col-md-6">
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" th:href="@{/listUser}">liste des utilisateurs</a>
+                                <a class="nav-link active" href="@{/site/listSite}">liste des sites</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/addUser}">Ajout</a>
+                                <a class="nav-link" href="@{/site/addSite}">Ajout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/detailsUser}">Detail des utilisateurs</a>
+                                <a class="nav-link" href="@{/site/detailsSite}">Detail des sites</a>
                             </li>
                         </ul>
                     </div>

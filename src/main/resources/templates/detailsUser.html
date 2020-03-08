@@ -12,59 +12,73 @@
 </head>
 
 <body>
-<h1>Detail utilisateur</h1>
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Detail utilisateur</h3>
+            <div class="col-md-6">
 
-<div class="container">
+                <form>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputId"
+                                   th:value="${utilisateur.id}">
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputNom" class="col-sm-2 col-form-label">Nom</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputNom"
+                                   th:value="${utilisateur.username}"
+                                   aria-describedby="WarningNom" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputPrenom" class="col-sm-2 col-form-label">Prenom</label>
+                        <input type="text" class="form-control" id="exampleInputPrenom" th:value="${utilisateur.prenom}"
+                               aria-describedby="WarningPrenom" disabled>
+                    </div>
+            </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputNom" class="col-sm-2 col-form-label">mot de passe</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputMotP" th:value="${utilisateur.password}"
+                           aria-describedby="MotP" disabled>
+                </div>
+            </div>
 
-    <form>
-        <div class="form-group">
-            <label for="exampleInputId">Id</label>
-            <input type="number" disabled class="form-control" id="exampleInputId" th:value="${utilisateur.id}">
+            <div class="form-group row has-feedback">
+                <label for="exampleInputDateNaissance" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputDateNaissance"
+                           th:value="${utilisateur.dateNaissance}"
+                           aria-describedby="WarningAge" disabled>
+                </div>
+            </div>
+            <!--        <div class="form-group">
+                        <label for="exampleInputSexe">Sexe</label>
+                        <input type="text" class="form-control" id="exampleInputSexe" th:value="${utilisateur.sexe}"
+                               aria-describedby="WarningSexe" disabled>
+                    </div>-->
+
+            <div class="form-group row has-feedback">
+                <label for="exampleInputMail" class="col-sm-2 col-form-label">Mail</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="exampleInputMail" th:value="${utilisateur.mail}"
+                           aria-describedby="WarningMail" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+
+            </div>
+
+            </form>
         </div>
-        <div class="form-group">
-            <label for="exampleInputNom">Nom</label>
-            <input type="text" class="form-control" id="exampleInputNom" th:value="${utilisateur.username}"
-                   aria-describedby="WarningNom" disabled>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPrenom">Prenom</label>
-            <input type="text" class="form-control" id="exampleInputPrenom" th:value="${utilisateur.prenom}"
-                   aria-describedby="WarningPrenom" disabled>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputNom">mot de passe</label>
-            <input type="text" class="form-control" id="exampleInputMotP" th:value="${utilisateur.password}"
-                   aria-describedby="MotP" disabled>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputDateNaissance">Age</label>
-            <input type="text" class="form-control" id="exampleInputDateNaissance" th:value="${utilisateur.dateNaissance}"
-                   aria-describedby="WarningAge" disabled>
-        </div>
-<!--        <div class="form-group">
-            <label for="exampleInputSexe">Sexe</label>
-            <input type="text" class="form-control" id="exampleInputSexe" th:value="${utilisateur.sexe}"
-                   aria-describedby="WarningSexe" disabled>
-        </div>-->
-
-        <div class="form-group">
-            <label for="exampleInputMail">Mail</label>
-            <input type="email" class="form-control" id="exampleInputMail" th:value="${utilisateur.mail}"
-                   aria-describedby="WarningMail" disabled>
-        </div>
-        <!--        <div class="form-group">
-                    <label for="exampleInputRole">Role</label>
-                    <input type="text" class="form-control" id="exampleInputRole" th:value="${utilisateur.role}" aria-describedby="WarningRole" disabled>
-                </div>-->
-
-        <div>
-
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-
-        </div>
-
-    </form>
+    </div>
 </div>
 </body>
 </html>

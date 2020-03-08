@@ -22,7 +22,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-                    <th>id</th>
+<!--                    <th>id</th>-->
                     <th>username</th>
                     <th>prenom</th>
                     <th>date de naissance</th>
@@ -34,7 +34,7 @@
                     <tbody>
                     <tr th:each="utilisateur, rowStat: ${utilisateurs}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${utilisateur.id}"/>
+<!--                        <td th:text="${utilisateur.id}"/>-->
                         <td th:text="${utilisateur.username}"/>
                         <td th:text="${utilisateur.prenom}"/>
                         <td th:text="${utilisateur.age}"/>
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div class="align-self-xl-end">
-    <br> <a th:href="@{/add}" class="btn btn-primary" role="button">Ajouter</a> </br>
+    <br> <a th:href="@{/addUser}" class="btn btn-primary" role="button">Ajouter</a> </br>
 </div>
 </body>
 </html>

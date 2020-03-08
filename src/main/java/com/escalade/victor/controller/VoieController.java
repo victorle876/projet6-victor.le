@@ -25,9 +25,10 @@ public class VoieController {
         return "listVoie";
     }
 
-    @RequestMapping(value = "/siteHome", method = RequestMethod.GET)
+    @RequestMapping(value = "/voie/home", method = RequestMethod.GET)
     public String voieHome(Model model) {
-        return "voieHome";
+        model.addAttribute("voies", this.voieService.getAllVoies());
+        return "voiehome";
     }
 
     @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
@@ -36,32 +37,32 @@ public class VoieController {
         if (Voie == null) {
             System.out.println("la voie n'existe pas");
         }
-        model.addAttribute("Voie", this.voieService.getVoieById(id));
+        model.addAttribute("voie", this.voieService.getVoieById(id));
         return "detailsVoie";
 
     }
 
     @RequestMapping(value = "/addVoie", method = RequestMethod.GET)
     public String ajouterVoie(Model model) {
-        model.addAttribute("Voie", new Voie());
+        model.addAttribute("voie", new Voie());
         return "addVoie";
     }
 
     @RequestMapping(value = "/saveVoie", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Voie Voie, Model model, BindingResult result) {
+    public String save(@Valid @ModelAttribute Voie voie, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
             return "addVoie";
         } else {
-            this.voieService.saveVoie(Voie);
-            model.addAttribute("Topologies", this.voieService.getAllVoies());
+            this.voieService.saveVoie(voie);
+            model.addAttribute("voies", this.voieService.getAllVoies());
             return "home";
         }
     }
 
     @RequestMapping(value = "/editionVoie", method = RequestMethod.GET)
     public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {
-        model.addAttribute("Voie", this.voieService.getVoieById(id));
+        model.addAttribute("voie", this.voieService.getVoieById(id));
         return "editionVoie";
 
     }
@@ -72,7 +73,7 @@ public class VoieController {
             return "editionVoie";
         } else {
             this.voieService.saveVoie(Voie);
-            model.addAttribute("Voies", this.voieService.getAllVoies());
+            model.addAttribute("voies", this.voieService.getAllVoies());
             return "redirect:/";
         }
     }

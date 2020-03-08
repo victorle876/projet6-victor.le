@@ -12,34 +12,60 @@
 </head>
 <body>
 <div class="container">
+    <div class="container-xl">
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <h3>Ajout sites</h3>
+                <div class="col-md-6">
 
-    <form action="#" th:action="@{/site/saveSite}" th:object="${site}" method="post">
-        <div class="form-group">
-            <!--<input type="text" class="form-control" id="exampleInputNom" th:value="${site.username}"
-                   aria-describedby="WarningNom" disabled>-->
-        </div>
-        <div class="form-group">
-            <label for="exampleInputNomSite">Nom du site</label>
-            <input type="text" class="form-control" th:field="*{nomSite}" id="exampleInputNomSite" aria-describedby="WarningNomSite">
-            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('nomSite')}" th:errors="*{nomSite}"></small>
-        </div>
+                    <form action="#" th:action="@{/site/saveSite}" th:object="${site}" method="post">
+                        <div class="form-group">
+                            <!--<input type="text" class="form-control" id="exampleInputNom" th:value="${site.username}"
+                                   aria-describedby="WarningNom" disabled>-->
+                        </div>
 
-        <div class="form-group">
-            <label for="exampleInputSecteur">Secteur</label>
-            <input type="text" class="form-control" th:field="*{secteur}" id="exampleInputSecteur" aria-describedby="WarningSecteur" >
-            <small id="WarningSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('secteur')}" th:errors="*{secteur}"></small>
-        </div>
+                        <div class="form-group row has-feedback">
+                            <label for="exampleInputNomSite" class="col-sm-2 col-form-label">Nom du site</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{nomSite}" id="exampleInputNomSite"
+                                       aria-describedby="WarningNomSite">
+                                <small id="WarningNomSecteur" class="form-text text-muted"
+                                       th:if="${#fields.hasErrors('nomSite')}" th:errors="*{nomSite}"></small>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <label for="exampleInputPays">Pays</label>
-            <input type="text" class="form-control" th:field="*{pays}" id="exampleInputPays" aria-describedby="WarningPays" >
-            <small id="WarningPays" class="form-text text-muted" th:if="${#fields.hasErrors('pays')}" th:errors="*{pays}"></small>
-        </div>
+                        <div class="form-group row has-feedback">
+                            <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Secteur</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{secteur}" id="exampleInputSecteur"
+                                   aria-describedby="WarningSecteur">
+                            <small id="WarningSecteur" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('secteur')}" th:errors="*{secteur}"></small>
+                            </div>
+                        </div>
 
-        <div>
-            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                        <div class="form-group row has-feedback">
+                            <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{pays}" id="exampleInputPays"
+                                   aria-describedby="WarningPays">
+                            <small id="WarningPays" class="form-text text-muted" th:if="${#fields.hasErrors('pays')}"
+                                   th:errors="*{pays}"></small>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
+</div>
+<br>
+<div class="row">
+    <a th:href="@{/voie/listVoie}" class="btn btn-info" role="button">Retour</a>
 </div>
 
 </body>

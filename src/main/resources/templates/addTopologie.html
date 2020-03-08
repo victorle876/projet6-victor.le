@@ -11,41 +11,60 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Ajout topologie</h3>
+            <div class="col-md-6">
 
-    <form action="#" th:action="@{/topologie/saveTopologie}" th:object="${topologie}" method="post">
-        <div class="form-group">
-            <!-- <label for="exampleInputId">Id</label>
-             <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
-        </div>
-        <div class="form-group">
-            <label for="exampleInputNomTopologie">Nom du secteur</label>
-            <input type="text" class="form-control" th:field="*{nomTopologie}" id="exampleInputNomTopologie" aria-describedby="WarningNomTopologie">
-            <small id="WarningNomTopologie" class="form-text text-muted" th:if="${#fields.hasErrors('nomTopologie')}" th:errors="*{nomTopologie}"></small>
-        </div>
+                <form action="#" th:action="@{/topologie/saveTopologie}" th:object="${topologie}" method="post">
+                    <div class="form-group">
+                        <!-- <label for="exampleInputId">Id</label>
+                         <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputNomTopologie" class="col-sm-2 col-form-label">Nom du secteur</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{nomTopologie}"
+                                   id="exampleInputNomTopologie" aria-describedby="WarningNomTopologie">
+                            <small id="WarningNomTopologie" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('nomTopologie')}" th:errors="*{nomTopologie}"></small>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="exampleInputUtilisateur">Utilisateur</label>
-            <input type="text" class="form-control" id="exampleInputUtilisateur" th:value="${topologie.utilisateur}"
-                   aria-describedby="WarningUtilisateur" disabled>
+                    <div class="form-group row has-feedback">
+                        <div class="col-sm-10">
+                            <label for="exampleInputUtilisateur" class="col-sm-2 col-form-label">Utilisateur</label>
+                            <input type="text" class="form-control" id="exampleInputUtilisateur"
+                                   th:value="${topologie.utilisateur}"
+                                   aria-describedby="WarningUtilisateur" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputSite" class="col-sm-2 col-form-label">Site</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputSite" th:value="${topologie.site}"
+                                   aria-describedby="WarningSite" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputReservation" class="col-sm-2 col-form-label">Reservation</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputReservation"
+                                   th:value="${topologie.reservation}"
+                                   aria-describedby="WarningReservation" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                    </div>
+                    <div class="row">
+                        <a th:href="@{/topologie/listTopologie}" class="btn btn-info" role="button">Retour</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputSite">Site</label>
-            <input type="text" class="form-control" id="exampleInputSite" th:value="${topologie.site}"
-                   aria-describedby="WarningSite" disabled>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputReservation">Reservation</label>
-            <input type="text" class="form-control" id="exampleInputReservation" th:value="${topologie.reservation}"
-                   aria-describedby="WarningReservation" disabled>
-        </div>
-        <div>
-            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-        </div>
-        <div>
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-        </div>
-    </form>
+    </div>
 </div>
 
 </body>

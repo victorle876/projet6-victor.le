@@ -11,42 +11,60 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Ajout commentaire</h3>
+            <div class="col-md-6">
 
-    <form action="#" th:action="@{/commentaire/saveCommentaire}" th:object="${commentaire}" method="post">
-        <div class="form-group">
-            <!-- <label for="exampleInputId">Id</label>
-             <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+                <form action="#" th:action="@{/commentaire/saveCommentaire}" th:object="${commentaire}" method="post">
+                    <div class="form-group">
+                        <!-- <label for="exampleInputId">Id</label>
+                         <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputNomSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputNomSecteur"
+                                   th:value="${commentaire.site}"
+                                   aria-describedby="WarningNomSecteur" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur du commentaire</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputAuteur"
+                                   th:value="${commentaire.utilisateur}"
+                                   aria-describedby="WarningAuteur" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputZoneCommentaire" class="col-sm-2 col-form-label">Zone du
+                            commentaire</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{zoneCommentaire}"
+                                   id="exampleInputZoneCommentaire" aria-describedby="WarningZoneCommentaire">
+                            <small id="WarningZoneCommentaire" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('zoneCommentaire')}"
+                                   th:errors="*{zoneCommentaire}"></small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                    </div>
+
+                    <div class="row">
+
+                        <a th:href="@{/commentaire/ListCommentaire}" class="btn btn-info" role="button">Retour</a>
+
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputNomSecteur">Nom du secteur</label>
-            <input type="text" class="form-control" id="exampleInputNomSecteur" th:value="${commentaire.site}"
-                   aria-describedby="WarningNomSecteur" disabled>
-        </div>
-
-        <div class="form-group">
-        <label for="exampleInputAuteur">Auteur du commentaire</label>
-            <input type="text" class="form-control" id="exampleInputAuteur" th:value="${commentaire.utilisateur}"
-                   aria-describedby="WarningAuteur" disabled>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputZoneCommentaire">Zone du commentaire</label>
-            <input type="text" class="form-control" th:field="*{zoneCommentaire}" id="exampleInputZoneCommentaire" aria-describedby="WarningZoneCommentaire">
-            <small id="WarningZoneCommentaire" class="form-text text-muted" th:if="${#fields.hasErrors('zoneCommentaire')}" th:errors="*{zoneCommentaire}"></small>
-        </div>
-
-        <div>
-            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-        </div>
-
-        <div>
-
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-
-        </div>
-    </form>
+    </div>
 </div>
-
 </body>
 </html>

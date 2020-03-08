@@ -12,62 +12,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!--<div class="container-fluid">
-    <p>Welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</p>
-    <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
-</div>-->
-<!--<div class="container-fluid">
-    <div class="card text-center">
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
         <div class="card-body">
-            <h1> Liste des utilisateurs</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>id</th>
-                    <th>username</th>
-                    <th>prenom</th>
-                    <th>age</th>
-                    <th>password</th>
-                    <th>mail</th>
-                    <th>detail</th>
-                    <th>editer</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="utilisateur, rowStat: ${utilisateurs}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${utilisateur.id}"/>
-                        <td th:text="${utilisateur.username}"/>
-                        <td th:text="${utilisateur.prenom}"/>
-                        <td th:text="${utilisateur.dateNaissance}"/>
-                        <td th:text="${utilisateur.password}"/>
-                        <td th:text="${utilisateur.mail}"/>
-                        <td><a th:href="@{/details?id={id}(id=${utilisateur.id})}">Détails</a></td>
-                        <td><a th:href="@{/edition?id={id}(id=${utilisateur.id})}">Editer</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="@{/admin/home}">Mode admin</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/home}">Utilisateurs</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/topologie/home}">Topologie</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/site/home}">Site</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/voie/home}">Voie</a>
+                </li>
+
+
+            </ul>
         </div>
     </div>
 </div>
-<div class="align-self-xl-end">
-    <br> <a th:href="@{/add}" class="btn btn-primary" role="button">Ajouter</a> </br>
-</div>-->
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="@{/admin/home}">Mode admin</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" th:href="@{/listUser}">Utilisateurs</a>
-            <a class="dropdown-item" th:href="@{/topologie/}">Topologie</a>
-            <a class="dropdown-item" th:href="@{/site/}">Site</a>
-            <a class="dropdown-item" th:href="@{/voie/}">Voie</a>
-            <a class="dropdown-item" th:href="@{/reservation/}">Reservation</a>
-        </div>
-    </li>
-
-</ul>
 </body>
 </html>

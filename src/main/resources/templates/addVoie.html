@@ -11,49 +11,75 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Ajout Voie</h3>
+            <div class="col-md-6">
 
-    <form action="#" th:action="@{/voie/saveVoie}" th:object="${voie}" method="post">
-        <div class="form-group">
-            <!--<input type="text" class="form-control" id="exampleInputNom" th:value="${voie.username}"
-                   aria-describedby="WarningNom" disabled>-->
-        </div>
-        <div class="form-group">
-            <label for="exampleInputNomVoie">Nom du voie</label>
-            <input type="text" class="form-control" th:field="*{nomVoie}" id="exampleInputNomvoie" aria-describedby="WarningNomvoie">
-            <small id="WarningNomSecteur" class="form-text text-muted" th:if="${#fields.hasErrors('nomVoie')}" th:errors="*{nomVoie}"></small>
-        </div>
+                <form action="#" th:action="@{/voie/saveVoie}" th:object="${voie}" method="post">
+                    <div class="form-group">
+                        <!--<input type="text" class="form-control" id="exampleInputNom" th:value="${voie.username}"
+                               aria-describedby="WarningNom" disabled>-->
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputNomVoie" class="col-sm-2 col-form-label">Nom du voie</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{nomVoie}" id="exampleInputNomvoie"
+                                   aria-describedby="WarningNomvoie">
+                            <small id="WarningNomSecteur" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('nomVoie')}" th:errors="*{nomVoie}"></small>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="exampleInputCotation">Cotation</label>
-            <input type="text" class="form-control" th:field="*{cotation}" id="exampleInputCotation" aria-describedby="WarningCotation" >
-            <small id="WarningCotation" class="form-text text-muted" th:if="${#fields.hasErrors('cotation')}" th:errors="*{cotation}"></small>
-        </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputCotation" class="col-sm-2 col-form-label">Cotation</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{cotation}" id="exampleInputCotation"
+                                   aria-describedby="WarningCotation">
+                            <small id="WarningCotation" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('cotation')}" th:errors="*{cotation}"></small>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="exampleInputHauteur">Hauteur</label>
-            <input type="number" class="form-control" th:field="*{hauteur}" id="exampleInputHauteur" aria-describedby="WarningHauteur" >
-            <small id="WarningHauteur" class="form-text text-muted" th:if="${#fields.hasErrors('hauteur')}" th:errors="*{hauteur}"></small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputDistance">Distance</label>
-            <input type="number" class="form-control" th:field="*{distance}" id="exampleInputDistance" aria-describedby="WarningCotation" >
-            <small id="WarningDistance" class="form-text text-muted" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}"></small>
-        </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputHauteur" class="col-sm-2 col-form-label">Hauteur</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" th:field="*{hauteur}" id="exampleInputHauteur"
+                                   aria-describedby="WarningHauteur">
+                            <small id="WarningHauteur" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('hauteur')}" th:errors="*{hauteur}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputDistance" class="col-sm-2 col-form-label">Distance</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" th:field="*{distance}" id="exampleInputDistance"
+                                   aria-describedby="WarningCotation">
+                            <small id="WarningDistance" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}"></small>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="exampleInputSecteur">Site</label>
-            <input type="text" class="form-control" id="exampleInputSecteur" th:value="${voie.site}"
-                   aria-describedby="WarningSecteur" disabled>
-        </div>
+                    <div class="form-group row">
+                        <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Site</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputSecteur" th:value="${voie.site}"
+                                   aria-describedby="WarningSecteur" disabled>
+                        </div>
+                    </div>
 
-        <div>
-            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                    <div>
+                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                    </div>
+                    <br>
+                    <div>
+                        <a th:href="@{/voie/listVoie}" class="btn btn-info" role="button">Retour</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-        </div>
-    </form>
+    </div>
 </div>
 
 </body>

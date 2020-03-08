@@ -15,14 +15,13 @@
 <body>
 
 <br>
-<div class="container-fluid">
+<div class="container-xl">
     <div class="card text-center">
         <div class="card-body">
             <h1> Liste des commentaire</h1>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-                    <th>id</th>
                     <th>Auteur du commentaire</th>
                     <th>nom du secteur</th>
                     <th>zone du commentaire/th>
@@ -31,12 +30,9 @@
                     <tbody>
                     <tr th:each="commentaire, rowStat: ${commentaires}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${commentaire.id}"/>
                         <td th:text="${commentaire.utilisateur}"/>
                         <td th:text="${commentaire.secteur}"/>
                         <td th:text="${commentaire.zoneCommentaire}"/>
-
-
                         <td><a th:href="@{/detailCommentaire?id={id}(id=${commentaire.id})}">Détails</a></td>
                         <td><a th:href="@{/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a></td>
                     </tr>
@@ -47,7 +43,7 @@
     </div>
 </div>
 <div class="align-self-xl-end">
-    <br> <a th:href="@{/add}" class="btn btn-primary" role="button">Ajouter</a> </br>
+    <br> <a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a> </br>
 </div>
 </body>
 </html>
