@@ -22,14 +22,6 @@ public class Site {
     @Column(name="nomSite")
     private String nomSite ;
 
-    @NotBlank(message = "Le secteur du site est requis.")
-    @Column(name="secteur")
-    private String secteur ;
-
-    @NotBlank(message = "Le pays est requis.")
-    @Column(name="pays")
-    private String pays ;
-
     @CreatedDate
     private Date createdAt;
 
@@ -54,6 +46,10 @@ public class Site {
     @OneToMany(mappedBy="site")
     private List<Commentaire> commentaires;
 
+    @OneToOne
+    @JoinColumn(name = "topologie_id", referencedColumnName = "id")
+    private Topologie topologie;
+
 
     public Long getId() {
         return id;
@@ -72,13 +68,6 @@ public class Site {
         this.nomSite = nomSite;
     }
 
-    public String getSecteur() {
-        return secteur;
-    }
-
-    public void setSecteur(String secteur) {
-        this.secteur = secteur;
-    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -96,13 +85,6 @@ public class Site {
         updatedAt = updatedAt;
     }
 
-    public String getPays() {
-        return pays;
-    }
-
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
 
     public List<Voie> getVoies() {
         return voies;
@@ -120,14 +102,19 @@ public class Site {
         this.commentaires = commentaires;
     }
 
+    public Topologie getTopologie() {
+        return topologie;
+    }
+
+    public void setTopologie(Topologie topologie) {
+        this.topologie = topologie;
+    }
 
     @Override
     public String toString() {
         return "Site{" +
                 "id=" + id +
                 ", nomSite='" + nomSite + '\'' +
-                ", secteur='" + secteur + '\'' +
-                ", pays='" + pays + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", voies=" + voies +

@@ -12,41 +12,60 @@
 </head>
 
 <body>
-<h1>Modifier detail Commentaire</h1>
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Modifier detail commentaire</h3>
+            <div class="col-md-6">
 
-<div class="container">
+
+                <!--    <form>-->
+                <form action="#" th:action="@{/editionCommentaire?id={id}(id=${commentaire.id})}"
+                      th:object="${commentaire}" method="post">
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputUtilisateur" class="col-sm-2 col-form-label">Utilisateur</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputUtilisateur"
+                                   th:field="*{utilisateur}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Site</label>
+                        <div class="col-sm-10">
+                            <input type="number" disabled class="form-control" id="exampleInputSecteur"
+                                   th:field="*{site}">
+                        </div>
+                    </div>
 
 
-    <!--    <form>-->
-    <form action="#" th:action="@{/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}" method="post" >
-        <div class="form-group">
-            <label for="exampleInputId">Id</label>
-            <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputCommentaire" class="col-sm-2 col-form-label">Nom</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="exampleInputCommentaire"
+                                   th:field="*{zoneCommentaire}">
+<!--                            <small id="WarningNomCommentaire" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('zoneCommentaire')}"
+                                   th:errors="*{zoneCommentaire}"></small>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                    </div>
+                    <div class="row">
+                        <a th:href="@{/commentaire/listCommentaire}" class="btn btn-info" role="button">Retour</a>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="exampleInputUtilisateur">Utilisateur</label>
-            <input type="number" disabled class="form-control" id="exampleInputUtilisateur" th:field="*{utilisateur}">
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputSecteur">Secteur</label>
-            <input type="number" disabled class="form-control" id="exampleInputSecteur" th:field="*{secteur}">
-        </div>
-
-
-        <div class="form-group">
-            <label for="exampleInputCommentaire">Nom</label>
-            <input type="text" class="form-control" id="exampleInputCommentaire" th:field="*{zoneCommentaire}">
-            <small id="WarningNomCommentaire" class="form-text text-muted" th:if="${#fields.hasErrors('zoneCommentaire')}" th:errors="*{zoneCommentaire}"></small>
-        </div>
-        <div>
-            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-        </div>
-        <div>
-            <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-        </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

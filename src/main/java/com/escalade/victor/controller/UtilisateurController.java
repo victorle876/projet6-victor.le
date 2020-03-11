@@ -78,7 +78,7 @@ public class UtilisateurController {
             System.out.println("l'utilisateur n'existe pas");
         }
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
-        return "detailUser";
+        return "detailsUser";
     }
 
     @RequestMapping(value = "/editionUser", method = RequestMethod.GET)

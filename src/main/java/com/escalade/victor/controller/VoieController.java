@@ -22,16 +22,16 @@ public class VoieController {
 
     @RequestMapping(value = "/listVoie", method = RequestMethod.GET)
     public String VoieList(Model model) {
+        model.addAttribute("voies", this.voieService.getAllVoies());
         return "listVoie";
     }
 
-    @RequestMapping(value = "/voie/home", method = RequestMethod.GET)
-    public String voieHome(Model model) {
-        model.addAttribute("voies", this.voieService.getAllVoies());
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String voieHome(Model model) { ;
         return "voiehome";
     }
 
-    @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
+    @RequestMapping(value = "/detailsVoie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Voie Voie = voieService.getVoieById(id);
         if (Voie == null) {

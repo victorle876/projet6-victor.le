@@ -16,8 +16,8 @@ public class Topologie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "L'auteur'est requis.")
-    private String auteur;
+/*    @NotBlank(message = "L'auteur'est requis.")
+    private String auteur;*/
 
     @NotBlank(message = "Le nom de la topologie est requise.")
     private String nomTopologie;
@@ -32,6 +32,14 @@ public class Topologie {
     @LastModifiedDate
     private Date updatedAt;
 
+    @NotBlank(message = "Le secteur du site est requis.")
+    @Column(name="secteur")
+    private String secteur ;
+
+    @NotBlank(message = "Le pays est requis.")
+    @Column(name="pays")
+    private String pays ;
+
     @OneToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
@@ -43,6 +51,17 @@ public class Topologie {
     @OneToOne
     @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site ;
+
+    @PrePersist
+    protected void prePersist() {
+        if (this.createdAt == null) createdAt = new Date();
+        if (this.updatedAt == null) updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void preUpdate() {
+        this.updatedAt = new Date();
+    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -100,6 +119,23 @@ public class Topologie {
     public void setSite(Site site) {
         this.site = site;
     }
+
+    public String getSecteur() {
+        return secteur;
+    }
+
+    public void setSecteur(String secteur) {
+        this.secteur = secteur;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
     @Override
     public String toString() {
         return "Topologie{" +

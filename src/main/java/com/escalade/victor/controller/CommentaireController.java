@@ -20,6 +20,18 @@ public class CommentaireController {
     @Autowired
     private CommentaireService commentaireService;
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String commentaireHome(Model model) {
+        return "commentairehome";
+    }
+
+    @RequestMapping(value = "/listCommentaire", method = RequestMethod.GET)
+    public String CommentaireList(Model model) {
+        model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
+        return "listCommentaire";
+
+    }
+
     @RequestMapping(value = "/detailsCommentaire", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Commentaire commentaire = commentaireService.getCommentaireById(id);
@@ -27,7 +39,7 @@ public class CommentaireController {
             System.out.println("le commentaire n'existe pas");
         }
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "detailCommentaire";
+        return "detailsCommentaire";
 
     }
 

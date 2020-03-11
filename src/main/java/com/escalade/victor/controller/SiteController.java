@@ -17,13 +17,14 @@ public class SiteController {
     @Autowired
     private SiteService siteService;
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
-    public String TopoList(Model model) {
+    public String SiteList(Model model) {
+        model.addAttribute("sites", this.siteService.getAllSites());
         return "listSite";
     }
 
-    @RequestMapping(value = "/siteHome", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String siteHome(Model model) {
-        return "siteHome";
+        return "sitehome";
     }
 
     @RequestMapping(value = "/detailsSite", method = RequestMethod.GET)

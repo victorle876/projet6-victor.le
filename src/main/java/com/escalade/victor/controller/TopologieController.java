@@ -22,18 +22,19 @@ public class TopologieController {
 
     @RequestMapping(value = "/listTopologie", method = RequestMethod.GET)
     public String TopoList(Model model) {
+        model.addAttribute("topologies", this.topologieService.getAllTopologies());
         return "listTopologie";
     }
 
-    @RequestMapping(value = "/topologieHome", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String TopoHome(Model model) {
-        return "topologieHome";
+        return "topologiehome";
     }
 
     @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
-        Topologie Topologie = topologieService.getTopologieById(id);
-        if (Topologie == null) {
+        Topologie topologie = topologieService.getTopologieById(id);
+        if (topologie == null) {
             System.out.println("le topologie n'existe pas");
         }
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));

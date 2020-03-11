@@ -33,6 +33,26 @@
                     </div>
 
                     <div class="form-group row has-feedback">
+                        <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Secteur</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{secteur}" id="exampleInputSecteur"
+                                   aria-describedby="WarningSecteur">
+                            <small id="WarningSecteur" class="form-text text-muted"
+                                   th:if="${#fields.hasErrors('secteur')}" th:errors="*{secteur}"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row has-feedback">
+                        <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{pays}" id="exampleInputPays"
+                                   aria-describedby="WarningPays">
+                            <small id="WarningPays" class="form-text text-muted" th:if="${#fields.hasErrors('pays')}"
+                                   th:errors="*{pays}"></small>
+                        </div>
+                    </div>
+<!--
+                    <div class="form-group row has-feedback">
                         <div class="col-sm-10">
                             <label for="exampleInputUtilisateur" class="col-sm-2 col-form-label">Utilisateur</label>
                             <input type="text" class="form-control" id="exampleInputUtilisateur"
@@ -54,7 +74,7 @@
                                    th:value="${topologie.reservation}"
                                    aria-describedby="WarningReservation" disabled>
                         </div>
-                    </div>
+                    </div>-->
                     <div>
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
                     </div>
