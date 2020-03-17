@@ -34,7 +34,7 @@ public class UtilisateurController {
         return "home";
     }
 
-    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String AdminHome(Model model) {
         return "adminhome";
     }
@@ -42,7 +42,7 @@ public class UtilisateurController {
     @RequestMapping(value = "/user/home", method = RequestMethod.GET)
     public String UserHome(Model model) {
         return "userhome";
-    }
+    }*/
 
     @RequestMapping(value = "/listUser", method = RequestMethod.GET)
     public String UserList(Model model) {

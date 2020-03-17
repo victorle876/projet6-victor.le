@@ -26,10 +26,10 @@ public class VoieController {
         return "listVoie";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String voieHome(Model model) { ;
         return "voiehome";
-    }
+    }*/
 
     @RequestMapping(value = "/detailsVoie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {

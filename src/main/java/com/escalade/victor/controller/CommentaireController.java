@@ -20,10 +20,10 @@ public class CommentaireController {
     @Autowired
     private CommentaireService commentaireService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String commentaireHome(Model model) {
         return "commentairehome";
-    }
+    }*/
 
     @RequestMapping(value = "/listCommentaire", method = RequestMethod.GET)
     public String CommentaireList(Model model) {

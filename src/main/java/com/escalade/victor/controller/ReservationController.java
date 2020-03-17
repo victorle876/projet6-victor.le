@@ -20,10 +20,10 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String reservationHome(Model model) {
         return "reservationhome";
-    }
+    }*/
 
     @RequestMapping(value = "/listReservation", method = RequestMethod.GET)
     public String ReservationList(Model model) {
