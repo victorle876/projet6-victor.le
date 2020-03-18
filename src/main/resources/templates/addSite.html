@@ -14,9 +14,11 @@
 <div class="container">
     <div class="container-xl">
         <div class="card rounded-0 shadow">
+            <div th:replace = "fragments/topnav :: navbar"></div>
             <div class="card-body">
                 <h3>Ajout sites</h3>
                 <div class="col-md-6">
+
 
                     <form action="#" th:action="@{/site/saveSite}" th:object="${site}" method="post">
                         <div class="form-group">

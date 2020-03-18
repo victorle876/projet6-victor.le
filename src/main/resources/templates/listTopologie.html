@@ -14,6 +14,7 @@
 <body>
 <div class="container-xl">
     <div class="card text-center">
+        <div th:replace = "fragments/topnav :: navbar"></div>
         <div class="card-body">
             <h1> Liste des topologies</h1>
             <div class="table-responsive">
@@ -25,7 +26,7 @@
                     <th>Utilisateur</th>
                     <th>Detail</th>
                     <th>Editer</th>
-                    <th>Ajouter</th>
+                    <th>Sites</th>
                     </thead>
                     <tbody>
                     <tr th:each="topologie, rowStat: ${topologies}"
@@ -41,15 +42,12 @@
                     </tbody>
                 </table>
             </div>
+            <div class="row">
+                <a th:href="@{/topologie/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+            </div>
         </div>
     </div>
-</div>
-<div class="align-self-xl-end">
-    <br> <a th:href="@{/topologie/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
-</div>
-<br>
-<div class="row">
-    <a th:href="@{/admin/home}" class="btn btn-info" role="button">Retour</a>
 </div>
 </body>
 </html>

@@ -14,6 +14,7 @@
 <body>
 <div class="container-xl">
     <div class="card text-center">
+        <div th:replace = "fragments/topnav :: navbar"></div>
         <div class="card-body">
             <h1> Liste des Reservations</h1>
             <div class="table-responsive">
@@ -34,14 +35,14 @@
                     </tbody>
                 </table>
             </div>
+            <div>
+                <a th:href="@{/reservation/addReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>
+                <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+            </div>
         </div>
+
     </div>
 </div>
-<<div class="align-self-xl-end">
-    <br> <a th:href="@{/reservation/addReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>
-</div>
-<div class="row">
-    <a th:href="@{/admin/home}" class="btn btn-info" role="button">Retour</a>
-</div>
+
 </body>
 </html>

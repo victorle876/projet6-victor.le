@@ -15,6 +15,7 @@
 <br>
 <div class="container-xl">
     <div class="card text-center">
+        <div th:replace = "fragments/topnav :: navbar"></div>
         <div class="card-body">
             <h1> Liste des sites</h1>
             <div class="table-responsive">
@@ -22,32 +23,32 @@
                     <thead>
                     <th>Nom du site</th>
                     <th>Topologie du site</th>
-                    <th>detail</th>
-                    <th>editer</th>
-<!--                    <th>Ajouter</th>-->
+                    <th>Detail</th>
+                    <th>Editer</th>
+                    <th>Ajouter Voie</th>
+                    <th>Ajouter Commentaire</th>
                     </thead>
                     <tbody>
                     <tr th:each="site, rowStat: ${sites}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                         <td th:text="${site.nomSite}"/>
                         <td th:text="${site.topologie}"/>
-
                         <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
                         <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-<!--                        <td><a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a></td>-->
+                        <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                        <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <div class="row">
+                <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
+                <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
+            </div>
         </div>
+
     </div>
-    <div class="align-self-xl-end col-xs-offset-8 col-xs-4">
-         <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
-    </div>
-<br>
-    <div class="row col-xs-offset-8 col-xs-4">
-        <a th:href="@{/admin/home}" class="btn btn-info" role="button">Retour</a>
-    </div>
+
 </div>
 
 </body>

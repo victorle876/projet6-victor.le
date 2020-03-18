@@ -14,9 +14,9 @@
 <div class="container-xl">
     <div class="card rounded-0 shadow">
         <div class="card-body">
+            <div th:replace = "fragments/topnav :: navbar"></div>
             <h3>Reservation</h3>
             <div class="col-md-6">
-
                 <form action="#" th:action="@{/reservation/saveReservation}" th:object="${reservation}" method="post">
                     <div class="form-group">
                         <!-- <label for="exampleInputId">Id</label>

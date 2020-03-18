@@ -34,12 +34,12 @@ public class UtilisateurController {
         return "home";
     }
 
-/*    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+   @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String AdminHome(Model model) {
         return "adminhome";
     }
 
-    @RequestMapping(value = "/user/home", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/user/home", method = RequestMethod.GET)
     public String UserHome(Model model) {
         return "userhome";
     }*/

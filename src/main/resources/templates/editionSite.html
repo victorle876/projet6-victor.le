@@ -19,7 +19,7 @@
         <div class="card-body">
             <h3>Modifier detail voie</h3>
             <div class="col-md-6">
-
+                <div th:replace = "fragments/topnav :: navbar"></div>
 
                 <form action="#" th:action="@{/editionSite?id={id}(id=${site.id})}" th:object="${site}" method="post">
                     <div class="form-group row has-feedback">

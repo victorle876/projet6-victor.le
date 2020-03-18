@@ -18,7 +18,7 @@ public class Site {
     @Column(name="id")
     private Long id;
 
-    @NotBlank(message = "Le nom du site est requise.")
+    @NotBlank(message = "Le nom du site est requis.")
     @Column(name="nomSite")
     private String nomSite ;
 

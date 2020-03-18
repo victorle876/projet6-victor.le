@@ -14,12 +14,10 @@
 <body>
 <div class="container-xl">
     <div class="card rounded-0 shadow">
+        <div th:replace = "fragments/topnav :: navbar"></div>
         <div class="card-body">
             <h3>Modifier detail commentaire</h3>
             <div class="col-md-6">
-
-
-                <!--    <form>-->
                 <form action="#" th:action="@{/editionCommentaire?id={id}(id=${commentaire.id})}"
                       th:object="${commentaire}" method="post">
                     <div class="form-group row has-feedback">
@@ -58,9 +56,7 @@
                     </div>
                     <div class="row">
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                    </div>
-                    <div class="row">
-                        <a th:href="@{/commentaire/listCommentaire}" class="btn btn-info" role="button">Retour</a>
+                        <a th:href="@{/commentaire/listCommentaire}" class="btn btn-secondary" role="button">Retour</a>
                     </div>
                 </form>
             </div>
