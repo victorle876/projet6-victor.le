@@ -1,5 +1,6 @@
 package com.escalade.victor.service;
 
+import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.TopologieRepository;
@@ -15,6 +16,7 @@ public class TopologieService {
 
     @Autowired
     TopologieRepository topologieRepository;
+    private List<Site> sites;
 
     public List<Topologie> getAllTopologies()
     {
@@ -39,6 +41,24 @@ public class TopologieService {
 
     }
 
+    //id topologie, Site site
+    //.getSites.add(site)
+    //OnetoOne
+
+    public Topologie addTopoUtil (long id, Utilisateur utilisateur)
+    {
+        Topologie topologieUtil = this.getTopologieById(id);
+        topologieUtil.setUtilisateur(utilisateur);
+        return this.saveTopologie(topologieUtil);
+    }
+
+    public Topologie addSiteTopo (long id, List<Site> sites, Site site)
+    {
+        Topologie topologieSite = this.getTopologieById(id);
+        topologieSite.getSites().add(site);
+      //  topologie.setSites(sites);
+        return this.saveTopologie(topologieSite);
+    }
     public void deleteTopologiesById(Long id)
     {
 /*        Optional<Topologie> TopologieEfface = topologieRepository.findById(id);

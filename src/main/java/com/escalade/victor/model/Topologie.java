@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "topologie")
@@ -48,9 +49,11 @@ public class Topologie {
     @JoinColumn(name="reservation_id", referencedColumnName = "id")
     private Reservation reservation ;
 
-    @OneToOne
+/*    @OneToOne // many
     @JoinColumn(name="site_id", referencedColumnName = "id")
-    private Site site ;
+    private Site site ;*/
+    @OneToMany(mappedBy="topologie")
+    private List<Site> sites;
 
     @PrePersist
     protected void prePersist() {
@@ -112,12 +115,20 @@ public class Topologie {
         this.reservation = reservation;
     }
 
-    public Site getSite() {
+/*    public Site getSite() {
         return site;
     }
 
     public void setSite(Site site) {
         this.site = site;
+    }*/
+
+    public List<Site> getSites() {
+        return sites;
+    }
+
+    public void setSites(List<Site> sites) {
+        this.sites = sites;
     }
 
     public String getSecteur() {

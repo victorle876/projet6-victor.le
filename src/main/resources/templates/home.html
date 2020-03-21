@@ -13,11 +13,14 @@
 </head>
 
 <body>
-
+<div th:replace="fragments/topnav :: navbar"></div>
 <div class="container-xl">
     <div class="card rounded-0 shadow">
         <div class="card-body">
-            <div th:replace = "fragments/topnav :: navbar"></div>
+
+            <p sec:authorize="isAnonymous()"><a th:href="@{/connect}">Login</a></p>
+            <p>Welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</p>
+            <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
 
         </div>
     </div>

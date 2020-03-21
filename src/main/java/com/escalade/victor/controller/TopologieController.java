@@ -1,6 +1,8 @@
 package com.escalade.victor.controller;
 
+import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.service.TopologieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,12 +51,15 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "/saveTopologie", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result) {
-
+  //  public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result, List<Site> sites, Site site, Long id) {
+    //public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result){
+    public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result, Utilisateur utilisateur, Long id){
         if (result.hasErrors()) {
             return "addTopologie";
         } else {
             this.topologieService.saveTopologie(topologie);
+           // this.topologieService.addSiteTopo(id,sites,site);
+            this.topologieService.addTopoUtil(id,utilisateur);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
             return "home";
         }

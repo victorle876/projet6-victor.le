@@ -12,15 +12,12 @@
 </head>
 
 <body>
-<h1>Modifier detail Site</h1>
-
+<div th:replace = "fragments/topnav :: navbar"></div>
 <div class="container-xl">
     <div class="card rounded-0 shadow">
         <div class="card-body">
             <h3>Modifier detail voie</h3>
             <div class="col-md-6">
-                <div th:replace = "fragments/topnav :: navbar"></div>
-
                 <form action="#" th:action="@{/editionSite?id={id}(id=${site.id})}" th:object="${site}" method="post">
                     <div class="form-group row has-feedback">
                         <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
@@ -46,9 +43,7 @@
                     </div>
                     <div class="row">
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                    </div>
-                    <div class="row">
-                        <a th:href="@{/site/listSite}" class="btn btn-info" role="button">Retour</a>
+                        <a th:href="@{/site/listSite}" class="btn btn-primary" role="button">Retour</a>
                     </div>
                 </form>
             </div>

@@ -60,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          //       .antMatchers("/topologie/**","/site/**","/commentaire/**").permitAll()
                 .antMatchers("/site/home/**","/topologie/home/**","/admin/home/**","/commentaire/home/**","/voie/home/**","/user/home/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN") //
+     //           .antMatchers("/voie/**").hasAuthority("ADMIN")
 //                .anyRequest().authenticated()
                 .and()
                 .formLogin()

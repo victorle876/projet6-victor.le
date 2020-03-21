@@ -12,9 +12,9 @@
 </head>
 
 <body>
+<div th:replace = "fragments/topnav :: navbar"></div>
 <div class="container-xl">
     <div class="card rounded-0 shadow">
-        <div th:replace = "fragments/topnav :: navbar"></div>
         <div class="card-body">
             <h3>Modifier detail topologie</h3>
             <div class="col-md-6">
@@ -88,9 +88,7 @@
 
                     <div class="row">
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                    </div>
-                    <div class="row">
-                        <a th:href="@{/topologie/listTopologie}" class="btn btn-info" role="button">Retour</a>
+                        <a th:href="@{/topologie/listTopologie}" class="btn btn-primary" role="button">Retour</a>
                     </div>
                 </form>
             </div>

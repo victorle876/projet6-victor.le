@@ -22,6 +22,9 @@ public class Site {
     @Column(name="nomSite")
     private String nomSite ;
 
+    @ManyToOne
+    private Site site;
+
     @CreatedDate
     private Date createdAt;
 
@@ -108,6 +111,14 @@ public class Site {
 
     public void setTopologie(Topologie topologie) {
         this.topologie = topologie;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 
     @Override
