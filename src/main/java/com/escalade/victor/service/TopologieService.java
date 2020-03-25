@@ -52,13 +52,13 @@ public class TopologieService {
         return this.saveTopologie(topologieUtil);
     }
 
-    public Topologie addSiteTopo (long id, List<Site> sites, Site site)
+ /*   public Topologie addSiteTopo ( Site site)
     {
-        Topologie topologieSite = this.getTopologieById(id);
+
         topologieSite.getSites().add(site);
       //  topologie.setSites(sites);
         return this.saveTopologie(topologieSite);
-    }
+    }*/
     public void deleteTopologiesById(Long id)
     {
 /*        Optional<Topologie> TopologieEfface = topologieRepository.findById(id);

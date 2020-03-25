@@ -23,7 +23,7 @@ public class Site {
     private String nomSite ;
 
     @ManyToOne
-    private Site site;
+    private Topologie topologie;
 
     @CreatedDate
     private Date createdAt;
@@ -48,11 +48,6 @@ public class Site {
 
     @OneToMany(mappedBy="site")
     private List<Commentaire> commentaires;
-
-    @OneToOne
-    @JoinColumn(name = "topologie_id", referencedColumnName = "id")
-    private Topologie topologie;
-
 
     public Long getId() {
         return id;
@@ -111,14 +106,6 @@ public class Site {
 
     public void setTopologie(Topologie topologie) {
         this.topologie = topologie;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
     }
 
     @Override

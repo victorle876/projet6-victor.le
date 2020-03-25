@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -58,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/voie/editionVoie/**", "/voie/detailsVoie/**","/voie/saveVoie/**","/voie/addVoie/**","/voie/listVoie/**").permitAll()
                 .antMatchers("/").permitAll()
          //       .antMatchers("/topologie/**","/site/**","/commentaire/**").permitAll()
-                .antMatchers("/site/home/**","/topologie/home/**","/admin/home/**","/commentaire/home/**","/voie/home/**","/user/home/**").permitAll()
+                .antMatchers("/site/**","/topologie/**","/commentaire/**","/voie/**","/user/home/**").hasAuthority("ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN") //
      //           .antMatchers("/voie/**").hasAuthority("ADMIN")
 //                .anyRequest().authenticated()
@@ -71,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/connect")
                 .deleteCookies("my-remember-me-cookie")
                 .permitAll()
                 .and()
@@ -90,4 +91,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         tokenRepositoryImpl.setDataSource(dataSource);
         return tokenRepositoryImpl;
     }
+
 }

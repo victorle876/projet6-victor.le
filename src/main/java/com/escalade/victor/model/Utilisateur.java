@@ -107,14 +107,6 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-/*    public Date getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }*/
-
     public Integer getAge() {
         return age;
     }

@@ -1,7 +1,9 @@
 <div th:fragment="navbar"
-     xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+     xmlns:th="http://www.w3.org/1999/xhtml"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+            <div class="navbar-header">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/}">Accueil</a>
@@ -21,20 +23,16 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/site/listSite}">Liste des sites</a>
                 </li>
-               <li class="nav-item">
-                    <div th:if="${param.logout}">
-                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                      </div>
-<!--                    <div th:if="${param.login}">
-                        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
-                    </div>-->
-                </li>
-<!--                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+<!--               <li sec:authorize="isAuthenticated()">
+&lt;!&ndash;                    <div sec:authorize="hasRole('ADMIN')">&ndash;&gt;
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+&lt;!&ndash;                      </div>&ndash;&gt;
                 </li>-->
-<!--                <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
-                </li>-->
+            </ul>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="navbar-item" sec:authorize="hasRole('ADMIN')"> <a class="nav-link"th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </nav>
