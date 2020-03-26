@@ -41,7 +41,7 @@ public class Topologie {
     @Column(name="pays")
     private String pays ;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
 

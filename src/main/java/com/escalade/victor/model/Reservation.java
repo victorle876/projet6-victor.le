@@ -25,7 +25,6 @@ public class Reservation {
     @ManyToOne
     private Utilisateur utilisateur;
 
-
     @OneToOne
     @JoinColumn(name = "topologie_id", referencedColumnName = "id")
     private Topologie topologie;

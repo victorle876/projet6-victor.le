@@ -1,6 +1,7 @@
 package com.escalade.victor.service;
 
 import com.escalade.victor.model.Reservation;
+import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class ReservationService {
             return this.reservationRepository.save(reservation);
     }
 
+    public Reservation addTopoReserv (long id, Topologie topologie)
+    {
+        Reservation reservationTopo = this.getReservationById(id);
+        reservationTopo.setTopologie(topologie);
+        return this.saveReservation(reservationTopo);
+    }
+    
     public void deleteReservationById(Long id)
     {
 /*        Optional<Reservation> ReservationEfface = reservationRepository.findById(id);

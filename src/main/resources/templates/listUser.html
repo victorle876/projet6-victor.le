@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">-->
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
@@ -13,9 +15,9 @@
 </head>
 
 <body>
-
-<div th:replace = "fragments/topnav :: navbar"></div>
+<div th:replace="fragments/layout :: header"> Header</div>
 <div class="container-fluid">
+    <!--<div layout:fragment="content">-->
     <div class="card text-center">
 
         <div class="card-body">
@@ -24,7 +26,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-<!--                    <th>id</th>-->
+                    <!--                    <th>id</th>-->
                     <th>Username</th>
                     <th>Prenom</th>
                     <th>Date de naissance</th>
@@ -36,7 +38,7 @@
                     <tbody>
                     <tr th:each="utilisateur, rowStat: ${utilisateurs}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-<!--                        <td th:text="${utilisateur.id}"/>-->
+                        <!--                        <td th:text="${utilisateur.id}"/>-->
                         <td th:text="${utilisateur.username}"/>
                         <td th:text="${utilisateur.prenom}"/>
                         <td th:text="${utilisateur.age}"/>
@@ -55,6 +57,6 @@
         </div>
     </div>
 </div>
-
+</div>
 </body>
 </html>

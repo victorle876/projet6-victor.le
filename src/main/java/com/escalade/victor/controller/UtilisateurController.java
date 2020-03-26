@@ -26,6 +26,7 @@ public class UtilisateurController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());

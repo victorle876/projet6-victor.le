@@ -1,6 +1,7 @@
 package com.escalade.victor.service;
 
-import com.escalade.victor.model.Site;
+import com.escalade.victor.model.*;
+//import com.escalade.victor.model.Topologie;
 import com.escalade.victor.repository.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ public class SiteService {
 
     @Autowired
     SiteRepository siteRepository;
+
+    private Topologie topologieRecherche;
 
     public List<Site> getAllSites()
     {
@@ -36,6 +39,14 @@ public class SiteService {
         return this.siteRepository.save(site);
 
 
+    }
+
+    public void addSiteTopo (Topologie topologie, long id)
+    {
+        this.topologieRecherche = topologie;
+        if (!topologieRecherche.getSites().contains(this)){
+            topologieRecherche.getSites().add(this.getSiteById(id));
+        }
     }
 
     public void deleteSiteById(Long id)

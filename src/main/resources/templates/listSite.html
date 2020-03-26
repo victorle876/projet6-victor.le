@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"-->
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
@@ -12,44 +14,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace = "fragments/topnav :: navbar"></div>
+<div th:replace = "fragments/layout :: header"></div>
 <div class="container-xl">
-    <div class="card text-center">
+<!--    <div layout:fragment="content">-->
 
-        <div class="card-body">
-            <h1> Liste des sites</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Nom du site</th>
-                    <th>Topologie du site</th>
-                    <th>Detail</th>
-                    <th>Editer</th>
-                    <th>Ajouter Voie</th>
-                    <th>Ajouter Commentaire</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="site, rowStat: ${sites}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${site.nomSite}"/>
-                        <td th:text="${site.topologie}"/>
-                        <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                        <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                        <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
-                        <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a></td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="card text-center">
+
+            <div class="card-body">
+                <h1> Liste des sites</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead>
+                        <th>Nom du site</th>
+                        <th>Topologie du site</th>
+                        <th>Detail</th>
+                        <th>Editer</th>
+                        <th>Ajouter Voie</th>
+                        <th>Ajouter Commentaire</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="site, rowStat: ${sites}"
+                            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                            <td th:text="${site.nomSite}"/>
+                            <td th:text="${site.topologie}"/>
+                            <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
+                            <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
+                            <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                            <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
+                    <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
+                </div>
             </div>
-            <div class="row">
-                <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
-                <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
-            </div>
+
         </div>
 
     </div>
-
 </div>
-
 </body>
 </html>

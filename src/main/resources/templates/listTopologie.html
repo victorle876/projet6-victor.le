@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">-->
 <head>
     <title>Userhome</title>
     <meta charset="utf-8"/>
@@ -12,39 +14,41 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace = "fragments/topnav :: navbar"></div>
+<div th:replace = "fragments/layout :: header"></div>
 <div class="container-xl">
-    <div class="card text-center">
-        <div class="card-body">
-            <h1> Liste des topologies</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Numero Topologie</th>
-                    <th>Secteur</th>
-                    <th>Pays</th>
-                    <th>Utilisateur</th>
-                    <th>Detail</th>
-                    <th>Editer</th>
-                    <th>Sites</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="topologie, rowStat: ${topologies}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${topologie.nomTopologie}"/>
-                        <td th:text="${topologie.secteur}"/>
-                        <td th:text="${topologie.pays}"/>
-                        <td th:text="${topologie.utilisateur}"/>
-                        <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
-                        <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
-                        <td><a th:href="@{/site/addSite}">Ajouter</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <a th:href="@{/topologie/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
-                <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+<!--    <div layout:fragment="content">-->
+        <div class="card text-center">
+            <div class="card-body">
+                <h1> Liste des topologies</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead>
+                        <th>Numero Topologie</th>
+                        <th>Secteur</th>
+                        <th>Pays</th>
+                        <th>Utilisateur</th>
+                        <th>Detail</th>
+                        <th>Editer</th>
+                        <th>Sites</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="topologie, rowStat: ${topologies}"
+                            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                            <td th:text="${topologie.nomTopologie}"/>
+                            <td th:text="${topologie.secteur}"/>
+                            <td th:text="${topologie.pays}"/>
+                            <td th:text="${topologie.utilisateur}"/>
+                            <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
+                            <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
+                            <td><a th:href="@{/site/addSite}">Ajouter</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <a th:href="@{/topologie/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                    <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+                </div>
             </div>
         </div>
     </div>

@@ -71,8 +71,7 @@ public class Utilisateur {
     public Utilisateur() {
 
     }
-
-
+    
     @OneToMany(mappedBy="utilisateur")
     private List<Topologie> topologies;
 

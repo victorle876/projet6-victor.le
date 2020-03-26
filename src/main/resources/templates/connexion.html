@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"-->
 <head>
     <title>Admin Home</title>
     <meta charset="utf-8"/>
@@ -13,58 +14,60 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div th:replace = "fragments/topnav :: navbar"></div>
-    <div class="container-xl">
-        <div class="card rounded-0 shadow">
+<!--<div layout:fragment="content">-->
+<div th:replace="fragments/layout :: header"> Header</div>
+<div class="container-xl">
 
-            <div class="card-body">
-                <h3>Login Form</h3>
-                <div class="col-md-6">
-                    <form action="home" th:action="@{/connect}" method="post">
-                        <div class="form-group row has-feedback">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" name="username"
-                                       placeholder="Email" id="inputEmail3"/> <span
-                                    class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                            </div>
+    <div class="card rounded-0 shadow">
+
+        <div class="card-body">
+            <h3>Login Form</h3>
+            <div class="col-md-6">
+                <form action="home" th:action="@{/connect}" method="post">
+                    <div class="form-group row has-feedback">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="username"
+                                   placeholder="Email" id="inputEmail3"/> <span
+                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group row has-feedback">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Password" id="inputPassword3"/> <span
-                                    class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                            </div>
+                    </div>
+                    <div class="form-group row has-feedback">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Password" id="inputPassword3"/> <span
+                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="remember-me"> Remember Me
-                            </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="remember-me"> Remember Me
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-offset-8 col-xs-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-xs-offset-8 col-xs-4">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div th:if="${param.logout}"
-                                     class="alert alert-info alert-dismissable">
-                                    <p>
-                                        <i class="icon fa fa-info"></i> <span
-                                            th:text="${info.logout_success}">You have been logged
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div th:if="${param.logout}"
+                                 class="alert alert-info alert-dismissable">
+                                <p>
+                                    <i class="icon fa fa-info"></i> <span
+                                        th:text="${info.logout_success}">You have been logged
            out.</span>
-                                    </p>
-                                </div>
-
+                                </p>
                             </div>
+
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

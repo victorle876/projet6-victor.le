@@ -16,7 +16,8 @@ public class TopologieService {
 
     @Autowired
     TopologieRepository topologieRepository;
-    private List<Site> sites;
+
+    private Utilisateur utilisateurRecherche;
 
     public List<Topologie> getAllTopologies()
     {
@@ -41,24 +42,20 @@ public class TopologieService {
 
     }
 
-    //id topologie, Site site
-    //.getSites.add(site)
-    //OnetoOne
-
-    public Topologie addTopoUtil (long id, Utilisateur utilisateur)
+/*    public Topologie addTopoUtil (long id, Utilisateur utilisateur)
     {
         Topologie topologieUtil = this.getTopologieById(id);
         topologieUtil.setUtilisateur(utilisateur);
         return this.saveTopologie(topologieUtil);
+    }*/
+    public void addUtilTopo(Utilisateur utilisateur, long id)
+    {
+        this.utilisateurRecherche = utilisateur;
+        if (!utilisateurRecherche.getTopologies().contains(this)){
+            utilisateurRecherche.getTopologies().add(this.getTopologieById(id));
+        }
     }
 
- /*   public Topologie addSiteTopo ( Site site)
-    {
-
-        topologieSite.getSites().add(site);
-      //  topologie.setSites(sites);
-        return this.saveTopologie(topologieSite);
-    }*/
     public void deleteTopologiesById(Long id)
     {
 /*        Optional<Topologie> TopologieEfface = topologieRepository.findById(id);

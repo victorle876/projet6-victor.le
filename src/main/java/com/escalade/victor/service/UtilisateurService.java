@@ -36,26 +36,7 @@ public class UtilisateurService {
     public Utilisateur saveUser(Utilisateur utilisateur)
     {
     //       Optional<Utilisateur> UtilisateurRecherche = utilisateurRepository.findById(utilisateur.getId());
-
-
             return this.utilisateurRepository.save(utilisateur);
-
-    }
-
-    public Utilisateur addUtilCommentaire (long id, List<Commentaire> commentaires, Commentaire commentaire)
-    {
-        Utilisateur utilisateurComm = this.getUserById(id);
-        utilisateurComm.getCommentaires().add(commentaire);
-        //  topologie.setSites(sites);
-        return this.saveUser(utilisateurComm);
-    }
-
-    public Utilisateur addUtilReservation (long id, List<Reservation> reservations, Reservation reservation)
-    {
-        Utilisateur utilisateurReserv = this.getUserById(id);
-        utilisateurReserv.getReservations().add(reservation);
-        //  topologie.setSites(sites);
-        return this.saveUser(utilisateurReserv);
     }
 
     public void deleteUserById(Long id)
