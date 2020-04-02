@@ -30,10 +30,6 @@ public class Utilisateur {
     @NotBlank(message = "Le prenom est requis.")
     private String prenom;
 
-/*    @NotNull(message = "La date de naissance est requise.")
-    private Date dateNaissance;*/
-
-
     @NotBlank(message = "L'adresse mail est requis.")
     private String mail;
 
@@ -57,6 +53,37 @@ public class Utilisateur {
     @LastModifiedDate
     @Column(name = "updatedAt")
     private Date updatedAt;
+    
+    @OneToMany(mappedBy="utilisateur")
+    private List<Topologie> topologies;
+
+    @OneToMany(mappedBy="utilisateur")
+    private List<Commentaire> commentaires;
+
+    @OneToMany(mappedBy="utilisateur")
+    private List<Reservation> reservations;
+
+    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY, optional = false)
+    private Site site;
+
+/*    public Utilisateur(Long id, @NotBlank(message = "Le nom est requis.") String username, @NotBlank(message = "Le prenom est requis.") String prenom, @NotBlank(message = "L'adresse mail est requis.") String mail, String password, @NotNull(message = "L''age est requis.") Integer age, List<Role> roles, Date createdAt, Date updatedAt, List<Topologie> topologies, List<Commentaire> commentaires, List<Reservation> reservations) {
+        this.id = id;
+        this.username = username;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.password = password;
+     //   this.age = age;
+     //   this.roles = roles;
+    //    this.createdAt = createdAt;
+    //    this.updatedAt = updatedAt;
+        this.topologies = topologies;
+        this.commentaires = commentaires;
+        this.reservations = reservations;
+    }*/
+
+    public Utilisateur() {
+    }
 
     @PrePersist
     protected void prePersist() {
@@ -68,18 +95,6 @@ public class Utilisateur {
     protected void preUpdate() {
         this.updatedAt = new Date();
     }
-    public Utilisateur() {
-
-    }
-    
-    @OneToMany(mappedBy="utilisateur")
-    private List<Topologie> topologies;
-
-    @OneToMany(mappedBy="utilisateur")
-    private List<Commentaire> commentaires;
-
-    @OneToMany(mappedBy="utilisateur")
-    private List<Reservation> reservations;
 
     public Long getId() {
         return id;
@@ -88,7 +103,6 @@ public class Utilisateur {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getUsername() {
         return username;
@@ -106,15 +120,6 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-
     public String getMail() {
         return mail;
     }
@@ -127,16 +132,23 @@ public class Utilisateur {
         return password;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles( List<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -180,15 +192,29 @@ public class Utilisateur {
         this.reservations = reservations;
     }
 
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
     @Override
     public String toString() {
         return "Utilisateur{" +
                 "id=" + id +
-                ", nom='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", age=" + age +
-                ", password'" + password + '\'' +
                 ", mail='" + mail + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", roles=" + roles +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", topologies=" + topologies +
+                ", commentaires=" + commentaires +
+                ", reservations=" + reservations +
                 '}';
     }
 }

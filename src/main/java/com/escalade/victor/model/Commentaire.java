@@ -20,7 +20,6 @@ public class Commentaire {
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;*/
 
-
     @ManyToOne
     private Site site;
 

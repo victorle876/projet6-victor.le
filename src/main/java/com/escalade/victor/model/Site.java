@@ -4,9 +4,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -49,6 +47,24 @@ public class Site {
     @OneToMany(mappedBy="site")
     private List<Commentaire> commentaires;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;
+
+    public Site() {
+    }
+
+    /*    public Site(Long id, @NotBlank(message = "Le nom du site est requis.") String nomSite, Topologie topologie, Date createdAt, Date updatedAt, List<Voie> voies, List<Commentaire> commentaires, Utilisateur utilisateur) {
+        this.id = id;
+        this.nomSite = nomSite;
+        this.topologie = topologie;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.voies = voies;
+        this.commentaires = commentaires;
+        this.utilisateur = utilisateur;
+    }*/
+
     public Long getId() {
         return id;
     }
@@ -56,7 +72,6 @@ public class Site {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNomSite() {
         return nomSite;
@@ -66,23 +81,29 @@ public class Site {
         this.nomSite = nomSite;
     }
 
+    public Topologie getTopologie() {
+        return topologie;
+    }
+
+    public void setTopologie(Topologie topologie) {
+        this.topologie = topologie;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        createdAt = createdAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        updatedAt = updatedAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
-
 
     public List<Voie> getVoies() {
         return voies;
@@ -100,12 +121,13 @@ public class Site {
         this.commentaires = commentaires;
     }
 
-    public Topologie getTopologie() {
-        return topologie;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setTopologie(Topologie topologie) {
-        this.topologie = topologie;
+    public void setUtilisateur(Utilisateur utilisateur) {
+
+        this.utilisateur = utilisateur;
     }
 
     @Override
@@ -113,12 +135,13 @@ public class Site {
         return "Site{" +
                 "id=" + id +
                 ", nomSite='" + nomSite + '\'' +
+                ", topologie=" + topologie +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", voies=" + voies +
                 ", commentaires=" + commentaires +
+                ", utilisateur=" + utilisateur +
                 '}';
     }
-
 
 }

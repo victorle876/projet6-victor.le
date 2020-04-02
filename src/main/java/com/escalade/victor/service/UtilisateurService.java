@@ -48,4 +48,10 @@ public class UtilisateurService {
            utilisateurRepository.deleteById(id);
        // }
     }
+
+    public Utilisateur findUserByid(String username){
+        System.out.println(this.utilisateurRepository.findUserById(username));
+        Utilisateur id = this.utilisateurRepository.findUserById(username);
+        return id;
+    }
 }

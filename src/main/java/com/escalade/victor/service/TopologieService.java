@@ -1,10 +1,14 @@
 package com.escalade.victor.service;
 
+import com.escalade.victor.exception.SiteIntrouvableException;
 import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
+import com.escalade.victor.repository.SiteRepository;
 import com.escalade.victor.repository.TopologieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +21,9 @@ public class TopologieService {
     @Autowired
     TopologieRepository topologieRepository;
 
-    private Utilisateur utilisateurRecherche;
+    @Autowired
+    SiteRepository siteRepository;
+
 
     public List<Topologie> getAllTopologies()
     {
@@ -42,18 +48,12 @@ public class TopologieService {
 
     }
 
-/*    public Topologie addTopoUtil (long id, Utilisateur utilisateur)
-    {
-        Topologie topologieUtil = this.getTopologieById(id);
-        topologieUtil.setUtilisateur(utilisateur);
-        return this.saveTopologie(topologieUtil);
-    }*/
-    public void addUtilTopo(Utilisateur utilisateur, long id)
-    {
-        this.utilisateurRecherche = utilisateur;
-        if (!utilisateurRecherche.getTopologies().contains(this)){
-            utilisateurRecherche.getTopologies().add(this.getTopologieById(id));
+    public List<Site> findSiteByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Site> siteTrouve = this.siteRepository.findByUtilisateur(utilisateur1);
+        if (siteTrouve == null){
+            throw new RuntimeException("Site introuvable");
         }
+        return siteTrouve;
     }
 
     public void deleteTopologiesById(Long id)

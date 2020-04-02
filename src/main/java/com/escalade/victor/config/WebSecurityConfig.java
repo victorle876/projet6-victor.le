@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/editionUser/**", "/detailsUser/**","/saveUser/**","/addUser/**","/listUser/**").permitAll()
                 .antMatchers("/site/editionSite/**", "/site/detailsSite/**","/site/saveSite/**","/site/addSite/**","/site/listSite/**").permitAll()
                 .antMatchers("/commentaire/editionCommentaire/**", "/commentaire/detailsCommentaire/**","/commentaire/saveCommentaire/**","/commentaire/addCommentaire/**","/commentaire/listCommentaire/**").permitAll()
-                .antMatchers("/topologie/editionTopologie/**", "/topologie/detailsTopologie/**","/topologie/saveTopologie/**","/topologie/addTopologie/**","/topologie/listTopologie/**").permitAll()
+                .antMatchers("/topologie/editionTopologie/**", "/topologie/detailsTopologie/**","/topologie/saveTopologie/**","/topologie/addTopologie/**","/topologie/listTopologie/**","/topologie/addSiteTopo/**" ).permitAll()
                 .antMatchers("/reservation/editionReservation/**", "/reservation/detailsReservation/**","/reservation/saveReservation/**","/reservation/addReservation/**","/reservation/listReservation/**").permitAll()
                 .antMatchers("/voie/editionVoie/**", "/voie/detailsVoie/**","/voie/saveVoie/**","/voie/addVoie/**","/voie/listVoie/**").permitAll()
                 .antMatchers("/").permitAll()

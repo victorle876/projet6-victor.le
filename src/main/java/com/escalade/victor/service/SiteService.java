@@ -41,14 +41,6 @@ public class SiteService {
 
     }
 
-    public void addSiteTopo (Topologie topologie, long id)
-    {
-        this.topologieRecherche = topologie;
-        if (!topologieRecherche.getSites().contains(this)){
-            topologieRecherche.getSites().add(this.getSiteById(id));
-        }
-    }
-
     public void deleteSiteById(Long id)
     {
 /*        Optional<Site> SiteEfface = siteRepository.findById(id);

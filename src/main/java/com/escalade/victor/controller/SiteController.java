@@ -2,8 +2,10 @@ package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
 import com.escalade.victor.service.SiteService;
+import com.escalade.victor.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,10 @@ import javax.validation.Valid;
 public class SiteController {
     @Autowired
     private SiteService siteService;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
+
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
     public String SiteList(Model model) {
         model.addAttribute("sites", this.siteService.getAllSites());
@@ -45,11 +51,18 @@ public class SiteController {
     }
 
     @RequestMapping(value = "/saveSite", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Site site, Model model, BindingResult result) {
+    public String save(@Valid @ModelAttribute Site site, Utilisateur utilisateur, Model model, BindingResult result) {
 
+        Authentication authentication2 = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("test1");
+        String usernameTrouve = authentication2.getName();
+        System.out.println(usernameTrouve);
+        Utilisateur utilisateurId = this.utilisateurService.findUserByid(usernameTrouve);
+        System.out.println(utilisateurId);
         if (result.hasErrors()) {
             return "addSite";
         } else {
+          site.setUtilisateur(utilisateurId);
             this.siteService.saveSite(site);
             model.addAttribute("sites", this.siteService.getAllSites());
     //        return "home";

@@ -7,9 +7,9 @@
           rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar">
         <div class="container">
-            <div class="navbar-header">
+            <!--<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse"
                         aria-expanded="false"
                         aria-controls="navbar">
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-<!--                    <span class="icon-bar"></span>-->
+&lt;!&ndash;                    <span class="icon-bar"></span>&ndash;&gt;
                 </button>
                 <a class="navbar-brand" href="#">Accueil</a>
             </div>
@@ -42,7 +42,48 @@
                     <li sec:authorize="isAnonymous()"><a th:href="@{/connect}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                         Login</a></li>
                 </ul>
-            </div>
+            </div>-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{/}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/listUser}">Liste des utilisateurs</a>
+                        </li>
+                        <!--            <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/addUser}">Ajout Utilisateurs</a>
+                                    </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/listTopologie}">Liste des topologies</a>
+                        </li>
+                        <!--            <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/topologie/addTopologie}">Ajout Topologie</a>
+                                    </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/site/listSite}">Liste des sites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/addSiteTopo}">Liste des sites à sélectionner</a>
+                        </li>
+                        <li class="nav-item">
+                            <div th:if="${param.logout}">
+                                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                            </div>
+                            <!--                    <div th:if="${param.login}">
+                                                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
+                                                </div>-->
+                        </li>
+                        <!--                <li class="nav-item">
+                                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                                        </li>-->
+                        <!--                <li class="nav-item">
+                                            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
+                                        </li>-->
+                    </ul>
+                </div>
+            </nav>
         </div>
 </div>
 </body>
