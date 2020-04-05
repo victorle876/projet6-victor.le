@@ -105,6 +105,14 @@ public class Site {
         this.updatedAt = updatedAt;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
     public List<Voie> getVoies() {
         return voies;
     }
@@ -121,14 +129,7 @@ public class Site {
         this.commentaires = commentaires;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-
-        this.utilisateur = utilisateur;
-    }
 
     @Override
     public String toString() {

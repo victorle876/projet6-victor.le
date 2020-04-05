@@ -3,6 +3,8 @@ package com.escalade.victor.service;
 import com.escalade.victor.model.*;
 import com.escalade.victor.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,23 +37,17 @@ public class UtilisateurService {
 
     public Utilisateur saveUser(Utilisateur utilisateur)
     {
-    //       Optional<Utilisateur> UtilisateurRecherche = utilisateurRepository.findById(utilisateur.getId());
             return this.utilisateurRepository.save(utilisateur);
     }
 
     public void deleteUserById(Long id)
     {
-/*          Optional<Utilisateur> UtilisateurEfface = utilisateurRepository.findById(id);
-
-          if(UtilisateurEfface.isPresent())
-        {*/
            utilisateurRepository.deleteById(id);
-       // }
     }
 
-    public Utilisateur findUserByid(String username){
-        System.out.println(this.utilisateurRepository.findUserById(username));
-        Utilisateur id = this.utilisateurRepository.findUserById(username);
-        return id;
+    public Utilisateur getUtilisateurConnected (){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String emailUtilisateur = authentication.getName();
+        return this.utilisateurRepository.findByMail(emailUtilisateur).get();
     }
 }

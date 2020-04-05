@@ -50,11 +50,7 @@ public class VoieService {
 
     public void deleteVoiesById(Long id)
     {
-/*        Optional<Voie> VoieEfface = VoieRepository.findById(id);
-
-        if(VoieEfface.isPresent())
-        {*/
         voieRepository.deleteById(id);
-        //  }
+
     }
 }

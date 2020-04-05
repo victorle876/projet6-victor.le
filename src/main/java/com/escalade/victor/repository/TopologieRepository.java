@@ -8,5 +8,4 @@ import java.util.List;
 @Repository
 public interface TopologieRepository extends JpaRepository<Topologie, Long>{
 
- //   List<Site> findByUtilisateurAndTopologieNull (Utilisateur utilisateur);
 }

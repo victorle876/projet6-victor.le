@@ -53,11 +53,8 @@ public class SiteController {
     @RequestMapping(value = "/saveSite", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Site site, Utilisateur utilisateur, Model model, BindingResult result) {
 
-        Authentication authentication2 = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("test1");
-        String usernameTrouve = authentication2.getName();
-        System.out.println(usernameTrouve);
-        Utilisateur utilisateurId = this.utilisateurService.findUserByid(usernameTrouve);
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         System.out.println(utilisateurId);
         if (result.hasErrors()) {
             return "addSite";

@@ -14,6 +14,4 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
 
     Optional<Utilisateur> findByMail(String mail);
 
-    @Query("select id from Utilisateur u where u.mail = :username1")
-    Utilisateur findUserById (String username1);
 }

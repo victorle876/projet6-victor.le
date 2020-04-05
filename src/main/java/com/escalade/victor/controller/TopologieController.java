@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/topologie")
 @Controller
@@ -67,13 +71,13 @@ public class TopologieController {
 
     @RequestMapping(value = "/addSiteTopo", method = RequestMethod.GET)
     public String ajouterSiteTopo(Model model) {
-        Authentication authentication2 = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("test1a");
-        String usernameTrouve = authentication2.getName();
-        System.out.println(usernameTrouve);
-        Utilisateur utilisateurId = this.utilisateurService.findUserByid(usernameTrouve);
-        this.topologieService.findSiteByUser(utilisateurId);
-        model.addAttribute("siteTrouve", this.topologieService.findSiteByUser(utilisateurId));
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        List<Site> siteTrouve = this.topologieService.findSiteByUser(utilisateurId);
+        Site siteRequis = new Site();
+        model.addAttribute("siteRequis", siteRequis);
+        System.out.println(siteTrouve);
+        model.addAttribute("siteTrouve",siteTrouve);
         return "addSiteTopo";
     }
 
