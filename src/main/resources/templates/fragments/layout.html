@@ -8,41 +8,9 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar">
-        <div class="container">
-            <!--<div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse"
-                        aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-&lt;!&ndash;                    <span class="icon-bar"></span>&ndash;&gt;
-                </button>
-                <a class="navbar-brand" href="#">Accueil</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#" th:href="@{/}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" th:href="@{/listUser}">Liste des utilisateurs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" th:href="@{/topologie/listTopologie}">Liste des topologies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" th:href="@{/site/listSite}">Liste des sites</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                        Logout</a></li>
-                    <li sec:authorize="isAnonymous()"><a th:href="@{/connect}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                        Login</a></li>
-                </ul>
-            </div>-->
+
+        <div class="container-xl">
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
@@ -52,35 +20,20 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/listUser}">Liste des utilisateurs</a>
                         </li>
-                        <!--            <li class="nav-item">
-                                        <a class="nav-link" th:href="@{/addUser}">Ajout Utilisateurs</a>
-                                    </li>-->
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/listTopologie}">Liste des topologies</a>
                         </li>
-                        <!--            <li class="nav-item">
-                                        <a class="nav-link" th:href="@{/topologie/addTopologie}">Ajout Topologie</a>
-                                    </li>-->
+
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/site/listSite}">Liste des sites</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/addSiteTopo}">Liste des sites à sélectionner</a>
                         </li>
-                        <li class="nav-item">
-                            <div th:if="${param.logout}">
-                                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                            </div>
-                            <!--                    <div th:if="${param.login}">
-                                                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
-                                                </div>-->
+                        <li sec:authorize="isAuthenticated()">
+                                <a class="nav-link" th:href="@{/logout}">Logout</a>
                         </li>
-                        <!--                <li class="nav-item">
-                                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                                        </li>-->
-                        <!--                <li class="nav-item">
-                                            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/connect}">Connexion</a>
-                                        </li>-->
+
                     </ul>
                 </div>
             </nav>

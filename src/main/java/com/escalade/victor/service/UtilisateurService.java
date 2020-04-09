@@ -48,6 +48,7 @@ public class UtilisateurService {
     public Utilisateur getUtilisateurConnected (){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailUtilisateur = authentication.getName();
-        return this.utilisateurRepository.findByMail(emailUtilisateur).get();
+       return this.utilisateurRepository.findByMail(emailUtilisateur).get();
+      //  return this.utilisateurRepository.findByMail(emailUtilisateur).orElseGet(null);
     }
 }

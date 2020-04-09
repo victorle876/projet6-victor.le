@@ -12,7 +12,6 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container">
     <div class="container-xl">
         <div class="card rounded-0 shadow">
             <div class="card-body">
@@ -29,19 +28,14 @@
                             </select>
                         </div>
 
-                        <div>
+                        <div class="row">
                             <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                            <a class="btn btn-info"  th:href="@{/site/listSite}" role="button">Retour</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br>
-<div class="row">
-    <a th:href="@{/site/listSite}" class="btn btn-info" role="button">Retour</a>
-</div>
-
 </body>
 </html>

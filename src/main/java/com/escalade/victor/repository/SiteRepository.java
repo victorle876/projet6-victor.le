@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface SiteRepository extends JpaRepository<Site, Long> {
-    List<Site> findByUtilisateur(Utilisateur utilisateur1);
+    List<Site> findByUtilisateurAndTopologieIsNull (Utilisateur utilisateur1);
 }

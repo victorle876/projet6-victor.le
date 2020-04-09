@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorator="layout">-->
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
@@ -13,11 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container-xl">
-    <!--        <div layout:fragment="content">-->
+
     <div class="card rounded-0 shadow">
         <div class="card-body">
 
@@ -26,7 +23,6 @@
             <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
         </div>
     </div>
-    <!--        </div>-->
 </div>
 </body>
 </html>

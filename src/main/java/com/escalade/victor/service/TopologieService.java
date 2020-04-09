@@ -49,7 +49,7 @@ public class TopologieService {
     }
 
     public List<Site> findSiteByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
-        List<Site>  siteTrouve = this.siteRepository.findByUtilisateur(utilisateur1);
+        List<Site>  siteTrouve = this.siteRepository.findByUtilisateurAndTopologieIsNull(utilisateur1);
         if (siteTrouve == null){
             throw new RuntimeException("Site introuvable");
         }

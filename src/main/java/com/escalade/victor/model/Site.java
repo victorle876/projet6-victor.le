@@ -47,8 +47,11 @@ public class Site {
     @OneToMany(mappedBy="site")
     private List<Commentaire> commentaires;
 
-    @OneToOne(fetch = FetchType.LAZY)
+/*    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;*/
+
+    @ManyToOne
     private Utilisateur utilisateur;
 
     public Site() {
@@ -128,7 +131,6 @@ public class Site {
     public void setCommentaires(List<Commentaire> commentaires) {
         this.commentaires = commentaires;
     }
-
 
 
     @Override

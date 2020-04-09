@@ -63,9 +63,12 @@ public class Utilisateur {
     @OneToMany(mappedBy="utilisateur")
     private List<Reservation> reservations;
 
-    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL,
+/*    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL,
     fetch = FetchType.LAZY, optional = false)
-    private Site site;
+    private Site site;*/
+
+    @OneToMany(mappedBy="utilisateur")
+    private List<Site> sites;
 
 /*    public Utilisateur(Long id, @NotBlank(message = "Le nom est requis.") String username, @NotBlank(message = "Le prenom est requis.") String prenom, @NotBlank(message = "L'adresse mail est requis.") String mail, String password, @NotNull(message = "L''age est requis.") Integer age, List<Role> roles, Date createdAt, Date updatedAt, List<Topologie> topologies, List<Commentaire> commentaires, List<Reservation> reservations) {
         this.id = id;
@@ -192,12 +195,20 @@ public class Utilisateur {
         this.reservations = reservations;
     }
 
-    public Site getSite() {
+/*    public Site getSite() {
         return site;
     }
 
     public void setSite(Site site) {
         this.site = site;
+    }*/
+
+    public List<Site> getSites() {
+        return sites;
+    }
+
+    public void setSites(List<Site> sites) {
+        this.sites = sites;
     }
 
     @Override
