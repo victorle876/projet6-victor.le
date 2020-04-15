@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface SiteRepository extends JpaRepository<Site, Long> {
     List<Site> findByUtilisateurAndTopologieIsNull (Utilisateur utilisateur1);
+//    Optional<Site> findByTopologieIsNull (Utilisateur utilisateur1);
 }

@@ -1,6 +1,7 @@
 package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
+import com.escalade.victor.service.SiteService;
 import com.escalade.victor.service.TopologieService;
 import com.escalade.victor.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -29,6 +27,9 @@ public class TopologieController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+
+    @Autowired
+    private SiteService siteService;
 
     @RequestMapping(value = "/listTopologie", method = RequestMethod.GET)
     public String TopoList(Model model) {
@@ -69,17 +70,29 @@ public class TopologieController {
         }
     }
 
-    @RequestMapping(value = "/addSiteTopo", method = RequestMethod.GET)
-    public String ajouterSiteTopo(Model model) {
+        @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.GET)
+        public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         List<Site> siteTrouve = this.topologieService.findSiteByUser(utilisateurId);
         Site siteRequis = new Site();
+        model.addAttribute("idTopologie", id);
         model.addAttribute("siteRequis", siteRequis);
         System.out.println(siteTrouve);
         model.addAttribute("siteTrouve",siteTrouve);
         return "addSiteTopo";
     }
+
+    @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.POST)
+    public String saveSiteTopo(@PathVariable("id") Long id, @Valid @ModelAttribute Site site,Topologie topologie, Model model) {
+        Topologie idTopo = this.topologieService.getTopologieById(id);
+        site.setTopologie(idTopo);
+        this.siteService.saveSite(site);
+        model.addAttribute("topologies", this.topologieService.getAllTopologies());
+        return "addSiteTopo";
+    }
+
+
 
     @RequestMapping(value = "/editionTopologie", method = RequestMethod.GET)
     public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {

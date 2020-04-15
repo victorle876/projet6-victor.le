@@ -21,6 +21,7 @@ public class Site {
     private String nomSite ;
 
     @ManyToOne
+    @JoinColumn(name="topologie_id", referencedColumnName = "id")
     private Topologie topologie;
 
     @CreatedDate
@@ -52,6 +53,7 @@ public class Site {
     private Utilisateur utilisateur;*/
 
     @ManyToOne
+    @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
 
     public Site() {

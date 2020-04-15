@@ -51,30 +51,7 @@
                                    th:errors="*{pays}"></small>
                         </div>
                     </div>
-<!--
-                    <div class="form-group row has-feedback">
-                        <div class="col-sm-10">
-                            <label for="exampleInputUtilisateur" class="col-sm-2 col-form-label">Utilisateur</label>
-                            <input type="text" class="form-control" id="exampleInputUtilisateur"
-                                   th:value="${topologie.utilisateur}"
-                                   aria-describedby="WarningUtilisateur" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputSite" class="col-sm-2 col-form-label">Site</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputSite" th:value="${topologie.site}"
-                                   aria-describedby="WarningSite" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputReservation" class="col-sm-2 col-form-label">Reservation</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputReservation"
-                                   th:value="${topologie.reservation}"
-                                   aria-describedby="WarningReservation" disabled>
-                        </div>
-                    </div>-->
+
                     <div class ="row">
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
                         <a th:href="@{/topologie/listTopologie}" class="btn btn-info" role="button">Retour</a>

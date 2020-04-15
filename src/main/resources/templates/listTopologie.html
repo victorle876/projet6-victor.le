@@ -40,7 +40,7 @@
                             <td th:text="${topologie.utilisateur}"/>
                             <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                             <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
-                            <td><a th:href="@{/site/addSite}">Ajouter</a></td>
+                            <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
                         </tr>
                         </tbody>
                     </table>

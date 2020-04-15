@@ -21,9 +21,11 @@ public class Commentaire {
     private Utilisateur utilisateur;*/
 
     @ManyToOne
+    @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site;
 
     @ManyToOne
+    @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
 
     private String zoneCommentaire;
