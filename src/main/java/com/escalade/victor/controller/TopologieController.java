@@ -84,10 +84,13 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.POST)
-    public String saveSiteTopo(@PathVariable("id") Long id, @Valid @ModelAttribute Site site,Topologie topologie, Model model) {
+    public String saveSiteTopo(@PathVariable("id") Long id, @Valid @ModelAttribute Site siteSelectionne,Topologie topologie, Model model) {
+        model.addAttribute("siteSelectionne",siteSelectionne);
+        model.addAttribute("idSite",siteSelectionne.getId());
+        System.out.println(siteSelectionne.getId());
         Topologie idTopo = this.topologieService.getTopologieById(id);
-        site.setTopologie(idTopo);
-        this.siteService.saveSite(site);
+        siteSelectionne.setTopologie(idTopo);
+        this.siteService.saveSite(siteSelectionne);
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
         return "addSiteTopo";
     }
