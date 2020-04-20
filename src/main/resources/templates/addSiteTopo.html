@@ -20,7 +20,7 @@
                     <form th:action="@{/topologie/addSiteTopo/{id}(id=${id})}" th:object="${site}" method="post">
                         <div class="input-group mb-3">
 <!--                            <select class="custom-select" th:name="*{nomSite}">-->
-                            <select class="custom-select" th:name="*{id}">
+                            <select class="custom-select" th:field="*{id}">
                                 <option th:each="site : ${siteTrouve}"
                                     th:value="${site.id}"
                                     th:text="${site.nomSite}"

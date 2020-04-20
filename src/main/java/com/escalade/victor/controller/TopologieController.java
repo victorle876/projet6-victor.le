@@ -1,6 +1,7 @@
 package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
+import com.escalade.victor.repository.SiteRepository;
 import com.escalade.victor.service.SiteService;
 import com.escalade.victor.service.TopologieService;
 import com.escalade.victor.service.UtilisateurService;
@@ -30,6 +31,9 @@ public class TopologieController {
 
     @Autowired
     private SiteService siteService;
+
+    @Autowired
+    private SiteRepository siteRepository;
 
     @RequestMapping(value = "/listTopologie", method = RequestMethod.GET)
     public String TopoList(Model model) {
@@ -85,12 +89,12 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.POST)
-    public String saveSiteTopo(@PathVariable("id") Long id, @Valid @ModelAttribute Site siteSelectionne,Topologie topologie, Model model) {
-        model.addAttribute("siteSelectionne",siteSelectionne);
-        model.addAttribute("idSite",siteSelectionne.getId());
-        System.out.println(siteSelectionne.getId());
-        Topologie idTopo = this.topologieService.getTopologieById(id);
-        siteSelectionne.setTopologie(idTopo);
+    public String saveSiteTopo(@PathVariable("id") Long id, Site siteSelectionne, Model model) {
+        System.out.println(id);
+        System.out.println(siteSelectionne);
+        Topologie topo = this.topologieService.getTopologieById(id);
+        siteSelectionne = siteRepository.getOne(siteSelectionne.getId());
+        siteSelectionne.setTopologie(topo);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
         return "addSiteTopo";

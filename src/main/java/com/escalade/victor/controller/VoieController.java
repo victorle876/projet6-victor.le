@@ -42,7 +42,7 @@ public class VoieController {
 
     }
 
-    @RequestMapping(value = "/addVoie", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/addVoie", method = RequestMethod.GET)
     public String ajouterVoie(Model model) {
         model.addAttribute("voie", new Voie());
         return "addVoie";
@@ -58,7 +58,7 @@ public class VoieController {
             model.addAttribute("voies", this.voieService.getAllVoies());
             return "home";
         }
-    }
+    }*/
 
     @RequestMapping(value = "/editionVoie", method = RequestMethod.GET)
     public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {

@@ -6,6 +6,7 @@ import com.escalade.victor.repository.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,9 +48,14 @@ public class SiteService {
     //    }
     }
 
-/*    public Site getSiteId (Utilisateur utilisateur1){
-        return this.siteRepository.findByTopologieIsNull(utilisateur1).get();
+/*    public List<Site> findSiteByTopologie(Topologie topologie1) {
+        List<Site>  siteTopoTrouve = this.siteRepository.findByTopologie(topologie1);
+        if (siteTopoTrouve == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTopoTrouve;
     }*/
+
 
 }
 

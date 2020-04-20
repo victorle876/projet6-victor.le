@@ -1,7 +1,8 @@
 package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
-import com.escalade.victor.service.SiteService;
+import com.escalade.victor.repository.*;
+import com.escalade.victor.service.*;
 import com.escalade.victor.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/site")
 @Controller
@@ -21,6 +24,15 @@ public class SiteController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+
+    @Autowired
+    private TopologieRepository topologieRepository;
+
+    @Autowired
+    private TopologieService topologieService;
+
+    @Autowired
+    private VoieService voieService;
 
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
     public String SiteList(Model model) {
@@ -62,9 +74,30 @@ public class SiteController {
           site.setUtilisateur(utilisateurId);
             this.siteService.saveSite(site);
             model.addAttribute("sites", this.siteService.getAllSites());
-    //        return "home";
              return "listSite";
         }
+    }
+
+    @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
+    public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
+        model.addAttribute("topoTrouve", this.siteService.getSiteById(id));
+        return "addTopoSite";
+        //
+    }
+
+    @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
+    public String saveSiteTopo(@PathVariable("id") Long id, Model model) {
+        List <Site> SitesTopo = new ArrayList<Site>();
+        Site siteForTopo = this.siteService.getSiteById(id);
+        Topologie topologieCorrespondant = this.topologieRepository.findBySiteisNull().get();
+        Long idTopo = topologieCorrespondant.getId();
+        if (siteForTopo.getTopologie().equals(idTopo)){
+            this.topologieService.getTopologieById(idTopo);
+            SitesTopo.add(siteForTopo);
+            topologieCorrespondant.setSites(SitesTopo);
+            this.topologieService.saveTopologie(topologieCorrespondant);
+        }
+        return "addTopoSite";
     }
 
     @RequestMapping(value = "/editionSite", method = RequestMethod.GET)
@@ -102,4 +135,26 @@ public class SiteController {
             return "redirect:/";
         }
     }
+
+    @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.GET)
+    public String ajouterVoieSite(@PathVariable("id") Long id, Model model, Site site) {
+        Site siteId = this.siteService.getSiteById(id);
+        model.addAttribute("voie", new Voie());
+        model.addAttribute("siteId", siteId);
+        return "addVoie";
+    }
+
+    @RequestMapping(value = "/saveVoieSite/{id}", method = RequestMethod.POST)
+    public String saveVoieSite(@PathVariable("id") Long id, @Valid @ModelAttribute Voie voie, Site site, Model model, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addVoie";
+        } else {
+            Site siteId = this.siteService.getSiteById(id);
+            voie.setSite(siteId);
+            this.voieService.saveVoie(voie);
+            model.addAttribute("voies", this.voieService.getAllVoies());
+            return "home";
+        }
+    }
+
 }
