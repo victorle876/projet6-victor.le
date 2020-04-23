@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface TopologieRepository extends JpaRepository<Topologie, Long>{
-    Optional<Topologie> findBySiteisNull();
+    Optional<Topologie> findBySitesIsNull();
 }

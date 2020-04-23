@@ -17,8 +17,8 @@
         <div class="card-body">
             <h3>Ajout Voie</h3>
             <div class="col-md-6">
-
-                <form action="#" th:action="@{/voie/saveVoie}" th:object="${voie}" method="post">
+<!--                <form action="#" th:action="@{/voie/saveVoie}" th:object="${voie}" method="post">-->
+                <form action="#" th:action="@{/site/addVoieSite/{id}(id=${id})}" th:object="${voie}" method="post">
                     <div class="form-group">
                         <!--<input type="text" class="form-control" id="exampleInputNom" th:value="${voie.username}"
                                aria-describedby="WarningNom" disabled>-->

@@ -80,16 +80,17 @@ public class SiteController {
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
     public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
+        model.addAttribute("idSite", id);
         model.addAttribute("topoTrouve", this.siteService.getSiteById(id));
         return "addTopoSite";
         //
     }
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
-    public String saveSiteTopo(@PathVariable("id") Long id, Model model) {
+    public String saveSiteTopo(@PathVariable("id") Long id, Model model, Site site, Topologie topologie) {
         List <Site> SitesTopo = new ArrayList<Site>();
         Site siteForTopo = this.siteService.getSiteById(id);
-        Topologie topologieCorrespondant = this.topologieRepository.findBySiteisNull().get();
+        Topologie topologieCorrespondant = this.topologieRepository.findBySitesIsNull().get();
         Long idTopo = topologieCorrespondant.getId();
         if (siteForTopo.getTopologie().equals(idTopo)){
             this.topologieService.getTopologieById(idTopo);
@@ -144,7 +145,7 @@ public class SiteController {
         return "addVoie";
     }
 
-    @RequestMapping(value = "/saveVoieSite/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.POST)
     public String saveVoieSite(@PathVariable("id") Long id, @Valid @ModelAttribute Voie voie, Site site, Model model, BindingResult result) {
         if (result.hasErrors()) {
             return "addVoie";

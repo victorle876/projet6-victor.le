@@ -29,6 +29,7 @@
                         <th>Topologie du site</th>
                         <th>Detail</th>
                         <th>Editer</th>
+                        <th>Rattacher le site sur le topo</th>
                         <th>Ajouter Voie</th>
                         <th>Ajouter Commentaire</th>
                         </thead>
@@ -39,7 +40,9 @@
                             <td th:text="${site.topologie}"/>
                             <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
                             <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                            <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
+                            <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>
+<!--                            <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>-->
+                            <td><a th:href="@{/site/addVoieSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter</a></td>
                             <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a>
                             </td>
                         </tr>
