@@ -48,13 +48,6 @@ public class SiteService {
     //    }
     }
 
-/*    public List<Site> findSiteByTopologie(Topologie topologie1) {
-        List<Site>  siteTopoTrouve = this.siteRepository.findByTopologie(topologie1);
-        if (siteTopoTrouve == null){
-            throw new RuntimeException("Site introuvable");
-        }
-        return siteTopoTrouve;
-    }*/
 
 
 }

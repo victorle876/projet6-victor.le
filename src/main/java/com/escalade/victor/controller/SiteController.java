@@ -67,6 +67,7 @@ public class SiteController {
 
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+      //  List<Site> siteTrouve = this.topologieService.findSiteByUser(utilisateurId);
         System.out.println(utilisateurId);
         if (result.hasErrors()) {
             return "addSite";
@@ -79,25 +80,27 @@ public class SiteController {
     }
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
-    public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
+    public String addTopoSite(@PathVariable("id") Long id, Model model, Topologie topologie) {
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        List<Topologie> topologieTrouve = this.topologieService.findTopologieByUser(utilisateurId);
+        System.out.println(topologieTrouve);
+        Topologie topologieRequis = new Topologie();
+        model.addAttribute("topologieRequis",topologieRequis);
+        model.addAttribute("topologieTrouve",topologieTrouve);
         model.addAttribute("idSite", id);
-        model.addAttribute("topoTrouve", this.siteService.getSiteById(id));
         return "addTopoSite";
         //
     }
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
-    public String saveSiteTopo(@PathVariable("id") Long id, Model model, Site site, Topologie topologie) {
-        List <Site> SitesTopo = new ArrayList<Site>();
-        Site siteForTopo = this.siteService.getSiteById(id);
-        Topologie topologieCorrespondant = this.topologieRepository.findBySitesIsNull().get();
-        Long idTopo = topologieCorrespondant.getId();
-        if (siteForTopo.getTopologie().equals(idTopo)){
-            this.topologieService.getTopologieById(idTopo);
-            SitesTopo.add(siteForTopo);
-            topologieCorrespondant.setSites(SitesTopo);
-            this.topologieService.saveTopologie(topologieCorrespondant);
-        }
+    public String saveTopoSite(@PathVariable("id") Long idSite1, Model model, Topologie topologieSelectionne) {
+        topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
+        System.out.println(topologieSelectionne);
+        Site siteSelectionne = this.siteService.getSiteById(idSite1);
+        System.out.println(siteSelectionne);
+        siteSelectionne.setTopologie(topologieSelectionne);
+        this.siteService.saveSite(siteSelectionne);
+        model.addAttribute("sites", this.siteService.getAllSites());
         return "addTopoSite";
     }
 
