@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface TopologieRepository extends JpaRepository<Topologie, Long>{
     Optional<Topologie> findBySitesIsNull();
     List<Topologie> findTopologieByUtilisateur (Utilisateur utilisateur1);
-
 }

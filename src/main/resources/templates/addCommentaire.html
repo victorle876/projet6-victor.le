@@ -18,7 +18,8 @@
             <h3>Ajout commentaire</h3>
             <div class="col-md-6">
 
-                <form action="#" th:action="@{/commentaire/saveCommentaire}" th:object="${commentaire}" method="post">
+<!--                <form action="#" th:action="@{/commentaire/saveCommentaire}" th:object="${commentaire}" method="post">-->
+                <form action="#" th:action="@{/site/addCommentaireSite/{id}(id=${id})}" th:object="${commentaire}" method="post">
                     <div class="form-group">
                         <!-- <label for="exampleInputId">Id</label>
                          <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->

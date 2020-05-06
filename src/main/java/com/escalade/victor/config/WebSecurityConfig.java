@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/resources/**", "/webjars/**","/assets/**").permitAll()
 //                .antMatchers("/edition/**", "/details/**","/save/**","/add/**").permitAll()
                 .antMatchers("/editionUser/**", "/detailsUser/**","/saveUser/**","/addUser/**","/listUser/**").permitAll()
-                .antMatchers("/site/editionSite/**", "/site/detailsSite/**","/site/saveSite/**","/site/addSite/**","/site/listSite/**","/site/addTopoSite/**","/site/addVoieSite/**").permitAll()
+                .antMatchers("/site/editionSite/**", "/site/detailsSite/**","/site/saveSite/**","/site/addSite/**","/site/listSite/**","/site/addTopoSite/**","/site/addVoieSite/**","/site/addCommentaireSite/**").permitAll()
                 .antMatchers("/commentaire/editionCommentaire/**", "/commentaire/detailsCommentaire/**","/commentaire/saveCommentaire/**","/commentaire/addCommentaire/**","/commentaire/listCommentaire/**").permitAll()
                 .antMatchers("/topologie/editionTopologie/**", "/topologie/detailsTopologie/**","/topologie/saveTopologie/**","/topologie/addTopologie/**","/topologie/listTopologie/**","/topologie/addSiteTopo/**").permitAll()
                 .antMatchers("/reservation/editionReservation/**", "/reservation/detailsReservation/**","/reservation/saveReservation/**","/reservation/addReservation/**","/reservation/listReservation/**").permitAll()

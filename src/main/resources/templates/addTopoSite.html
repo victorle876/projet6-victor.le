@@ -18,7 +18,7 @@
             <h3>Ajout sites</h3>
             <div class="col-md-6">
                 <form th:action="@{/site/addTopoSite/{id}(id=${id})}" th:object="${topologie}" method="post">
-
+                    <h3>Bonjour</h3>
                     <div class="form-group row has-feedback">
                         <select class="custom-select" th:field="*{id}">
                             <option th:each="topologie : ${topologieTrouve}"
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                     <div class="row">
-                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                        <input class="btn btn-primary" type="submit" th:value="Submit">
                         <a class="btn btn-info" th:href="@{/topologie/listTopologie}" role="button">Retour</a>
                     </div>
                 </form>

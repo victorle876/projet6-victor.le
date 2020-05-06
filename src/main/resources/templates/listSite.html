@@ -42,8 +42,9 @@
                             <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
                             <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>
 <!--                            <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>-->
-                            <td><a th:href="@{/site/addVoieSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter</a></td>
-                            <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a>
+                            <td><a th:href="@{/site/addVoieSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter site</a></td>
+<!--                            <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter commentaire</a>-->
+                            <td><a th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter commentaire</a>
                             </td>
                         </tr>
                         </tbody>

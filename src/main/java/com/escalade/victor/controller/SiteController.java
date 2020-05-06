@@ -32,6 +32,9 @@ public class SiteController {
     private TopologieService topologieService;
 
     @Autowired
+    private CommentaireService commentaireService;
+
+    @Autowired
     private VoieService voieService;
 
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
@@ -80,25 +83,32 @@ public class SiteController {
     }
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
-    public String addTopoSite(@PathVariable("id") Long id, Model model, Topologie topologie) {
+    public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologie) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         List<Topologie> topologieTrouve = this.topologieService.findTopologieByUser(utilisateurId);
         System.out.println(topologieTrouve);
+
+        Site site = this.siteService.getSiteById(idSite);
         Topologie topologieRequis = new Topologie();
+        if (site.getTopologie() != null){
+            topologieRequis = site.getTopologie() ;
+        }
+        model.addAttribute("idSite", idSite);
         model.addAttribute("topologieRequis",topologieRequis);
         model.addAttribute("topologieTrouve",topologieTrouve);
-        model.addAttribute("idSite", id);
         return "addTopoSite";
         //
     }
 
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
-    public String saveTopoSite(@PathVariable("id") Long idSite1, Model model, Topologie topologieSelectionne) {
+    public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologieSelectionne) {
         topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
         System.out.println(topologieSelectionne);
-        Site siteSelectionne = this.siteService.getSiteById(idSite1);
-        System.out.println(siteSelectionne);
+        System.out.println(idSite);
+        Site siteSelectionne = this.siteService.getSiteById(idSite);
+        System.out.println("Bjr");
         siteSelectionne.setTopologie(topologieSelectionne);
+        System.out.println(siteSelectionne);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("sites", this.siteService.getAllSites());
         return "addTopoSite";
@@ -160,5 +170,30 @@ public class SiteController {
             return "home";
         }
     }
+
+    @RequestMapping(value = "/addCommentaireSite/{id}", method = RequestMethod.GET)
+    public String ajouterCommentaireSite(@PathVariable("id") Long id, Model model, Site site) {
+        Site siteId = this.siteService.getSiteById(id);
+        model.addAttribute("commentaire", new Commentaire());
+        model.addAttribute("siteId", siteId);
+        return "addCommentaire";
+    }
+
+    @RequestMapping(value = "/addCommentaireSite/{id}", method = RequestMethod.POST)
+    public String saveCommentaireSite(@PathVariable("id") Long id, @Valid @ModelAttribute Commentaire commentaire, Site site, Model model, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addCommentaire";
+        } else {
+            Site siteId = this.siteService.getSiteById(id);
+            this.utilisateurService.getUtilisateurConnected();
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+            commentaire.setSite(siteId);
+            commentaire.setUtilisateur(utilisateurId);
+            this.commentaireService.saveCommentaire(commentaire);
+            model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
+            return "home";
+        }
+    }
+
 
 }

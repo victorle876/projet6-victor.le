@@ -59,7 +59,7 @@ public class TopologieService {
     public List<Topologie> findTopologieByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Topologie>  topologieTrouve = this.topologieRepository.findTopologieByUtilisateur(utilisateur1);
         if (topologieTrouve == null){
-            throw new RuntimeException("Site introuvable");
+            throw new RuntimeException("Topologie introuvable");
         }
         return topologieTrouve;
     }
