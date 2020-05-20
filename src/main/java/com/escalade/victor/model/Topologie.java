@@ -55,6 +55,8 @@ public class Topologie {
     @OneToMany(mappedBy="topologie")
     private List<Site> sites;
 
+    private Boolean Public;
+
     @PrePersist
     protected void prePersist() {
         if (this.createdAt == null) createdAt = new Date();
@@ -115,14 +117,6 @@ public class Topologie {
         this.reservation = reservation;
     }
 
-/*    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
-    }*/
-
     public List<Site> getSites() {
         return sites;
     }
@@ -147,12 +141,24 @@ public class Topologie {
         this.pays = pays;
     }
 
+    public Boolean getPublic() {
+        return Public;
+    }
+
+    public void setPublic(Boolean aPublic) {
+        Public = aPublic;
+    }
+
     @Override
     public String toString() {
         return "Topologie{" +
                 "id=" + id +
-                ", CreatedAt=" + createdAt +
-                ", UpdatedAt=" + updatedAt +
+                ", nomTopologie='" + nomTopologie + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", secteur='" + secteur + '\'' +
+                ", pays='" + pays + '\'' +
+                ", Public=" + Public +
                 '}';
     }
 }

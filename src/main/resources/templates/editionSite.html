@@ -18,7 +18,7 @@
         <div class="card-body">
             <h3>Modifier detail voie</h3>
             <div class="col-md-6">
-                <form action="#" th:action="@{/editionSite?id={id}(id=${site.id})}" th:object="${site}" method="post">
+                <form action="#" th:action="@{/site/editionSite?id={id}(id=${site.id})}" th:object="${site}" method="post">
                     <div class="form-group row has-feedback">
                         <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
                         <div class="col-sm-10">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="row">
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                        <a th:href="@{/site/listSite}" class="btn btn-primary" role="button">Retour</a>
+                        <a th:href="@{/site/listSiteByUser}" class="btn btn-primary" role="button">Retour</a>
                     </div>
                 </form>
             </div>

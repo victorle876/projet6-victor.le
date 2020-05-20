@@ -29,6 +29,7 @@ public class TopologieService {
     {
         List<Topologie> TopologieList = topologieRepository.findAll();
 
+        System.out.println(TopologieList.size());
         if(TopologieList.size() > 0) {
             return TopologieList;
         } else {
@@ -57,11 +58,19 @@ public class TopologieService {
     }
 
     public List<Topologie> findTopologieByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
-        List<Topologie>  topologieTrouve = this.topologieRepository.findTopologieByUtilisateur(utilisateur1);
+        List<Topologie>  topologieTrouve = this.topologieRepository.findByUtilisateur(utilisateur1);
         if (topologieTrouve == null){
             throw new RuntimeException("Topologie introuvable");
         }
         return topologieTrouve;
+    }
+
+    public List<Topologie> findTopologieByPublic() throws UsernameNotFoundException {
+        List<Topologie>  topologiePublic = this.topologieRepository.findByPublic();
+        if (topologiePublic == null){
+            throw new RuntimeException("Topologie introuvable");
+        }
+        return topologiePublic;
     }
 
 

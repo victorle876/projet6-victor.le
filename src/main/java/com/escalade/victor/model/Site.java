@@ -48,10 +48,6 @@ public class Site {
     @OneToMany(mappedBy="site")
     private List<Commentaire> commentaires;
 
-/*    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;*/
-
     @ManyToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
@@ -140,12 +136,12 @@ public class Site {
         return "Site{" +
                 "id=" + id +
                 ", nomSite='" + nomSite + '\'' +
-                ", topologie=" + topologie +
+//                ", topologie=" + topologie +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", voies=" + voies +
+/*                ", voies=" + voies +
                 ", commentaires=" + commentaires +
-                ", utilisateur=" + utilisateur +
+                ", utilisateur=" + utilisateur +*/
                 '}';
     }
 

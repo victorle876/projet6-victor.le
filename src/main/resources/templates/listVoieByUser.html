@@ -16,7 +16,7 @@
 <div class="container-xl">
     <div class="card text-center">
         <div class="card-body">
-            <h1> Liste des voies</h1>
+            <h1> Liste de mes voies</h1>
 
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
@@ -30,7 +30,7 @@
                     <th>Editer</th>
                     </thead>
                     <tbody>
-                    <tr th:each="voie, rowStat: ${voies}"
+                    <tr th:each="voie, rowStat: ${voiesbyuser}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
 <!--                        <td th:text="${voie.id}"/>-->
                         <td th:text="${voie.nomVoie}"/>

@@ -21,6 +21,7 @@ public class Voie {
     private String cotation;
 
     @ManyToOne
+    @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site;
 
     @NotNull(message = "La hauteur est requise.")
@@ -116,7 +117,7 @@ public class Voie {
                 "id=" + id +
                 ", nomVoie='" + nomVoie + '\'' +
                 ", cotation='" + cotation + '\'' +
-                ", site=" + site +
+//                ", site=" + site +
                 ", hauteur=" + hauteur +
                 ", Distance=" + Distance+
                 ", createdAt=" + createdAt +

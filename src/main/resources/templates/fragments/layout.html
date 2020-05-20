@@ -25,11 +25,25 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/listTopologiePublic}">Liste des topologies publiques</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/listTopologieByUser}">Liste de mes topologies</a>
+                        </li>
+
+<!--                        <li class="nav-item">
                             <a class="nav-link" th:href="@{/site/listSite}">Liste des sites</a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/site/listSiteByUser}">Liste de mes sites</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/topologie/addSiteTopo}">Liste des sites à sélectionner</a>
+                            <a class="nav-link" th:href="@{/voie/listVoieByUser}">Liste de mes voies</a>
                         </li>
+<!--                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/addSiteTopo}">Liste des sites à sélectionner</a>
+                        </li>-->
                         <li sec:authorize="isAuthenticated()">
                                 <a class="nav-link" th:href="@{/logout}">Logout</a>
                         </li>

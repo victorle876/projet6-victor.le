@@ -68,6 +68,11 @@ public class TopologieController {
         if (result.hasErrors()) {
             return "addTopologie";
         } else {
+            this.utilisateurService.getUtilisateurConnected();
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+            topologie.setUtilisateur(utilisateurId);
+            System.out.println(utilisateurId);
+            topologie.setPublic(false); // mise à flag false pour topo non publié
             this.topologieService.saveTopologie(topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
             return "listTopologie";
@@ -100,8 +105,6 @@ public class TopologieController {
         return "addSiteTopo";
     }
 
-
-
     @RequestMapping(value = "/editionTopologie", method = RequestMethod.GET)
     public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
@@ -114,6 +117,7 @@ public class TopologieController {
         if (errors.hasErrors()) {
             return "editionTopologie";
         } else {
+            Topologie = this.topologieService.getTopologieById(id);
             this.topologieService.saveTopologie(Topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
             return "listTopologie";
@@ -133,8 +137,48 @@ public class TopologieController {
             return "editionTopologie";
         } else {
             this.topologieService.deleteTopologiesById(topologie.getId());
-            //          model.addAttribute("Topologies", this.TopologieService.deleteTopologieById(id));
             return "listTopologie";
+        }
+    }
+
+    @RequestMapping(value = "/listTopologieByUser", method = RequestMethod.GET)
+    public String TopoListUser(Model model) {
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        System.out.println(utilisateurId);
+        model.addAttribute("topologiesbyuser", this.topologieService.findTopologieByUser(utilisateurId));
+        return "listTopologieByUser";
+    }
+
+    @RequestMapping(value = "/listTopologiePublic", method = RequestMethod.GET)
+    public String TopoListPublic(Model model) {
+/*        Boolean isPublic = false;
+        model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic(true));*/
+        model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic());
+        return "listTopologiePublic";
+    }
+
+    @RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.GET)
+    public String makeTopoPublic(@PathVariable(value = "id") Long id, Model model) {
+        model.addAttribute("idTopologie", id);
+//        model.addAttribute("isPublic", true);
+        model.addAttribute("topologie", this.topologieService.getTopologieById(id));
+        return "publicationTopologie";
+
+    }
+
+    @RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.POST)
+    public String saveTopoPublic(@PathVariable(value = "id") Long id,@Valid @ModelAttribute Topologie topologiePublic, BindingResult errors, Model model) {
+        if (errors.hasErrors()) {
+            return "publicationTopologie";
+        } else {
+            this.utilisateurService.getUtilisateurConnected();
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+            topologiePublic = this.topologieService.getTopologieById(id);
+            topologiePublic.setPublic(true);
+            this.topologieService.saveTopologie(topologiePublic);
+            model.addAttribute("topologiepublic", this.topologieService.findTopologieByUser(utilisateurId));
+            return "listTopologieByUser";
         }
     }
 }

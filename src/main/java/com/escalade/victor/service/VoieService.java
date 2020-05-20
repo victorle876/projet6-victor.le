@@ -2,9 +2,11 @@ package com.escalade.victor.service;
 
 import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.model.Voie;
 import com.escalade.victor.repository.VoieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +53,13 @@ public class VoieService {
     public void deleteVoiesById(Long id)
     {
         voieRepository.deleteById(id);
+    }
 
+    public List<Voie> findVoieBySite(Site site1) throws UsernameNotFoundException {
+        List<Voie>  voieTrouve = this.voieRepository.findBySite(site1);
+        if (voieTrouve == null){
+            throw new RuntimeException("Voie introuvable");
+        }
+        return voieTrouve;
     }
 }

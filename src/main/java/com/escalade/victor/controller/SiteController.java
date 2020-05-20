@@ -126,6 +126,7 @@ public class SiteController {
         if (errors.hasErrors()) {
             return "editionSite";
         } else {
+            site = this.siteService.getSiteById(id);
             this.siteService.saveSite(site);
             model.addAttribute("sites", this.siteService.getAllSites());
             return "redirect:/";
@@ -195,5 +196,12 @@ public class SiteController {
         }
     }
 
+    @RequestMapping(value = "/listSiteByUser", method = RequestMethod.GET)
+    public String SiteListByUser(Model model) {
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        model.addAttribute("sitebyuser", this.siteService.findSiteByUser(utilisateurId));
+        return "listSiteByUser";
+    }
 
 }

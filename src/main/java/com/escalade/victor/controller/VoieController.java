@@ -1,24 +1,32 @@
 package com.escalade.victor.controller;
 
+import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.model.Voie;
+import com.escalade.victor.service.SiteService;
+import com.escalade.victor.service.UtilisateurService;
 import com.escalade.victor.service.VoieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/voie")
 @Controller
 public class VoieController {
     @Autowired
     private VoieService voieService;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
+
+    @Autowired
+    private SiteService siteService;
 
     @RequestMapping(value = "/listVoie", method = RequestMethod.GET)
     public String VoieList(Model model) {
@@ -76,5 +84,12 @@ public class VoieController {
             model.addAttribute("voies", this.voieService.getAllVoies());
             return "redirect:/";
         }
+    }
+
+    @RequestMapping(value = "/listVoieByUser/{id}", method = RequestMethod.GET)
+    public String VoieListByUser(@PathVariable("id") Long id,Model model) {
+        Site siteId = this.siteService.getSiteById(id);
+        model.addAttribute("voiesbyuser", this.voieService.findVoieBySite(siteId));
+        return "listVoieByUser";
     }
 }

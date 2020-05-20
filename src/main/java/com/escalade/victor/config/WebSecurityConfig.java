@@ -58,6 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/topologie/editionTopologie/**", "/topologie/detailsTopologie/**","/topologie/saveTopologie/**","/topologie/addTopologie/**","/topologie/listTopologie/**","/topologie/addSiteTopo/**").permitAll()
                 .antMatchers("/reservation/editionReservation/**", "/reservation/detailsReservation/**","/reservation/saveReservation/**","/reservation/addReservation/**","/reservation/listReservation/**").permitAll()
                 .antMatchers("/voie/editionVoie/**", "/voie/detailsVoie/**","/voie/saveVoie/**","/voie/addVoie/**","/voie/listVoie/**").permitAll()
+                .antMatchers("/site/listSiteByUser/**","/topologie/listTopologieByUser/**","/voie/listVoieByUser/**").permitAll()
+                .antMatchers("/topologie/listTopologiePublic/**","/topologie/makeTopoPublic/**").permitAll()
                 .antMatchers("/").permitAll()
          //       .antMatchers("/topologie/**","/site/**","/commentaire/**").permitAll()
                 .antMatchers("/site/**","/topologie/**","/commentaire/**","/voie/**","/user/home/**").hasAuthority("ADMIN")

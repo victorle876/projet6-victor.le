@@ -45,7 +45,14 @@ public class SiteService {
     public void deleteSiteById(Long id)
     {
             siteRepository.deleteById(id);
-    //    }
+    }
+
+    public List<Site> findSiteByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Site>  siteTrouve = this.siteRepository.findByUtilisateur(utilisateur1);
+        if (siteTrouve == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouve;
     }
 
 

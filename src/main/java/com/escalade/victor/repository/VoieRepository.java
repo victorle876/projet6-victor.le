@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface VoieRepository extends JpaRepository<Voie, Long> {
+    List<Voie> findBySite (Site site1);
 }

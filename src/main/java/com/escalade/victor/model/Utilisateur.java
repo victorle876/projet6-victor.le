@@ -223,9 +223,6 @@ public class Utilisateur {
                 ", roles=" + roles +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", topologies=" + topologies +
-                ", commentaires=" + commentaires +
-                ", reservations=" + reservations +
                 '}';
     }
 }
