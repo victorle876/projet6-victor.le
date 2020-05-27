@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Homepage</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+<div class="container-xl">
+    <div class="card rounded-0 shadow">
+        <div class="card-body">
+            <h3>Demande de réservation</h3>
+            <div class="col-md-6">
+                <form action="#" th:action="@{/reservation/addTopoReservation/{id}(id=${id})}"
+                      th:object="${reservation}" method="post">
+                    <div class="form-group">
+                        <!-- <label for="exampleInputId">Id</label>
+                         <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
+                    </div>
+                    <!--                    <div class="form-group row has-feedback">-->
+                    <!--                        <label for="exampleInputEtat" class="col-sm-2 col-form-label">Etat</label>-->
+                    <!--                        <div class="col-sm-10">-->
+                    <!--                            <input type="text" class="form-control" th:field="*{etat}" id="exampleInputEtat"-->
+                    <!--                                   aria-describedby="WarningEtat">-->
+                    <!--                            <small id="WarningEtat" class="form-text text-muted" th:if="${#fields.hasErrors('etat')}"-->
+                    <!--                                   th:errors="*{etat}"></small>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="form-group row has-feedback">
+                        <select id="etat" name="etat">
+                            <option value="Demande">Demande</option>
+                            <option value="En cours">En cours</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                        <a th:href="@{/reservation/ListReservationByUser}" class="btn btn-primary"
+                           role="button">Retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

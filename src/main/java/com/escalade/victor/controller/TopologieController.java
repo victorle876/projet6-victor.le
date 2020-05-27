@@ -72,7 +72,7 @@ public class TopologieController {
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
             topologie.setUtilisateur(utilisateurId);
             System.out.println(utilisateurId);
-            topologie.setPublic(false); // mise à flag false pour topo non publié
+            topologie.setIspublic(Boolean.FALSE); // mise à flag false pour topo non publié
             this.topologieService.saveTopologie(topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
             return "listTopologie";
@@ -150,10 +150,18 @@ public class TopologieController {
         return "listTopologieByUser";
     }
 
+    @RequestMapping(value = "/listTopologieDifferentByUser", method = RequestMethod.GET)
+    public String TopoListDifferentUser(Model model) {
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        System.out.println(utilisateurId);
+        model.addAttribute("topologiesbyuserdifferent", this.topologieService.findTopologieByUserDifferent(utilisateurId));
+        return "listTopologieDifferent";
+    }
+
     @RequestMapping(value = "/listTopologiePublic", method = RequestMethod.GET)
     public String TopoListPublic(Model model) {
-/*        Boolean isPublic = false;
-        model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic(true));*/
+        System.out.println(this.topologieService.findTopologieByPublic());
         model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic());
         return "listTopologiePublic";
     }
@@ -161,25 +169,22 @@ public class TopologieController {
     @RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.GET)
     public String makeTopoPublic(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("idTopologie", id);
-//        model.addAttribute("isPublic", true);
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
         return "publicationTopologie";
 
     }
 
     @RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.POST)
-    public String saveTopoPublic(@PathVariable(value = "id") Long id,@Valid @ModelAttribute Topologie topologiePublic, BindingResult errors, Model model) {
-        if (errors.hasErrors()) {
-            return "publicationTopologie";
-        } else {
+    public String saveTopoPublic(@PathVariable(value = "id") Long id, Topologie topologiePublic, BindingResult errors, Model model) {
             this.utilisateurService.getUtilisateurConnected();
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
             topologiePublic = this.topologieService.getTopologieById(id);
-            topologiePublic.setPublic(true);
+            topologiePublic.setIspublic(Boolean.TRUE);
+            System.out.println(this.topologieService.getTopologieById(id));
             this.topologieService.saveTopologie(topologiePublic);
-            model.addAttribute("topologiepublic", this.topologieService.findTopologieByUser(utilisateurId));
-            return "listTopologieByUser";
-        }
+            model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic());
+            return "listTopologiePublic";
     }
+
 }
 

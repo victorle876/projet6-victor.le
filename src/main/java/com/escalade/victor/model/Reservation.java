@@ -16,20 +16,17 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer duree ;
-
-/*    @OneToOne
-    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;*/
+    private String etat;
 
     @ManyToOne
+    @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
 
     @OneToOne
     @JoinColumn(name = "topologie_id", referencedColumnName = "id")
     private Topologie topologie;
 
-    private String Etat;
+//    private Boolean isAccepted;
 
     @CreatedDate
     private Date createdAt;
@@ -57,15 +54,6 @@ public class Reservation {
         this.id = id;
     }
 
-
-    public Integer getDuree() {
-        return duree;
-    }
-
-    public void setDuree(Integer duree) {
-        this.duree = duree;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -83,11 +71,11 @@ public class Reservation {
     }
 
     public String getEtat() {
-        return Etat;
+        return etat;
     }
 
     public void setEtat(String etat) {
-        Etat = etat;
+        this.etat = etat;
     }
 
     public Topologie getTopologie() {
@@ -106,13 +94,19 @@ public class Reservation {
         this.utilisateur = utilisateur;
     }
 
+/*    public Boolean getAccepted() {
+        return isAccepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        isAccepted = accepted;
+    }*/
+
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-/*                ", date_debut=" + date_debut +
-                ", date_fin=" + date_fin +*/
-                ", duree=" + duree +
+                ", etat='" + etat + '\'' +
                 '}';
     }
 }

@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface TopologieRepository extends JpaRepository<Topologie, Long>{
     Optional<Topologie> findBySitesIsNull();
     List<Topologie> findByUtilisateur (Utilisateur utilisateur1);
-    @Query("Select t From Topologie t where public = 'true'")
-    List<Topologie> findByPublic ();
+    List<Topologie> findByIspublicTrue();
+    List<Topologie> findByUtilisateurNot (Utilisateur utilisateur1);
 }

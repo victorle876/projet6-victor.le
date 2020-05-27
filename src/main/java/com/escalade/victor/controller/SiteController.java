@@ -106,7 +106,7 @@ public class SiteController {
         System.out.println(topologieSelectionne);
         System.out.println(idSite);
         Site siteSelectionne = this.siteService.getSiteById(idSite);
-        System.out.println("Bjr");
+      //  System.out.println("Bjr");
         siteSelectionne.setTopologie(topologieSelectionne);
         System.out.println(siteSelectionne);
         this.siteService.saveSite(siteSelectionne);

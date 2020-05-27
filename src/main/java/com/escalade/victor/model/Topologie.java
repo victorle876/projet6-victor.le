@@ -55,7 +55,7 @@ public class Topologie {
     @OneToMany(mappedBy="topologie")
     private List<Site> sites;
 
-    private Boolean Public;
+    private Boolean ispublic;
 
     @PrePersist
     protected void prePersist() {
@@ -141,12 +141,12 @@ public class Topologie {
         this.pays = pays;
     }
 
-    public Boolean getPublic() {
-        return Public;
+    public Boolean getIspublic() {
+        return ispublic;
     }
 
-    public void setPublic(Boolean aPublic) {
-        Public = aPublic;
+    public void setIspublic(Boolean aPublic) {
+        ispublic = aPublic;
     }
 
     @Override
@@ -158,7 +158,7 @@ public class Topologie {
                 ", updatedAt=" + updatedAt +
                 ", secteur='" + secteur + '\'' +
                 ", pays='" + pays + '\'' +
-                ", Public=" + Public +
+                ", Public=" + ispublic +
                 '}';
     }
 }

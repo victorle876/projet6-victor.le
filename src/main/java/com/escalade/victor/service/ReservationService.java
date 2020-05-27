@@ -5,6 +5,7 @@ import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,26 +35,35 @@ public class ReservationService {
 
     }
 
+    public Reservation getReservationByTopologie(Topologie topologieSelectionne)
+    {
+        return this.reservationRepository.findByTopologie(topologieSelectionne).get();
+
+    }
+
     public Reservation saveReservation(Reservation reservation)
     {
             return this.reservationRepository.save(reservation);
     }
 
-    public Reservation addTopoReserv (long id, Topologie topologie)
+/*    public Reservation addTopoReserv (long id, Topologie topologie)
     {
         Reservation reservationTopo = this.getReservationById(id);
         reservationTopo.setTopologie(topologie);
         return this.saveReservation(reservationTopo);
+    }*/
+
+    public List<Reservation> findReservationByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Reservation>  reservationTrouve = this.reservationRepository.findByUtilisateur(utilisateur1);
+        if (reservationTrouve == null){
+            throw new RuntimeException("reservation introuvable");
+        }
+        return reservationTrouve;
     }
     
     public void deleteReservationById(Long id)
     {
-/*        Optional<Reservation> ReservationEfface = reservationRepository.findById(id);
-
-        if(ReservationEfface.isPresent())
-        {*/
             reservationRepository.deleteById(id);
-   //     }
     }
 }
 
