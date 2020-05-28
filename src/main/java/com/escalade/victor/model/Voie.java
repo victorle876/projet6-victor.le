@@ -36,6 +36,10 @@ public class Voie {
     @LastModifiedDate
     private Date updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
+    private Utilisateur utilisateur;
+
     @PrePersist
     protected void prePersist() {
         if (this.createdAt == null) createdAt = new Date();
@@ -109,6 +113,14 @@ public class Voie {
 
     public void setDistance(Integer distance) {
         Distance = distance;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     @Override

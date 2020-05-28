@@ -82,6 +82,15 @@ public class TopologieService {
         return topologiePublic;
     }
 
+    public List<Topologie> findTopologieByPublicAndIspublic(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Topologie>  topologiePublicUser = this.topologieRepository.findByAndIspublicTrueAndUtilisateurNot(utilisateur1);
+        System.out.println(topologiePublicUser);
+        if (topologiePublicUser == null){
+            throw new RuntimeException("Topologie introuvable");
+        }
+        return topologiePublicUser;
+    }
+
 
     public void deleteTopologiesById(Long id)
     {

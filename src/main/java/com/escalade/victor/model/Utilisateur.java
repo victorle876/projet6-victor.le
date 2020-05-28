@@ -63,6 +63,9 @@ public class Utilisateur {
     @OneToMany(mappedBy="utilisateur")
     private List<Reservation> reservations;
 
+    @OneToMany(mappedBy="utilisateur")
+    private List<Voie> voies;
+
 /*    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL,
     fetch = FetchType.LAZY, optional = false)
     private Site site;*/
@@ -195,13 +198,13 @@ public class Utilisateur {
         this.reservations = reservations;
     }
 
-/*    public Site getSite() {
-        return site;
+    public List<Voie> getVoies() {
+        return voies;
     }
 
-    public void setSite(Site site) {
-        this.site = site;
-    }*/
+    public void setVoies(List<Voie> voies) {
+        this.voies = voies;
+    }
 
     public List<Site> getSites() {
         return sites;

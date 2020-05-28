@@ -62,4 +62,12 @@ public class VoieService {
         }
         return voieTrouve;
     }
+
+    public List<Voie> findVoieByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Voie>  voieTrouve = this.voieRepository.findByUtilisateur(utilisateur1);
+        if (voieTrouve == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return voieTrouve;
+    }
 }

@@ -86,10 +86,14 @@ public class VoieController {
         }
     }
 
-    @RequestMapping(value = "/listVoieByUser/{id}", method = RequestMethod.GET)
-    public String VoieListByUser(@PathVariable("id") Long id,Model model) {
-        Site siteId = this.siteService.getSiteById(id);
-        model.addAttribute("voiesbyuser", this.voieService.findVoieBySite(siteId));
+/*    @RequestMapping(value = "/listVoieByUser/{id}", method = RequestMethod.GET)
+    public String VoieListByUser(@PathVariable("id") Long id,Model model) {*/
+        @RequestMapping(value = "/listVoieByUser", method = RequestMethod.GET)
+        public String VoieListByUser(Model model) {
+//        Site siteId = this.siteService.getSiteById(id);
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        model.addAttribute("voiesbyuser", this.voieService.findVoieByUser(utilisateurId));
         return "listVoieByUser";
     }
 }

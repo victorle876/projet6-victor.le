@@ -165,7 +165,10 @@ public class SiteController {
             return "addVoie";
         } else {
             Site siteId = this.siteService.getSiteById(id);
+            this.utilisateurService.getUtilisateurConnected();
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
             voie.setSite(siteId);
+            voie.setUtilisateur(utilisateurId);
             this.voieService.saveVoie(voie);
             model.addAttribute("voies", this.voieService.getAllVoies());
             return "home";

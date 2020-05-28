@@ -20,32 +20,28 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/listUser}">Liste des utilisateurs</a>
                         </li>
+<!--                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/listTopologie}">Topologies</a>
+                        </li>-->
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/topologie/listTopologie}">Liste des topologies</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/topologie/listTopologiePublic}">Liste des topologies publiques</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/topologie/listTopologieByUser}">Liste de mes topologies</a>
+                            <a class="nav-link" th:href="@{/topologie/listTopologiePublic}">Topologies publiques</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" th:href="@{/topologie/listTopologieByUser}">Mes topologies</a>
+                        </li>
+<!--                        <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/listTopologieDifferentByUser}">Liste des topologies autre que le mien</a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/site/listSiteByUser}">Mes sites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/voie/listVoieByUser}">Mes voies</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/site/listSiteByUser}">Liste de mes sites</a>
+                            <a class="nav-link" th:href="@{/reservation/listReservationByUser}">Mes réservations</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/voie/listVoieByUser}">Liste de mes voies</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/reservation/listReservationByUser}">Liste de mes réservations</a>
-                        </li>
-
                         <li sec:authorize="isAuthenticated()">
                                 <a class="nav-link" th:href="@{/logout}">Logout</a>
                         </li>

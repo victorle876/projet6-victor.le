@@ -13,4 +13,5 @@ public interface TopologieRepository extends JpaRepository<Topologie, Long>{
     List<Topologie> findByUtilisateur (Utilisateur utilisateur1);
     List<Topologie> findByIspublicTrue();
     List<Topologie> findByUtilisateurNot (Utilisateur utilisateur1);
+    List <Topologie> findByAndIspublicTrueAndUtilisateurNot (Utilisateur utilisateur1);
 }

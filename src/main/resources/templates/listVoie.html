@@ -26,6 +26,7 @@
                     <th>Cotation</th>
                     <th>Hauteur</th>
                     <th>Distance</th>
+                    <th>Site</th>
                     <th>Detail</th>
                     <th>Editer</th>
                     </thead>
@@ -38,6 +39,7 @@
                         <td th:text="${voie.cotation}"/>
                         <td th:text="${voie.hauteur}"/>
                         <td th:text="${voie.distance}"/>
+                        <td th:text="${voie.site}"/>
                         <td><a th:href="@{/voie/detailsVoie?id={id}(id=${voie.id})}">Détails</a></td>
                         <td><a th:href="@{/voie/editionVoie?id={id}(id=${voie.id})}">Editer</a></td>
                     </tr>
@@ -45,7 +47,7 @@
                 </table>
             </div>
             <div class ="row" align="left">
-                <a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>
+<!--                <a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>-->
                 <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
             </div>
         </div>

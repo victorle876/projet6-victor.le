@@ -49,30 +49,13 @@ public class ReservationController {
 
     }
 
-/*    @RequestMapping(value = "/addReservation", method = RequestMethod.GET)
-    public String ajouterReservation(Model model) {
-        model.addAttribute("reservation", new Reservation());
-        return "addReservation";
-    }
-
-    @RequestMapping(value = "/saveReservation", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Reservation reservation, Model model, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return "addReservation";
-        } else {
-            this.reservationService.saveReservation(reservation);
-            model.addAttribute("reservations", this.reservationService.getAllReservations());
-            return "home";
-        }
-    }*/
-
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.GET)
     public String addTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("topologieId", topologieId);
-        return "addTopoReservation";
+        return "listTopologieByUser";
+    //    return "addTopoReservation";
     }
 
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
@@ -106,7 +89,9 @@ public class ReservationController {
     public String makeTopoAccepte(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("idTopologie", id);
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
-        return "acceptReservation";
+        model.addAttribute("isBooked", true);
+        return "listTopologieByUser";
+       // return "acceptReservation";
 
     }
 
@@ -114,7 +99,6 @@ public class ReservationController {
     public String saveTopoAccepte(@PathVariable(value = "id") Long id, Reservation reservationEnCours, Model model) {
         Topologie topo = this.topologieService.getTopologieById(id);
         reservationEnCours = this.reservationService.getReservationByTopologie(topo);
-        //reservationEnCours.setEtat("ACCEPTEE");
         if (reservationEnCours.getEtat() == "ACCEPTEE") {
             this.utilisateurService.getUtilisateurConnected();
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -122,7 +106,7 @@ public class ReservationController {
             this.topologieService.saveTopologie(topo);
             model.addAttribute("reservation", this.reservationService.findReservationByUser(utilisateurId));
         }
-        return "listReservationByUser";
+        return "listTopologieByUser";
 
     }
 

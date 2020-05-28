@@ -31,7 +31,7 @@
                     <th>Editer</th>
                     <th>Sites</th>
                     <th>Publier</th>
-                    <th>Reservation</th>
+<!--                    <th>Reservation</th>-->
                     </thead>
                     <tbody>
                     <tr th:each="topologie, rowStat: ${topologiesbyuser}"
@@ -43,15 +43,18 @@
                         <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                         <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
                         <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
-                        <td><a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}">Publier</a></td>
-                        <td><a th:href="@{/reservation/makeTopoAccepte/{id}(id=${topologie.id})}">Ajouter</a></td>
+<!--                        <td><a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}">Publier</a></td>-->
+                        <td th:if="${topologie.ispublic} == false">
+                            <a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}" class="btn btn-primary" role="button">Publier</a>
+                        </td>
+<!--                        <td th:unless="${topologie.ispublic} == true">deja publiee</td>-->
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="row">
                 <a th:href="@{/topologie/addTopologie}" class="btn btn-primary" role="button">Ajouter</a></td>
-                <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+                <a th:href="@{/home}" class="btn btn-secondary" role="button">Retour</a>
             </div>
         </div>
     </div>
