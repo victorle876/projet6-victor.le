@@ -30,6 +30,7 @@
                     <th>Detail</th>
                     <th>Editer</th>
                     <th>Sites</th>
+                    <th>Reservation</th>
                     </thead>
                     <tbody>
                     <tr th:each="topologie, rowStat: ${topologiepublic}"
@@ -41,6 +42,7 @@
                         <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                         <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
                         <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
+                        <td><a th:href="@{/reservation/addTopoReservation/{id}(id=${topologie.id})}">Reserver</a></td>
                     </tr>
                     </tbody>
                 </table>

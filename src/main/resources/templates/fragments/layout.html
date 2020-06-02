@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/reservation/listReservationByUser}">Mes réservations</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/reservation/makeTopoAccepte}">Mes validations</a>
+                        </li>
                         <li sec:authorize="isAuthenticated()">
                                 <a class="nav-link" th:href="@{/logout}">Logout</a>
                         </li>

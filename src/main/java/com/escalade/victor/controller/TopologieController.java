@@ -178,7 +178,7 @@ public class TopologieController {
         model.addAttribute("idTopologie", id);
         model.addAttribute("topologiebyid", topologieId);
         model.addAttribute("topologiebyuser", this.topologieService.findTopologieByUser(utilisateurId));
-        boolean isPublic;
+//        boolean isPublic;
         if (topologieId.getIspublic() == false){
             topologieId.setIspublic(Boolean.TRUE);
             this.topologieService.saveTopologie(topologieId);
@@ -187,17 +187,5 @@ public class TopologieController {
         return "listTopologieByUser";
     }
 
-    /*@RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.POST)
-    public String saveTopoPublic(@PathVariable(value = "id") Long id, Topologie topologiePublic, Model model) {
-            this.utilisateurService.getUtilisateurConnected();
-            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-            topologiePublic = this.topologieService.getTopologieById(id);
-            topologiePublic.setIspublic(Boolean.TRUE);
-         //   topologiePublic.setUtilisateur(null);
-            System.out.println(this.topologieService.getTopologieById(id));
-            this.topologieService.saveTopologie(topologiePublic);
-            model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
-            return "listTopologiePublic";
-    }*/
 }
 

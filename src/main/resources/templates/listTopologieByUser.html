@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace = "fragments/layout :: navbar"></div>
+<div th:replace="fragments/layout :: navbar"></div>
 <div class="container-xl">
     <!--    <div layout:fragment="content">-->
     <div class="card text-center">
@@ -31,7 +31,7 @@
                     <th>Editer</th>
                     <th>Sites</th>
                     <th>Publier</th>
-<!--                    <th>Reservation</th>-->
+                    <th>Validation</th>
                     </thead>
                     <tbody>
                     <tr th:each="topologie, rowStat: ${topologiesbyuser}"
@@ -43,11 +43,24 @@
                         <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                         <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
                         <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
-<!--                        <td><a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}">Publier</a></td>-->
-                        <td th:if="${topologie.ispublic} == false">
-                            <a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}" class="btn btn-primary" role="button">Publier</a>
+                        <!--                        <td th:if="${topologie.ispublic} == false">-->
+                        <td>
+                            <div th:if="${topologie.ispublic} == false">
+                                <a th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}"
+                                   class="btn btn-primary" role="button">Publier</a>
+                            </div>
                         </td>
-<!--                        <td th:unless="${topologie.ispublic} == true">deja publiee</td>-->
+                        <!--                        <td th:unless="${topologie.ispublic} == true">deja publiee</td>-->
+                        <td>
+
+                            <div th:if="${isBooked} == true">
+                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${topologie.id})}"
+                                   class="btn btn-primary" role="button">Annuler Reservation</a>
+                            </div>
+                            <div th:if="${isBooked} == false">
+                            <a class="btn btn-primary" role="button">Valider</a>
+                                </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
