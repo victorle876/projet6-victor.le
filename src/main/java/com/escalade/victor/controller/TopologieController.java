@@ -161,10 +161,8 @@ public class TopologieController {
 
     @RequestMapping(value = "/listTopologiePublic", method = RequestMethod.GET)
     public String TopoListPublic(Model model) {
-//        System.out.println(this.topologieService.findTopologieByPublic());
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-   //     model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublic());
         model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         return "listTopologiePublic";
     }
@@ -174,17 +172,23 @@ public class TopologieController {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         Topologie topologieId = this.topologieService.getTopologieById(id);
-        System.out.println(this.topologieService.getTopologieById(id).getIspublic());
         model.addAttribute("idTopologie", id);
-        model.addAttribute("topologiebyid", topologieId);
-        model.addAttribute("topologiebyuser", this.topologieService.findTopologieByUser(utilisateurId));
-//        boolean isPublic;
-        if (topologieId.getIspublic() == false){
+        model.addAttribute("topologie", topologieId); // topologiebyid en commentaire
+        return "publicationTopologie";
+    }
+
+    @RequestMapping(value = "/makeTopoPublic/{id}", method = RequestMethod.POST)
+    public String saveTopoPublic(@PathVariable(value = "id") Long id, Model model) {
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        Topologie topologieId = this.topologieService.getTopologieById(id);
+        if (topologieId.getIspublic() == Boolean.FALSE){
             topologieId.setIspublic(Boolean.TRUE);
+    //        topologieId.setUtilisateur(null);
             this.topologieService.saveTopologie(topologieId);
             model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         }
-        return "listTopologieByUser";
+        return "listTopologiePublic";
     }
 
 }

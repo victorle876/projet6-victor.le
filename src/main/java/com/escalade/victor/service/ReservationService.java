@@ -41,17 +41,12 @@ public class ReservationService {
 
     }
 
+
     public Reservation saveReservation(Reservation reservation)
     {
             return this.reservationRepository.save(reservation);
     }
 
-/*    public Reservation addTopoReserv (long id, Topologie topologie)
-    {
-        Reservation reservationTopo = this.getReservationById(id);
-        reservationTopo.setTopologie(topologie);
-        return this.saveReservation(reservationTopo);
-    }*/
 
     public List<Reservation> findReservationByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Reservation>  reservationTrouve = this.reservationRepository.findByUtilisateur(utilisateur1);
@@ -59,6 +54,22 @@ public class ReservationService {
             throw new RuntimeException("reservation introuvable");
         }
         return reservationTrouve;
+    }
+
+/*    public List<Reservation> findReservationByUserDifferent(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Reservation>  reservationTrouveByUserDifferent = this.reservationRepository.findByUtilisateurNot(utilisateur1);
+        if (reservationTrouveByUserDifferent == null){
+            throw new RuntimeException("reservation introuvable");
+        }
+        return reservationTrouveByUserDifferent;
+    }*/
+
+    public List<Reservation> findReservationByUserProprietaire(Utilisateur utilisateur1) throws UsernameNotFoundException {
+        List<Reservation>  reservationTrouveByUserDifferent = this.reservationRepository.findByUtilisateurAndTopologie(utilisateur1);
+        if (reservationTrouveByUserDifferent == null){
+            throw new RuntimeException("reservation introuvable");
+        }
+        return reservationTrouveByUserDifferent;
     }
     
     public void deleteReservationById(Long id)

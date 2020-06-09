@@ -19,29 +19,8 @@
             <div class="col-md-6">
                 <form action="#" th:action="@{/reservation/addTopoReservation/{id}(id=${id})}"
                       th:object="${reservation}" method="post">
-                    <div class="form-group">
-                        <!-- <label for="exampleInputId">Id</label>
-                         <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
-                    </div>
-                    <!--                    <div class="form-group row has-feedback">-->
-                    <!--                        <label for="exampleInputEtat" class="col-sm-2 col-form-label">Etat</label>-->
-                    <!--                        <div class="col-sm-10">-->
-                    <!--                            <input type="text" class="form-control" th:field="*{etat}" id="exampleInputEtat"-->
-                    <!--                                   aria-describedby="WarningEtat">-->
-                    <!--                            <small id="WarningEtat" class="form-text text-muted" th:if="${#fields.hasErrors('etat')}"-->
-                    <!--                                   th:errors="*{etat}"></small>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <div class="form-group row has-feedback">
-                        <select id="etat" name="etat">
-                            <option value="Demande">Demande</option>
-                            <option value="En cours">En cours</option>
-                        </select>
-                    </div>
                     <div>
                         <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                        <a th:href="@{/reservation/ListReservationByUser}" class="btn btn-primary"
-                           role="button">Retour</a>
                     </div>
                 </form>
             </div>

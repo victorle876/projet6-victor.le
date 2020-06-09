@@ -20,9 +20,9 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/listUser}">Liste des utilisateurs</a>
                         </li>
-<!--                        <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/listTopologie}">Topologies</a>
-                        </li>-->
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/listTopologiePublic}">Topologies publiques</a>
                         </li>
@@ -43,7 +43,7 @@
                             <a class="nav-link" th:href="@{/reservation/listReservationByUser}">Mes réservations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/reservation/makeTopoAccepte}">Mes validations</a>
+                            <a class="nav-link" th:href="@{/reservation/listValidationByUser}">Mes validations</a>
                         </li>
                         <li sec:authorize="isAuthenticated()">
                                 <a class="nav-link" th:href="@{/logout}">Logout</a>

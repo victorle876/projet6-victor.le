@@ -18,24 +18,35 @@
 <div class="container-xl">
     <div class="card text-center">
         <div class="card-body">
-            <h1> Liste de mes reservations</h1>
+            <h1> Liste de mes validations</h1>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
                     <th>Numero réservation</th>
                     <th>Topologie</th>
                     <th>Etat</th>
-                    <th>Annuler</th>
+                    <th>Accepter</th>
+                    <th>Refuser</th>
                     </thead>
                     <tbody>
-                    <tr th:each="reservation, rowStat: ${reservationsbyuser}"
+                    <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                         <td th:text="${reservation.id}"/>
                         <td th:text="${reservation.topologie.nomTopologie}"/>
                         <td th:text="${reservation.etat}"/>
                         <td>
+<!--                            <div>-->
+                                <th:block th:if="${reservation.etat== 'En cours'}"><a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Annuler
+                                    reservation</a></th:block>
+                                <th:block th:unless="${reservation.etat== 'Accepte'}"><a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Accepter</a>
+<!--                            </div>-->
+        <!--                    <div th:unless="${reservation.etat =='En cours'}">
+                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Accepter</a>
+                            </div>-->
+                        </td>
+                        <td>
                             <div th:if="${reservation.etat} == 'En cours'">
-                            <a th:href="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}">Annuler</a>
+                                <a th:href="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}">Refuser</a>
                             </div>
                         </td>
                     </tr>
@@ -43,12 +54,11 @@
                 </table>
             </div>
             <div class="row">
-<!--                <a th:href="@{/reservation/addTopoReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>-->
+                <!--                <a th:href="@{/reservation/addTopoReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>-->
                 <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
