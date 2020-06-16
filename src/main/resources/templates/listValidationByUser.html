@@ -25,8 +25,7 @@
                     <th>Numero réservation</th>
                     <th>Topologie</th>
                     <th>Etat</th>
-                    <th>Accepter</th>
-                    <th>Refuser</th>
+                    <th>Action</th>
                     </thead>
                     <tbody>
                     <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
@@ -35,18 +34,34 @@
                         <td th:text="${reservation.topologie.nomTopologie}"/>
                         <td th:text="${reservation.etat}"/>
                         <td>
-<!--                            <div>-->
-                                <th:block th:if="${reservation.etat== 'En cours'}"><a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Annuler
-                                    reservation</a></th:block>
-                                <th:block th:unless="${reservation.etat== 'Accepte'}"><a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Accepter</a>
-<!--                            </div>-->
-        <!--                    <div th:unless="${reservation.etat =='En cours'}">
-                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Accepter</a>
-                            </div>-->
-                        </td>
-                        <td>
-                            <div th:if="${reservation.etat} == 'En cours'">
-                                <a th:href="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}">Refuser</a>
+                            <div class="row">
+<!--                            <th:block th:if="${reservation.etat== 'Accepté'}">
+                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Annuler
+                                    reservation</a>
+                            </th:block>-->
+                                <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
+                                    <th:block th:if="${reservation.etat== 'Accepté'}">
+                                        <a>Annuler reservation</a>
+                                    </th:block>
+                                </form>
+
+<!--                            <th:block th:if="${reservation.etat== 'En cours'}">
+                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" class="btn btn-primary" type="submit" th:name="action" th:value="Submit">Accepter</a>
+                            </th:block>-->
+                                <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
+                                    <th:block th:if="${reservation.etat == 'En cours'}">
+                                        <button class="btn btn-primary" type="submit">Accepter</button>
+                                    </th:block>
+                                </form>
+<!--                            <th:block th:if="${reservation.etat == 'En cours'}">
+                                <a th:href="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}" class="btn btn-primary" type="submit" th:name="action" th:value="Submit">Refuser</a>
+                            </th:block>-->
+                                <form th:action="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
+                                    <th:block th:if="${reservation.etat == 'En cours'}">
+                                    <button class="btn btn-primary" type="submit">Refuser</button>
+                                    </th:block>
+                                </form>
+
                             </div>
                         </td>
                     </tr>
@@ -54,7 +69,6 @@
                 </table>
             </div>
             <div class="row">
-                <!--                <a th:href="@{/reservation/addTopoReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>-->
                 <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
             </div>
         </div>

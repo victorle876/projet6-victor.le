@@ -191,5 +191,21 @@ public class TopologieController {
         return "listTopologiePublic";
     }
 
+    @RequestMapping(value = "/SearchTopoList", method = RequestMethod.GET)
+    public String listTopoSearch( Model model, Topologie topologie) {
+        System.out.println(topologie.getSecteur());
+        model.addAttribute("topologie", topologie.getSecteur());
+        return "topoSearch";
+    }
+
+    @RequestMapping(value = "/SearchTopoList", method = RequestMethod.POST)
+    public String saveTopoSearchList( Model model, Topologie topologie) {
+        System.out.println(this.topologieService.findTopologieBySecteurOrNom(topologie.getSecteur()));
+        model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(topologie.getSecteur()));
+        return "searchListTopo";
+    }
+
+
+
 }
 

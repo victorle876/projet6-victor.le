@@ -73,6 +73,14 @@ public class TopologieService {
         return topologieTrouve;
     }
 
+    public List<Topologie> findTopologieBySecteurOrNom(String chaineRecherche) throws UsernameNotFoundException {
+        List<Topologie>  topologieTrouve = this.topologieRepository.findByNomTopologieAndNomSecteur(chaineRecherche);
+        if (topologieTrouve == null){
+            throw new RuntimeException("Topologie introuvable");
+        }
+        return topologieTrouve;
+    }
+
     public List<Topologie> findTopologieByPublic() throws UsernameNotFoundException {
         List<Topologie>  topologiePublic = this.topologieRepository.findByIspublicTrue();
         System.out.println(topologiePublic);

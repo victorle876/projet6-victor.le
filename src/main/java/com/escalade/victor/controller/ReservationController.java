@@ -61,7 +61,8 @@ public class ReservationController {
         model.addAttribute("topologie", topologieId);
         model.addAttribute("reservation", new Reservation());
         //    return "listTopologieByUser";
-        return "addTopoReservation";
+        // return "addTopoReservation";
+        return "listTopologiePublic" ;
     }
 
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
@@ -77,8 +78,8 @@ public class ReservationController {
         newReservation.setUtilisateur(utilisateurId);
         this.reservationService.saveReservation(newReservation);
         //     }
-        model.addAttribute("reservationsbyuser", this.reservationService.getAllReservations());
-        return "listReservationByUser";
+        model.addAttribute("reservationsbyuserdifferent", this.reservationService.getAllReservations());
+        return "redirect:/reservation/listReservationByUser";
         //   return "listTopologiePublic";
     }
 
@@ -87,7 +88,7 @@ public class ReservationController {
     public String ReservationListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        model.addAttribute("reservationsbyuser", this.reservationService.findReservationByUser(utilisateurId));
+        model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "listReservationByUser";
 
     }
@@ -107,10 +108,7 @@ public class ReservationController {
         Reservation reservationExistant = this.reservationService.getReservationById(id);
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
         model.addAttribute("id", id);
-        //     List<Reservation> reservationEnCours =  this.reservationService.findReservationByUserProprietaire(utilisateurId);
-        //     model.addAttribute("reservationsbyuserdifferent", reservationEnCours);
-        //    return "listValidationByUser";
-        return "acceptReservation";
+        return "listValidationByUser";
     }
 
     @RequestMapping(value = "/makeTopoAccepte/{id}", method = RequestMethod.POST)
@@ -122,16 +120,14 @@ public class ReservationController {
         Utilisateur utilisateurProprietaire = topo.getUtilisateur();
         System.out.println(utilisateurProprietaire);
         System.out.println(reservationExistant.getEtat());
-//        if (reservationExistant.getEtat() == "En cours") {
-            //         model.addAttribute("isAccepted",Boolean.TRUE);
-            reservationExistant.setEtat("Accepte");
+            reservationExistant.setEtat("Accepté");
             this.reservationService.saveReservation(reservationExistant);
             topo.setUtilisateur(reservationExistant.getUtilisateur());
             //        topo.setIspublic(Boolean.TRUE);
             this.topologieService.saveTopologie(topo);
 //        }
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
-        return "listValidationByUser";
+        return "redirect:/reservation/listValidationByUser";
     }
 
     @RequestMapping(value = "/makeTopoRefuse/{id}", method = RequestMethod.GET)
@@ -140,9 +136,7 @@ public class ReservationController {
         Reservation reservationExistant = this.reservationService.getReservationById(id);
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
         model.addAttribute("id", id);
- //       List<Reservation> reservationEnCours = this.reservationService.findReservationByUserProprietaire(utilisateurId);
-  //      model.addAttribute("reservationbyuserdifferent", reservationEnCours);
-        return "refusReservation";
+        return "redirect:/reservation/listValidationByUser";
     }
 
     @RequestMapping(value = "/makeTopoRefuse/{id}", method = RequestMethod.POST)
@@ -157,7 +151,7 @@ public class ReservationController {
             this.reservationService.saveReservation(reservationExistant);
   //      }
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
-        return "listValidationByUser";
+        return "redirect:/reservation/listValidationByUser";
     }
 
     @RequestMapping(value = "/makeTopoAnnule/{id}", method = RequestMethod.GET)
@@ -166,10 +160,7 @@ public class ReservationController {
         Reservation reservationExistant = this.reservationService.getReservationById(id);
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
         model.addAttribute("id", id);
-        //      List<Reservation> reservationEnCours =  this.reservationService.findReservationByUser(utilisateurId);
-        //     model.addAttribute("reservationsbyuser", reservationEnCours);
-        //     return "listTopologieByUser";
-        return "annulerReservation";
+        return "listReservationByUser";
     }
 
     @RequestMapping(value = "/makeTopoAnnule/{id}", method = RequestMethod.POST)
@@ -181,8 +172,8 @@ public class ReservationController {
         //     model.addAttribute("isBooked",Boolean.TRUE);
         reservationExistant.setEtat("Annulé");
         this.reservationService.saveReservation(reservationExistant);
-        model.addAttribute("reservationsbyuser", this.reservationService.findReservationByUser(utilisateurId));
-        return "listReservationByUser";
+        model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
+        return "redirect:/reservation/listReservationByUser";
     }
 
 
@@ -221,6 +212,4 @@ public class ReservationController {
             return "redirect:/";
         }
     }
-
-
 }

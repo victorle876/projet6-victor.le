@@ -17,12 +17,9 @@
         <div class="card-body">
             <h3>Refuser la réservation</h3>
             <div class="col-md-6">
-                <form action="#" th:action="@{/reservation/makeTopoRefuse/{id}(id=${id})}"
+                <form action="#" th:action="@{/reservation/listValidationByUser}"
                       th:object="${reservation}" method="post">
                     <div>
-                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-<!--                        <a th:href="@{/reservation/ListReservationByUser}" class="btn btn-primary"
-                           role="button">Retour</a>-->
                     </div>
                 </form>
             </div>

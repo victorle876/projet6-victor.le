@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/topologie/listTopologieDifferentByUser/**").permitAll()
                 .antMatchers("/reservation/listReservationByUser/**","/reservation/makeTopoAccepte/**").permitAll()
                 .antMatchers("/reservation/makeTopoRefuse/**","/reservation/makeTopoAnnule/**","/reservation/listValidationByUser/**").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/topologie/SearchTopoList/**").permitAll()
          //       .antMatchers("/topologie/**","/site/**","/commentaire/**").permitAll()
                 .antMatchers("/site/**","/topologie/**","/commentaire/**","/voie/**","/user/home/**").hasAuthority("ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN") //
