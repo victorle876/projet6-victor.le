@@ -18,29 +18,31 @@
     <div class="card text-center">
         <div class="card-body">
             <h1> Liste des commentaire</h1>
-            <div th:replace = "fragments/topnav :: navbar"></div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-                    <th>Auteur du commentaire</th>
                     <th>nom du site</th>
                     <th>zone du commentaire</th>
+                    <th>Auteur du commentaire</th>
                     <th>detail</th>
+                    <th>editer</th>
+                    <th>supprimer</th>
                     </thead>
                     <tbody>
                     <tr th:each="commentaire, rowStat: ${commentaires}"
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${commentaire.utilisateur}"/>
-                        <td th:text="${commentaire.site}"/>
+                        <td th:text="${commentaire.site.nomSite}"/>
                         <td th:text="${commentaire.zoneCommentaire}"/>
+                        <td th:text="${commentaire.utilisateur.username}"/>
                         <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a></td>
                         <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a></td>
+                        <td><a th:href="@{/commentaire/deleteCommentaire1?id={id}(id=${commentaire.id})}">Supprimer</a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="align-self-xl-end">
-                <br> <a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter</a> </br>
+            <div class="row">
+                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
             </div>
         </div>
     </div>

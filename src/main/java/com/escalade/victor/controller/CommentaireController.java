@@ -1,18 +1,19 @@
 package com.escalade.victor.controller;
 
 import com.escalade.victor.model.Commentaire;
+import com.escalade.victor.model.Site;
+import com.escalade.victor.model.Topologie;
 import com.escalade.victor.service.CommentaireService;
+import com.escalade.victor.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/commentaire")
 @Controller
@@ -20,14 +21,15 @@ public class CommentaireController {
     @Autowired
     private CommentaireService commentaireService;
 
-/*    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String commentaireHome(Model model) {
-        return "commentairehome";
-    }*/
+    @Autowired
+    private SiteService siteService;
 
-    @RequestMapping(value = "/listCommentaire", method = RequestMethod.GET)
-    public String CommentaireList(Model model) {
-        model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
+    @RequestMapping(value = "/listCommentaire/{id}", method = RequestMethod.GET)
+    public String CommentaireList(@PathVariable("id") Long id, Model model) {
+        Site siteId = this.siteService.getSiteById(id);
+        List<Commentaire> commentaireList= this.commentaireService.findCommentaireBySite(siteId);
+        model.addAttribute("id", id);
+        model.addAttribute("commentaires",commentaireList);
         return "listCommentaire";
 
     }
@@ -79,17 +81,17 @@ public class CommentaireController {
         }
     }
 
-    @RequestMapping(value = "/editionCommentaire1", method = RequestMethod.GET)
-    public String editionCommentaire2(@RequestParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/deleteCommentaire1", method = RequestMethod.GET)
+    public String makeCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
         return "editionCommentaire";
 
     }
 
     @RequestMapping(value = "/deleteCommentaire1", method = RequestMethod.POST)
-    public String deleteCommentaire(@RequestParam(value = "id") long id, @Valid @ModelAttribute Commentaire Commentaire, BindingResult errors, Model model) {
+    public String saveCommentaireDeleted(@PathVariable(value = "id") long id, Commentaire Commentaire, BindingResult errors) {
         if (errors.hasErrors()) {
-            return "EditCommentaire";
+            return "editionCommentaire";
         } else {
             this.commentaireService.deleteCommentaireById(Commentaire.getId());
         //    model.addAttribute("Commentaires", this.commentaireService.deleteCommentaireById(id));

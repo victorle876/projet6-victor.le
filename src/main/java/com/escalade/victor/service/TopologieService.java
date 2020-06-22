@@ -73,8 +73,9 @@ public class TopologieService {
         return topologieTrouve;
     }
 
-    public List<Topologie> findTopologieBySecteurOrNom(String chaineRecherche) throws UsernameNotFoundException {
-        List<Topologie>  topologieTrouve = this.topologieRepository.findByNomTopologieAndNomSecteur(chaineRecherche);
+    public List<Topologie> findTopologieBySecteurOrNom(String recherche) throws UsernameNotFoundException {
+        System.out.println();
+        List<Topologie>  topologieTrouve = this.topologieRepository.findByNomTopologieIgnoreCaseContainingOrSecteurIgnoreCaseContaining(recherche, recherche);
         if (topologieTrouve == null){
             throw new RuntimeException("Topologie introuvable");
         }

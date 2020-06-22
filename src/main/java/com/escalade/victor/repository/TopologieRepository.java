@@ -14,6 +14,8 @@ public interface TopologieRepository extends JpaRepository<Topologie, Long>{
     List<Topologie> findByIspublicTrue();
     List<Topologie> findByUtilisateurNot (Utilisateur utilisateur1);
     List <Topologie> findByAndIspublicTrueAndUtilisateurNot (Utilisateur utilisateur1);
-    @Query("select t from Topologie t where t.nomTopologie like %:chaineRecherche% or t.secteur like %:chaineRecherche%")
+    @Query("select t from Topologie t where t.nomTopologie like %:chaineRecherche%")
     List <Topologie> findByNomTopologieAndNomSecteur (String chaineRecherche);
+
+    List <Topologie> findByNomTopologieIgnoreCaseContainingOrSecteurIgnoreCaseContaining(String nomTopologie, String secteur);;
 }

@@ -6,6 +6,7 @@ import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.CommentaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,20 +47,12 @@ public class CommentaireService {
             return this.commentaireRepository.save(commentaire);
     }
 
-    public void addUtilComm(Utilisateur utilisateur, long id)
-    {
-        this.utilisateurRecherche = utilisateur;
-        if (!utilisateurRecherche.getCommentaires().contains(this)){
-            utilisateurRecherche.getCommentaires().add(this.getCommentaireById(id));
+    public List<Commentaire> findCommentaireBySite(Site site1) throws UsernameNotFoundException {
+        List<Commentaire>  commentaireTrouve = this.commentaireRepository.findBySite(site1);
+        if (commentaireTrouve == null){
+            throw new RuntimeException("Site introuvable");
         }
-    }
-
-    public void addSiteComm(Site site, long id)
-    {
-        this.siteRecherche = site;
-        if (!siteRecherche.getCommentaires().contains(this)){
-            siteRecherche.getCommentaires().add(this.getCommentaireById(id));
-        }
+        return commentaireTrouve;
     }
 
 

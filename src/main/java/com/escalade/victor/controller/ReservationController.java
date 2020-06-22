@@ -117,14 +117,14 @@ public class ReservationController {
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
         System.out.println(topo);
-        Utilisateur utilisateurProprietaire = topo.getUtilisateur();
-        System.out.println(utilisateurProprietaire);
+//        Utilisateur utilisateurProprietaire = topo.getUtilisateur();
+//        System.out.println(utilisateurProprietaire);
         System.out.println(reservationExistant.getEtat());
             reservationExistant.setEtat("Accepté");
             this.reservationService.saveReservation(reservationExistant);
-            topo.setUtilisateur(reservationExistant.getUtilisateur());
+  //          topo.setUtilisateur(reservationExistant.getUtilisateur());
             //        topo.setIspublic(Boolean.TRUE);
-            this.topologieService.saveTopologie(topo);
+  //          this.topologieService.saveTopologie(topo);
 //        }
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listValidationByUser";

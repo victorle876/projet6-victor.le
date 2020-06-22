@@ -192,16 +192,25 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.GET)
-    public String listTopoSearch( Model model, Topologie topologie) {
-        System.out.println(topologie.getSecteur());
-        model.addAttribute("topologie", topologie.getSecteur());
+    public String listTopoSearch( Model model) {
+        model.addAttribute("topologie", new Topologie());
+        System.out.println(new Topologie());
         return "topoSearch";
     }
 
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.POST)
-    public String saveTopoSearchList( Model model, Topologie topologie) {
-        System.out.println(this.topologieService.findTopologieBySecteurOrNom(topologie.getSecteur()));
-        model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(topologie.getSecteur()));
+    public String saveTopoSearchList( Model model, Topologie topologieEnrecherche, String recherche) {
+
+        String nomTopologie = topologieEnrecherche.getNomTopologie();
+        String secteur = topologieEnrecherche.getSecteur();
+        System.out.println(nomTopologie);
+        System.out.println(secteur);
+//        if (nomTopologie != null) {
+            recherche = (nomTopologie);
+//        }
+        List <Topologie>  topologieRecherche = this.topologieService.findTopologieBySecteurOrNom(recherche);
+        System.out.println(this.topologieService.findTopologieBySecteurOrNom(recherche));
+        model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(recherche));
         return "searchListTopo";
     }
 
