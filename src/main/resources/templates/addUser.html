@@ -12,74 +12,63 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Ajout utilisateurs</h3>
-            <div class="col-md-6">
-                <form action="#" th:action="@{/saveUser}" th:object="${utilisateur}" method="post">
-                    <div class="form-group">
-                        <!-- <label for="exampleInputId">Id</label>
-                         <input type="number" th:field="*{id}" class="form-control" id="exampleInputId">-->
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputNom" class="col-sm-2 col-form-label">Nom</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" th:field="*{username}" id="exampleInputNom"
-                                   aria-describedby="WarningNom">
-                            <small id="WarningNom" class="form-text text-muted" th:if="${#fields.hasErrors('username')}"
-                                   th:errors="*{username}"></small>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputPrenom" class="col-sm-2 col-form-label">prenom</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" th:field="*{prenom}" id="exampleInputPrenom"
-                                   aria-describedby="WarningPrenom">
-                            <small id="WarningPrenom" class="form-text text-muted"
-                                   th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></small>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputMotP" class="col-sm-2 col-form-label">mot de passe</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" th:field="*{password}" id="exampleInputMotP"
-                                   aria-describedby="WarningMotP">
-                            <small id="WarningMotP" class="form-text text-muted"
-                                   th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputdateNaissance" class="col-sm-2 col-form-label">Age</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" th:field="*{age}" id="exampleInputdateNaissance"
-                                   aria-describedby="WarningdateNaissance">
-                            <small id="WarningdateNaissance" class="form-text text-muted"
-                                   th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputMail" class="col-sm-2 col-form-label">Mail</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" th:field="*{mail}" id="exampleInputMail"
-                                   aria-describedby="WarningMail">
-                            <small id="WarningMail" class="form-text text-muted" th:if="${#fields.hasErrors('mail')}"
-                                   th:errors="*{mail}"></small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                    </div>
-                    <br>
-                    <div class="row">
-                        <a th:href="@{/listUser}" class="btn btn-info" role="button">Retour</a>
-                    </div>
-                </form>
+<div class="container mt-auto">
+    <h3 class="text-center mb-3">Ajout utilisateurs</h3>
+<!--    <div class="col-md-6">-->
+        <form action="#" th:action="@{/saveUser}" th:object="${utilisateur}" method="post">
+            <div class="form-group row">
+                <label for="exampleInputNom" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{username}" id="exampleInputNom"
+                           aria-describedby="WarningNom">
+                    <small id="WarningNom" class="form-text text-muted" th:if="${#fields.hasErrors('username')}"
+                           th:errors="*{username}"></small>
+                </div>
             </div>
-        </div>
-    </div>
+            <div class="form-group row">
+                <label for="exampleInputPrenom" class="col-sm-2 col-form-label">prenom</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{prenom}" id="exampleInputPrenom"
+                           aria-describedby="WarningPrenom">
+                    <small id="WarningPrenom" class="form-text text-muted"
+                           th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputMotP" class="col-sm-2 col-form-label">Mot de passe</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{password}" id="exampleInputMotP"
+                           aria-describedby="WarningMotP">
+                    <small id="WarningMotP" class="form-text text-muted"
+                           th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="exampleInputdateNaissance" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" th:field="*{age}" id="exampleInputdateNaissance"
+                           aria-describedby="WarningdateNaissance">
+                    <small id="WarningdateNaissance" class="form-text text-muted"
+                           th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="exampleInputMail" class="col-sm-2 col-form-label">Mail</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" th:field="*{mail}" id="exampleInputMail"
+                           aria-describedby="WarningMail">
+                    <small id="WarningMail" class="form-text text-muted" th:if="${#fields.hasErrors('mail')}"
+                           th:errors="*{mail}"></small>
+                </div>
+            </div>
+            <div class="row">
+                <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                <a th:href="@{/listUser}" class="btn btn-info" role="button">Retour</a>
+            </div>
+        </form>
+<!--    </div>-->
 </div>
 </body>
 </html>

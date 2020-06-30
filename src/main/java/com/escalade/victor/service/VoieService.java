@@ -42,14 +42,6 @@ public class VoieService {
 
     }
 
-    public void addSiteVoie(Site site, long id)
-    {
-        this.siteRecherche = site;
-        if (!siteRecherche.getVoies().contains(this)){
-            siteRecherche.getVoies().add(this.getVoieById(id));
-        }
-    }
-
     public void deleteVoiesById(Long id)
     {
         voieRepository.deleteById(id);

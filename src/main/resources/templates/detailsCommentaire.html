@@ -12,55 +12,45 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Detail Commentaire</h3>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="exampleInputId" th:value="${commentaire.id}"
-                                   aria-describedby="WarningInputId" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputNomSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputNomSecteur"
-                                   th:value="${commentaire.site.nomSite}"
-                                   aria-describedby="WarningInputNomSecteur" disabled>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputAuteur"
-                                   th:value="${commentaire.utilisateur.usern ame}"
-                                   aria-describedby="WarningAuteur" disabled>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputzoneCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputzoneCommentaire"
-                                   th:value="${commentaire.zoneCommentaire}"
-                                   aria-describedby="WarningzoneCommentaire" disabled>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-
-                    </div>
-
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Detail Commentaire</h3>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="exampleInputId" th:value="${commentaire.id}"
+                           aria-describedby="WarningInputId" disabled>
+                </div>
             </div>
-        </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputNomSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputNomSecteur"
+                           th:value="${commentaire.site.nomSite}"
+                           aria-describedby="WarningInputNomSecteur" disabled>
+                </div>
+            </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputAuteur"
+                           th:value="${commentaire.utilisateur.username}"
+                           aria-describedby="WarningAuteur" disabled>
+                </div>
+            </div>
+         <div class="form-group row has-feedback">
+                <label for="exampleInputzoneCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputzoneCommentaire"
+                           th:value="${commentaire.zoneCommentaire}"
+                           aria-describedby="WarningzoneCommentaire" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+            </div>
+        </form>
     </div>
 </div>
 </body>

@@ -7,11 +7,9 @@
           rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar">
-
-        <div class="container-xl">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div th:fragment="navbar">
+    <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -45,18 +43,17 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/reservation/listValidationByUser}">Mes validations</a>
                         </li>
-                        <li sec:authorize="isAuthenticated()">
-                                <a class="nav-link" th:href="@{/logout}">Logout</a>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/topologie/SearchTopoList}">Recherche</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                                <a class="nav-link" th:href="@{/logout}">Logout</a>
                         </li>
 
                     </ul>
                 </div>
             </nav>
-        </div>
+
 </div>
 </body>
 </html>

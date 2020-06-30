@@ -15,63 +15,51 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card text-center">
-        <div class="card-body">
-            <h1> Liste de mes validations</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Numero réservation</th>
-                    <th>Topologie</th>
-                    <th>Etat</th>
-                    <th>Action</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${reservation.id}"/>
-                        <td th:text="${reservation.topologie.nomTopologie}"/>
-                        <td th:text="${reservation.etat}"/>
-                        <td>
-                            <div class="row">
-<!--                            <th:block th:if="${reservation.etat== 'Accepté'}">
-                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}">Annuler
-                                    reservation</a>
-                            </th:block>-->
-                                <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
-                                    <th:block th:if="${reservation.etat== 'Accepté'}">
-                                        <a>Annuler reservation</a>
-                                    </th:block>
-                                </form>
+<div class="container mt-5">
+    <h1> Liste de mes validations</h1>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Numero réservation</th>
+            <th>Topologie</th>
+            <th>Etat</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${reservation.id}"/>
+                <td th:text="${reservation.topologie.nomTopologie}"/>
+                <td th:text="${reservation.etat}"/>
+                <td>
+                    <div class="row">
+                        <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}"
+                              th:object="${reservation}" method="post">
+                            <th:block th:if="${reservation.etat== 'Accepté'}">
+                                <a>Annuler reservation</a>
+                            </th:block>
+                        </form>
+                        <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}"
+                              th:object="${reservation}" method="post">
+                            <th:block th:if="${reservation.etat == 'En cours'}">
+                                <button class="btn btn-primary" type="submit">Accepter</button>
+                            </th:block>
+                        </form>
+                        <form th:action="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}"
+                              th:object="${reservation}" method="post">
+                            <th:block th:if="${reservation.etat == 'En cours'}">
+                                <button class="btn btn-primary" type="submit">Refuser</button>
+                            </th:block>
+                        </form>
 
-<!--                            <th:block th:if="${reservation.etat== 'En cours'}">
-                                <a th:href="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" class="btn btn-primary" type="submit" th:name="action" th:value="Submit">Accepter</a>
-                            </th:block>-->
-                                <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
-                                    <th:block th:if="${reservation.etat == 'En cours'}">
-                                        <button class="btn btn-primary" type="submit">Accepter</button>
-                                    </th:block>
-                                </form>
-<!--                            <th:block th:if="${reservation.etat == 'En cours'}">
-                                <a th:href="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}" class="btn btn-primary" type="submit" th:name="action" th:value="Submit">Refuser</a>
-                            </th:block>-->
-                                <form th:action="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}" th:object="${reservation}" method="post">
-                                    <th:block th:if="${reservation.etat == 'En cours'}">
-                                    <button class="btn btn-primary" type="submit">Refuser</button>
-                                    </th:block>
-                                </form>
-
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
-            </div>
-        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
     </div>
 </div>
 </body>

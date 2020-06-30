@@ -14,51 +14,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace = "fragments/layout :: navbar"></div>
-<div class="container-xl">
-<!--    <div layout:fragment="content">-->
-
-        <div class="card text-center">
-
-            <div class="card-body">
-                <h1> Liste des sites</h1>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped text-center">
-                        <thead>
-                        <th>Nom du site</th>
-                        <th>Topologie du site</th>
-                        <th>Detail</th>
-                        <th>Editer</th>
-                        <th>Rattacher le site sur le topo</th>
-                        <th>Ajouter Voie</th>
-                        <th>Ajouter Commentaire</th>
-                        </thead>
-                        <tbody>
-                        <tr th:each="site, rowStat: ${sites}"
-                            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                            <td th:text="${site.nomSite}"/>
-                            <td th:text="${site.topologie}"/>
-                            <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                            <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                            <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>
-<!--                            <td><a th:href="@{/voie/addVoie}" class="btn btn-primary" role="button">Ajouter</a></td>-->
-                            <td><a th:href="@{/site/addVoieSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter site</a></td>
-<!--                            <td><a th:href="@{/commentaire/addCommentaire}" class="btn btn-primary" role="button">Ajouter commentaire</a>-->
-                            <td><a th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter commentaire</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
-                    <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
-                </div>
-            </div>
-
-        </div>
-
+<div th:replace="fragments/layout :: navbar"></div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3"> Liste des sites</h3>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Nom du site</th>
+            <th>Topologie du site</th>
+            <th>Detail</th>
+            <th>Editer</th>
+            <th>Rattacher le site sur le topo</th>
+            <th>Ajouter Voie</th>
+            <th>Ajouter Commentaire</th>
+            </thead>
+            <tbody>
+            <tr th:each="site, rowStat: ${sites}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${site.nomSite}"/>
+                <td th:text="${site.topologie}"/>
+                <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
+                <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
+                <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>
+                <td><a th:href="@{/site/addVoieSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter
+                    site</a></td>
+                <td><a th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}" class="btn btn-primary" role="button">Ajouter
+                    commentaire</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+    <div class="row">
+        <a th:href="@{/site/addSite}" class="btn btn-primary" role="button">Ajouter</a> </br>
+        <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
+    </div>
+</div>
 </div>
 </body>
 </html>

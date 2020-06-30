@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.escalade.victor"},{"l":"com.escalade.victor.config"},{"l":"com.escalade.victor.controller"},{"l":"com.escalade.victor.exception"},{"l":"com.escalade.victor.model"},{"l":"com.escalade.victor.repository"},{"l":"com.escalade.victor.service"}]

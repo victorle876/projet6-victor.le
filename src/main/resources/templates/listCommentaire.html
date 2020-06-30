@@ -36,7 +36,12 @@
                         <td th:text="${commentaire.utilisateur.username}"/>
                         <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a></td>
                         <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a></td>
-                        <td><a th:href="@{/commentaire/deleteCommentaire1?id={id}(id=${commentaire.id})}">Supprimer</a></td>
+<!--                        <td><a th:href="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">Supprimer</a></td>-->
+                        <td>
+                        <form th:action="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}" method="post">
+                            <button class="btn btn-primary" type="submit">Supprimer</button>
+                        </form>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

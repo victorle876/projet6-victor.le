@@ -15,35 +15,31 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card text-center">
-        <div class="card-body">
-            <h1> Recherche topo</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Nom Topologie</th>
-                    <th>Secteur</th>
-                    <th>Pays</th>
-                    <th>Utilisateur</th>
-                    <th>Detail</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="topologie, rowStat: ${topologiesearch}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${topologie.nomTopologie}"/>
-                        <td th:text="${topologie.secteur}"/>
-                        <td th:text="${topologie.pays}"/>
-                        <td th:text="${topologie.utilisateur.username}"/>
-                        <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
-            </div>
-        </div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3"> Recherche topo</h3>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Nom Topologie</th>
+            <th>Secteur</th>
+            <th>Pays</th>
+            <th>Utilisateur</th>
+            <th>Detail</th>
+            </thead>
+            <tbody>
+            <tr th:each="topologie, rowStat: ${topologiesearch}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${topologie.nomTopologie}"/>
+                <td th:text="${topologie.secteur}"/>
+                <td th:text="${topologie.pays}"/>
+                <td th:text="${topologie.utilisateur.username}"/>
+                <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
     </div>
 </div>
 </body>

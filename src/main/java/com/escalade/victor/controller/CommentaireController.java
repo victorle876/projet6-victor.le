@@ -5,6 +5,8 @@ import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
 import com.escalade.victor.service.CommentaireService;
 import com.escalade.victor.service.SiteService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class CommentaireController {
     @Autowired
     private SiteService siteService;
 
+    private static final Logger logger = LogManager.getLogger(CommentaireController.class);
+
     @RequestMapping(value = "/listCommentaire/{id}", method = RequestMethod.GET)
     public String CommentaireList(@PathVariable("id") Long id, Model model) {
         Site siteId = this.siteService.getSiteById(id);
@@ -38,7 +42,7 @@ public class CommentaireController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Commentaire commentaire = commentaireService.getCommentaireById(id);
         if (commentaire == null) {
-            System.out.println("le commentaire n'existe pas");
+            logger.debug("le commentaire n'existe pas");
         }
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
         return "detailsCommentaire";
@@ -81,21 +85,20 @@ public class CommentaireController {
         }
     }
 
-    @RequestMapping(value = "/deleteCommentaire1", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.GET)
     public String makeCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
+        model.addAttribute("id", id);
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "editionCommentaire";
+        return "listCommentaire";
 
     }
 
-    @RequestMapping(value = "/deleteCommentaire1", method = RequestMethod.POST)
-    public String saveCommentaireDeleted(@PathVariable(value = "id") long id, Commentaire Commentaire, BindingResult errors) {
-        if (errors.hasErrors()) {
-            return "editionCommentaire";
-        } else {
-            this.commentaireService.deleteCommentaireById(Commentaire.getId());
-        //    model.addAttribute("Commentaires", this.commentaireService.deleteCommentaireById(id));
-            return "redirect:/";
-        }
+    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.POST)
+    public String saveCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
+            Commentaire commentaireId= this.commentaireService.getCommentaireById(id);
+            logger.debug(commentaireId);
+            this.commentaireService.deleteCommentaireById(id);
+            model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
+            return "redirect:/site/listSiteByUser";
     }
 }

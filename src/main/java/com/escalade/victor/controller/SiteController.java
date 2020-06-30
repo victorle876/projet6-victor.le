@@ -4,6 +4,8 @@ import com.escalade.victor.model.*;
 import com.escalade.victor.repository.*;
 import com.escalade.victor.service.*;
 import com.escalade.victor.service.UtilisateurService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +39,8 @@ public class SiteController {
     @Autowired
     private VoieService voieService;
 
+    private static final Logger logger = LogManager.getLogger(SiteController.class);
+
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
     public String SiteList(Model model) {
         model.addAttribute("sites", this.siteService.getAllSites());
@@ -52,7 +56,7 @@ public class SiteController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Site site = siteService.getSiteById(id);
         if (site == null) {
-            System.out.println("le site n'existe pas");
+            logger.debug("le site n'existe pas");
         }
         model.addAttribute("site", this.siteService.getSiteById(id));
         return "detailsSite";
@@ -70,8 +74,7 @@ public class SiteController {
 
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-      //  List<Site> siteTrouve = this.topologieService.findSiteByUser(utilisateurId);
-        System.out.println(utilisateurId);
+        logger.debug(utilisateurId);
         if (result.hasErrors()) {
             return "addSite";
         } else {
@@ -86,8 +89,7 @@ public class SiteController {
     public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologie) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         List<Topologie> topologieTrouve = this.topologieService.findTopologieByUser(utilisateurId);
-        System.out.println(topologieTrouve);
-
+        logger.debug(topologieTrouve);
         Site site = this.siteService.getSiteById(idSite);
         Topologie topologieRequis = new Topologie();
         if (site.getTopologie() != null){
@@ -103,12 +105,11 @@ public class SiteController {
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
     public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologieSelectionne) {
         topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
-        System.out.println(topologieSelectionne);
-        System.out.println(idSite);
+        logger.debug(topologieSelectionne);
+        logger.debug(idSite);
         Site siteSelectionne = this.siteService.getSiteById(idSite);
-      //  System.out.println("Bjr");
         siteSelectionne.setTopologie(topologieSelectionne);
-        System.out.println(siteSelectionne);
+        logger.debug(siteSelectionne);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("sites", this.siteService.getAllSites());
         return "addTopoSite";
@@ -146,7 +147,6 @@ public class SiteController {
             return "editionSite";
         } else {
             this.siteService.deleteSiteById(site.getId());
-  //          model.addAttribute("sites", this.siteService.deleteSiteById(id));
             return "redirect:/";
         }
     }

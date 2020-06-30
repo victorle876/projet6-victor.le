@@ -6,6 +6,8 @@ import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.SiteRepository;
 import com.escalade.victor.repository.TopologieRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,12 +26,12 @@ public class TopologieService {
     @Autowired
     SiteRepository siteRepository;
 
+    private static final Logger logger = LogManager.getLogger(TopologieService.class);
 
     public List<Topologie> getAllTopologies()
     {
         List<Topologie> TopologieList = topologieRepository.findAll();
-
-        System.out.println(TopologieList.size());
+        logger.debug(TopologieList.size());
         if(TopologieList.size() > 0) {
             return TopologieList;
         } else {
@@ -74,8 +76,8 @@ public class TopologieService {
     }
 
     public List<Topologie> findTopologieBySecteurOrNom(String recherche) throws UsernameNotFoundException {
-        System.out.println();
         List<Topologie>  topologieTrouve = this.topologieRepository.findByNomTopologieIgnoreCaseContainingOrSecteurIgnoreCaseContaining(recherche, recherche);
+        logger.debug(topologieTrouve);
         if (topologieTrouve == null){
             throw new RuntimeException("Topologie introuvable");
         }
@@ -84,7 +86,7 @@ public class TopologieService {
 
     public List<Topologie> findTopologieByPublic() throws UsernameNotFoundException {
         List<Topologie>  topologiePublic = this.topologieRepository.findByIspublicTrue();
-        System.out.println(topologiePublic);
+        logger.debug(topologiePublic);
         if (topologiePublic == null){
             throw new RuntimeException("Topologie introuvable");
         }
@@ -93,7 +95,7 @@ public class TopologieService {
 
     public List<Topologie> findTopologieByPublicAndIspublic(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Topologie>  topologiePublicUser = this.topologieRepository.findByAndIspublicTrueAndUtilisateurNot(utilisateur1);
-        System.out.println(topologiePublicUser);
+        logger.debug(topologiePublicUser);
         if (topologiePublicUser == null){
             throw new RuntimeException("Topologie introuvable");
         }

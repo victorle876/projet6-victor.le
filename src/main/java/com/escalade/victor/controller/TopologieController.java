@@ -5,6 +5,8 @@ import com.escalade.victor.repository.SiteRepository;
 import com.escalade.victor.service.SiteService;
 import com.escalade.victor.service.TopologieService;
 import com.escalade.victor.service.UtilisateurService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,22 +37,19 @@ public class TopologieController {
     @Autowired
     private SiteRepository siteRepository;
 
+    private static final Logger logger = LogManager.getLogger(TopologieController.class);
+
     @RequestMapping(value = "/listTopologie", method = RequestMethod.GET)
     public String TopoList(Model model) {
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
         return "listTopologie";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String TopoHome(Model model) {
-        return "topologiehome";
-    }
-
     @RequestMapping(value = "/detailsTopologie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Topologie topologie = topologieService.getTopologieById(id);
         if (topologie == null) {
-            System.out.println("le topologie n'existe pas");
+            logger.debug("le topologie n'existe pas");
         }
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
         return "detailsTopologie";
@@ -64,14 +63,14 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "/saveTopologie", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result){
+    public String save(@Valid @ModelAttribute Topologie topologie, Model model, BindingResult result) {
         if (result.hasErrors()) {
             return "addTopologie";
         } else {
             this.utilisateurService.getUtilisateurConnected();
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
             topologie.setUtilisateur(utilisateurId);
-            System.out.println(utilisateurId);
+            logger.debug("utilisateurId");
             topologie.setIspublic(Boolean.FALSE); // mise à flag false pour topo non publié
             this.topologieService.saveTopologie(topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
@@ -79,24 +78,24 @@ public class TopologieController {
         }
     }
 
-        @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.GET)
-        public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
+    @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.GET)
+    public String addSiteTopo(@PathVariable("id") Long id, Model model, Site site) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         List<Site> siteTrouve = this.topologieService.findSiteByUser(utilisateurId);
         Site siteRequis = new Site();
         model.addAttribute("idTopologie", id);
         model.addAttribute("siteRequis", siteRequis);
-        System.out.println(siteTrouve);
-        model.addAttribute("siteTrouve",siteTrouve);
+        logger.debug(siteTrouve);
+        model.addAttribute("siteTrouve", siteTrouve);
         return "addSiteTopo";
         //
     }
 
     @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.POST)
     public String saveSiteTopo(@PathVariable("id") Long id, Site siteSelectionne, Model model) {
-        System.out.println(id);
-        System.out.println(siteSelectionne);
+        logger.debug(id);
+        logger.debug(siteSelectionne);
         Topologie topo = this.topologieService.getTopologieById(id);
         siteSelectionne = siteRepository.getOne(siteSelectionne.getId());
         siteSelectionne.setTopologie(topo);
@@ -145,7 +144,7 @@ public class TopologieController {
     public String TopoListUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        System.out.println(utilisateurId);
+        logger.debug(utilisateurId);
         model.addAttribute("topologiesbyuser", this.topologieService.findTopologieByUser(utilisateurId));
         return "listTopologieByUser";
     }
@@ -154,7 +153,7 @@ public class TopologieController {
     public String TopoListDifferentUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        System.out.println(utilisateurId);
+        logger.debug(utilisateurId);
         model.addAttribute("topologiesbyuserdifferent", this.topologieService.findTopologieByUserDifferent(utilisateurId));
         return "listTopologieDifferent";
     }
@@ -182,9 +181,9 @@ public class TopologieController {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         Topologie topologieId = this.topologieService.getTopologieById(id);
-        if (topologieId.getIspublic() == Boolean.FALSE){
+        if (topologieId.getIspublic() == Boolean.FALSE) {
             topologieId.setIspublic(Boolean.TRUE);
-    //        topologieId.setUtilisateur(null);
+            //        topologieId.setUtilisateur(null);
             this.topologieService.saveTopologie(topologieId);
             model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         }
@@ -192,29 +191,24 @@ public class TopologieController {
     }
 
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.GET)
-    public String listTopoSearch( Model model) {
+    public String listTopoSearch(Model model) {
         model.addAttribute("topologie", new Topologie());
-        System.out.println(new Topologie());
+        logger.debug(new Topologie());
         return "topoSearch";
     }
 
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.POST)
-    public String saveTopoSearchList( Model model, Topologie topologieEnrecherche, String recherche) {
-
+    public String saveTopoSearchList(Model model, Topologie topologieEnrecherche, String recherche) {
         String nomTopologie = topologieEnrecherche.getNomTopologie();
         String secteur = topologieEnrecherche.getSecteur();
-        System.out.println(nomTopologie);
-        System.out.println(secteur);
-//        if (nomTopologie != null) {
-            recherche = (nomTopologie);
-//        }
-        List <Topologie>  topologieRecherche = this.topologieService.findTopologieBySecteurOrNom(recherche);
-        System.out.println(this.topologieService.findTopologieBySecteurOrNom(recherche));
+        logger.debug(nomTopologie);
+        logger.debug(secteur);
+        recherche = (nomTopologie);
+        List<Topologie> topologieRecherche = this.topologieService.findTopologieBySecteurOrNom(recherche);
+        logger.debug(this.topologieService.findTopologieBySecteurOrNom(recherche));
         model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(recherche));
         return "searchListTopo";
     }
-
-
 
 }
 

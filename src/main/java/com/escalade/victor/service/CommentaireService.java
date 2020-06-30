@@ -58,12 +58,7 @@ public class CommentaireService {
 
     public void deleteCommentaireById(Long id)
     {
-/*        Optional<Commentaire> CommentaireEfface = commentaireRepository.findById(id);
-
-        if(CommentaireEfface.isPresent())
-        {*/
-            commentaireRepository.deleteById(id);
-   //     }
+           commentaireRepository.deleteById(id);
     }
 }
 

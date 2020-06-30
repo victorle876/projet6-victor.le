@@ -13,44 +13,43 @@
 
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Detail site</h3>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputId">Id</label>
-                        <div class="col-sm-10">
-                            <input type="number" disabled class="form-control" id="exampleInputId"
-                                   th:value="${site.id}">
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputNomSite" class="col-sm-2 col-form-label">Nom</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputNomSite" th:value="${site.nomSite}"
-                                   aria-describedby="WarningInputNomSite" disabled>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputVoie" class="col-sm-2 col-form-label">Voie</label>
-                        <div class="col-sm-10">
-                            <input type="text" disabled class="form-control" id="exampleInputVoie"
-                                   th:value="*{voies}">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <a th:href="@{/site/listSite}" class="btn btn-info" role="button">Retour</a>
-
-                    </div>
-
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Detail site</h3>
+        <form>
+            <div class="form-group row">
+                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="number" disabled class="form-control" id="exampleInputId"
+                           th:value="${site.id}">
+                </div>
             </div>
-        </div>
-    </div>
+            <div class="form-group row">
+                <label for="exampleInputNomSite" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputNomSite" th:value="${site.nomSite}"
+                           aria-describedby="WarningInputNomSite" disabled>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="exampleInputVoie" class="col-sm-2 col-form-label">Voie</label>
+                <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" id="exampleInputVoie"
+                           th:value="*{site.voies}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
+                <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" id="exampleInputCommentaire"
+                           th:value="*{site.commentaires}">
+                </div>
+            </div>
+            <div class="row">
+                <a th:href="@{/site/listSite}" class="btn btn-info" role="button">Retour</a>
+            </div>
+        </form>
+
 </div>
 </body>
 </html>

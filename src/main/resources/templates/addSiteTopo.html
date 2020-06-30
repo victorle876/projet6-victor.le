@@ -12,30 +12,23 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-    <div class="container-xl">
-        <div class="card rounded-0 shadow">
-            <div class="card-body">
-                <h3>Ajout sites</h3>
-                <div class="col-md-6">
-                    <form th:action="@{/topologie/addSiteTopo/{id}(id=${id})}" th:object="${site}" method="post">
-                        <div class="input-group mb-3">
-                            <select class="custom-select" th:field="*{id}">
-                                <option th:each="site : ${siteTrouve}"
-                                    th:value="${site.id}"
-                                    th:text="${site.nomSite}"
-                                        th:selected="${siteRequis.id == site.id}">>
-                                </option>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                            <a class="btn btn-info"  th:href="@{/topologie/listTopologie}" role="button">Retour</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Ajout sites</h3>
+    <form th:action="@{/topologie/addSiteTopo/{id}(id=${id})}" th:object="${site}" method="post">
+        <div class="input-group mb-3">
+            <select class="custom-select" th:field="*{id}">
+                <option th:each="site : ${siteTrouve}"
+                        th:value="${site.id}"
+                        th:text="${site.nomSite}"
+                        th:selected="${siteRequis.id == site.id}">>
+                </option>
+            </select>
         </div>
-    </div>
+        <div class="row">
+            <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+            <a class="btn btn-info" th:href="@{/topologie/listTopologie}" role="button">Retour</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

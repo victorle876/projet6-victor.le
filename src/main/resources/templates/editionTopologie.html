@@ -13,52 +13,48 @@
 
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Modifier detail topologie</h3>
-            <div class="col-md-6">
-
-                <form action="#" th:action="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}"
-                      th:object="${topologie}" method="post">
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
-                        <div class="col-sm-10">
-                            <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputNomTopo" class="col-sm-2 col-form-label">Nom Topologie</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputNomTopo"
-                                   th:field="*{nomTopologie}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Secteur</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputSecteur"
-                                   th:field="*{secteur}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputPays"
-                                   th:field="*{pays}">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                        <a th:href="@{/topologie/listTopologieByUser}" class="btn btn-primary" role="button">Retour</a>
-                    </div>
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Modifier detail topologie</h3>
+    <div class="col-md-6">
+        <form action="#" th:action="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}"
+              th:object="${topologie}" method="post">
+            <div class="form-group row has-feedback">
+                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="number" disabled class="form-control" id="exampleInputId" th:field="*{id}">
+                </div>
             </div>
-        </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputNomTopo" class="col-sm-2 col-form-label">Nom Topologie</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputNomTopo"
+                           th:field="*{nomTopologie}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Secteur</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputSecteur"
+                           th:field="*{secteur}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputPays"
+                           th:field="*{pays}">
+                </div>
+            </div>
+
+            <div class="row">
+                <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                <a th:href="@{/topologie/listTopologieByUser}" class="btn btn-primary" role="button">Retour</a>
+            </div>
+        </form>
     </div>
+
 </div>
 </body>
 </html>

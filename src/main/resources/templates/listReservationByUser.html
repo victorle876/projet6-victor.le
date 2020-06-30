@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout"-->
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
@@ -15,44 +13,39 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card text-center">
-        <div class="card-body">
-            <h1> Liste de mes reservations</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Numero réservation</th>
-                    <th>Topologie</th>
-                    <th>Etat</th>
-                    <th>Annuler</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${reservation.id}"/>
-                        <td th:text="${reservation.topologie.nomTopologie}"/>
-                        <td th:text="${reservation.etat}"/>
-                        <td>
-                            <form th:action="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}"
-                                  th:object="${reservation}" method="post">
-                                <div th:if="${reservation.etat == 'En cours'}">
-<!--                                    <a th:href="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}">Annuler</a>-->
-                                    <th:block th:if="${reservation.etat == 'En cours'}">
-                                        <button class="btn btn-primary" type="submit">Annuler</button>
-                                    </th:block>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <!--                <a th:href="@{/reservation/addTopoReservation}" class="btn btn-primary" role="button">Ajouter</a> </br>-->
-                <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
-            </div>
-        </div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3"> Liste de mes reservations</h3>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Numero réservation</th>
+            <th>Topologie</th>
+            <th>Etat</th>
+            <th>Annuler</th>
+            </thead>
+            <tbody>
+            <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${reservation.id}"/>
+                <td th:text="${reservation.topologie.nomTopologie}"/>
+                <td th:text="${reservation.etat}"/>
+                <td>
+                    <form th:action="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}"
+                          th:object="${reservation}" method="post">
+                        <div th:if="${reservation.etat == 'En cours'}">
+                            <!--                                    <a th:href="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}">Annuler</a>-->
+                            <th:block th:if="${reservation.etat == 'En cours'}">
+                                <button class="btn btn-primary" type="submit">Annuler</button>
+                            </th:block>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
     </div>
 </div>
 </div>

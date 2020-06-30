@@ -14,39 +14,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace = "fragments/layout :: navbar"></div>
-<div class="container-xl">
-<!--    <div layout:fragment="content">-->
-        <div class="card text-center">
-            <div class="card-body">
-                <h1> Liste des topologies</h1>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped text-center">
-                        <thead>
-                        <th>Numero Topologie</th>
-                        <th>Secteur</th>
-                        <th>Pays</th>
-                        <th>Utilisateur</th>
-                        <th>Reservation</th>
-                        </thead>
-                        <tbody>
-                        <tr th:each="topologie, rowStat: ${topologiesbyuserdifferent}"
-                            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                           <td th:text="${topologie.nomTopologie}"/>
-                            <td th:text="${topologie.secteur}"/>
-                            <td th:text="${topologie.pays}"/>
-                            <td th:text="${topologie.utilisateur.username}"/>
-                            <td><a th:href="@{/reservation/addTopoReservation/{id}(id=${topologie.id})}">Reserver</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
-                </div>
-            </div>
-        </div>
+<div th:replace="fragments/layout :: navbar"></div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3"> Liste des topologies</h3>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Numero Topologie</th>
+            <th>Secteur</th>
+            <th>Pays</th>
+            <th>Utilisateur</th>
+            <th>Reservation</th>
+            </thead>
+            <tbody>
+            <tr th:each="topologie, rowStat: ${topologiesbyuserdifferent}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${topologie.nomTopologie}"/>
+                <td th:text="${topologie.secteur}"/>
+                <td th:text="${topologie.pays}"/>
+                <td th:text="${topologie.utilisateur.username}"/>
+                <td><a th:href="@{/reservation/addTopoReservation/{id}(id=${topologie.id})}">Reserver</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+    <div class="row">
+        <a th:href="@{/admin/home}" class="btn btn-secondary" role="button">Retour</a>
+    </div>
+</div>
 </div>
 </body>
 </html>

@@ -56,14 +56,6 @@ public class ReservationService {
         return reservationTrouve;
     }
 
-/*    public List<Reservation> findReservationByUserDifferent(Utilisateur utilisateur1) throws UsernameNotFoundException {
-        List<Reservation>  reservationTrouveByUserDifferent = this.reservationRepository.findByUtilisateurNot(utilisateur1);
-        if (reservationTrouveByUserDifferent == null){
-            throw new RuntimeException("reservation introuvable");
-        }
-        return reservationTrouveByUserDifferent;
-    }*/
-
     public List<Reservation> findReservationByUserProprietaire(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Reservation>  reservationTrouveByUserDifferent = this.reservationRepository.findByUtilisateurAndTopologie(utilisateur1);
         if (reservationTrouveByUserDifferent == null){

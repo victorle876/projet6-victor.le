@@ -15,59 +15,52 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"> Header</div>
-<div class="container-xl">
-
-    <div class="card rounded-0 shadow">
-
-        <div class="card-body">
-            <h3>Login Form</h3>
-            <div class="col-md-6">
-                <form action="home" th:action="@{/connect}" method="post">
-                    <div class="form-group row has-feedback">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" name="username"
-                                   placeholder="Email" id="inputEmail3"/> <span
-                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" name="password"
-                                   placeholder="Password" id="inputPassword3"/> <span
-                                class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="remember-me"> Remember Me
-                        </label>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-xs-offset-8 col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div th:if="${param.logout}"
-                                 class="alert alert-info alert-dismissable">
-                                <p>
-                                    <i class="icon fa fa-info"></i> <span
-                                        th:text="${info.logout_success}">You have been logged
-           out.</span>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Login Form</h3>
+    <div class="col-md-6">
+        <form action="home" th:action="@{/connect}" method="post">
+            <div class="form-group row has-feedback">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="username"
+                           placeholder="Email" id="inputEmail3"/> <span
+                        class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
             </div>
-        </div>
+            <div class="form-group row has-feedback">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password"
+                           placeholder="Password" id="inputPassword3"/> <span
+                        class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="remember-me"> Remember Me
+                </label>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-offset-8 col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">LogIn</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div th:if="${param.logout}"
+                         class="alert alert-info alert-dismissable">
+                        <p>
+                            <i class="icon fa fa-info"></i> <span
+                                th:text="${info.logout_success}">You have been logged
+           out.</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-<!--</div>-->
 </body>
 </html>
 

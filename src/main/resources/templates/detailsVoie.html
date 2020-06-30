@@ -13,67 +13,61 @@
 
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Detail Voie</h3>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
-                        <div class="col-sm-10">
-                            <input type="number" disabled class="form-control" id="exampleInputId"
-                                   th:value="${voie.id}">
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputNomVoie" class="col-sm-2 col-form-label">Nom de la voie</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputNomVoie" th:value="${voie.nomVoie}"
-                                   aria-describedby="WarningInputNomVoie" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputVoie" class="col-sm-2 col-form-label">Nom du site</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputVoie" th:value="${voie.site.nomSite}"
-                                   aria-describedby="WarningInputVoie" disabled>
-                        </div>
-                    </div>
-
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputCotation" class="col-sm-2 col-form-label">Cotation</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="exampleInputCotation"
-                                   th:value="${voie.cotation}"
-                                   aria-describedby="WarningCotation" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputHauteur" class="col-sm-2 col-form-label">Hauteur</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="exampleInputHauteur"
-                                   th:value="${voie.hauteur}"
-                                   aria-describedby="WarningHauteur" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row has-feedback">
-                        <label for="exampleInputDistance" class="col-sm-2 col-form-label">Distance</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="exampleInputDistance"
-                                   th:value="${voie.distance}"
-                                   aria-describedby="WarningDistance" disabled>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
-                    </div>
-
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Detail Voie</h3>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="number" disabled class="form-control" id="exampleInputId"
+                           th:value="${voie.id}">
+                </div>
             </div>
-        </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputNomVoie" class="col-sm-2 col-form-label">Nom de la voie</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputNomVoie" th:value="${voie.nomVoie}"
+                           aria-describedby="WarningInputNomVoie" disabled>
+                </div>
+            </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputVoie" class="col-sm-2 col-form-label">Nom du site</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputVoie" th:value="${voie.site.nomSite}"
+                           aria-describedby="WarningInputVoie" disabled>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="exampleInputCotation" class="col-sm-2 col-form-label">Cotation</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="exampleInputCotation"
+                           th:value="${voie.cotation}"
+                           aria-describedby="WarningCotation" disabled>
+                </div>
+            </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputHauteur" class="col-sm-2 col-form-label">Hauteur</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="exampleInputHauteur"
+                           th:value="${voie.hauteur}"
+                           aria-describedby="WarningHauteur" disabled>
+                </div>
+            </div>
+            <div class="form-group row has-feedback">
+                <label for="exampleInputDistance" class="col-sm-2 col-form-label">Distance</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="exampleInputDistance"
+                           th:value="${voie.distance}"
+                           aria-describedby="WarningDistance" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+            </div>
+
+        </form>
     </div>
 </div>
 </body>

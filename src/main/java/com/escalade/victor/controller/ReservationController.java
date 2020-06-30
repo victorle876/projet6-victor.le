@@ -6,6 +6,8 @@ import com.escalade.victor.repository.TopologieRepository;
 import com.escalade.victor.service.ReservationService;
 import com.escalade.victor.service.TopologieService;
 import com.escalade.victor.service.UtilisateurService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,7 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    private static final Logger logger = LogManager.getLogger(ReservationController.class);
 
     @RequestMapping(value = "/listReservation", method = RequestMethod.GET)
     public String ReservationList(Model model) {
@@ -46,7 +49,7 @@ public class ReservationController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Reservation reservation = reservationService.getReservationById(id);
         if (reservation == null) {
-            System.out.println("le Reservation n'existe pas");
+            logger.debug("la reservation n'existe pas");
         }
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
         return "detailsReservation";
@@ -57,30 +60,23 @@ public class ReservationController {
     public String addTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
         model.addAttribute("id", id);
-        //       model.addAttribute("topologiepublic",topologieDifferent);
         model.addAttribute("topologie", topologieId);
         model.addAttribute("reservation", new Reservation());
-        //    return "listTopologieByUser";
-        // return "addTopoReservation";
         return "listTopologiePublic" ;
     }
 
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
     public String saveTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie, Reservation newReservation) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
-        System.out.println(topologieId);
+        logger.debug(topologieId);
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        //    Reservation reservation = this.reservationService.getReservationByTopologie(topologieId);
-        //     if ((reservation.getTopologie().equals(topologieId.getId()) && (reservation.getEtat() != "En cours"))) {
         newReservation.setTopologie(topologieId);
         newReservation.setEtat("En cours");
         newReservation.setUtilisateur(utilisateurId);
         this.reservationService.saveReservation(newReservation);
-        //     }
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.getAllReservations());
         return "redirect:/reservation/listReservationByUser";
-        //   return "listTopologiePublic";
     }
 
 
@@ -97,7 +93,7 @@ public class ReservationController {
     public String ValidationListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        System.out.println(this.reservationService.findReservationByUserProprietaire(utilisateurId));
+        logger.debug(this.reservationService.findReservationByUserProprietaire(utilisateurId));
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "listValidationByUser";
 
@@ -116,16 +112,10 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        System.out.println(topo);
-//        Utilisateur utilisateurProprietaire = topo.getUtilisateur();
-//        System.out.println(utilisateurProprietaire);
-        System.out.println(reservationExistant.getEtat());
-            reservationExistant.setEtat("Accepté");
-            this.reservationService.saveReservation(reservationExistant);
-  //          topo.setUtilisateur(reservationExistant.getUtilisateur());
-            //        topo.setIspublic(Boolean.TRUE);
-  //          this.topologieService.saveTopologie(topo);
-//        }
+        logger.debug(topo);
+        logger.debug(reservationExistant.getEtat());
+        reservationExistant.setEtat("Accepté");
+        this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
     }
@@ -144,12 +134,9 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        System.out.println(topo);
-   //     if (reservationExistant.getEtat() == "En cours") {
-   //         model.addAttribute("isBooked", Boolean.TRUE);
-            reservationExistant.setEtat("Refusé");
-            this.reservationService.saveReservation(reservationExistant);
-  //      }
+        logger.debug(topo);
+        reservationExistant.setEtat("Refusé");
+        this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
     }
@@ -168,8 +155,7 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        System.out.println(topo);
-        //     model.addAttribute("isBooked",Boolean.TRUE);
+        logger.debug(topo);
         reservationExistant.setEtat("Annulé");
         this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
@@ -208,7 +194,6 @@ public class ReservationController {
             return "editionReservation";
         } else {
             this.reservationService.deleteReservationById(reservation.getId());
-            //        model.addAttribute("Reservations", this.reservationService.deleteReservationById(id));
             return "redirect:/";
         }
     }

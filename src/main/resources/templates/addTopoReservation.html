@@ -12,19 +12,15 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
-<div class="container-xl">
-    <div class="card rounded-0 shadow">
-        <div class="card-body">
-            <h3>Demande de réservation</h3>
-            <div class="col-md-6">
-                <form action="#" th:action="@{/reservation/addTopoReservation/{id}(id=${id})}"
-                      th:object="${reservation}" method="post">
-                    <div>
-                        <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
-                    </div>
-                </form>
+<div class="container mt-5">
+    <h3 class="text-center mb-3">Demande de réservation</h3>
+    <div class="col-md-6">
+        <form action="#" th:action="@{/reservation/addTopoReservation/{id}(id=${id})}"
+              th:object="${reservation}" method="post">
+            <div>
+                <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>
