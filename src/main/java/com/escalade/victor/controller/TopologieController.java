@@ -51,6 +51,7 @@ public class TopologieController {
         if (topologie == null) {
             logger.debug("le topologie n'existe pas");
         }
+        logger.info(this.topologieService.getTopologieById(id));
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
         return "detailsTopologie";
 
@@ -70,7 +71,7 @@ public class TopologieController {
             this.utilisateurService.getUtilisateurConnected();
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
             topologie.setUtilisateur(utilisateurId);
-            logger.debug("utilisateurId");
+            logger.info("utilisateurId");
             topologie.setIspublic(Boolean.FALSE); // mise à flag false pour topo non publié
             this.topologieService.saveTopologie(topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
@@ -86,7 +87,7 @@ public class TopologieController {
         Site siteRequis = new Site();
         model.addAttribute("idTopologie", id);
         model.addAttribute("siteRequis", siteRequis);
-        logger.debug(siteTrouve);
+        logger.info(siteTrouve);
         model.addAttribute("siteTrouve", siteTrouve);
         return "addSiteTopo";
         //
@@ -94,8 +95,8 @@ public class TopologieController {
 
     @RequestMapping(value = "addSiteTopo/{id}", method = RequestMethod.POST)
     public String saveSiteTopo(@PathVariable("id") Long id, Site siteSelectionne, Model model) {
-        logger.debug(id);
-        logger.debug(siteSelectionne);
+        logger.info(id);
+        logger.info(siteSelectionne);
         Topologie topo = this.topologieService.getTopologieById(id);
         siteSelectionne = siteRepository.getOne(siteSelectionne.getId());
         siteSelectionne.setTopologie(topo);
@@ -118,6 +119,7 @@ public class TopologieController {
         } else {
             Topologie = this.topologieService.getTopologieById(id);
             this.topologieService.saveTopologie(Topologie);
+            logger.info(Topologie);
             model.addAttribute("topologies", this.topologieService.getAllTopologies());
             return "listTopologie";
         }
@@ -144,7 +146,7 @@ public class TopologieController {
     public String TopoListUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        logger.debug(utilisateurId);
+        logger.info(utilisateurId);
         model.addAttribute("topologiesbyuser", this.topologieService.findTopologieByUser(utilisateurId));
         return "listTopologieByUser";
     }
@@ -153,7 +155,7 @@ public class TopologieController {
     public String TopoListDifferentUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        logger.debug(utilisateurId);
+        logger.info(utilisateurId);
         model.addAttribute("topologiesbyuserdifferent", this.topologieService.findTopologieByUserDifferent(utilisateurId));
         return "listTopologieDifferent";
     }
@@ -193,7 +195,7 @@ public class TopologieController {
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.GET)
     public String listTopoSearch(Model model) {
         model.addAttribute("topologie", new Topologie());
-        logger.debug(new Topologie());
+        logger.info(new Topologie());
         return "topoSearch";
     }
 
@@ -201,11 +203,11 @@ public class TopologieController {
     public String saveTopoSearchList(Model model, Topologie topologieEnrecherche, String recherche) {
         String nomTopologie = topologieEnrecherche.getNomTopologie();
         String secteur = topologieEnrecherche.getSecteur();
-        logger.debug(nomTopologie);
-        logger.debug(secteur);
+        logger.info(nomTopologie);
+        logger.info(secteur);
         recherche = (nomTopologie);
         List<Topologie> topologieRecherche = this.topologieService.findTopologieBySecteurOrNom(recherche);
-        logger.debug(this.topologieService.findTopologieBySecteurOrNom(recherche));
+        logger.info(this.topologieService.findTopologieBySecteurOrNom(recherche));
         model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(recherche));
         return "searchListTopo";
     }

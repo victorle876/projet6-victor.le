@@ -49,7 +49,7 @@ public class ReservationController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Reservation reservation = reservationService.getReservationById(id);
         if (reservation == null) {
-            logger.debug("la reservation n'existe pas");
+            logger.info("la reservation n'existe pas");
         }
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
         return "detailsReservation";
@@ -68,7 +68,7 @@ public class ReservationController {
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
     public String saveTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie, Reservation newReservation) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
-        logger.debug(topologieId);
+        logger.info(topologieId);
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         newReservation.setTopologie(topologieId);
@@ -93,7 +93,7 @@ public class ReservationController {
     public String ValidationListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        logger.debug(this.reservationService.findReservationByUserProprietaire(utilisateurId));
+        logger.info(this.reservationService.findReservationByUserProprietaire(utilisateurId));
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "listValidationByUser";
 
@@ -112,8 +112,8 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        logger.debug(topo);
-        logger.debug(reservationExistant.getEtat());
+        logger.info(topo);
+        logger.info(reservationExistant.getEtat());
         reservationExistant.setEtat("Accepté");
         this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
@@ -134,7 +134,7 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        logger.debug(topo);
+        logger.info(topo);
         reservationExistant.setEtat("Refusé");
         this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
@@ -155,7 +155,7 @@ public class ReservationController {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
         Topologie topo = reservationExistant.getTopologie();
-        logger.debug(topo);
+        logger.info(topo);
         reservationExistant.setEtat("Annulé");
         this.reservationService.saveReservation(reservationExistant);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));

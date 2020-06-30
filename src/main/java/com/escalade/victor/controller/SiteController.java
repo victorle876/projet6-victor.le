@@ -56,8 +56,9 @@ public class SiteController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Site site = siteService.getSiteById(id);
         if (site == null) {
-            logger.debug("le site n'existe pas");
+            logger.info("le site n'existe pas");
         }
+        logger.info(this.siteService.getSiteById(id));
         model.addAttribute("site", this.siteService.getSiteById(id));
         return "detailsSite";
 
@@ -74,7 +75,7 @@ public class SiteController {
 
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        logger.debug(utilisateurId);
+        logger.info(utilisateurId);
         if (result.hasErrors()) {
             return "addSite";
         } else {
@@ -89,7 +90,7 @@ public class SiteController {
     public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologie) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         List<Topologie> topologieTrouve = this.topologieService.findTopologieByUser(utilisateurId);
-        logger.debug(topologieTrouve);
+        logger.info(topologieTrouve);
         Site site = this.siteService.getSiteById(idSite);
         Topologie topologieRequis = new Topologie();
         if (site.getTopologie() != null){
@@ -105,11 +106,11 @@ public class SiteController {
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
     public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologieSelectionne) {
         topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
-        logger.debug(topologieSelectionne);
-        logger.debug(idSite);
+        logger.info(topologieSelectionne);
+        logger.info(idSite);
         Site siteSelectionne = this.siteService.getSiteById(idSite);
         siteSelectionne.setTopologie(topologieSelectionne);
-        logger.debug(siteSelectionne);
+        logger.info(siteSelectionne);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("sites", this.siteService.getAllSites());
         return "addTopoSite";

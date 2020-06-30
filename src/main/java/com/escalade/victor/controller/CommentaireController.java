@@ -42,8 +42,9 @@ public class CommentaireController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Commentaire commentaire = commentaireService.getCommentaireById(id);
         if (commentaire == null) {
-            logger.debug("le commentaire n'existe pas");
+            logger.info("le commentaire n'existe pas");
         }
+        logger.info(this.commentaireService.getCommentaireById(id));
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
         return "detailsCommentaire";
 
@@ -96,7 +97,7 @@ public class CommentaireController {
     @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.POST)
     public String saveCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
             Commentaire commentaireId= this.commentaireService.getCommentaireById(id);
-            logger.debug(commentaireId);
+            logger.info(commentaireId);
             this.commentaireService.deleteCommentaireById(id);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
             return "redirect:/site/listSiteByUser";

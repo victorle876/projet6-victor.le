@@ -43,7 +43,7 @@ public class VoieController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Voie Voie = voieService.getVoieById(id);
         if (Voie == null) {
-            logger.debug("la voie n'existe pas");
+            logger.info("la voie n'existe pas");
         }
         model.addAttribute("voie", this.voieService.getVoieById(id));
         return "detailsVoie";
@@ -64,15 +64,17 @@ public class VoieController {
             return "editionVoie";
         } else {
             this.voieService.saveVoie(Voie);
+            logger.info(this.voieService.getAllVoies());
             model.addAttribute("voies", this.voieService.getAllVoies());
             return "redirect:/";
         }
     }
 
-        @RequestMapping(value = "/listVoieByUser", method = RequestMethod.GET)
-        public String VoieListByUser(Model model) {
+    @RequestMapping(value = "/listVoieByUser", method = RequestMethod.GET)
+    public String VoieListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        logger.info(this.voieService.findVoieByUser(utilisateurId));
         model.addAttribute("voiesbyuser", this.voieService.findVoieByUser(utilisateurId));
         return "listVoieByUser";
     }

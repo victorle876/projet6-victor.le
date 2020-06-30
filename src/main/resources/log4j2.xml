@@ -21,13 +21,11 @@
 
     </Appenders>
     <Loggers>
-
         <Logger name="com.escalade.victor" additivity="false">
             <AppenderRef ref="appLog" />
             <AppenderRef ref="Console" />
         </Logger>
-
-        <Root level="debug">
+        <Root level="info">
             <AppenderRef ref="Console" />
         </Root>
     </Loggers>

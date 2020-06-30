@@ -35,7 +35,7 @@ public class UtilisateurController {
     public String home(Model model) {
         model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        logger.debug(authentication);
+        logger.info(authentication);
         return "home";
     }
 
@@ -65,7 +65,7 @@ public class UtilisateurController {
             return "addUser";
         } else {
             utilisateur.setPassword(this.passwordEncoder.encode(utilisateur.getPassword()));
-            logger.debug(utilisateur);
+            logger.info(utilisateur);
             this.utilisateurService.saveUser(utilisateur);
             model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
             return "listUser";
@@ -76,8 +76,9 @@ public class UtilisateurController {
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Utilisateur utilisateur = utilisateurService.getUserById(id);
         if (utilisateur == null) {
-            logger.debug("l'utilisateur n'existe pas");
+            logger.info("l'utilisateur n'existe pas");
         }
+        logger.info(this.utilisateurService.getUserById(id));
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
         return "detailsUser";
     }
@@ -103,6 +104,7 @@ public class UtilisateurController {
     @RequestMapping(value = "/editionUser1", method = RequestMethod.GET)
     public String editionUser1(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
+        logger.info(this.utilisateurService.getUserById(id));
         return "editionUser";
 
     }
