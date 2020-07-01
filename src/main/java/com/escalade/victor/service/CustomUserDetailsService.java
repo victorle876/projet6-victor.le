@@ -26,6 +26,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private static final Logger logger = LogManager.getLogger(CustomUserDetailsService.class);
 
+    /**
+     * Méthode permet de trouver l'utilisateur en fonction de l'adresse mail
+     *
+     * @param username
+     *
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Utilisateur utilisateur = UtilisateurRepository.findByMail(username)
@@ -35,6 +41,12 @@ public class CustomUserDetailsService implements UserDetailsService {
                 getAuthorities(utilisateur));
     }
 
+    /**
+     * Méthode permet d'ajouter le role sur l'utilisateur
+     *
+     * @param utilisateur
+     * * @return la liste des commentaires
+     */
     private static Collection<? extends GrantedAuthority> getAuthorities(Utilisateur utilisateur) {
         String[] userRoles = utilisateur.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);

@@ -19,6 +19,11 @@ public class VoieService {
 
     private Site siteRecherche;
 
+    /**
+     * Méthode permet de lister toutes les voies via ce service
+     *
+     * * @return la liste des sites
+     */
     public List<Voie> getAllVoies()
     {
         List<Voie> VoieList = voieRepository.findAll();
@@ -30,23 +35,44 @@ public class VoieService {
         }
     }
 
+    /**
+     * Méthode permet de consulter la voie en fonction de l'id via ce service
+     *
+     * @param id
+     * * @return la voie via id
+     */
     public Voie getVoieById(Long id)
     {
         return this.voieRepository.findById(id).get();
-
     }
 
+    /**
+     * Méthode permet de sauvegarder la voie via ce service
+     *
+     * @param Voie
+     * * @return la voie sauvegardée
+     */
     public Voie saveVoie(Voie Voie)
     {
         return this.voieRepository.save(Voie);
-
     }
 
+    /**
+     * Méthode permet d'effacer la voie en fonction de l'id via ce service
+     *
+     * @param id
+     */
     public void deleteVoiesById(Long id)
     {
         voieRepository.deleteById(id);
     }
 
+    /**
+     * Méthode permet de trouver la liste des sites en fonction du site via ce service
+     *
+     * @param site1
+     * @return la liste
+     */
     public List<Voie> findVoieBySite(Site site1) throws UsernameNotFoundException {
         List<Voie>  voieTrouve = this.voieRepository.findBySite(site1);
         if (voieTrouve == null){
@@ -55,6 +81,12 @@ public class VoieService {
         return voieTrouve;
     }
 
+    /**
+     * Méthode permet de trouver la liste des sites en fonction de l'utilisateur via ce service
+     *
+     * @param utilisateur1
+     * @return la liste
+     */
     public List<Voie> findVoieByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Voie>  voieTrouve = this.voieRepository.findByUtilisateur(utilisateur1);
         if (voieTrouve == null){

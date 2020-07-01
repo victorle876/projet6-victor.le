@@ -28,6 +28,13 @@ public class CommentaireController {
 
     private static final Logger logger = LogManager.getLogger(CommentaireController.class);
 
+    /**
+     * Méthode permet de lister les commentaires
+     *
+     * @param id
+     * @param model
+     * * @return la page "listCommentaire"
+     */
     @RequestMapping(value = "/listCommentaire/{id}", method = RequestMethod.GET)
     public String CommentaireList(@PathVariable("id") Long id, Model model) {
         Site siteId = this.siteService.getSiteById(id);
@@ -37,6 +44,14 @@ public class CommentaireController {
         return "listCommentaire";
 
     }
+
+    /**
+     * Méthode permet de voir le commentaire en détail
+     *
+     * @param id
+     * @param model
+     * *  @return la page "detailscommentaire"
+     */
 
     @RequestMapping(value = "/detailsCommentaire", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
@@ -50,12 +65,27 @@ public class CommentaireController {
 
     }
 
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en get
+     *
+     * @param model
+     * * *  @return la page "AddCommentaire" en get
+     */
+
     @RequestMapping(value = "/addCommentaire", method = RequestMethod.GET)
     public String ajouterCommentaire(Model model) {
         model.addAttribute("commentaire", new Commentaire());
         return "addCommentaire";
     }
 
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en poist
+     *
+     * @param model
+     * @param commentaire
+     * @param result
+     * *   @return la page "AddCommentaire" en post
+     */
     @RequestMapping(value = "/saveCommentaire", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Commentaire commentaire, Model model, BindingResult result) {
 
@@ -68,6 +98,13 @@ public class CommentaireController {
         }
     }
 
+    /**
+     * Méthode permet de modifier le commentaire sur le site en get
+     *
+     * @param model
+     * @param id
+     * *   @return la page "editionCommentaire" en get
+     */
     @RequestMapping(value = "/editionCommentaire", method = RequestMethod.GET)
     public String editionCommentaire(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
@@ -75,6 +112,13 @@ public class CommentaireController {
 
     }
 
+    /**
+     * Méthode permet de modifier le commentaire sur le site en post
+     *
+     * @param model
+     * @param id
+     * *   @return la page "editionCommentaire" en post
+     */
     @RequestMapping(value = "/editionCommentaire", method = RequestMethod.POST)
     public String editionCommentaire(@RequestParam(value = "id") long id, @Valid @ModelAttribute Commentaire commentaire, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -86,6 +130,13 @@ public class CommentaireController {
         }
     }
 
+    /**
+     * Méthode permet d'effacer le commentaire sur le site en ger
+     *
+     * @param model
+     * @param id
+     * *   @return la page "deleteCommentaire" en get
+     */
     @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.GET)
     public String makeCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("id", id);
@@ -94,6 +145,14 @@ public class CommentaireController {
 
     }
 
+
+    /**
+     * Méthode permet d'effacer le commentaire sur le site en post
+     *
+     * @param model
+     * @param id
+     * *   @return la page "deleteCommentaire" en post
+     */
     @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.POST)
     public String saveCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
             Commentaire commentaireId= this.commentaireService.getCommentaireById(id);

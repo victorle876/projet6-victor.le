@@ -16,14 +16,14 @@
     <h3 class="text-center mb-3">Detail Commentaire</h3>
     <div class="col-md-6">
         <form>
-            <div class="form-group row has-feedback">
+            <div class="form-group row">
                 <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="exampleInputId" th:value="${commentaire.id}"
                            aria-describedby="WarningInputId" disabled>
                 </div>
             </div>
-            <div class="form-group row has-feedback">
+            <div class="form-group row">
                 <label for="exampleInputNomSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="exampleInputNomSecteur"
@@ -31,7 +31,7 @@
                            aria-describedby="WarningInputNomSecteur" disabled>
                 </div>
             </div>
-            <div class="form-group row has-feedback">
+            <div class="form-group row">
                 <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="exampleInputAuteur"
@@ -39,12 +39,11 @@
                            aria-describedby="WarningAuteur" disabled>
                 </div>
             </div>
-         <div class="form-group row has-feedback">
-                <label for="exampleInputzoneCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
+            <div class="form-group row">
+                <label for="exampleInputCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputzoneCommentaire"
-                           th:value="${commentaire.zoneCommentaire}"
-                           aria-describedby="WarningzoneCommentaire" disabled>
+                        <textarea disabled class="form-control" rows="10" id="exampleInputCommentaire"
+                                  th:text="*{commentaire.zoneCommentaire}"></textarea>
                 </div>
             </div>
             <div class="row">

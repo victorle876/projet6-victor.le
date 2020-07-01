@@ -41,17 +41,25 @@ public class SiteController {
 
     private static final Logger logger = LogManager.getLogger(SiteController.class);
 
+    /**
+     * Méthode permet de lister les sites
+     *
+     * @param model
+     * * @return la page "listSite"
+     */
     @RequestMapping(value = "/listSite", method = RequestMethod.GET)
     public String SiteList(Model model) {
         model.addAttribute("sites", this.siteService.getAllSites());
         return "listSite";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String siteHome(Model model) {
-        return "sitehome";
-    }
-
+    /**
+     * Méthode permet de voir le site en detail
+     *
+     * @param model
+     * @param id
+     * * @return la page "detailsSite"
+     */
     @RequestMapping(value = "/detailsSite", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Site site = siteService.getSiteById(id);
@@ -59,17 +67,36 @@ public class SiteController {
             logger.info("le site n'existe pas");
         }
         logger.info(this.siteService.getSiteById(id));
+        List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
+        logger.info(commentaireList);
         model.addAttribute("site", this.siteService.getSiteById(id));
+        model.addAttribute("commentairesbysite", commentaireList);
         return "detailsSite";
 
     }
 
+    /**
+     * Méthode permet d'ajouter le site sur le topo en get
+     *
+     * @param model
+     * * @return la page "addSite"
+     */
     @RequestMapping(value = "/addSite", method = RequestMethod.GET)
     public String ajouterSite(Model model) {
         model.addAttribute("site", new Site());
         return "addSite";
     }
 
+
+    /**
+     * Méthode permet d'ajouter le site sur le topo en post
+     *
+     * @param model
+     * @param site
+     * @param result
+     * @param utilisateur
+     * * @return la page "listSite"
+     */
     @RequestMapping(value = "/saveSite", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Site site, Utilisateur utilisateur, Model model, BindingResult result) {
 
@@ -86,6 +113,14 @@ public class SiteController {
         }
     }
 
+    /**
+     * Méthode permet de rattacher le site sur le topo en get
+     *
+     * @param model
+     * @param idSite
+     * @param topologie
+     * * @return la page "listSite"
+     */
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
     public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologie) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -103,6 +138,14 @@ public class SiteController {
         //
     }
 
+    /**
+     * Méthode permet de rattacher le site sur le topo en post
+     *
+     * @param model
+     * @param idSite
+     * @param topologieSelectionne
+     * * @return la page "addTopoSite"
+     */
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
     public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologieSelectionne) {
         topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
@@ -116,6 +159,13 @@ public class SiteController {
         return "addTopoSite";
     }
 
+    /**
+     * Méthode permet de modifier le site en get
+     *
+     * @param model
+     * @param id
+     * * @return la page "editionSite"
+     */
     @RequestMapping(value = "/editionSite", method = RequestMethod.GET)
     public String editionSite(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("site", this.siteService.getSiteById(id));
@@ -123,6 +173,13 @@ public class SiteController {
 
     }
 
+    /**
+     * Méthode permet de modifier le site en post
+     *
+     * @param model
+     * @param id
+     * * @return la page "editionSite"
+     */
     @RequestMapping(value = "/editionSite", method = RequestMethod.POST)
     public String editionSite(@RequestParam(value = "id") long id, @Valid @ModelAttribute Site site, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -135,6 +192,13 @@ public class SiteController {
         }
     }
 
+    /**
+     * Méthode permet d'effacer le site en get
+     *
+     * @param model
+     * @param id
+     * * @return la page "deleteSite"
+     */
     @RequestMapping(value = "/editionSite1", method = RequestMethod.GET)
     public String editionSite2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("site", this.siteService.getSiteById(id));
@@ -142,6 +206,15 @@ public class SiteController {
 
     }
 
+    /**
+     * Méthode permet d'effacer le site en get
+     *
+     * @param model
+     * @param id
+     * @param site
+     * @param errors
+     * * @return la page "deleteSite"
+     */
     @RequestMapping(value = "/deleteSite1", method = RequestMethod.POST)
     public String deleteSite(@RequestParam(value = "id") long id, @Valid @ModelAttribute Site site, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -152,6 +225,14 @@ public class SiteController {
         }
     }
 
+    /**
+     * Méthode permet d'ajouter la voie sur le site en get
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "addVoie"
+     */
     @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.GET)
     public String ajouterVoieSite(@PathVariable("id") Long id, Model model, Site site) {
         Site siteId = this.siteService.getSiteById(id);
@@ -160,6 +241,14 @@ public class SiteController {
         return "addVoie";
     }
 
+    /**
+     * Méthode permet d'ajouter la voie sur le site en post
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "home"
+     */
     @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.POST)
     public String saveVoieSite(@PathVariable("id") Long id, @Valid @ModelAttribute Voie voie, Site site, Model model, BindingResult result) {
         if (result.hasErrors()) {
@@ -176,6 +265,14 @@ public class SiteController {
         }
     }
 
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en get
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "home"
+     */
     @RequestMapping(value = "/addCommentaireSite/{id}", method = RequestMethod.GET)
     public String ajouterCommentaireSite(@PathVariable("id") Long id, Model model, Site site) {
         Site siteId = this.siteService.getSiteById(id);
@@ -184,6 +281,14 @@ public class SiteController {
         return "addCommentaire";
     }
 
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en post
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "home"
+     */
     @RequestMapping(value = "/addCommentaireSite/{id}", method = RequestMethod.POST)
     public String saveCommentaireSite(@PathVariable("id") Long id, @Valid @ModelAttribute Commentaire commentaire, Site site, Model model, BindingResult result) {
         if (result.hasErrors()) {
@@ -200,6 +305,12 @@ public class SiteController {
         }
     }
 
+    /**
+     * Méthode permet de lister tous les sites appartenant à l'utilisateur
+     *
+     * @param model
+     * * @return la page "listSiteByUser"
+     */
     @RequestMapping(value = "/listSiteByUser", method = RequestMethod.GET)
     public String SiteListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();

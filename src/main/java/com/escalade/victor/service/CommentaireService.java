@@ -24,6 +24,11 @@ public class CommentaireService {
 
     private Site siteRecherche;
 
+    /**
+     * Méthode permet de lister tous les commentaires via ce service
+     *
+     * * @return la liste des commentaires
+     */
     public List<Commentaire> getAllCommentaires()
     {
         List<Commentaire> CommentaireList = commentaireRepository.findAll();
@@ -35,18 +40,36 @@ public class CommentaireService {
         }
     }
 
+    /**
+     * Méthode permet de consulter le commentaire en fonction de l'id via ce service
+     *
+     * @param id
+     * * @return le commentaire via id
+     */
     public Commentaire getCommentaireById(Long id)
     {
         return this.commentaireRepository.findById(id).get();
 
     }
 
+    /**
+     * Méthode permet de sauvegarder le commentaire via ce service
+     *
+     * @param commentaire
+     *
+     */
     public Commentaire saveCommentaire(Commentaire commentaire)
     {
 
             return this.commentaireRepository.save(commentaire);
     }
 
+    /**
+     * Méthode permet de trouver le commentaire en fonction du site via ce service
+     *
+     * @param site1
+     * * @return la liste des commentaires
+     */
     public List<Commentaire> findCommentaireBySite(Site site1) throws UsernameNotFoundException {
         List<Commentaire>  commentaireTrouve = this.commentaireRepository.findBySite(site1);
         if (commentaireTrouve == null){
@@ -56,6 +79,11 @@ public class CommentaireService {
     }
 
 
+    /**
+     * Méthode permet d'effacer le commentaire en fonction de l'id via ce service
+     *
+     * @param id
+     */
     public void deleteCommentaireById(Long id)
     {
            commentaireRepository.deleteById(id);

@@ -31,6 +31,12 @@ public class UtilisateurController {
 
     private static final Logger logger = LogManager.getLogger(SiteController.class);
 
+    /**
+     * Méthode permet d'aller sur la page principale
+     *
+     * @param model
+     * * @return la page "home"
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
@@ -39,12 +45,24 @@ public class UtilisateurController {
         return "home";
     }
 
+    /**
+     * Méthode permet d'aller sur la page principale en mode admin
+     *
+     * @param model
+     * * @return la page "adminhome"
+     */
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
     public String AdminHome(Model model) {
         return "adminhome";
     }
 
 
+    /**
+     * Méthode permet d'aller sur la page principale en mode admin
+     *
+     * @param model
+     * * @return la page "home"
+     */
     @RequestMapping(value = "/listUser", method = RequestMethod.GET)
     public String UserList(Model model) {
         model.addAttribute("utilisateurs", this.utilisateurService.getAllUsers());
@@ -52,12 +70,24 @@ public class UtilisateurController {
 
     }
 
+    /**
+     * Méthode permet d'ajouter les utilisateurs en get
+     *
+     * @param model
+     * * @return la page "addUser"
+     */
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     public String ajouterUser(Model model) {
         model.addAttribute("utilisateur", new Utilisateur());
         return "addUser";
     }
 
+    /**
+     * Méthode permet d'ajouter les utilisateurs en post
+     *
+     * @param model
+     * * @return la page "addUser"
+     */
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Utilisateur utilisateur, Model model, BindingResult result) {
 
@@ -72,6 +102,12 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Méthode permet de voir l'utilisateur en detail
+     *
+     * @param model
+     * @return la page "detailsUser"
+     */
     @RequestMapping(value = "/detailsUser", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Utilisateur utilisateur = utilisateurService.getUserById(id);
@@ -83,6 +119,13 @@ public class UtilisateurController {
         return "detailsUser";
     }
 
+    /**
+     * Méthode permet de modifier l'utilisateur en get
+     *
+     * @param model
+     * @param id
+     * @return la page "editionUser"
+     */
     @RequestMapping(value = "/editionUser", method = RequestMethod.GET)
     public String editionUser(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
@@ -90,6 +133,14 @@ public class UtilisateurController {
 
     }
 
+    /**
+     * Méthode permet de modifier l'utilisateur en post
+     *
+     * @param model
+     * @param id
+     * @param utilisateur
+     * @return la page "editionUser"
+     */
     @RequestMapping(value = "/editionUser", method = RequestMethod.POST)
     public String editionUser(@RequestParam(value = "id") long id, @Valid @ModelAttribute Utilisateur utilisateur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -101,6 +152,13 @@ public class UtilisateurController {
         }
     }
 
+    /**
+     * Méthode permet de vérifier l'existence de l'utilisateur
+     *
+     * @param model
+     * @param id
+     * @return la page "editionUser"
+     */
     @RequestMapping(value = "/editionUser1", method = RequestMethod.GET)
     public String editionUser1(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("utilisateur", this.utilisateurService.getUserById(id));
@@ -109,6 +167,13 @@ public class UtilisateurController {
 
     }
 
+    /**
+     * Méthode permet d'effacer l'utilisateur
+     *
+     * @param model
+     * @param id
+     * @return la page "deleteUser"
+     */
     @RequestMapping(value = "/deleteUser1", method = RequestMethod.POST)
     public String deleteUser(@RequestParam(value = "id") long id, @Valid @ModelAttribute Utilisateur utilisateur, BindingResult errors, Model model) {
         if (errors.hasErrors()) {

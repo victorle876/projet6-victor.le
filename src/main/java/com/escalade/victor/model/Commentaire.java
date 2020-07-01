@@ -16,10 +16,6 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-/*    @OneToOne
-    @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
-    private Utilisateur utilisateur;*/
-
     @ManyToOne
     @JoinColumn(name="site_id", referencedColumnName = "id")
     private Site site;

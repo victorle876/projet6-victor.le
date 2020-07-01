@@ -32,6 +32,12 @@ public class VoieController {
 
     private static final Logger logger = LogManager.getLogger(VoieController.class);
 
+    /**
+     * Méthode permet de lister tous les voies
+     *
+     * @param model
+     * * @return la page "listVoie"
+     */
     @RequestMapping(value = "/listVoie", method = RequestMethod.GET)
     public String VoieList(Model model) {
         model.addAttribute("voies", this.voieService.getAllVoies());
@@ -39,6 +45,13 @@ public class VoieController {
     }
 
 
+    /**
+     * Méthode permet de voir en detail la voie
+     *
+     * @param model
+     * @param id
+     * * @return la page "detailsVoie"
+     */
     @RequestMapping(value = "/detailsVoie", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Voie Voie = voieService.getVoieById(id);
@@ -50,7 +63,13 @@ public class VoieController {
 
     }
 
-
+    /**
+     * Méthode permet de modifier la voie en get
+     *
+     * @param model
+     * @param id
+     * * @return la page "editionVoie"
+     */
     @RequestMapping(value = "/editionVoie", method = RequestMethod.GET)
     public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("voie", this.voieService.getVoieById(id));
@@ -58,6 +77,13 @@ public class VoieController {
 
     }
 
+    /**
+     * Méthode permet de modifier la voie en post
+     *
+     * @param model
+     * @param id
+     * * @return la page "editionVoie"
+     */
     @RequestMapping(value = "/editionVoie", method = RequestMethod.POST)
     public String editionVoie(@RequestParam(value = "id") long id, @Valid @ModelAttribute Voie Voie, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -70,6 +96,12 @@ public class VoieController {
         }
     }
 
+    /**
+     * Méthode permet de lister les voies de l'utilisateur
+     *
+     * @param model
+     * * @return la page "listVoieByUser"
+     */
     @RequestMapping(value = "/listVoieByUser", method = RequestMethod.GET)
     public String VoieListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();

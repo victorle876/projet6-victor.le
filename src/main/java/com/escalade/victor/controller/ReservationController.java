@@ -38,6 +38,12 @@ public class ReservationController {
 
     private static final Logger logger = LogManager.getLogger(ReservationController.class);
 
+    /**
+     * Méthode permet de lister toutes les reservations
+     *
+     * @param model
+     * * @return la page "listReservation"
+     */
     @RequestMapping(value = "/listReservation", method = RequestMethod.GET)
     public String ReservationList(Model model) {
         model.addAttribute("reservations", this.reservationService.getAllReservations());
@@ -45,6 +51,13 @@ public class ReservationController {
 
     }
 
+    /**
+     * Méthode permet de voir la réservation en détail
+     *
+     * @param id
+     * @param model
+     * *  @return la page "detailsReservation"
+     */
     @RequestMapping(value = "/detailsReservation", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Reservation reservation = reservationService.getReservationById(id);
@@ -56,6 +69,15 @@ public class ReservationController {
 
     }
 
+
+    /**
+     * Méthode permet d'ajouter une reservation sur un topo en get
+     *
+     * @param id
+     * @param model
+     * @param topologie
+     * *  @return la page "listTopologiePublic"
+     */
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.GET)
     public String addTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
@@ -65,6 +87,14 @@ public class ReservationController {
         return "listTopologiePublic" ;
     }
 
+    /**
+     * Méthode permet d'ajouter une reservation sur un topo en post
+     *
+     * @param id
+     * @param model
+     * @param topologie
+     * *  @return la page "listRservationByUser"
+     */
     @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
     public String saveTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie, Reservation newReservation) {
         Topologie topologieId = this.topologieService.getTopologieById(id);
@@ -79,7 +109,12 @@ public class ReservationController {
         return "redirect:/reservation/listReservationByUser";
     }
 
-
+    /**
+     * Méthode permet de lister les réservations de l'utilisateur concerné
+     *
+     * @param model
+     * *  @return la page "listTopologiePublic"
+     */
     @RequestMapping(value = "/listReservationByUser", method = RequestMethod.GET)
     public String ReservationListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
@@ -89,6 +124,12 @@ public class ReservationController {
 
     }
 
+    /**
+     * Méthode permet de lister les validations de l'utilisateur concerné
+     *
+     * @param model
+     * *  @return la page "listValidationByUser"
+     */
     @RequestMapping(value = "/listValidationByUser", method = RequestMethod.GET)
     public String ValidationListByUser(Model model) {
         this.utilisateurService.getUtilisateurConnected();
@@ -99,6 +140,12 @@ public class ReservationController {
 
     }
 
+    /**
+     * Méthode permet à l'utilisateur propriétaire d'accepter en get
+     *
+     * @param model
+     * *  @return la page "listValidationByUser"
+     */
     @RequestMapping(value = "/makeTopoAccepte/{id}", method = RequestMethod.GET)
     public String makeTopoAccepte(@PathVariable(value = "id") Long id, Model model) {
         Reservation reservationExistant = this.reservationService.getReservationById(id);
@@ -107,6 +154,14 @@ public class ReservationController {
         return "listValidationByUser";
     }
 
+    /**
+     * Méthode permet à l'utilisateur propriétaire d'accepter en post
+     *
+     * @param model
+     * @param reservationExistant
+     * @param model
+     * *  @return la page "listValidationByUser"
+     */
     @RequestMapping(value = "/makeTopoAccepte/{id}", method = RequestMethod.POST)
     public String saveTopoAccepte(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -120,6 +175,13 @@ public class ReservationController {
         return "redirect:/reservation/listValidationByUser";
     }
 
+    /**
+     * Méthode permet à l'utilisateur propriétaire de refuser en get
+     *
+     * @param model
+     * @param id
+     * *  @return la page "listValidationByUser"
+     */
     @RequestMapping(value = "/makeTopoRefuse/{id}", method = RequestMethod.GET)
     public String makeTopoRefuse(@PathVariable(value = "id") Long id, Model model) {
  //       Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -129,6 +191,14 @@ public class ReservationController {
         return "redirect:/reservation/listValidationByUser";
     }
 
+    /**
+     * Méthode permet à l'utilisateur propriétaire de refuser en post
+     *
+     * @param model
+     * @param id
+     * @param reservationExistant
+     * *  @return la page "listValidationByUser"
+     */
     @RequestMapping(value = "/makeTopoRefuse/{id}", method = RequestMethod.POST)
     public String saveTopoRefuse(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -141,6 +211,13 @@ public class ReservationController {
         return "redirect:/reservation/listValidationByUser";
     }
 
+    /**
+     * Méthode permet au demandeur d'annuler la demande en get
+     *
+     * @param model
+     * @param id
+     * *  @return la page "listReservationByUser"
+     */
     @RequestMapping(value = "/makeTopoAnnule/{id}", method = RequestMethod.GET)
     public String makeTopoAnnule(@PathVariable(value = "id") Long id, Model model) {
         //      Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -150,6 +227,13 @@ public class ReservationController {
         return "listReservationByUser";
     }
 
+    /**
+     * Méthode permet au demandeur d'annuler la demande en post
+     *
+     * @param model
+     * @param id
+     * *  @return la page "listReservationByUser"
+     */
     @RequestMapping(value = "/makeTopoAnnule/{id}", method = RequestMethod.POST)
     public String saveTopoAnnule(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
@@ -162,7 +246,13 @@ public class ReservationController {
         return "redirect:/reservation/listReservationByUser";
     }
 
-
+    /**
+     * Méthode permet de modifier la réservation en get
+     *
+     * @param model
+     * @param id
+     * *  @return la page "editionReservation"
+     */
     @RequestMapping(value = "/editionReservation", method = RequestMethod.GET)
     public String editionReservation(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("reservation", this.reservationService.getReservationById(id));
@@ -170,6 +260,14 @@ public class ReservationController {
 
     }
 
+    /**
+     * Méthode permet de modifier la réservation en post
+     *
+     * @param model
+     * @param id
+     * @param Reservation
+     * *  @return la page "editionReservation"
+     */
     @RequestMapping(value = "/editionReservation", method = RequestMethod.POST)
     public String editionReservation(@RequestParam(value = "id") long id, @Valid @ModelAttribute Reservation Reservation, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
@@ -181,6 +279,13 @@ public class ReservationController {
         }
     }
 
+    /**
+     * Méthode permet d'effacer la réservation en get
+     *
+     * @param model
+     * @param id
+     * *  @return la page "editionReservation"
+     */
     @RequestMapping(value = "/editionReservation1", method = RequestMethod.GET)
     public String editionReservation2(@RequestParam(value = "id") Long id, Model model) {
         model.addAttribute("Reservation", this.reservationService.getReservationById(id));
@@ -188,6 +293,15 @@ public class ReservationController {
 
     }
 
+    /**
+     * Méthode permet d'effacer la réservation en post
+     *
+     * @param model
+     * @param id
+     * @param reservation
+     * @param errors
+     * *  @return la page "editionReservation"
+     */
     @RequestMapping(value = "/deleteReservation1", method = RequestMethod.POST)
     public String deleteReservation(@RequestParam(value = "id") long id, @Valid @ModelAttribute Reservation reservation, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
