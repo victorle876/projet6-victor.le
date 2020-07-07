@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -34,20 +34,23 @@
                         <td th:text="${commentaire.site.nomSite}"/>
                         <td th:text="${commentaire.zoneCommentaire}"/>
                         <td th:text="${commentaire.utilisateur.username}"/>
-                        <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a></td>
-                        <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a></td>
-<!--                        <td><a th:href="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">Supprimer</a></td>-->
+                        <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a>
+                        </td>
+                        <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a>
+                        </td>
+                        <!--                        <td><a th:href="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">Supprimer</a></td>-->
                         <td>
-                        <form th:action="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}" method="post">
-                            <button class="btn btn-primary" type="submit">Supprimer</button>
-                        </form>
+                            <form method="post"
+                                  th:action="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}">
+                                <button class="btn btn-primary" type="submit">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="row">
-                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+                <a class="btn btn-info" role="button" th:href="@{/}">Retour</a>
             </div>
         </div>
     </div>

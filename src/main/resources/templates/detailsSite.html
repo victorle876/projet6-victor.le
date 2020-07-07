@@ -4,8 +4,8 @@
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,17 +17,17 @@
     <h3 class="text-center mb-3">Detail site</h3>
     <form>
         <div class="form-group row">
-            <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+            <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
             <div class="col-sm-10">
-                <input type="number" disabled class="form-control" id="exampleInputId"
-                       th:value="${site.id}">
+                <input class="form-control" disabled id="exampleInputId" th:value="${site.id}"
+                       type="number">
             </div>
         </div>
         <div class="form-group row">
-            <label for="exampleInputNomSite" class="col-sm-2 col-form-label">Nom</label>
+            <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="exampleInputNomSite" th:value="${site.nomSite}"
-                       aria-describedby="WarningInputNomSite" disabled>
+                <input aria-describedby="WarningInputNomSite" class="form-control" disabled id="exampleInputNomSite"
+                       th:value="${site.nomSite}" type="text">
             </div>
         </div>
         <div class="form-group row">
@@ -59,9 +59,11 @@
                         th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                         <td th:text="${commentaire.zoneCommentaire}"/>
                         <td th:text="${commentaire.utilisateur.username}"/>
-                        <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a></td>
+                        <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a>
+                        </td>
                         <td>
-                            <form th:action="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}" method="post">
+                            <form method="post"
+                                  th:action="@{/commentaire/deleteCommentaireCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}">
                                 <button class="btn btn-primary" type="submit">Supprimer</button>
                             </form>
                         </td>
@@ -71,7 +73,7 @@
             </div>
         </div>
         <div class="row">
-            <a th:href="@{/site/listSiteByUser}" class="btn btn-info" role="button">Retour</a>
+            <a class="btn btn-info" role="button" th:href="@{/site/listSiteByUser}">Retour</a>
         </div>
     </form>
 

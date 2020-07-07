@@ -4,8 +4,8 @@
 <head>
     <title>Ajout du site sur le topo</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -15,25 +15,25 @@
 <div class="container mt-5">
     <h3 class="text-center mb-3">Recherche Topo</h3>
     <div class="col-md-6">
-        <form action="topoSearch" th:action="@{/topologie/SearchTopoList}" method="post">
+        <form action="topoSearch" method="post" th:action="@{/topologie/SearchTopoList}">
 
             <div class="form-group row has-feedback">
-                <label for="exampleInputNomTopologie" class="col-sm-2 col-form-label">Nom du topo</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputNomTopologie">Nom du topo</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nomTopologie"
-                           id="exampleInputNomTopologie" aria-describedby="WarningNomTopologie">
+                    <input aria-describedby="WarningNomTopologie" class="form-control" id="exampleInputNomTopologie"
+                           name="nomTopologie" type="text">
                 </div>
             </div>
 
             <div class="form-group row has-feedback">
-                <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputSecteur">Nom du secteur</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="secteur"
-                           id="exampleInputSecteur" aria-describedby="WarningNomSecteur">
+                    <input aria-describedby="WarningNomSecteur" class="form-control" id="exampleInputSecteur"
+                           name="secteur" type="text">
                 </div>
             </div>
             <div class="row">
-                <input class="btn btn-primary" type="submit" th:name="action" th:value="Submit">
+                <input class="btn btn-primary" th:name="action" th:value="Submit" type="submit">
             </div>
         </form>
     </div>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.thymeleaf.org">
 <!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout"-->
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -33,20 +33,20 @@
                 <td th:text="${reservation.etat}"/>
                 <td>
                     <div class="row">
-                        <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}"
-                              th:object="${reservation}" method="post">
+                        <form method="post"
+                              th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}">
                             <th:block th:if="${reservation.etat== 'Accepté'}">
                                 <a>Annuler reservation</a>
                             </th:block>
                         </form>
-                        <form th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}"
-                              th:object="${reservation}" method="post">
+                        <form method="post"
+                              th:action="@{/reservation/makeTopoAccepte/{id}(id=${reservation.id})}" th:object="${reservation}">
                             <th:block th:if="${reservation.etat == 'En cours'}">
                                 <button class="btn btn-primary" type="submit">Accepter</button>
                             </th:block>
                         </form>
-                        <form th:action="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}"
-                              th:object="${reservation}" method="post">
+                        <form method="post"
+                              th:action="@{/reservation/makeTopoRefuse/{id}(id=${reservation.id})}" th:object="${reservation}">
                             <th:block th:if="${reservation.etat == 'En cours'}">
                                 <button class="btn btn-primary" type="submit">Refuser</button>
                             </th:block>
@@ -59,7 +59,7 @@
         </table>
     </div>
     <div class="row">
-        <a th:href="@{/admin/home}" class="btn btn-primary" role="button">Retour</a>
+        <a class="btn btn-primary" role="button" th:href="@{/admin/home}">Retour</a>
     </div>
 </div>
 </body>

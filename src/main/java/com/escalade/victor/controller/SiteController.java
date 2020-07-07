@@ -186,9 +186,11 @@ public class SiteController {
             return "editionSite";
         } else {
             site = this.siteService.getSiteById(id);
+            List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
             this.siteService.saveSite(site);
+            model.addAttribute("commentairesbysite", commentaireList);
             model.addAttribute("sites", this.siteService.getAllSites());
-            return "redirect:/";
+            return "redirect:/listSiteByUser";
         }
     }
 

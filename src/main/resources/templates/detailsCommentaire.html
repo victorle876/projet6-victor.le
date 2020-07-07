@@ -4,8 +4,8 @@
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,37 +17,37 @@
     <div class="col-md-6">
         <form>
             <div class="form-group row">
-                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="exampleInputId" th:value="${commentaire.id}"
-                           aria-describedby="WarningInputId" disabled>
+                    <input aria-describedby="WarningInputId" class="form-control" disabled id="exampleInputId"
+                           th:value="${commentaire.id}" type="number">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="exampleInputNomSecteur" class="col-sm-2 col-form-label">Nom du secteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputNomSecteur">Nom du secteur</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputNomSecteur"
-                           th:value="${commentaire.site.nomSite}"
-                           aria-describedby="WarningInputNomSecteur" disabled>
+                    <input aria-describedby="WarningInputNomSecteur" class="form-control" disabled
+                           id="exampleInputNomSecteur"
+                           th:value="${commentaire.site.nomSite}" type="text">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputAuteur">Auteur</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputAuteur"
-                           th:value="${commentaire.utilisateur.username}"
-                           aria-describedby="WarningAuteur" disabled>
+                    <input aria-describedby="WarningAuteur" class="form-control" disabled
+                           id="exampleInputAuteur"
+                           th:value="${commentaire.utilisateur.username}" type="text">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="exampleInputCommentaire" class="col-sm-2 col-form-label">Commentaire</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputCommentaire">Commentaire</label>
                 <div class="col-sm-10">
-                        <textarea disabled class="form-control" rows="10" id="exampleInputCommentaire"
+                        <textarea class="form-control" disabled id="exampleInputCommentaire" rows="10"
                                   th:text="*{commentaire.zoneCommentaire}"></textarea>
                 </div>
             </div>
             <div class="row">
-                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+                <a class="btn btn-info" role="button" th:href="@{/}">Retour</a>
             </div>
         </form>
     </div>

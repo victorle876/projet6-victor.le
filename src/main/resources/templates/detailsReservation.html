@@ -4,8 +4,8 @@
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,34 +17,34 @@
     <div class="col-md-6">
         <form>
             <div class="form-group row has-feedback">
-                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
                 <div class="col-sm-10">
-                    <input type="number" disabled class="form-control" id="exampleInputId"
-                           th:value="${reservation.id}">
+                    <input class="form-control" disabled id="exampleInputId" th:value="${reservation.id}"
+                           type="number">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputTopologie" class="col-sm-2 col-form-label">Nom du secteur</label>
-                <input type="text" class="form-control" id="exampleInputTopologie"
-                       th:value="${reservation.topologie}"
-                       aria-describedby="WarningInputTopologie" disabled>
+                <label class="col-sm-2 col-form-label" for="exampleInputTopologie">Nom du secteur</label>
+                <input aria-describedby="WarningInputTopologie" class="form-control" disabled
+                       id="exampleInputTopologie"
+                       th:value="${reservation.topologie}" type="text">
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputAuteur">Auteur</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="exampleInputAuteur" th:value="${reservation.duree}"
-                           aria-describedby="WarningAuteur" disabled>
+                    <input aria-describedby="WarningAuteur" class="form-control" disabled id="exampleInputAuteur"
+                           th:value="${reservation.duree}" type="number">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputEtat" class="col-sm-2 col-form-label">Etat</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputEtat">Etat</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="exampleInputEtat" th:value="${reservation.Etat}"
-                           aria-describedby="WarningEtat" disabled>
+                    <input aria-describedby="WarningEtat" class="form-control" disabled id="exampleInputEtat"
+                           th:value="${reservation.Etat}" type="number">
                 </div>
             </div>
             <div>
-                <a th:href="@{/reservation/listReservation}" class="btn btn-info" role="button">Retour</a>
+                <a class="btn btn-info" role="button" th:href="@{/reservation/listReservation}">Retour</a>
             </div>
         </form>
     </div>

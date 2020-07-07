@@ -4,8 +4,8 @@
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,52 +17,52 @@
     <div class="col-md-6">
         <form>
             <div class="form-group row has-feedback">
-                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
                 <div class="col-sm-10">
-                    <input type="number" disabled class="form-control" id="exampleInputId"
-                           th:value="${utilisateur.id}">
+                    <input class="form-control" disabled id="exampleInputId" th:value="${utilisateur.id}"
+                           type="number">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputNom" class="col-sm-2 col-form-label">Nom</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputNom">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputNom"
-                           th:value="${utilisateur.username}"
-                           aria-describedby="WarningNom" disabled>
+                    <input aria-describedby="WarningNom" class="form-control" disabled
+                           id="exampleInputNom"
+                           th:value="${utilisateur.username}" type="text">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputPrenom" class="col-sm-2 col-form-label">Prenom</label>
-                <input type="text" class="form-control" id="exampleInputPrenom" th:value="${utilisateur.prenom}"
-                       aria-describedby="WarningPrenom" disabled>
+                <label class="col-sm-2 col-form-label" for="exampleInputPrenom">Prenom</label>
+                <input aria-describedby="WarningPrenom" class="form-control" disabled id="exampleInputPrenom"
+                       th:value="${utilisateur.prenom}" type="text">
             </div>
 
             <div class="form-group row has-feedback">
-                <label for="exampleInputNom" class="col-sm-2 col-form-label">mot de passe</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputNom">mot de passe</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputMotP" th:value="${utilisateur.password}"
-                           aria-describedby="MotP" disabled>
-                </div>
-            </div>
-
-            <div class="form-group row has-feedback">
-                <label for="exampleInputDateNaissance" class="col-sm-2 col-form-label">Age</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputDateNaissance"
-                           th:value="${utilisateur.age}"
-                           aria-describedby="WarningAge" disabled>
+                    <input aria-describedby="MotP" class="form-control" disabled id="exampleInputMotP"
+                           th:value="${utilisateur.password}" type="text">
                 </div>
             </div>
 
             <div class="form-group row has-feedback">
-                <label for="exampleInputMail" class="col-sm-2 col-form-label">Mail</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputDateNaissance">Age</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="exampleInputMail" th:value="${utilisateur.mail}"
-                           aria-describedby="WarningMail" disabled>
+                    <input aria-describedby="WarningAge" class="form-control" disabled
+                           id="exampleInputDateNaissance"
+                           th:value="${utilisateur.age}" type="text">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 col-form-label" for="exampleInputMail">Mail</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningMail" class="form-control" disabled id="exampleInputMail"
+                           th:value="${utilisateur.mail}" type="email">
                 </div>
             </div>
             <div class="row">
-                <a th:href="@{/}" class="btn btn-info" role="button">Retour</a>
+                <a class="btn btn-info" role="button" th:href="@{/}">Retour</a>
             </div>
         </form>
     </div>

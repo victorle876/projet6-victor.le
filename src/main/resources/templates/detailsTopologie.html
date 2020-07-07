@@ -4,8 +4,8 @@
 <head>
     <title>Homepage</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -17,49 +17,49 @@
     <div class="col-md-6">
         <form>
             <div class="form-group row has-feedback">
-                <label for="exampleInputId" class="col-sm-2 col-form-label">Id</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="exampleInputId"
-                           th:value="${topologie.id}"
-                           aria-describedby="WarningInputId" disabled>
+                    <input aria-describedby="WarningInputId" class="form-control" disabled
+                           id="exampleInputId"
+                           th:value="${topologie.id}" type="number">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputNomTopo" class="col-sm-2 col-form-label">Nom du topologie</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputNomTopo">Nom du topologie</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputNomTopo"
-                           th:value="${topologie.nomTopologie}"
-                           aria-describedby="WarningInputNomTopo" disabled>
+                    <input aria-describedby="WarningInputNomTopo" class="form-control" disabled
+                           id="exampleInputNomTopo"
+                           th:value="${topologie.nomTopologie}" type="text">
                 </div>
             </div>
             <div class="form-group row has-feedback">
-                <label for="exampleInputSecteur" class="col-sm-2 col-form-label">Secteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputSecteur">Secteur</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputSecteur"
-                           th:value="${topologie.secteur}"
-                           aria-describedby="WarningInputSecteur" disabled>
-                </div>
-            </div>
-
-            <div class="form-group row has-feedback">
-                <label for="exampleInputPays" class="col-sm-2 col-form-label">Pays</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="exampleInputPays"
-                           th:value="${topologie.pays}"
-                           aria-describedby="WarningInputPays" disabled>
+                    <input aria-describedby="WarningInputSecteur" class="form-control" disabled
+                           id="exampleInputSecteur"
+                           th:value="${topologie.secteur}" type="text">
                 </div>
             </div>
 
             <div class="form-group row has-feedback">
-                <label for="exampleInputAuteur" class="col-sm-2 col-form-label">Auteur</label>
+                <label class="col-sm-2 col-form-label" for="exampleInputPays">Pays</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="exampleInputAuteur"
-                           th:value="${topologie.utilisateur.username}"
-                           aria-describedby="WarningAuteur" disabled>
+                    <input aria-describedby="WarningInputPays" class="form-control" disabled
+                           id="exampleInputPays"
+                           th:value="${topologie.pays}" type="text">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 col-form-label" for="exampleInputAuteur">Auteur</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningAuteur" class="form-control" disabled
+                           id="exampleInputAuteur"
+                           th:value="${topologie.utilisateur.username}" type="number">
                 </div>
             </div>
             <div class="row">
-                <a th:href="@{/topologie/listTopologieByUser}" class="btn btn-info" role="button">Retour</a>
+                <a class="btn btn-info" role="button" th:href="@{/topologie/listTopologieByUser}">Retour</a>
             </div>
         </form>
     </div>
