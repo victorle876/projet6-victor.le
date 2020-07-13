@@ -20,7 +20,6 @@
     <div class="table-responsive-lg">
         <table class="table table-bordered table-striped text-center">
             <thead>
-            <th>Numero réservation</th>
             <th>Topologie</th>
             <th>Etat</th>
             <th>Action</th>
@@ -28,7 +27,6 @@
             <tbody>
             <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                <td th:text="${reservation.id}"/>
                 <td th:text="${reservation.topologie.nomTopologie}"/>
                 <td th:text="${reservation.etat}"/>
                 <td>

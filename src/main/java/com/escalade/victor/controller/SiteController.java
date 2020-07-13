@@ -71,6 +71,7 @@ public class SiteController {
         logger.info(commentaireList);
         model.addAttribute("site", this.siteService.getSiteById(id));
         model.addAttribute("commentairesbysite", commentaireList);
+        model.addAttribute("voiesbysite", this.voieService.findVoieBySite(site));
         return "detailsSite";
 
     }
@@ -168,7 +169,12 @@ public class SiteController {
      */
     @RequestMapping(value = "/editionSite", method = RequestMethod.GET)
     public String editionSite(@RequestParam(value = "id") Long id, Model model) {
+        Site site = this.siteService.getSiteById(id);
+        List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
         model.addAttribute("site", this.siteService.getSiteById(id));
+        model.addAttribute("commentairesbysite", commentaireList);
+        logger.info(commentaireList);
+        model.addAttribute("voiesbysite", this.voieService.findVoieBySite(site));
         return "editionSite";
 
     }
@@ -186,9 +192,7 @@ public class SiteController {
             return "editionSite";
         } else {
             site = this.siteService.getSiteById(id);
-            List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
             this.siteService.saveSite(site);
-            model.addAttribute("commentairesbysite", commentaireList);
             model.addAttribute("sites", this.siteService.getAllSites());
             return "redirect:/listSiteByUser";
         }

@@ -18,25 +18,11 @@
     <div class="col-md-6">
         <form action="#" method="post" th:action="@{/site/editionSite?id={id}(id=${site.id})}" th:object="${site}">
             <div class="form-group row has-feedback">
-                <label class="col-sm-2 col-form-label" for="exampleInputId">Id</label>
-                <div class="col-sm-10">
-                    <input aria-describedby="WarningInputId" class="form-control" disabled id="exampleInputId"
-                           th:field="*{id}" type="number">
-                </div>
-            </div>
-            <div class="form-group row has-feedback">
                 <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom</label>
                 <div class="col-sm-10">
                     <input class="form-control" id="exampleInputNomSite" th:field="*{nomSite}" type="text">
                     <!--<small id="WarningNomSite" class="form-text text-muted"
                            th:if="${#fields.hasErrors('nomSite')}" th:errors="*{nomSite}"></small>-->
-                </div>
-            </div>
-            <div class="form-group row has-feedback">
-                <label class="col-sm-2 col-form-label" for="exampleInputVoie">Voie</label>
-                <div class="col-sm-10">
-                    <input class="form-control" disabled id="exampleInputVoie" th:field="*{voies}"
-                           type="text">
                 </div>
             </div>
             <div class="form-group row">
@@ -48,7 +34,7 @@
                         <tbody>
                         <tr th:each="voie, rowStat: ${voiesbysite}"
                             th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                            <td th:text="${voie.nomSite}"/>
+                            <td th:text="${voie.nomVoie}"/>
                         </tr>
                         </tbody>
                     </table>
@@ -58,23 +44,16 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped text-center">
                         <thead>
-                        <th>Auteur du commentaire</th>
                         <th>zone du commentaire</th>
-                        <th>detail</th>
-                        <th>supprimer</th>
+                        <th>Auteur du commentaire</th>
+                        <th>Modifier</th>
                         </thead>
                         <tbody>
                         <tr th:each="commentaire, rowStat: ${commentairesbysite}"
                             th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                             <td th:text="${commentaire.zoneCommentaire}"/>
                             <td th:text="${commentaire.utilisateur.username}"/>
-                            <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a>
-                            </td>
-                            <td>
-                                <form method="post"
-                                      th:action="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}" th:object="${commentaire}">
-                                    <button class="btn btn-primary" type="submit">Modifier</button>
-                                </form>
+                            <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a>
                             </td>
                         </tr>
                         </tbody>
