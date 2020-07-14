@@ -140,7 +140,11 @@ public class CommentaireController {
     @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.GET)
     public String makeCommentaireDeleted(@RequestParam(value = "id") Long id, Model model) {
         logger.info(id);
+        Commentaire commentaireId = this.commentaireService.getCommentaireById(id);
+        Site siteId = commentaireId.getSite();
+        List <Commentaire> commentaireList= this.commentaireService.findCommentaireBySite(siteId);
         model.addAttribute("id", id);
+        model.addAttribute("commentairesbysite", commentaireList);
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
         return "detailsSite";
 
