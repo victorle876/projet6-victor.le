@@ -131,17 +131,18 @@ public class CommentaireController {
     }
 
     /**
-     * Méthode permet d'effacer le commentaire sur le site en ger
+     * Méthode permet d'effacer le commentaire sur le site en get
      *
      * @param model
      * @param id
      * *   @return la page "deleteCommentaire" en get
      */
-    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.GET)
-    public String makeCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.GET)
+    public String makeCommentaireDeleted(@RequestParam(value = "id") Long id, Model model) {
+        logger.info(id);
         model.addAttribute("id", id);
         model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "listCommentaire";
+        return "detailsSite";
 
     }
 
@@ -153,8 +154,8 @@ public class CommentaireController {
      * @param id
      * *   @return la page "deleteCommentaire" en post
      */
-    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.POST)
-    public String saveCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.POST)
+    public String saveCommentaireDeleted(@RequestParam(value = "id") Long id, Model model) {
             Commentaire commentaireId= this.commentaireService.getCommentaireById(id);
             logger.info(commentaireId);
             this.commentaireService.deleteCommentaireById(id);

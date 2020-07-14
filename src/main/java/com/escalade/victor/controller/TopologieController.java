@@ -303,7 +303,7 @@ public class TopologieController {
     /**
      * Méthode permet de chercher le topo en fonction des critères en post
      * @param model
-     * * @return la page "SearchListTopo"
+     * * @return la page "SearchforTopo"
      */
     @RequestMapping(value = "/SearchTopoList", method = RequestMethod.POST)
     public String saveTopoSearchList(Model model, Topologie topologieEnrecherche, String recherche) {
