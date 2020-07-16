@@ -1,19 +1,8 @@
 # Spring Boot Hello World Example – Thymeleaf
 
-Article link : https://www.mkyong.com/spring-boot/spring-boot-hello-world-example-thymeleaf/
-
-## 1. How to start
-```
-$ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
-$ cd web-thymeleaf
-$ mvn spring-boot:run
-
-```
-## projet6-victor.le
-
 ### Site communautaire pour les fans de l'escalade
 
-### Il faudra suivre les instructions ci dessous:
+Il faudra suivre les instructions ci dessous:
 
 ## Pré-requis:
 
@@ -30,15 +19,13 @@ $ mvn spring-boot:run
 
 ### Base de données:
 
-- Lancer le fichier create-table-escalade.sql pour générer la structure de base de donnée
-- Ensuite, lancer la première requete d'insertion de donnée en renseignant l'id, name, username, date de création, date de mise à jour, age, password- Lancer la seconde requete pour les différents profils (admin, user, actuator) 
-- Enfin, récupérer l'id lors de l'ajout de l'user et exécuter la 3 requete (id,id_role)
+- Lancer le fichier dump suivant: Dump20200714.sql
 
 ## Deploiement
 
-Sous Intellij, cliquez droit sur le ruban Maven d'abord (Maven -> clique droit 'run build maven') puis install -> clique droit 'run build maven')
-
-localhost:8080
+Sous Intellij, suivre les instructions:
+$ cd web-thymeleaf
+$ mvn spring-boot:run (en utilisant localhost:8080)
 
 
 
