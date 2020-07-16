@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RequestMapping("/commentaire")
@@ -159,9 +160,10 @@ public class CommentaireController {
      * *   @return la page "deleteCommentaire" en post
      */
     @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.POST)
-    public String saveCommentaireDeleted(@RequestParam(value = "id") Long id, Model model) {
+    public String saveCommentaireDeleted(@PathParam(value = "id") Long id, Model model) {
             Commentaire commentaireId= this.commentaireService.getCommentaireById(id);
             logger.info(commentaireId);
+            logger.info("test efface");
             this.commentaireService.deleteCommentaireById(id);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
             return "redirect:/site/listSiteByUser";
