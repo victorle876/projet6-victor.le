@@ -1,5 +1,3 @@
-# Spring Boot Hello World Example – Thymeleaf
-
 ### Site communautaire pour les fans de l'escalade
 
 Il faudra suivre les instructions ci dessous:

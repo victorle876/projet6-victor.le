@@ -1,5 +1,4 @@
 package com.escalade.victor.model;
-
 import java.util.List;
 
 import javax.persistence.Column;
