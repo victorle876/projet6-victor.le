@@ -22,8 +22,9 @@ Il faudra suivre les instructions ci dessous:
 ## Deploiement
 
 Sous Intellij, suivre les instructions:
+```
 $ cd web-thymeleaf
 $ mvn spring-boot:run (en utilisant localhost:8080)
-
+```
 
 

@@ -63,9 +63,7 @@ public class SiteController {
     @RequestMapping(value = "/detailsSite", method = RequestMethod.GET)
     public String detail(@RequestParam(value = "id") Long id, Model model) {
         Site site = siteService.getSiteById(id);
-        if (site == null) {
-            logger.info("le site n'existe pas");
-        }
+        logger.info("le site n'existe pas");
         logger.info(this.siteService.getSiteById(id));
         List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
         logger.info(commentaireList);

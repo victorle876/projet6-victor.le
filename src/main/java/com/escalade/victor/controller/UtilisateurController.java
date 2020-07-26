@@ -61,7 +61,7 @@ public class UtilisateurController {
      * Méthode permet d'aller sur la page principale en mode admin
      *
      * @param model
-     * * @return la page "home"
+     * * @return la page "listUser"
      */
     @RequestMapping(value = "/listUser", method = RequestMethod.GET)
     public String UserList(Model model) {
