@@ -145,7 +145,8 @@ public class TopologieController {
         siteSelectionne.setTopologie(topo);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
-        return "addSiteTopo";
+   //     return "addSiteTopo";
+        return "listTopologieByUser";
     }
 
     /**
@@ -250,7 +251,8 @@ public class TopologieController {
     public String TopoListPublic(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
+        model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
+      //  model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         return "listTopologiePublic";
     }
 
@@ -283,7 +285,8 @@ public class TopologieController {
             topologieId.setIspublic(Boolean.TRUE);
             //        topologieId.setUtilisateur(null);
             this.topologieService.saveTopologie(topologieId);
-            model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
+            model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
+         //   model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         }
         return "listTopologiePublic";
     }

@@ -3,8 +3,10 @@ package com.escalade.victor.controller;
 import com.escalade.victor.model.Commentaire;
 import com.escalade.victor.model.Site;
 import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.service.CommentaireService;
 import com.escalade.victor.service.SiteService;
+import com.escalade.victor.service.UtilisateurService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class CommentaireController {
 
     @Autowired
     private SiteService siteService;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     private static final Logger logger = LogManager.getLogger(CommentaireController.class);
 
@@ -125,7 +130,13 @@ public class CommentaireController {
         if (errors.hasErrors()) {
             return "editionCommentaire";
         } else {
-            this.commentaireService.saveCommentaire(commentaire);
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+            Commentaire commentaireId = this.commentaireService.getCommentaireById(id);
+            Site siteId = commentaireId.getSite();
+            commentaireId.setUtilisateur(utilisateurId);
+            commentaireId.setZoneCommentaire(commentaire.getZoneCommentaire());
+            commentaireId.setSite(siteId);
+            this.commentaireService.saveCommentaire(commentaireId);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
             return "redirect:/";
         }

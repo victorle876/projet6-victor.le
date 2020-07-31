@@ -155,6 +155,15 @@ public class TopologieService {
         return topologiePublicUser;
     }
 
+    public List<Topologie> findTopologieByIspublic() throws UsernameNotFoundException {
+        List<Topologie>  topologiePublicUser = this.topologieRepository.findByIspublicTrue();
+        logger.debug(topologiePublicUser);
+        if (topologiePublicUser == null){
+            throw new RuntimeException("Topologie introuvable");
+        }
+        return topologiePublicUser;
+    }
+
     /**
      * Méthode permet d'effacer le topo en fonction de l'id via ce service
      *
