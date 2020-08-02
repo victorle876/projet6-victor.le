@@ -83,5 +83,14 @@ public class SiteService {
         return siteTrouve;
     }
 
+    public List<Site> findSiteByNom(String recherche) throws UsernameNotFoundException {
+        List<Site>  siteTrouve = this.siteRepository.findByNomSiteIgnoreCaseContaining(recherche);
+      //  logger.debug(siteTrouve);
+        if (siteTrouve == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouve;
+    }
+
 }
 

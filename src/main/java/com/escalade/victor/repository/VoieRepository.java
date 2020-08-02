@@ -10,4 +10,5 @@ import java.util.List;
 public interface VoieRepository extends JpaRepository<Voie, Long> {
     List<Voie> findBySite (Site site1);
     List<Voie> findByUtilisateur (Utilisateur utilisateur1);
+    List <Voie> findByNomVoieIgnoreCaseContainingOrCotationIgnoreCaseContaining(String nomVoie, String cotation);
 }

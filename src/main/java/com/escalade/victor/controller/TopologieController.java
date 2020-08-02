@@ -5,6 +5,7 @@ import com.escalade.victor.repository.SiteRepository;
 import com.escalade.victor.service.SiteService;
 import com.escalade.victor.service.TopologieService;
 import com.escalade.victor.service.UtilisateurService;
+import com.escalade.victor.service.VoieService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class TopologieController {
 
     @Autowired
     private SiteService siteService;
+
+    @Autowired
+    private VoieService voieService;
 
     @Autowired
     private SiteRepository siteRepository;
@@ -145,7 +149,6 @@ public class TopologieController {
         siteSelectionne.setTopologie(topo);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
-   //     return "addSiteTopo";
         return "listTopologieByUser";
     }
 
@@ -251,8 +254,8 @@ public class TopologieController {
     public String TopoListPublic(Model model) {
         this.utilisateurService.getUtilisateurConnected();
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
-      //  model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
+    //    model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
+        model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         return "listTopologiePublic";
     }
 
@@ -283,10 +286,8 @@ public class TopologieController {
         Topologie topologieId = this.topologieService.getTopologieById(id);
         if (topologieId.getIspublic() == Boolean.FALSE) {
             topologieId.setIspublic(Boolean.TRUE);
-            //        topologieId.setUtilisateur(null);
             this.topologieService.saveTopologie(topologieId);
             model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
-         //   model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         }
         return "listTopologiePublic";
     }
@@ -319,6 +320,57 @@ public class TopologieController {
         logger.info(this.topologieService.findTopologieBySecteurOrNom(recherche));
         model.addAttribute("topologiesearch", this.topologieService.findTopologieBySecteurOrNom(recherche));
         return "searchListTopo";
+    }
+
+    /**
+     * Méthode permet de chercher le topo en fonction des critères en get
+     * @param model
+     * * @return la page "topoSearch"
+     */
+    @RequestMapping(value = "/SearchSiteList", method = RequestMethod.GET)
+    public String listTopoSearch1(Model model) {
+        model.addAttribute("site", new Site());
+        logger.info(new Site());
+        return "siteSearch";
+    }
+
+    /**
+     * Méthode permet de chercher le topo en fonction des critères en post
+     * @param model
+     * * @return la page "SearchforTopo"
+     */
+    @RequestMapping(value = "/SearchSiteList", method = RequestMethod.POST)
+    public String saveTopoSearchList1(Model model, Site SiteEnrecherche, String recherche) {
+        String nomSite = SiteEnrecherche.getNomSite();
+        logger.info(nomSite);
+        recherche = (nomSite);
+        List<Site> SiteRecherche = this.siteService.findSiteByNom(recherche);
+        logger.info(this.topologieService.findTopologieBySecteurOrNom(recherche));
+        model.addAttribute("sitesearch", this.siteService.findSiteByNom(recherche));
+        return "searchListSite";
+    }
+
+    @RequestMapping(value = "/SearchVoieList", method = RequestMethod.GET)
+    public String listVoieSearch1(Model model) {
+        model.addAttribute("site", new Voie());
+        logger.info(new Voie());
+        return "voieSearch";
+    }
+
+    /**
+     * Méthode permet de chercher le topo en fonction des critères en post
+     * @param model
+     * * @return la page "SearchforTopo"
+     */
+    @RequestMapping(value = "/SearchVoieList", method = RequestMethod.POST)
+    public String saveVoieSearchList(Model model, Voie VoieEnrecherche, String recherche) {
+        String nomVoie = VoieEnrecherche.getNomVoie();
+        String cotation = VoieEnrecherche.getCotation();
+        recherche = (nomVoie);
+        List<Voie> VoieRecherche = this.voieService.findVoieByNomOrCotation(recherche);
+        logger.info(this.voieService.findVoieByNomOrCotation(recherche));
+        model.addAttribute("voiesearch", this.voieService.findVoieByNomOrCotation(recherche));
+        return "searchListVoie";
     }
 
 }

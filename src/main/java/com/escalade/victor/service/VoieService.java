@@ -90,7 +90,15 @@ public class VoieService {
     public List<Voie> findVoieByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
         List<Voie>  voieTrouve = this.voieRepository.findByUtilisateur(utilisateur1);
         if (voieTrouve == null){
-            throw new RuntimeException("Site introuvable");
+            throw new RuntimeException("Voie introuvable");
+        }
+        return voieTrouve;
+    }
+
+    public List<Voie> findVoieByNomOrCotation(String recherche) throws UsernameNotFoundException {
+        List<Voie>  voieTrouve = this.voieRepository.findByNomVoieIgnoreCaseContainingOrCotationIgnoreCaseContaining(recherche, recherche);
+        if (voieTrouve == null){
+            throw new RuntimeException("Voie introuvable");
         }
         return voieTrouve;
     }

@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface SiteRepository extends JpaRepository<Site, Long> {
     List<Site> findByUtilisateurAndTopologieIsNull (Utilisateur utilisateur1);
     List<Site> findByUtilisateur (Utilisateur utilisateur1);
+    List <Site> findByNomSiteIgnoreCaseContaining(String nomSite);
 }

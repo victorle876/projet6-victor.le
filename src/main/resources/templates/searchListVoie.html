@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"-->
+<head>
+    <title>Homepage</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+<div class="container mt-5">
+    <h3 class="text-center mb-3"> Recherche Voie</h3>
+    <div class="table-responsive-lg">
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+            <th>Nom Voie</th>
+            <th>Site</th>
+            <th>Cotation</th>
+            <th>Detail</th>
+            </thead>
+            <tbody>
+            <tr th:each="voie, rowStat: ${voiesearch}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${voie.nomVoie}"/>
+                <td th:text="${voie.site.nomSite}"/>
+                <td th:text="${voie.cotation}"/>
+                <td><a th:href="@{/voie/detailsVoie?id={id}(id=${voie.id})}">Détails</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary" role="button" th:href="@{/admin/home}">Retour</a>
+    </div>
+</div>
+</body>
+</html>
+
