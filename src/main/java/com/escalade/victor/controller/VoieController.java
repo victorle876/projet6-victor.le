@@ -70,8 +70,8 @@ public class VoieController {
      * @param id
      * * @return la page "editionVoie"
      */
-    @RequestMapping(value = "/editionVoie", method = RequestMethod.GET)
-    public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/editionVoie/{id}", method = RequestMethod.GET)
+    public String editionTopologie(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("voie", this.voieService.getVoieById(id));
         return "editionVoie";
 
@@ -84,15 +84,19 @@ public class VoieController {
      * @param id
      * * @return la page "editionVoie"
      */
-    @RequestMapping(value = "/editionVoie", method = RequestMethod.POST)
-    public String editionVoie(@RequestParam(value = "id") long id, @Valid @ModelAttribute Voie Voie, BindingResult errors, Model model) {
+    @RequestMapping(value = "/editionVoie/{id}", method = RequestMethod.POST)
+    public String editionVoie(@PathVariable(value = "id") long id,Voie Voie, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
             return "editionVoie";
         } else {
-            this.voieService.saveVoie(Voie);
+            Voie voieId =this.voieService.getVoieById(id);
+            voieId.setCotation(Voie.getCotation());
+            voieId.setDistance(Voie.getHauteur());
+            voieId.setNomVoie(Voie.getNomVoie());
+            this.voieService.saveVoie(voieId);
             logger.info(this.voieService.getAllVoies());
-            model.addAttribute("voies", this.voieService.getAllVoies());
-            return "redirect:/";
+            model.addAttribute("voiesbyuser", this.voieService.findVoieByUser(this.utilisateurService.getUtilisateurConnected()));
+            return "redirect:/voie/listVoieByUser";
         }
     }
 

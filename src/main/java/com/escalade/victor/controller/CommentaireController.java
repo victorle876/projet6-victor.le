@@ -72,39 +72,6 @@ public class CommentaireController {
     }
 
     /**
-     * Méthode permet d'ajouter le commentaire sur le site en get
-     *
-     * @param model
-     * * *  @return la page "AddCommentaire" en get
-     */
-
-    @RequestMapping(value = "/addCommentaire", method = RequestMethod.GET)
-    public String ajouterCommentaire(Model model) {
-        model.addAttribute("commentaire", new Commentaire());
-        return "addCommentaire";
-    }
-
-    /**
-     * Méthode permet d'ajouter le commentaire sur le site en poist
-     *
-     * @param model
-     * @param commentaire
-     * @param result
-     * *   @return la page "AddCommentaire" en post
-     */
-    @RequestMapping(value = "/saveCommentaire", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute Commentaire commentaire, Model model, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return "addCommentaire";
-        } else {
-            this.commentaireService.saveCommentaire(commentaire);
-            model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
-            return "home";
-        }
-    }
-
-    /**
      * Méthode permet de modifier le commentaire sur le site en get
      *
      * @param model

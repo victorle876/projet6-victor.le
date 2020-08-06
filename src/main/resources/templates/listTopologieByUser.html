@@ -27,8 +27,9 @@
             <th>Utilisateur</th>
             <th>Detail</th>
             <th>Editer</th>
-            <th>Sites</th>
+            <th>Ajouter</th>
             <th>Publier</th>
+            <th>Officiel des amis de l'escalade</th>
             </thead>
             <tbody>
             <tr th:each="topologie, rowStat: ${topologiesbyuser}"
@@ -38,13 +39,20 @@
                 <td th:text="${topologie.pays}"/>
                 <td th:text="${topologie.utilisateur.username}"/>
                 <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
-                <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
+                <td><a th:href="@{/topologie/editionTopologie/{id}(id=${topologie.id})}">Editer</a></td>
                 <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
-                <!--                        <td th:if="${topologie.ispublic} == false">-->
                 <td>
                     <div th:if="${topologie.ispublic == false}">
                         <a class="btn btn-primary"
-                           role="button" th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}" type="submit" value="Submit">Publier</a>
+                           role="button" th:href="@{/topologie/makeTopoPublic/{id}(id=${topologie.id})}" type="submit"
+                           value="Submit">Publier</a>
+                    </div>
+                </td>
+                <td>
+                    <div th:if="${topologie.isofficiel == true}">
+                        <th:block th:if="${topologie.isofficiel == true}">
+                            <a>oui</a>
+                        </th:block>
                     </div>
                 </td>
             </tr>
@@ -55,7 +63,6 @@
         <a class="btn btn-primary" role="button" th:href="@{/topologie/addTopologie}">Ajouter</a></td>
         <a class="btn btn-secondary" role="button" th:href="@{/admin/home}">Retour</a>
     </div>
-</div>
 </div>
 </body>
 </html>

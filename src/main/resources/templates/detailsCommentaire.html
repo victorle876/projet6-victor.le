@@ -16,7 +16,6 @@
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
     <h3 class="text-center mb-3">Detail Commentaire</h3>
-    <div class="col-md-6">
         <form>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="exampleInputNomSecteur">Nom du secteur</label>
@@ -38,7 +37,7 @@
                 <label class="col-sm-2 col-form-label" for="exampleInputCommentaire">Commentaire</label>
                 <div class="col-sm-10">
                         <textarea class="form-control" aria-describedby="WarningZoneCommentaire"
-                                  disabled id="exampleInputCommentaire" rows="10"
+                                  disabled id="exampleInputCommentaire" rows="5"
                                   th:field="*{commentaire.zoneCommentaire}"></textarea>
                 </div>
             </div>
@@ -46,7 +45,6 @@
                 <a class="btn btn-info" role="button" th:href="@{/}">Retour</a>
             </div>
         </form>
-    </div>
 </div>
 </body>
 </html>

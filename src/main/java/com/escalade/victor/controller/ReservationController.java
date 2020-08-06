@@ -69,51 +69,11 @@ public class ReservationController {
 
     }
 
-
-    /**
-     * Méthode permet d'ajouter une reservation sur un topo en get
-     *
-     * @param id
-     * @param model
-     * @param topologie
-     * *  @return la page "listTopologiePublic"
-     */
-    @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.GET)
-    public String addTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie) {
-        Topologie topologieId = this.topologieService.getTopologieById(id);
-        model.addAttribute("id", id);
-        model.addAttribute("topologie", topologieId);
-        model.addAttribute("reservation", new Reservation());
-        return "listTopologiePublic" ;
-    }
-
-    /**
-     * Méthode permet d'ajouter une reservation sur un topo en post
-     *
-     * @param id
-     * @param model
-     * @param topologie
-     * *  @return la page "listRservationByUser"
-     */
-    @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
-    public String saveTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie, Reservation newReservation) {
-        Topologie topologieId = this.topologieService.getTopologieById(id);
-        logger.info(topologieId);
-        this.utilisateurService.getUtilisateurConnected();
-        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        newReservation.setTopologie(topologieId);
-        newReservation.setEtat("En cours");
-        newReservation.setUtilisateur(utilisateurId);
-        this.reservationService.saveReservation(newReservation);
-        model.addAttribute("reservationsbyuserdifferent", this.reservationService.getAllReservations());
-        return "redirect:/reservation/listReservationByUser";
-    }
-
     /**
      * Méthode permet de lister les réservations de l'utilisateur concerné
      *
      * @param model
-     * *  @return la page "listTopologiePublic"
+     * *  @return la page "listRservationByUser"
      */
     @RequestMapping(value = "/listReservationByUser", method = RequestMethod.GET)
     public String ReservationListByUser(Model model) {
@@ -170,13 +130,45 @@ public class ReservationController {
         Utilisateur utilisateurNew = reservationExistant.getUtilisateur();
         logger.info(topo);
         logger.info(reservationExistant.getEtat());
-        reservationExistant.setEtat("Accepté");
+        reservationExistant.setUtilisateur(utilisateurNew);
+        reservationExistant.setEtat("Preté");
         this.reservationService.saveReservation(reservationExistant);
-        topo.setUtilisateur(utilisateurNew);
-        topo.setIspublic(Boolean.FALSE);
+        topo.setIsavailable(Boolean.FALSE);
         this.topologieService.saveTopologie(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
+    }
+
+    @RequestMapping(value = "/makeTopoLibre/{id}", method = RequestMethod.GET)
+    public String makeTopoLibre(@PathVariable(value = "id") Long id, Model model) {
+        Reservation reservationExistant = this.reservationService.getReservationById(id);
+        model.addAttribute("reservation", this.reservationService.getReservationById(id));
+        model.addAttribute("id", id);
+        return "listReservationByUser";
+    }
+
+    /**
+     * Méthode permet à l'utilisateur preteur de rendre le topo
+     *
+     * @param model
+     * @param reservationExistant
+     * @param model
+     * *  @return la page "listReservationByUser"
+     */
+    @RequestMapping(value = "/makeTopoLibre/{id}", method = RequestMethod.POST)
+    public String saveTopoLibre(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        reservationExistant = this.reservationService.getReservationById(id);
+        Topologie topo = reservationExistant.getTopologie();
+        logger.info(topo);
+        logger.info(reservationExistant.getEtat());
+        reservationExistant.setEtat("Libre");
+        this.reservationService.saveReservation(reservationExistant);
+        topo.setIsavailable(Boolean.TRUE);
+        topo.setIspublic(Boolean.FALSE);
+        this.topologieService.saveTopologie(topo);
+        model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
+        return "redirect:/reservation/listReservationByUser";
     }
 
     /**

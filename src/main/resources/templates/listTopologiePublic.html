@@ -25,8 +25,8 @@
             <th>Utilisateur</th>
             <th>Detail</th>
             <th>Editer</th>
-            <th>Sites</th>
             <th>Reservation</th>
+            <th>Officiel des amis de l'escalade</th>
             </thead>
             <tbody>
             <tr th:each="topologie, rowStat: ${topologiepublic}"
@@ -37,12 +37,20 @@
                 <td th:text="${topologie.utilisateur.username}"/>
                 <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
                 <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
-                <td><a th:href="@{/topologie/addSiteTopo/{id}(id=${topologie.id})}">Ajouter</a></td>
                 <td>
                     <form method="post"
-                          th:action="@{/reservation/addTopoReservation/{id}(id=${topologie.id})}" th:object="${reservation}">
-                        <button class="btn btn-primary" type="submit">Reserver</button>
+                          th:action="@{/topologie/addTopoReservation/{id}(id=${topologie.id})}" th:object="${topologie}">
+                        <th:block th:if="${topologie.isavailable == true}">
+                            <button class="btn btn-primary" type="submit">Reserver</button>
+                        </th:block>
                     </form>
+                </td>
+                <td>
+                    <div th:if="${topologie.isofficiel == true}">
+                        <th:block th:if="${topologie.isofficiel == true}">
+                            <a>oui</a>
+                        </th:block>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -51,7 +59,6 @@
     <div class="row">
         <a class="btn btn-secondary" role="button" th:href="@{/admin/home}">Retour</a>
     </div>
-</div>
 </div>
 </body>
 </html>

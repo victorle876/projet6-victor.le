@@ -17,5 +17,5 @@ public interface TopologieRepository extends JpaRepository<Topologie, Long>{
     @Query("select t from Topologie t where t.nomTopologie like %:chaineRecherche%")
     List <Topologie> findByNomTopologieAndNomSecteur (String chaineRecherche);
 
-    List <Topologie> findByNomTopologieIgnoreCaseContainingOrSecteurIgnoreCaseContaining(String nomTopologie, String secteur);
+    List <Topologie> findByNomTopologieIgnoreCaseContainingOrSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(String nomTopologie, String secteur,String Pays);
 }

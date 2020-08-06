@@ -19,7 +19,6 @@
     <h3>Ajout sites</h3>
     <div class="col-md-6">
         <form method="post" th:action="@{/site/addTopoSite/{id}(id=${id})}" th:object="${topologie}">
-            <h3>Bonjour</h3>
             <div class="form-group row has-feedback">
                 <select class="custom-select" th:field="*{id}">
                     <option th:each="topologie : ${topologieTrouve}"

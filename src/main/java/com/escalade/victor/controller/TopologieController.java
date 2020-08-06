@@ -2,10 +2,7 @@ package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
 import com.escalade.victor.repository.SiteRepository;
-import com.escalade.victor.service.SiteService;
-import com.escalade.victor.service.TopologieService;
-import com.escalade.victor.service.UtilisateurService;
-import com.escalade.victor.service.VoieService;
+import com.escalade.victor.service.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,9 @@ public class TopologieController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+
+    @Autowired
+    private ReservationService reservationService;
 
     @Autowired
     private SiteService siteService;
@@ -105,8 +105,8 @@ public class TopologieController {
             logger.info("utilisateurId");
             topologie.setIspublic(Boolean.FALSE); // mise à flag false pour topo non publié
             this.topologieService.saveTopologie(topologie);
-            model.addAttribute("topologies", this.topologieService.getAllTopologies());
-            return "listTopologie";
+            model.addAttribute("topologies", this.topologieService.findTopologieByUser(utilisateurId));
+            return "redirect:/topologie/listTopologieByUser";
         }
     }
 
@@ -149,7 +149,7 @@ public class TopologieController {
         siteSelectionne.setTopologie(topo);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("topologies", this.topologieService.getAllTopologies());
-        return "listTopologieByUser";
+        return "redirect:/topologie/listTopologieByUser";
     }
 
     /**
@@ -159,8 +159,8 @@ public class TopologieController {
      * @param id
      * * @return la page "editionTopologie"
      */
-    @RequestMapping(value = "/editionTopologie", method = RequestMethod.GET)
-    public String editionTopologie(@RequestParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/editionTopologie/{id}", method = RequestMethod.GET)
+    public String editionTopologie(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("topologie", this.topologieService.getTopologieById(id));
         return "editionTopologie";
 
@@ -173,16 +173,20 @@ public class TopologieController {
      * @param errors
      * * @return la page "listTopologie"
      */
-    @RequestMapping(value = "/editionTopologie", method = RequestMethod.POST)
-    public String editionTopologie(@RequestParam(value = "id") long id, @Valid @ModelAttribute Topologie Topologie, BindingResult errors, Model model) {
+    @RequestMapping(value = "/editionTopologie/{id}", method = RequestMethod.POST)
+    public String editionTopologie(@PathVariable(value = "id") long id,Topologie Topologie, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
             return "editionTopologie";
         } else {
-            Topologie = this.topologieService.getTopologieById(id);
-            this.topologieService.saveTopologie(Topologie);
+            Topologie topologieId = this.topologieService.getTopologieById(id);
+            topologieId.setIsofficiel(Topologie.getIsofficiel());
+            topologieId.setNomTopologie(Topologie.getNomTopologie());
+            topologieId.setSecteur(Topologie.getSecteur());
+            topologieId.setUtilisateur(this.utilisateurService.getUtilisateurConnected());
+            this.topologieService.saveTopologie(topologieId);
             logger.info(Topologie);
-            model.addAttribute("topologies", this.topologieService.getAllTopologies());
-            return "listTopologie";
+            model.addAttribute("topologies", this.topologieService.findTopologieByUser(this.utilisateurService.getUtilisateurConnected()));
+            return "redirect:/topologie/listTopologieByUser";
         }
     }
 
@@ -231,19 +235,6 @@ public class TopologieController {
         return "listTopologieByUser";
     }
 
-    /**
-     * Méthode permet de lister les topologies autre que celui de l'utilisateur connecte
-     * @param model
-     * * @return la page "listTopologieDifferent"
-     */
-    @RequestMapping(value = "/listTopologieDifferentByUser", method = RequestMethod.GET)
-    public String TopoListDifferentUser(Model model) {
-        this.utilisateurService.getUtilisateurConnected();
-        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        logger.info(utilisateurId);
-        model.addAttribute("topologiesbyuserdifferent", this.topologieService.findTopologieByUserDifferent(utilisateurId));
-        return "listTopologieDifferent";
-    }
 
     /**
      * Méthode permet de lister les topologies publiques
@@ -286,10 +277,11 @@ public class TopologieController {
         Topologie topologieId = this.topologieService.getTopologieById(id);
         if (topologieId.getIspublic() == Boolean.FALSE) {
             topologieId.setIspublic(Boolean.TRUE);
+            topologieId.setIsavailable(Boolean.TRUE);
             this.topologieService.saveTopologie(topologieId);
-            model.addAttribute("topologiepublic", this.topologieService.findTopologieByIspublic());
+            model.addAttribute("topologiepublic", this.topologieService.findTopologieByPublicAndIspublic(utilisateurId));
         }
-        return "listTopologiePublic";
+        return "redirect:/admin/home";
     }
 
     /**
@@ -313,6 +305,7 @@ public class TopologieController {
     public String saveTopoSearchList(Model model, Topologie topologieEnrecherche, String recherche) {
         String nomTopologie = topologieEnrecherche.getNomTopologie();
         String secteur = topologieEnrecherche.getSecteur();
+        String pays = topologieEnrecherche.getPays();
         logger.info(nomTopologie);
         logger.info(secteur);
         recherche = (nomTopologie);
@@ -323,9 +316,48 @@ public class TopologieController {
     }
 
     /**
-     * Méthode permet de chercher le topo en fonction des critères en get
+     * Méthode permet d'ajouter une reservation sur un topo en get
+     *
+     * @param id
      * @param model
-     * * @return la page "topoSearch"
+     * @param topologie
+     * *  @return la page "listTopologiePublic"
+     */
+    @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.GET)
+    public String addTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie) {
+        Topologie topologieId = this.topologieService.getTopologieById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("topologie", topologieId);
+        model.addAttribute("reservation", new Reservation());
+        return "listTopologiePublic" ;
+    }
+
+    /**
+     * Méthode permet d'ajouter une reservation sur un topo en post
+     *
+     * @param id
+     * @param model
+     * @param topologie
+     * *  @return la page "listReservationByUser"
+     */
+    @RequestMapping(value = "addTopoReservation/{id}", method = RequestMethod.POST)
+    public String saveTopoReservation(@PathVariable("id") Long id, Model model, Topologie topologie, Reservation newReservation) {
+        Topologie topologieId = this.topologieService.getTopologieById(id);
+        logger.info(topologieId);
+        this.utilisateurService.getUtilisateurConnected();
+        Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+        newReservation.setTopologie(topologieId);
+        newReservation.setEtat("En cours");
+        newReservation.setUtilisateur(utilisateurId);
+        this.reservationService.saveReservation(newReservation);
+        model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
+        return "redirect:/reservation/listReservationByUser";
+    }
+
+    /**
+     * Méthode permet de chercher le site en fonction des critères en get
+     * @param model
+     * * @return la page "siteSearch"
      */
     @RequestMapping(value = "/SearchSiteList", method = RequestMethod.GET)
     public String listTopoSearch1(Model model) {
@@ -335,9 +367,9 @@ public class TopologieController {
     }
 
     /**
-     * Méthode permet de chercher le topo en fonction des critères en post
+     * Méthode permet de chercher le site en fonction des critères en post
      * @param model
-     * * @return la page "SearchforTopo"
+     * * @return la page "SearchforSite"
      */
     @RequestMapping(value = "/SearchSiteList", method = RequestMethod.POST)
     public String saveTopoSearchList1(Model model, Site SiteEnrecherche, String recherche) {
@@ -358,9 +390,9 @@ public class TopologieController {
     }
 
     /**
-     * Méthode permet de chercher le topo en fonction des critères en post
+     * Méthode permet de chercher la voie en fonction des critères en post
      * @param model
-     * * @return la page "SearchforTopo"
+     * * @return la page "SearchforVoie"
      */
     @RequestMapping(value = "/SearchVoieList", method = RequestMethod.POST)
     public String saveVoieSearchList(Model model, Voie VoieEnrecherche, String recherche) {

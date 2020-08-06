@@ -38,7 +38,7 @@
                 <td th:text="${voie.distance}"/>
                 <td th:text="${voie.site}"/>
                 <td><a th:href="@{/voie/detailsVoie?id={id}(id=${voie.id})}">Détails</a></td>
-                <td><a th:href="@{/voie/editionVoie?id={id}(id=${voie.id})}">Editer</a></td>
+                <td><a th:href="@{/voie/editionVoie/{id}(id=${voie.id})}">Editer</a></td>
             </tr>
             </tbody>
         </table>

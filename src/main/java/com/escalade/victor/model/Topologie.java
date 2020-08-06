@@ -57,6 +57,10 @@ public class Topologie {
 
     private Boolean ispublic;
 
+    private Boolean isofficiel;
+
+    private Boolean isavailable;
+
     @PrePersist
     protected void prePersist() {
         if (this.createdAt == null) createdAt = new Date();
@@ -147,6 +151,22 @@ public class Topologie {
 
     public void setIspublic(Boolean aPublic) {
         ispublic = aPublic;
+    }
+
+    public Boolean getIsofficiel() {
+        return isofficiel;
+    }
+
+    public void setIsofficiel(Boolean isofficiel) {
+        this.isofficiel = isofficiel;
+    }
+
+    public Boolean getIsavailable() {
+        return isavailable;
+    }
+
+    public void setIsavailable(Boolean isavailable) {
+        this.isavailable = isavailable;
     }
 
     @Override

@@ -66,27 +66,8 @@ public class Utilisateur {
     @OneToMany(mappedBy="utilisateur")
     private List<Voie> voies;
 
-/*    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY, optional = false)
-    private Site site;*/
-
     @OneToMany(mappedBy="utilisateur")
     private List<Site> sites;
-
-/*    public Utilisateur(Long id, @NotBlank(message = "Le nom est requis.") String username, @NotBlank(message = "Le prenom est requis.") String prenom, @NotBlank(message = "L'adresse mail est requis.") String mail, String password, @NotNull(message = "L''age est requis.") Integer age, List<Role> roles, Date createdAt, Date updatedAt, List<Topologie> topologies, List<Commentaire> commentaires, List<Reservation> reservations) {
-        this.id = id;
-        this.username = username;
-        this.prenom = prenom;
-        this.mail = mail;
-        this.password = password;
-     //   this.age = age;
-     //   this.roles = roles;
-    //    this.createdAt = createdAt;
-    //    this.updatedAt = updatedAt;
-        this.topologies = topologies;
-        this.commentaires = commentaires;
-        this.reservations = reservations;
-    }*/
 
     public Utilisateur() {
     }

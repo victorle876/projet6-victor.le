@@ -18,7 +18,7 @@
 <div class="container mt-5">
     <h3 class="text-center mb-3">Modifier detail voie</h3>
     <div class="col-md-6">
-        <form action="#" method="post" th:action="@{/voie/editionVoie?id={id}(id=${voie.id})}"
+        <form action="#" method="post" th:action="@{/voie/editionVoie/{id}(id=${voie.id})}"
               th:object="${voie}">
             <div class="form-group row has-feedback">
                 <label class="col-sm-2 col-form-label" for="exampleInputNomVoie">Nom</label>
@@ -56,7 +56,7 @@
 
             <div class="row">
                 <input class="btn btn-primary" th:name="action" th:value="Submit" type="submit">
-                <a class="btn btn-secondary" role="button" th:href="@{/voie/listVoie}">Retour</a>
+                <a class="btn btn-secondary" role="button" th:href="@{/voie/listVoieByUser}">Retour</a>
             </div>
         </form>
     </div>

@@ -22,6 +22,7 @@
             <th>Topologie</th>
             <th>Etat</th>
             <th>Annuler</th>
+            <th>Rendre</th>
             </thead>
             <tbody>
             <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
@@ -32,9 +33,18 @@
                     <form method="post"
                           th:action="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}" th:object="${reservation}">
                         <div th:if="${reservation.etat == 'En cours'}">
-                            <!--                                    <a th:href="@{/reservation/makeTopoAnnule/{id}(id=${reservation.id})}">Annuler</a>-->
                             <th:block th:if="${reservation.etat == 'En cours'}">
                                 <button class="btn btn-primary" type="submit">Annuler</button>
+                            </th:block>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post"
+                          th:action="@{/reservation/makeTopoLibre/{id}(id=${reservation.id})}" th:object="${reservation}">
+                        <div th:if="${reservation.etat == 'Preté'}">
+                            <th:block th:if="${reservation.etat == 'Preté'}">
+                                <button class="btn btn-primary" type="submit">Rendre</button>
                             </th:block>
                         </div>
                     </form>

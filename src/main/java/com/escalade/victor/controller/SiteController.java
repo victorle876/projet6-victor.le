@@ -107,8 +107,8 @@ public class SiteController {
         } else {
           site.setUtilisateur(utilisateurId);
             this.siteService.saveSite(site);
-            model.addAttribute("sites", this.siteService.getAllSites());
-             return "listSite";
+            model.addAttribute("sites", this.siteService.findSiteByUser(utilisateurId));
+             return "redirect:/admin/home";
         }
     }
 
@@ -185,14 +185,15 @@ public class SiteController {
      * * @return la page "editionSite"
      */
     @RequestMapping(value = "/editionSite", method = RequestMethod.POST)
-    public String editionSite(@RequestParam(value = "id") long id, @Valid @ModelAttribute Site site, BindingResult errors, Model model) {
+    public String editionSite(@RequestParam(value = "id") long id, @Valid Site site, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
             return "editionSite";
         } else {
-            site = this.siteService.getSiteById(id);
-            this.siteService.saveSite(site);
+            Site siteId = this.siteService.getSiteById(id);
+            siteId.setNomSite(site.getNomSite());
+            this.siteService.saveSite(siteId);
             model.addAttribute("sites", this.siteService.getAllSites());
-            return "redirect:/listSiteByUser";
+            return "redirect:/site/listSiteByUser";
         }
     }
 
@@ -264,8 +265,8 @@ public class SiteController {
             voie.setSite(siteId);
             voie.setUtilisateur(utilisateurId);
             this.voieService.saveVoie(voie);
-            model.addAttribute("voies", this.voieService.getAllVoies());
-            return "home";
+            model.addAttribute("voiesbyuser", this.voieService.findVoieByUser(utilisateurId));
+            return "redirect:/site/listSiteByUser";
         }
     }
 
