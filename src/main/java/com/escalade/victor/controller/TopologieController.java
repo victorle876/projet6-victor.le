@@ -350,6 +350,8 @@ public class TopologieController {
         newReservation.setEtat("En cours");
         newReservation.setUtilisateur(utilisateurId);
         this.reservationService.saveReservation(newReservation);
+        topologieId.setIsavailable(Boolean.FALSE);
+        this.topologieService.saveTopologie(topologieId);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listReservationByUser";
     }

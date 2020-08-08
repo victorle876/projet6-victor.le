@@ -165,7 +165,7 @@ public class ReservationController {
         reservationExistant.setEtat("Libre");
         this.reservationService.saveReservation(reservationExistant);
         topo.setIsavailable(Boolean.TRUE);
-        topo.setIspublic(Boolean.FALSE);
+        //topo.setIspublic(Boolean.FALSE);
         this.topologieService.saveTopologie(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listReservationByUser";
@@ -203,6 +203,8 @@ public class ReservationController {
         logger.info(topo);
         reservationExistant.setEtat("Refusé");
         this.reservationService.saveReservation(reservationExistant);
+        topo.setIsavailable(Boolean.TRUE);
+        this.topologieService.saveTopologie(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
     }
@@ -238,6 +240,8 @@ public class ReservationController {
         logger.info(topo);
         reservationExistant.setEtat("Annulé");
         this.reservationService.saveReservation(reservationExistant);
+        topo.setIsavailable(Boolean.TRUE);
+        this.topologieService.saveTopologie(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listReservationByUser";
     }
