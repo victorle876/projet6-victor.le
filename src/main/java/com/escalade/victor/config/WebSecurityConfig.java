@@ -50,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/resources/**", "/webjars/**","/assets/**").permitAll()
-//                .antMatchers("/edition/**", "/details/**","/save/**","/add/**").permitAll()
                 .antMatchers("/editionUser/**", "/detailsUser/**","/saveUser/**","/addUser/**","/listUser/**").permitAll()
                 .antMatchers("/site/editionSite/**", "/site/detailsSite/**","/site/saveSite/**","/site/addSite/**","/site/listSite/**","/site/addTopoSite/**","/site/addVoieSite/**","/site/addCommentaireSite/**").permitAll()
                 .antMatchers("/commentaire/editionCommentaire/**", "/commentaire/detailsCommentaire/**","/commentaire/listCommentaire/**").permitAll()
