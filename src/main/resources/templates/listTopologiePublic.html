@@ -36,7 +36,7 @@
                 <td th:text="${topologie.pays}"/>
                 <td th:text="${topologie.utilisateur.username}"/>
                 <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
-                <td><a th:href="@{/topologie/editionTopologie?id={id}(id=${topologie.id})}">Editer</a></td>
+                <td><a th:href="@{/topologie/editionTopologie/{id}(id=${topologie.id})}">Editer</a></td>
                 <td>
                     <form method="post"
                           th:action="@{/topologie/addTopoReservation/{id}(id=${topologie.id})}" th:object="${topologie}">

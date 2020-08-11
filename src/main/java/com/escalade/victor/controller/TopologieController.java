@@ -182,6 +182,7 @@ public class TopologieController {
             topologieId.setIsofficiel(Topologie.getIsofficiel());
             topologieId.setNomTopologie(Topologie.getNomTopologie());
             topologieId.setSecteur(Topologie.getSecteur());
+            topologieId.setDescription(Topologie.getDescription());
             topologieId.setUtilisateur(this.utilisateurService.getUtilisateurConnected());
             this.topologieService.saveTopologie(topologieId);
             logger.info(Topologie);

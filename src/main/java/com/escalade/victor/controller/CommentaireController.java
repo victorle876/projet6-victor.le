@@ -37,7 +37,7 @@ public class CommentaireController {
     /**
      * Méthode permet de lister les commentaires
      *
-     * @param id
+     * * @param id
      * @param model
      * * @return la page "listCommentaire"
      */
@@ -113,19 +113,19 @@ public class CommentaireController {
      * Méthode permet d'effacer le commentaire sur le site en get
      *
      * @param model
-     * @param id
+     * * @param id
      * *   @return la page "deleteCommentaire" en get
      */
-    @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.GET)
-    public String makeCommentaireDeleted(@RequestParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.GET)
+    public String makeCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
         logger.info(id);
         Commentaire commentaireId = this.commentaireService.getCommentaireById(id);
         Site siteId = commentaireId.getSite();
         List <Commentaire> commentaireList= this.commentaireService.findCommentaireBySite(siteId);
         model.addAttribute("id", id);
         model.addAttribute("commentairesbysite", commentaireList);
-        model.addAttribute("commentaire", this.commentaireService.getCommentaireById(id));
-        return "detailsSite";
+        model.addAttribute("commentaire", commentaireId);
+        return "detailsCommentaire";
 
     }
 
@@ -136,8 +136,8 @@ public class CommentaireController {
      * @param id
      * *   @return la page "deleteCommentaire" en post
      */
-    @RequestMapping(value = "/deleteCommentaire", method = RequestMethod.POST)
-    public String saveCommentaireDeleted(@PathParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/deleteCommentaire/{id}", method = RequestMethod.POST)
+    public String saveCommentaireDeleted(@PathVariable(value = "id") Long id, Model model) {
             Commentaire commentaireId= this.commentaireService.getCommentaireById(id);
             logger.info(commentaireId);
             logger.info("test efface");

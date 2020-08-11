@@ -18,7 +18,7 @@
     <div class="card rounded-0 shadow">
         <div class="card-body">
             <p sec:authorize="isAnonymous()"><a th:href="@{/connect}">Login</a></p>
-            <p sec:authorize="isAuthenticated()">Welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</p>
+            <p sec:authorize="isAuthenticated()">Welcome(<span sec:authentication="principal.username">Admin</span>)</p>
             <p><a th:href="@{/admin/home}">Admin Home</a></p>
             <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
         </div>

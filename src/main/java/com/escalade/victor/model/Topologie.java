@@ -67,6 +67,8 @@ public class Topologie {
         if (this.updatedAt == null) updatedAt = new Date();
     }
 
+    private String Description;
+
     @PreUpdate
     protected void preUpdate() {
         this.updatedAt = new Date();
@@ -167,6 +169,14 @@ public class Topologie {
 
     public void setIsavailable(Boolean isavailable) {
         this.isavailable = isavailable;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     @Override

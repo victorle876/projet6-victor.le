@@ -25,10 +25,8 @@
             <th>Topologie du site</th>
             <th>Detail</th>
             <th>Editer</th>
-<!--            <th>Rattacher le site sur le topo</th>-->
             <th>Ajouter Voie</th>
             <th>Ajouter Commentaire</th>
-            <!--                    <th>Liste de mes voies</th>-->
             </thead>
             <tbody>
             <tr th:each="site, rowStat: ${sitebyuser}"
@@ -37,7 +35,6 @@
                 <td th:text="${site.topologie.nomTopologie}"/>
                 <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
                 <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-<!--                <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>-->
                 <td><a class="btn btn-primary" role="button" th:href="@{/site/addVoieSite/{id}(id=${site.id})}">Ajouter
                     site</a></td>
                 <td><a class="btn btn-primary" role="button" th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}">Ajouter

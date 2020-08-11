@@ -23,32 +23,26 @@
             <thead>
             <th>Nom du site</th>
             <th>Topologie du site</th>
+            <th>Ajouter Commentaire</th>
             <th>Detail</th>
             <th>Editer</th>
-            <th>Rattacher le site sur le topo</th>
-            <th>Ajouter Voie</th>
-            <th>Ajouter Commentaire</th>
             </thead>
             <tbody>
             <tr th:each="site, rowStat: ${sites}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${site.nomSite}"/>
-                <td th:text="${site.topologie}"/>
-                <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                <td><a th:href="@{/site/addTopoSite/{id}(id=${site.id})}">Rattacher</a></td>
-                <td><a class="btn btn-primary" role="button" th:href="@{/site/addVoieSite/{id}(id=${site.id})}">Ajouter
-                    site</a></td>
+                <td th:text="${site.topologie.nomTopologie}"/>
                 <td><a class="btn btn-primary" role="button" th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}">Ajouter
                     commentaire</a>
+                <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
+                <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="row">
-        <a class="btn btn-primary" role="button" th:href="@{/site/addSite}">Ajouter</a> </br>
-        <a class="btn btn-primary" role="button" th:href="@{/admin/home}">Retour</a>
+        <a class="btn btn-primary" role="button" th:href="@{/}">Retour</a>
     </div>
 </div>
 </div>

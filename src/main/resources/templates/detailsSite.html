@@ -44,8 +44,8 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
-                    <th>Auteur du commentaire</th>
-                    <th>zone du commentaire</th>
+                    <th>Commentaire</th>
+                    <th>Auteur</th>
                     <th>detail</th>
                     <th>supprimer</th>
                     </thead>
@@ -58,7 +58,7 @@
                         </td>
                         <td>
                             <form method="post"
-                                  th:action="@{/commentaire/deleteCommentaire?id={id}(id=${commentaire.id})}">
+                                  th:action="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">
                                 <button class="btn btn-primary" type="submit">Supprimer</button>
                             </form>
                         </td>
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="row">
-            <a class="btn btn-info" role="button" th:href="@{/site/listSiteByUser}">Retour</a>
+            <a class="btn btn-info" role="button" th:href="@{/site/listSite}">Retour</a>
         </div>
 
 </div>

@@ -44,10 +44,21 @@
                 </div>
             </div>
 
-            <div class="form-group row has-feedback">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="exampleInputDescription">Description</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" class="form-check-input" disabled id="exampleInputOfficiel" th:field="*{topologie.isofficiel}">
-                    <label class="form-check-label" for="exampleInputOfficiel">Officiel des amis de l'escalade</label>
+                        <textarea class="form-control" aria-describedby="WarningDescription"
+                                  disabled id="exampleInputDescription" rows="5"
+                                  th:field="*{topologie.description}"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 col-form-label" for="exampleInputDate">Date de parution</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningInputDate" class="form-control" disabled
+                           id="exampleInputDate"
+                           th:value="${topologie.createdAt}" type="text">
                 </div>
             </div>
 
@@ -57,6 +68,13 @@
                     <input aria-describedby="WarningAuteur" class="form-control" disabled
                            id="exampleInputAuteur"
                            th:value="${topologie.utilisateur.username}" type="number">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" disabled id="exampleInputOfficiel" th:field="*{topologie.isofficiel}">
+                    <label class="form-check-label" for="exampleInputOfficiel">Officiel des amis de l'escalade</label>
                 </div>
             </div>
             <div class="row">
