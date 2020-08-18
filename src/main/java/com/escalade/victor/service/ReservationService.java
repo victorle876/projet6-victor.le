@@ -1,7 +1,7 @@
 package com.escalade.victor.service;
 
 import com.escalade.victor.model.Reservation;
-import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Topo;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -52,9 +51,9 @@ public class ReservationService {
      * @param topologieSelectionne
      * * @return la reservation en fonction du topo selectionne
      */
-    public Reservation getReservationByTopologie(Topologie topologieSelectionne)
+    public Reservation getReservationByTopologie(Topo topologieSelectionne)
     {
-        return this.reservationRepository.findByTopologie(topologieSelectionne).get();
+        return this.reservationRepository.findByTopo(topologieSelectionne).get();
 
     }
 

@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     List<Reservation> findByUtilisateur (Utilisateur utilisateur1);
-    Optional<Reservation> findByTopologie(Topologie topologieSelectionne);
+    Optional<Reservation> findByTopo(Topo topologieSelectionne);
     List <Reservation> findByUtilisateurNot (Utilisateur utilisateur1);
-    @Query("select r from Reservation r inner join Topologie t on r.topologie.id = t.id where t.utilisateur = :utilisateurProprietaire")
+    @Query("select r from Reservation r inner join Topo t on r.topo.id = t.id where t.utilisateur = :utilisateurProprietaire")
     List<Reservation> findByUtilisateurAndTopologie(Utilisateur utilisateurProprietaire);
 }

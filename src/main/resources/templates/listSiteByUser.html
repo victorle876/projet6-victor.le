@@ -25,20 +25,29 @@
             <th>Topologie du site</th>
             <th>Detail</th>
             <th>Editer</th>
-            <th>Ajouter Voie</th>
+            <th>Ajouter Secteur</th>
             <th>Ajouter Commentaire</th>
+            <th>Officiel des amis de l'escalade</th>
             </thead>
             <tbody>
             <tr th:each="site, rowStat: ${sitebyuser}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${site.nomSite}"/>
-                <td th:text="${site.topologie.nomTopologie}"/>
+                <td th:text="${site.topo.nomTopologie}"/>
                 <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                <td><a th:href="@{/site/editionSite?id={id}(id=${site.id})}">Editer</a></td>
-                <td><a class="btn btn-primary" role="button" th:href="@{/site/addVoieSite/{id}(id=${site.id})}">Ajouter
-                    site</a></td>
+                <td><a th:href="@{/site/editionSite/{id}(id=${site.id})}">Editer</a></td>
+                <td><a class="btn btn-primary" role="button" th:href="@{/site/addSecteurSite/{id}(id=${site.id})}">Ajouter
+                    Secteur</a>
+                </td>
                 <td><a class="btn btn-primary" role="button" th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}">Ajouter
                     commentaire</a>
+                </td>
+                <td>
+                    <div th:if="${site.isofficiel == true}">
+                        <th:block th:if="${site.isofficiel == true}">
+                            <a>oui</a>
+                        </th:block>
+                    </div>
                 </td>
             </tr>
             </tbody>

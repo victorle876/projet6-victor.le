@@ -22,19 +22,15 @@
         <table class="table table-bordered table-striped text-center">
             <thead>
             <th>Nom Topologie</th>
-            <th>Secteur</th>
-            <th>Pays</th>
             <th>Utilisateur</th>
             <th>Detail</th>
             </thead>
             <tbody>
-            <tr th:each="topologie, rowStat: ${topologiesearch}"
+            <tr th:each="topo, rowStat: ${topologiesearch}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                <td th:text="${topologie.nomTopologie}"/>
-                <td th:text="${topologie.secteur}"/>
-                <td th:text="${topologie.pays}"/>
-                <td th:text="${topologie.utilisateur.username}"/>
-                <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
+                <td th:text="${topo.nomTopologie}"/>
+                <td th:text="${topo.utilisateur.username}"/>
+                <td><a th:href="@{/topo/detailsTopo?id={id}(id=${topo.id})}">Détails</a></td>
             </tr>
             </tbody>
         </table>

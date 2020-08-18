@@ -21,27 +21,32 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <a class="navbar-brand" th:href="@{/}">Accueil</a>
                 <ul class="navbar-nav mr-auto">
-<!--                    <li class="nav-item mt-2 mt-lg-0">-->
-<!--                        <a class="nav-link active" th:href="@{/}">Accueil</a>-->
-<!--                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/listUser}">Utilisateurs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/topologie/listTopologiePublic}">Topologies publiques</a>
+                        <a class="nav-link" th:href="@{/topo/listTopoPublic}">Topos publiques</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/topologie/listTopologieByUser}">Mes topologies</a>
+                        <a class="nav-link" th:href="@{/topo/listTopoByUser}">Mes topos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/site/listSiteByUser}">Mes sites</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/voie/listVoieByUser}">Mes voies</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Infos</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                            <a class="dropdown-item" th:href="@{/site/listSiteByUser}">Mes sites</a>
+                            <a class="dropdown-item" th:href="@{/voie/listVoieByUser}">Mes voies</a>
+                            <a class="dropdown-item" th:href="@{/secteur/listSecteurByUser}">Mes secteurs</a>
+                        </div>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/site/listSite}">Sites</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/secteur/listSecteur}">Secteurs</a>
                     </li>
 
                     <li class="nav-item">
@@ -54,9 +59,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Recherche</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" th:href="@{/topologie/SearchTopoList}">Recherche topo</a>
-                            <a class="dropdown-item" th:href="@{/topologie/SearchSiteList}">Recherche Site</a>
-                            <a class="dropdown-item" th:href="@{/topologie/SearchVoieList}">Recherche Voie</a>
+                            <a class="dropdown-item" th:href="@{/topo/SearchTopoList}">Recherche topo</a>
+                            <a class="dropdown-item" th:href="@{/topo/SearchSiteList}">Recherche Site</a>
+                            <a class="dropdown-item" th:href="@{/topo/SearchVoieList}">Recherche Voie</a>
                         </div>
                     </li>
 

@@ -28,7 +28,7 @@
             <tbody>
             <tr th:each="reservation, rowStat: ${reservationsbyuserdifferent}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                <td th:text="${reservation.topologie.nomTopologie}"/>
+                <td th:text="${reservation.topo.nomTopologie}"/>
                 <td th:text="${reservation.etat}"/>
                 <td>
                     <div class="row">

@@ -17,29 +17,48 @@
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
     <h3 class="text-center mb-3">Modifier detail site</h3>
-    <div class="col-md-6">
-        <form action="#" method="post" th:action="@{/site/editionSite?id={id}(id=${site.id})}" th:object="${site}">
-            <div class="form-group row has-feedback">
+        <form action="#" method="post" th:action="@{/site/editionSite/{id}(id=${id})}" th:object="${site}">
+            <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom</label>
                 <div class="col-sm-10">
                     <input class="form-control" id="exampleInputNomSite" th:field="*{nomSite}" type="text">
-                    <!--<small id="WarningNomSite" class="form-text text-muted"
-                           th:if="${#fields.hasErrors('nomSite')}" th:errors="*{nomSite}"></small>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="exampleInputPays">Pays</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningInputPays" class="form-control"
+                           id="exampleInputPays"
+                           th:field="*{pays}" type="text">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="exampleInputSecteur">Nombre de secteurs</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningInputSecteur" class="form-control"
+                           id="exampleInputSecteur"
+                           th:field="*{nombreSecteur}" type="text">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped text-center">
                         <thead>
-                        <th>Voie</th>
+                        <th>Secteur</th>
                         </thead>
                         <tbody>
-                        <tr th:each="voie, rowStat: ${voiesbysite}"
+                        <tr th:each="secteur, rowStat: ${secteursbysite}"
                             th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                            <td th:text="${voie.nomVoie}"/>
+                            <td th:text="${secteur.nomSecteur}"/>
                         </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="checkbox" class="form-check-input" id="exampleInputOfficiel" th:field="*{isofficiel}">
+                    <label class="form-check-label" for="exampleInputOfficiel">Officiel des amis de l'escalade</label>
                 </div>
             </div>
             <div class="form-group row">
@@ -56,7 +75,6 @@
                             <td th:text="${commentaire.zoneCommentaire}"/>
                             <td th:text="${commentaire.utilisateur.username}"/>
                             <td><a th:href="@{/commentaire/editionCommentaire?id={id}(id=${commentaire.id})}">Editer</a>
-                            </td>
                         </tr>
                         </tbody>
                     </table>

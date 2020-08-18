@@ -1,10 +1,8 @@
 package com.escalade.victor.controller;
 
-import com.escalade.victor.model.Site;
-import com.escalade.victor.model.Topologie;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.model.Voie;
-import com.escalade.victor.service.SiteService;
+import com.escalade.victor.service.SecteurService;
 import com.escalade.victor.service.UtilisateurService;
 import com.escalade.victor.service.VoieService;
 import org.apache.logging.log4j.LogManager;
@@ -14,9 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("/voie")
 @Controller
@@ -28,7 +23,7 @@ public class VoieController {
     private UtilisateurService utilisateurService;
 
     @Autowired
-    private SiteService siteService;
+    private SecteurService siteService;
 
     private static final Logger logger = LogManager.getLogger(VoieController.class);
 
@@ -91,7 +86,8 @@ public class VoieController {
         } else {
             Voie voieId =this.voieService.getVoieById(id);
             voieId.setCotation(Voie.getCotation());
-            voieId.setDistance(Voie.getHauteur());
+            voieId.setDistance(Voie.getDistance());
+            voieId.setHauteur(Voie.getHauteur());
             voieId.setNomVoie(Voie.getNomVoie());
             this.voieService.saveVoie(voieId);
             logger.info(this.voieService.getAllVoies());

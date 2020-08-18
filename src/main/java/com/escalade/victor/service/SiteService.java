@@ -1,11 +1,9 @@
 package com.escalade.victor.service;
 
-import com.escalade.victor.model.*;
-//import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Site;
+import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.repository.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +15,6 @@ public class SiteService {
 
     @Autowired
     SiteRepository siteRepository;
-
-    private Topologie topologieRecherche;
 
     /**
      * Méthode permet de lister tous les sites via ce service
@@ -66,7 +62,7 @@ public class SiteService {
      */
     public void deleteSiteById(Long id)
     {
-            siteRepository.deleteById(id);
+        siteRepository.deleteById(id);
     }
 
     /**
@@ -76,7 +72,7 @@ public class SiteService {
      * @return la liste
      */
     public List<Site> findSiteByUser(Utilisateur utilisateur1) throws UsernameNotFoundException {
-        List<Site>  siteTrouve = this.siteRepository.findByUtilisateur(utilisateur1);
+        List<Site> siteTrouve = this.siteRepository.findByUtilisateur(utilisateur1);
         if (siteTrouve == null){
             throw new RuntimeException("Site introuvable");
         }
@@ -84,8 +80,7 @@ public class SiteService {
     }
 
     public List<Site> findSiteByNom(String recherche) throws UsernameNotFoundException {
-        List<Site>  siteTrouve = this.siteRepository.findByNomSiteIgnoreCaseContaining(recherche);
-      //  logger.debug(siteTrouve);
+        List<Site>  siteTrouve = this.siteRepository.findByNomSiteIgnoreCaseContainingOrNombreSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(recherche,recherche,recherche);
         if (siteTrouve == null){
             throw new RuntimeException("Site introuvable");
         }

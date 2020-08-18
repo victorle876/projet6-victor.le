@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "site")
-public class Site {
+@Table(name = "secteur")
+public class Secteur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,30 +17,18 @@ public class Site {
     private Long id;
 
     @NotBlank(message = "Le nom du site est requis.")
-    @Column(name="nomSite")
-    private String nomSite ;
-
-    private String nombreSecteur ;
-
-    private String pays ;
-
-    private boolean isofficiel;
+    @Column(name="nomSecteur")
+    private String nomSecteur ;
 
     @ManyToOne
     @JoinColumn(name="site_id", referencedColumnName = "id")
-    private Topo topo;
+    private Site site;
 
     @CreatedDate
     private Date createdAt;
 
     @LastModifiedDate
     private Date updatedAt;
-
-    @OneToMany(mappedBy="site")
-    private List<Secteur> secteurs;
-
-    @OneToMany(mappedBy="site")
-    private List<Commentaire> commentaires;
 
     @PrePersist
     protected void prePersist() {
@@ -54,11 +42,14 @@ public class Site {
     }
 
 
+    @OneToMany(mappedBy="secteur")
+    private List<Voie> voies;
+
     @ManyToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
 
-    public Site() {
+    public Secteur() {
     }
 
     public Long getId() {
@@ -69,12 +60,20 @@ public class Site {
         this.id = id;
     }
 
-    public String getNomSite() {
-        return nomSite;
+    public Site getSite() {
+        return site;
     }
 
-    public void setNomSite(String nomSite) {
-        this.nomSite = nomSite;
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+    public String getNomSecteur() {
+        return nomSecteur;
+    }
+
+    public void setNomSecteur(String nomSecteur) {
+        this.nomSecteur = nomSecteur;
     }
 
     public Date getCreatedAt() {
@@ -101,61 +100,19 @@ public class Site {
         this.utilisateur = utilisateur;
     }
 
-    public String getPays() {
-        return pays;
+    public List<Voie> getVoies() {
+        return voies;
     }
 
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
-
-    public List<Secteur> getSecteurs() {
-        return secteurs;
-    }
-
-    public void setSecteurs(List<Secteur> secteurs) {
-        this.secteurs = secteurs;
-    }
-
-    public Topo getTopo() {
-        return topo;
-    }
-
-    public void setTopo(Topo topo) {
-        this.topo = topo;
-    }
-
-    public String getNombreSecteur() {
-        return nombreSecteur;
-    }
-
-    public void setNombreSecteur(String nombreSecteur) {
-        this.nombreSecteur = nombreSecteur;
-    }
-
-    public boolean isIsofficiel() {
-        return isofficiel;
-    }
-
-    public void setIsofficiel(boolean isofficiel) {
-        this.isofficiel = isofficiel;
-    }
-
-    public List<Commentaire> getCommentaires() {
-        return commentaires;
-    }
-
-    public void setCommentaires(List<Commentaire> commentaires) {
-        this.commentaires = commentaires;
+    public void setVoies(List<Voie> voies) {
+        this.voies = voies;
     }
 
     @Override
     public String toString() {
-        return "Site{" +
+        return "Secteur{" +
                 "id=" + id +
-                ", nomSite='" + nomSite + '\'' +
-                ", nombreSecteur=" + nombreSecteur +
-                ", pays='" + pays + '\'' +
+                ", nomSecteur='" + nomSecteur + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

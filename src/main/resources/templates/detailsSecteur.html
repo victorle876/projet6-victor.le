@@ -16,31 +16,33 @@
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
-    <h3 class="text-center mb-3">Publication topologie</h3>
-    <form action="#" method="post"
-          th:action="@{/topo/makeTopoPublic/{id}(id=${id})}" th:object="${topo}">
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="exampleInputNomTopo">Nom Topologie</label>
-            <div class="col-sm-10">
-                <input class="form-control" disabled id="exampleInputNomTopo"
-                       th:field="*{nomTopologie}" type="text">
-            </div>
-        </div>
+    <h3 class="text-center mb-3">Detail secteur</h3>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="exampleInputAuteur">Auteur</label>
+            <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom du secteur</label>
             <div class="col-sm-10">
-                <input class="form-control" disabled id="exampleInputAuteur"
-                       th:field="*{utilisateur}" type="text">
+                <input aria-describedby="WarningInputNomSite" class="form-control" disabled id="exampleInputNomSite"
+                       th:value="${secteur.nomSecteur}" type="text">
             </div>
         </div>
-
+        <div class="form-group row">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                    <th>Voie</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="voie, rowStat: ${voiesbysecteur}"
+                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                        <td th:text="${voie.nomVoie}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="row">
-            <input class="btn btn-primary" th:name="action" th:value="Submit" type="submit">
-            <a class="btn btn-primary" role="button" th:href="@{/topo/listTopo}">Retour</a>
+            <a class="btn btn-info" role="button" th:href="@{/site/listSite}">Retour</a>
         </div>
-    </form>
-
 </div>
 </body>
 </html>

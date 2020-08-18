@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface VoieRepository extends JpaRepository<Voie, Long> {
-    List<Voie> findBySite (Site site1);
+    List<Voie> findBySecteur (Secteur secteur1);
     List<Voie> findByUtilisateur (Utilisateur utilisateur1);
     List <Voie> findByNomVoieIgnoreCaseContainingOrCotationIgnoreCaseContaining(String nomVoie, String cotation);
 }

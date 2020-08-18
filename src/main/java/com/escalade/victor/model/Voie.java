@@ -21,8 +21,8 @@ public class Voie {
     private String cotation;
 
     @ManyToOne
-    @JoinColumn(name="site_id", referencedColumnName = "id")
-    private Site site;
+    @JoinColumn(name="secteur_id", referencedColumnName = "id")
+    private Secteur secteur;
 
     @NotNull(message = "La hauteur est requise.")
     private Integer hauteur;
@@ -67,12 +67,12 @@ public class Voie {
         this.nomVoie = nomVoie;
     }
 
-    public Site getSite() {
-        return site;
+    public Secteur getSecteur() {
+        return secteur;
     }
 
-    public void setSite(Site site) {
-        this.site = site;
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 
     public Date getCreatedAt() {
@@ -129,7 +129,6 @@ public class Voie {
                 "id=" + id +
                 ", nomVoie='" + nomVoie + '\'' +
                 ", cotation='" + cotation + '\'' +
-//                ", site=" + site +
                 ", hauteur=" + hauteur +
                 ", Distance=" + Distance+
                 ", createdAt=" + createdAt +

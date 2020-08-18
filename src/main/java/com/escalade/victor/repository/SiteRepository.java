@@ -1,15 +1,16 @@
 package com.escalade.victor.repository;
+
+import com.escalade.victor.model.Secteur;
 import com.escalade.victor.model.Site;
-import com.escalade.victor.model.*;
+import com.escalade.victor.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface SiteRepository extends JpaRepository<Site, Long> {
-    List<Site> findByUtilisateurAndTopologieIsNull (Utilisateur utilisateur1);
+    List<Site> findByUtilisateurAndTopoIsNull (Utilisateur utilisateur1); // site
     List<Site> findByUtilisateur (Utilisateur utilisateur1);
-    List <Site> findByNomSiteIgnoreCaseContaining(String nomSite);
+    List<Site> findByNomSiteIgnoreCaseContainingOrNombreSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(String nomSite, String nombreSecteur, String Pays);
 }

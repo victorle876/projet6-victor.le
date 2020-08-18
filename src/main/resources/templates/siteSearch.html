@@ -16,14 +16,28 @@
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
     <h3 class="text-center mb-3">Recherche Site</h3>
-    <div class="col-md-6">
-        <form action="siteSearch" method="post" th:action="@{/topologie/SearchSiteList}">
+        <form action="siteSearch" method="post" th:action="@{/topo/SearchSiteList}">
 
-           <div class="form-group row has-feedback">
+           <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="exampleInputSite">Nom du site</label>
                 <div class="col-sm-10">
                     <input aria-describedby="WarningNomSecteur" class="form-control" id="exampleInputSite"
                            name="nomSite" type="text">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="exampleInputSecteur">Nombre du secteur</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningNombreSecteur" class="form-control" id="exampleInputSecteur"
+                           name="nombreSecteur" type="text">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="exampleInputPays">Pays</label>
+                <div class="col-sm-10">
+                    <input aria-describedby="WarningNomPays" class="form-control" id="exampleInputPays"
+                           name="pays" type="text">
                 </div>
             </div>
             <div class="row">

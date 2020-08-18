@@ -17,34 +17,34 @@
 <body>
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
-    <h3 class="text-center mb-3"> Liste des sites</h3>
+    <h3 class="text-center mb-3"> Liste de mes secteurs</h3>
     <div class="table-responsive-lg">
         <table class="table table-bordered table-striped text-center">
             <thead>
-            <th>Nom du site</th>
-            <th>Topologie du site</th>
-            <th>Ajouter Commentaire</th>
+            <th>Nom du secteur</th>
+            <th>Secteurs du site</th>
             <th>Detail</th>
             <th>Editer</th>
+            <th>Ajouter Voie</th>
             </thead>
             <tbody>
-            <tr th:each="site, rowStat: ${sites}"
+            <tr th:each="secteur, rowStat: ${secteurbyuser}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                <td th:text="${site.nomSite}"/>
-                <td th:text="${site.topo.nomTopologie}"/>
-                <td><a class="btn btn-primary" role="button" th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}">Ajouter
-                    commentaire</a>
-                <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
-                <td><a th:href="@{/site/editionSite/{id}(id=${site.id})}">Editer</a></td>
-                </td>
+                <td th:text="${secteur.nomSecteur}"/>
+                <td th:text="${secteur.site.nomSite}"/>
+                <td><a th:href="@{/secteur/detailsSecteur?id={id}(id=${secteur.id})}">Détails</a></td>
+                <td><a th:href="@{/secteur/editionSecteur/{id}(id=${secteur.id})}">Editer</a></td>
+                <td><a class="btn btn-primary" role="button" th:href="@{/secteur/addVoieSecteur/{id}(id=${secteur.id})}">Ajouter
+                    site</a></td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="row">
-        <a class="btn btn-primary" role="button" th:href="@{/}">Retour</a>
+        <a class="btn btn-primary" role="button" th:href="@{/admin/home}">Retour</a>
     </div>
 </div>
 </div>
 </body>
 </html>
+

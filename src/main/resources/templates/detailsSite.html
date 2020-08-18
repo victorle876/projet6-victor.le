@@ -18,58 +18,81 @@
 <div class="container mt-5">
     <h3 class="text-center mb-3">Detail site</h3>
 
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom</label>
-            <div class="col-sm-10">
-                <input aria-describedby="WarningInputNomSite" class="form-control" disabled id="exampleInputNomSite"
-                       th:value="${site.nomSite}" type="text">
-            </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="exampleInputNomSite">Nom</label>
+        <div class="col-sm-10">
+            <input aria-describedby="WarningInputNomSite" class="form-control" disabled id="exampleInputNomSite"
+                   th:value="${site.nomSite}" type="text">
         </div>
-        <div class="form-group row">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Voie</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="voie, rowStat: ${voiesbysite}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${voie.nomVoie}"/>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="exampleInputPays">Pays</label>
+        <div class="col-sm-10">
+            <input aria-describedby="WarningInputPays" class="form-control" disabled id="exampleInputPays"
+                   th:value="${site.pays}" type="text">
         </div>
-        <div class="form-group row">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped text-center">
-                    <thead>
-                    <th>Commentaire</th>
-                    <th>Auteur</th>
-                    <th>detail</th>
-                    <th>supprimer</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="commentaire, rowStat: ${commentairesbysite}"
-                        th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                        <td th:text="${commentaire.zoneCommentaire}"/>
-                        <td th:text="${commentaire.utilisateur.username}"/>
-                        <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a>
-                        </td>
-                        <td>
-                            <form method="post"
-                                  th:action="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">
-                                <button class="btn btn-primary" type="submit">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="exampleInputNombreSecteur">NombreSecteur</label>
+        <div class="col-sm-10">
+            <input aria-describedby="WarningInputNombreSecteur" class="form-control" disabled id="exampleInputNombreSecteur"
+                   th:value="${site.nombreSecteur}" type="text">
         </div>
-        <div class="row">
-            <a class="btn btn-info" role="button" th:href="@{/site/listSite}">Retour</a>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="checkbox" class="form-check-input" disabled id="exampleInputOfficiel" th:field="*{site.isofficiel}">
+            <label class="form-check-label" for="exampleInputOfficiel">Officiel des amis de l'escalade</label>
         </div>
+    </div>
+    <div class="form-group row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                <th>Secteur</th>
+                </thead>
+                <tbody>
+                <tr th:each="secteur, rowStat: ${secteursbysite}"
+                    th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                    <td th:text="${secteur.nomSecteur}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                <th>Commentaire</th>
+                <th>Auteur</th>
+                <th>Detail</th>
+                <th>Supprimer</th>
+                </thead>
+                <tbody>
+                <tr th:each="commentaire, rowStat: ${commentairesbysite}"
+                    th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                    <td th:text="${commentaire.zoneCommentaire}"/>
+                    <td th:text="${commentaire.utilisateur.username}"/>
+                    <td><a th:href="@{/commentaire/detailsCommentaire?id={id}(id=${commentaire.id})}">Détails</a>
+                    </td>
+                    <td>
+
+                        <form method="post"
+                              th:action="@{/commentaire/deleteCommentaire/{id}(id=${commentaire.id})}">
+                            <button class="btn btn-primary" type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-info" role="button" th:href="@{/site/listSite}">Retour</a>
+    </div>
 </div>
 </body>
 </html>

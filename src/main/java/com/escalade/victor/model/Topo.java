@@ -11,14 +11,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "topologie")
-public class Topologie {
+public class Topo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-/*    @NotBlank(message = "L'auteur'est requis.")
-    private String auteur;*/
 
     @NotBlank(message = "Le nom de la topologie est requise.")
     private String nomTopologie;
@@ -33,14 +30,6 @@ public class Topologie {
     @LastModifiedDate
     private Date updatedAt;
 
-    @NotBlank(message = "Le secteur du site est requis.")
-    @Column(name="secteur")
-    private String secteur ;
-
-    @NotBlank(message = "Le pays est requis.")
-    @Column(name="pays")
-    private String pays ;
-
     @ManyToOne
     @JoinColumn(name="utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
@@ -49,15 +38,10 @@ public class Topologie {
     @JoinColumn(name="reservation_id", referencedColumnName = "id")
     private Reservation reservation ;
 
-/*    @OneToOne // many
-    @JoinColumn(name="site_id", referencedColumnName = "id")
-    private Site site ;*/
-    @OneToMany(mappedBy="topologie")
+    @OneToMany(mappedBy="topo")
     private List<Site> sites;
 
     private Boolean ispublic;
-
-    private Boolean isofficiel;
 
     private Boolean isavailable;
 
@@ -131,44 +115,20 @@ public class Topologie {
         this.sites = sites;
     }
 
-    public String getSecteur() {
-        return secteur;
-    }
-
-    public void setSecteur(String secteur) {
-        this.secteur = secteur;
-    }
-
-    public String getPays() {
-        return pays;
-    }
-
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
-
-    public Boolean getIspublic() {
-        return ispublic;
-    }
-
-    public void setIspublic(Boolean aPublic) {
-        ispublic = aPublic;
-    }
-
-    public Boolean getIsofficiel() {
-        return isofficiel;
-    }
-
-    public void setIsofficiel(Boolean isofficiel) {
-        this.isofficiel = isofficiel;
-    }
-
     public Boolean getIsavailable() {
         return isavailable;
     }
 
     public void setIsavailable(Boolean isavailable) {
         this.isavailable = isavailable;
+    }
+
+    public Boolean getIspublic() {
+        return ispublic;
+    }
+
+    public void setIspublic(Boolean ispublic) {
+        this.ispublic = ispublic;
     }
 
     public String getDescription() {
@@ -186,9 +146,6 @@ public class Topologie {
                 ", nomTopologie='" + nomTopologie + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", secteur='" + secteur + '\'' +
-                ", pays='" + pays + '\'' +
-                ", Public=" + ispublic +
                 '}';
     }
 }

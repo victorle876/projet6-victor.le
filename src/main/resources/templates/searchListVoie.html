@@ -30,7 +30,7 @@
             <tr th:each="voie, rowStat: ${voiesearch}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${voie.nomVoie}"/>
-                <td th:text="${voie.site.nomSite}"/>
+                <td th:text="${voie.secteur.nomSecteur}"/>
                 <td th:text="${voie.cotation}"/>
                 <td><a th:href="@{/voie/detailsVoie?id={id}(id=${voie.id})}">Détails</a></td>
             </tr>

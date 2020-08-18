@@ -17,13 +17,13 @@
 <div class="container mt-5">
     <h3 class="text-center mb-3">Ajout Voie</h3>
     <div class="col-md-6">
-        <form action="#" method="post" th:action="@{/site/addVoieSite/{id}(id=${id})}" th:object="${voie}">
+        <form action="#" method="post" th:action="@{/secteur/addVoieSecteur/{id}(id=${id})}" th:object="${voie}">
             <div class="form-group row has-feedback">
                 <label class="col-sm-2 col-form-label" for="exampleInputNomVoie">Nom du voie</label>
                 <div class="col-sm-10">
                     <input aria-describedby="WarningNomvoie" class="form-control" id="exampleInputNomvoie" th:field="*{nomVoie}"
                            type="text">
-                    <small class="form-text text-muted" id="WarningNomSecteur"
+                    <small class="form-text text-muted" id="WarningNomVoier"
                            th:errors="*{nomVoie}" th:if="${#fields.hasErrors('nomVoie')}"></small>
                 </div>
             </div>
@@ -57,17 +57,9 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="exampleInputSecteur">Site</label>
-                <div class="col-sm-10">
-                    <input aria-describedby="WarningSecteur" class="form-control" disabled id="exampleInputSecteur"
-                           th:value="${voie.site}" type="text">
-                </div>
-            </div>
-
             <div>
                 <input class="btn btn-primary" th:name="action" th:value="Submit" type="submit">
-                <a class="btn btn-primary" role="button" th:href="@{/voie/listVoieByUser}">Retour</a>
+                <a class="btn btn-primary" role="button" th:href="@{/secteur/listSecteurByUser}">Retour</a>
             </div>
         </form>
     </div>

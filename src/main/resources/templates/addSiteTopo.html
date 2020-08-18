@@ -16,7 +16,7 @@
 <div th:replace="fragments/layout :: navbar"></div>
 <div class="container mt-5">
     <h3 class="text-center mb-3">Ajout sites</h3>
-    <form method="post" th:action="@{/topologie/addSiteTopo/{id}(id=${id})}" th:object="${site}">
+    <form method="post" th:action="@{/topo/addSiteTopo/{id}(id=${id})}" th:object="${site}">
         <div class="input-group mb-3">
             <select class="custom-select" th:field="*{id}">
                 <option th:each="site : ${siteTrouve}"
@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <input class="btn btn-primary" th:name="action" th:value="Submit" type="submit">
-            <a class="btn btn-info" role="button" th:href="@{/topologie/listTopologieByUser}">Retour</a>
+            <a class="btn btn-info" role="button" th:href="@{/topo/listTopoByUser}">Retour</a>
         </div>
     </form>
 </div>

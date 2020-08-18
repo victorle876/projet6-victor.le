@@ -1,7 +1,6 @@
 package com.escalade.victor.service;
 
-import com.escalade.victor.model.Site;
-import com.escalade.victor.model.Topologie;
+import com.escalade.victor.model.Secteur;
 import com.escalade.victor.model.Utilisateur;
 import com.escalade.victor.model.Voie;
 import com.escalade.victor.repository.VoieRepository;
@@ -17,7 +16,6 @@ public class VoieService {
     @Autowired
     VoieRepository voieRepository;
 
-    private Site siteRecherche;
 
     /**
      * Méthode permet de lister toutes les voies via ce service
@@ -70,11 +68,11 @@ public class VoieService {
     /**
      * Méthode permet de trouver la liste des sites en fonction du site via ce service
      *
-     * @param site1
+     * @param secteur1
      * @return la liste
      */
-    public List<Voie> findVoieBySite(Site site1) throws UsernameNotFoundException {
-        List<Voie>  voieTrouve = this.voieRepository.findBySite(site1);
+    public List<Voie> findVoieBySecteur(Secteur secteur1) throws UsernameNotFoundException {
+        List<Voie>  voieTrouve = this.voieRepository.findBySecteur(secteur1);
         if (voieTrouve == null){
             throw new RuntimeException("Voie introuvable");
         }

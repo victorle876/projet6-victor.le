@@ -29,7 +29,7 @@
             <tr th:each="site, rowStat: ${sitesearch}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${site.nomSite}"/>
-                <td th:text="${site.topologie.nomTopologie}"/>
+                <td th:text="${site.topo.nomTopologie}"/>
                 <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
             </tr>
             </tbody>

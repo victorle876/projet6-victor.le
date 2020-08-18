@@ -1,40 +1,39 @@
 package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
-import com.escalade.victor.repository.*;
+import com.escalade.victor.repository.TopoRepository;
 import com.escalade.victor.service.*;
-import com.escalade.victor.service.UtilisateurService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/site")
 @Controller
 public class SiteController {
     @Autowired
-    private SiteService siteService;
+    private SecteurService secteurService;
 
     @Autowired
     private UtilisateurService utilisateurService;
 
     @Autowired
-    private TopologieRepository topologieRepository;
+    private TopoRepository topoRepository;
 
     @Autowired
-    private TopologieService topologieService;
+    private TopoService topoService;
 
     @Autowired
     private CommentaireService commentaireService;
+
+    @Autowired
+    private SiteService siteService;
 
     @Autowired
     private VoieService voieService;
@@ -42,7 +41,7 @@ public class SiteController {
     private static final Logger logger = LogManager.getLogger(SiteController.class);
 
     /**
-     * Méthode permet de lister les sites
+     * Méthode permet de lister les secteurs
      *
      * @param model
      * * @return la page "listSite"
@@ -66,10 +65,11 @@ public class SiteController {
         logger.info("le site n'existe pas");
         logger.info(this.siteService.getSiteById(id));
         List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
+        List<Secteur> secteurList = this.secteurService.findSecteurBySite(site);
         logger.info(commentaireList);
         model.addAttribute("site", this.siteService.getSiteById(id));
         model.addAttribute("commentairesbysite", commentaireList);
-        model.addAttribute("voiesbysite", this.voieService.findVoieBySite(site));
+        model.addAttribute("secteursbysite", secteurList);
         return "detailsSite";
 
     }
@@ -94,7 +94,7 @@ public class SiteController {
      * @param site
      * @param result
      * @param utilisateur
-     * * @return la page "listSite"
+     * * @return la page "listSecteur"
      */
     @RequestMapping(value = "/saveSite", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute Site site, Utilisateur utilisateur, Model model, BindingResult result) {
@@ -105,9 +105,9 @@ public class SiteController {
         if (result.hasErrors()) {
             return "addSite";
         } else {
-          site.setUtilisateur(utilisateurId);
+            site.setUtilisateur(utilisateurId);
             this.siteService.saveSite(site);
-            model.addAttribute("sites", this.siteService.findSiteByUser(utilisateurId));
+            model.addAttribute("sitess", this.siteService.findSiteByUser(utilisateurId));
              return "redirect:/admin/home";
         }
     }
@@ -121,14 +121,14 @@ public class SiteController {
      * * @return la page "listSite"
      */
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.GET)
-    public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologie) {
+    public String addTopoSite(@PathVariable("id") Long idSite, Model model, Topo topologie) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-        List<Topologie> topologieTrouve = this.topologieService.findTopologieByUser(utilisateurId);
+        List<Topo> topologieTrouve = this.topoService.findTopoByUser(utilisateurId);
         logger.info(topologieTrouve);
         Site site = this.siteService.getSiteById(idSite);
-        Topologie topologieRequis = new Topologie();
-        if (site.getTopologie() != null){
-            topologieRequis = site.getTopologie() ;
+        Topo topologieRequis = new Topo();
+        if (site.getTopo() != null){
+            topologieRequis = site.getTopo() ;
         }
         model.addAttribute("idSite", idSite);
         model.addAttribute("topologieRequis",topologieRequis);
@@ -146,12 +146,12 @@ public class SiteController {
      * * @return la page "addTopoSite"
      */
     @RequestMapping(value = "addTopoSite/{id}", method = RequestMethod.POST)
-    public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topologie topologieSelectionne) {
-        topologieSelectionne = topologieRepository.getOne(topologieSelectionne.getId());
+    public String saveTopoSite(@PathVariable("id") Long idSite, Model model, Topo topologieSelectionne) {
+        topologieSelectionne = topoRepository.getOne(topologieSelectionne.getId());
         logger.info(topologieSelectionne);
         logger.info(idSite);
         Site siteSelectionne = this.siteService.getSiteById(idSite);
-        siteSelectionne.setTopologie(topologieSelectionne);
+        siteSelectionne.setTopo(topologieSelectionne);
         logger.info(siteSelectionne);
         this.siteService.saveSite(siteSelectionne);
         model.addAttribute("sites", this.siteService.getAllSites());
@@ -159,20 +159,21 @@ public class SiteController {
     }
 
     /**
-     * Méthode permet de modifier le site en get
+     * Méthode permet de modifier le secteur en get
      *
      * @param model
      * @param id
      * * @return la page "editionSite"
      */
-    @RequestMapping(value = "/editionSite", method = RequestMethod.GET)
-    public String editionSite(@RequestParam(value = "id") Long id, Model model) {
+    @RequestMapping(value = "/editionSite/{id}", method = RequestMethod.GET)
+    public String editionSecteur(@PathVariable(value = "id") Long id, Model model) {
         Site site = this.siteService.getSiteById(id);
         List<Commentaire> commentaireList = this.commentaireService.findCommentaireBySite(site);
+        List<Secteur> secteurList = this.secteurService.findSecteurBySite(site);
         model.addAttribute("site", this.siteService.getSiteById(id));
         model.addAttribute("commentairesbysite", commentaireList);
+        model.addAttribute("secteursbysite", secteurList);
         logger.info(commentaireList);
-        model.addAttribute("voiesbysite", this.voieService.findVoieBySite(site));
         return "editionSite";
 
     }
@@ -184,17 +185,16 @@ public class SiteController {
      * @param id
      * * @return la page "editionSite"
      */
-    @RequestMapping(value = "/editionSite", method = RequestMethod.POST)
-    public String editionSite(@RequestParam(value = "id") long id, @Valid Site site, BindingResult errors, Model model) {
-        if (errors.hasErrors()) {
-            return "editionSite";
-        } else {
+    @RequestMapping(value = "/editionSite/{id}", method = RequestMethod.POST)
+    public String editionSite(@PathVariable(value = "id") long id, Site site,Model model) {
             Site siteId = this.siteService.getSiteById(id);
             siteId.setNomSite(site.getNomSite());
+            siteId.setNombreSecteur(site.getNombreSecteur());
+            siteId.setIsofficiel(site.isIsofficiel());
+            siteId.setPays(site.getPays());
             this.siteService.saveSite(siteId);
             model.addAttribute("sites", this.siteService.getAllSites());
             return "redirect:/site/listSiteByUser";
-        }
     }
 
     /**
@@ -231,46 +231,6 @@ public class SiteController {
     }
 
     /**
-     * Méthode permet d'ajouter la voie sur le site en get
-     *
-     * @param model
-     * @param id
-     * @param site
-     * * @return la page "addVoie"
-     */
-    @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.GET)
-    public String ajouterVoieSite(@PathVariable("id") Long id, Model model, Site site) {
-        Site siteId = this.siteService.getSiteById(id);
-        model.addAttribute("voie", new Voie());
-        model.addAttribute("siteId", siteId);
-        return "addVoie";
-    }
-
-    /**
-     * Méthode permet d'ajouter la voie sur le site en post
-     *
-     * @param model
-     * @param id
-     * @param site
-     * * @return la page "home"
-     */
-    @RequestMapping(value = "/addVoieSite/{id}", method = RequestMethod.POST)
-    public String saveVoieSite(@PathVariable("id") Long id, @Valid @ModelAttribute Voie voie, Site site, Model model, BindingResult result) {
-        if (result.hasErrors()) {
-            return "addVoie";
-        } else {
-            Site siteId = this.siteService.getSiteById(id);
-            this.utilisateurService.getUtilisateurConnected();
-            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-            voie.setSite(siteId);
-            voie.setUtilisateur(utilisateurId);
-            this.voieService.saveVoie(voie);
-            model.addAttribute("voiesbyuser", this.voieService.findVoieByUser(utilisateurId));
-            return "redirect:/site/listSiteByUser";
-        }
-    }
-
-    /**
      * Méthode permet d'ajouter le commentaire sur le site en get
      *
      * @param model
@@ -295,17 +255,61 @@ public class SiteController {
      * * @return la page "home"
      */
     @RequestMapping(value = "/addCommentaireSite/{id}", method = RequestMethod.POST)
-    public String saveCommentaireSite(@PathVariable("id") Long id, @Valid @ModelAttribute Commentaire commentaire, Site site, Model model, BindingResult result) {
+    public String saveCommentaireSite(@PathVariable("id") Long id, @Valid Commentaire commentaire, Site site, Model model, BindingResult result) {
         if (result.hasErrors()) {
             return "addCommentaire";
         } else {
+            Commentaire commentaireCree = new Commentaire();
             Site siteId = this.siteService.getSiteById(id);
             this.utilisateurService.getUtilisateurConnected();
             Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
-            commentaire.setSite(siteId);
-            commentaire.setUtilisateur(utilisateurId);
-            this.commentaireService.saveCommentaire(commentaire);
+            commentaireCree.setSite(siteId);
+            commentaireCree.setZoneCommentaire(commentaire.getZoneCommentaire());
+            commentaireCree.setUtilisateur(utilisateurId);
+            this.commentaireService.saveCommentaire(commentaireCree);
             model.addAttribute("commentaires", this.commentaireService.getAllCommentaires());
+            return "home";
+        }
+    }
+
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en get
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "home"
+     */
+    @RequestMapping(value = "/addSecteurSite/{id}", method = RequestMethod.GET)
+    public String ajouterSecteureSite(@PathVariable("id") Long id, Model model, Site site) {
+        Site siteId = this.siteService.getSiteById(id);
+        model.addAttribute("secteur", new Secteur());
+        model.addAttribute("siteId", siteId);
+        return "addSecteur";
+    }
+
+    /**
+     * Méthode permet d'ajouter le commentaire sur le site en post
+     *
+     * @param model
+     * @param id
+     * @param site
+     * * @return la page "home"
+     */
+    @RequestMapping(value = "/addSecteurSite/{id}", method = RequestMethod.POST)
+    public String saveActeurSite(@PathVariable("id") Long id, @Valid Secteur secteur, Site site, Model model, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addCommentaire";
+        } else {
+            Secteur secteurCree = new Secteur();
+            Site siteId = this.siteService.getSiteById(id);
+            this.utilisateurService.getUtilisateurConnected();
+            Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
+            secteurCree.setSite(siteId);
+            secteurCree.setNomSecteur(secteur.getNomSecteur());
+            secteurCree.setUtilisateur(utilisateurId);
+            this.secteurService.saveSecteur(secteurCree);
+            model.addAttribute("secteurs", this.secteurService.getAllSecteurs());
             return "home";
         }
     }

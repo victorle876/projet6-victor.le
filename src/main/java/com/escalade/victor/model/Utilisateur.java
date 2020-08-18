@@ -1,7 +1,6 @@
 package com.escalade.victor.model;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -9,10 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-
-import static java.util.Arrays.*;
-
-import java.util.Collection;
 
 
 @Entity
@@ -55,7 +50,7 @@ public class Utilisateur {
     private Date updatedAt;
     
     @OneToMany(mappedBy="utilisateur")
-    private List<Topologie> topologies;
+    private List<Topo> topologies;
 
     @OneToMany(mappedBy="utilisateur")
     private List<Commentaire> commentaires;
@@ -155,11 +150,11 @@ public class Utilisateur {
         this.updatedAt = updatedAt;
     }
 
-    public List<Topologie> getTopologies() {
+    public List<Topo> getTopologies() {
         return topologies;
     }
 
-    public void setTopologies(List<Topologie> topologies) {
+    public void setTopologies(List<Topo> topologies) {
         this.topologies = topologies;
     }
 

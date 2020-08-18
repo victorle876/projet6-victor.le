@@ -3,9 +3,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -23,8 +20,8 @@ public class Reservation {
     private Utilisateur utilisateur;
 
     @OneToOne
-    @JoinColumn(name = "topologie_id", referencedColumnName = "id")
-    private Topologie topologie;
+    @JoinColumn(name = "topo_id", referencedColumnName = "id")
+    private Topo topo;
 
 //    private Boolean isAccepted;
 
@@ -78,12 +75,12 @@ public class Reservation {
         this.etat = etat;
     }
 
-    public Topologie getTopologie() {
-        return topologie;
+    public Topo getTopo() {
+        return topo;
     }
 
-    public void setTopologie(Topologie topologie) {
-        this.topologie = topologie;
+    public void setTopo(Topo topo) {
+        this.topo = topo;
     }
 
     public Utilisateur getUtilisateur() {

@@ -2,21 +2,19 @@ package com.escalade.victor.controller;
 
 import com.escalade.victor.model.*;
 import com.escalade.victor.repository.ReservationRepository;
-import com.escalade.victor.repository.TopologieRepository;
+import com.escalade.victor.repository.TopoRepository;
 import com.escalade.victor.service.ReservationService;
-import com.escalade.victor.service.TopologieService;
+import com.escalade.victor.service.TopoService;
 import com.escalade.victor.service.UtilisateurService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("/reservation")
 @Controller
@@ -25,13 +23,13 @@ public class ReservationController {
     private ReservationService reservationService;
 
     @Autowired
-    private TopologieService topologieService;
+    private TopoService topoService;
 
     @Autowired
     private UtilisateurService utilisateurService;
 
     @Autowired
-    private TopologieRepository topologieRepository;
+    private TopoRepository topoRepository;
 
     @Autowired
     private ReservationRepository reservationRepository;
@@ -126,7 +124,7 @@ public class ReservationController {
     public String saveTopoAccepte(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
-        Topologie topo = reservationExistant.getTopologie();
+        Topo topo = reservationExistant.getTopo();
         Utilisateur utilisateurNew = reservationExistant.getUtilisateur();
         logger.info(topo);
         logger.info(reservationExistant.getEtat());
@@ -134,7 +132,7 @@ public class ReservationController {
         reservationExistant.setEtat("Preté");
         this.reservationService.saveReservation(reservationExistant);
         topo.setIsavailable(Boolean.FALSE);
-        this.topologieService.saveTopologie(topo);
+        this.topoService.saveTopo(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
     }
@@ -159,14 +157,14 @@ public class ReservationController {
     public String saveTopoLibre(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
-        Topologie topo = reservationExistant.getTopologie();
+        Topo topo = reservationExistant.getTopo();
         logger.info(topo);
         logger.info(reservationExistant.getEtat());
         reservationExistant.setEtat("Libre");
         this.reservationService.saveReservation(reservationExistant);
         topo.setIsavailable(Boolean.TRUE);
         //topo.setIspublic(Boolean.FALSE);
-        this.topologieService.saveTopologie(topo);
+        this.topoService.saveTopo(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUserProprietaire(utilisateurId));
         return "redirect:/reservation/listReservationByUser";
     }
@@ -199,12 +197,12 @@ public class ReservationController {
     public String saveTopoRefuse(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
-        Topologie topo = reservationExistant.getTopologie();
+        Topo topo = reservationExistant.getTopo();
         logger.info(topo);
         reservationExistant.setEtat("Refusé");
         this.reservationService.saveReservation(reservationExistant);
         topo.setIsavailable(Boolean.TRUE);
-        this.topologieService.saveTopologie(topo);
+        this.topoService.saveTopo(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listValidationByUser";
     }
@@ -236,12 +234,12 @@ public class ReservationController {
     public String saveTopoAnnule(@PathVariable(value = "id") Long id, Reservation reservationExistant, Model model) {
         Utilisateur utilisateurId = this.utilisateurService.getUtilisateurConnected();
         reservationExistant = this.reservationService.getReservationById(id);
-        Topologie topo = reservationExistant.getTopologie();
+        Topo topo = reservationExistant.getTopo();
         logger.info(topo);
         reservationExistant.setEtat("Annulé");
         this.reservationService.saveReservation(reservationExistant);
         topo.setIsavailable(Boolean.TRUE);
-        this.topologieService.saveTopologie(topo);
+        this.topoService.saveTopo(topo);
         model.addAttribute("reservationsbyuserdifferent", this.reservationService.findReservationByUser(utilisateurId));
         return "redirect:/reservation/listReservationByUser";
     }

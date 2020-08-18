@@ -21,36 +21,24 @@
             <thead>
             <th>Nom Topologie</th>
             <th>Secteur</th>
-            <th>Pays</th>
-            <th>Utilisateur</th>
             <th>Detail</th>
             <th>Editer</th>
             <th>Reservation</th>
-            <th>Officiel des amis de l'escalade</th>
             </thead>
             <tbody>
-            <tr th:each="topologie, rowStat: ${topologiepublic}"
+            <tr th:each="topo, rowStat: ${topologiepublic}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-                <td th:text="${topologie.nomTopologie}"/>
-                <td th:text="${topologie.secteur}"/>
-                <td th:text="${topologie.pays}"/>
-                <td th:text="${topologie.utilisateur.username}"/>
-                <td><a th:href="@{/topologie/detailsTopologie?id={id}(id=${topologie.id})}">Détails</a></td>
-                <td><a th:href="@{/topologie/editionTopologie/{id}(id=${topologie.id})}">Editer</a></td>
+                <td th:text="${topo.nomTopologie}"/>
+                <td th:text="${topo.utilisateur.username}"/>
+                <td><a th:href="@{/topo/detailsTopo?id={id}(id=${topo.id})}">Détails</a></td>
+                <td><a th:href="@{/topo/editionTopo/{id}(id=${topo.id})}">Editer</a></td>
                 <td>
                     <form method="post"
-                          th:action="@{/topologie/addTopoReservation/{id}(id=${topologie.id})}" th:object="${topologie}">
-                        <th:block th:if="${topologie.isavailable == true}">
+                          th:action="@{/topo/addTopoReservation/{id}(id=${topo.id})}" th:object="${topo}">
+                        <th:block th:if="${topo.isavailable == true}">
                             <button class="btn btn-primary" type="submit">Reserver</button>
                         </th:block>
                     </form>
-                </td>
-                <td>
-                    <div th:if="${topologie.isofficiel == true}">
-                        <th:block th:if="${topologie.isofficiel == true}">
-                            <a>oui</a>
-                        </th:block>
-                    </div>
                 </td>
             </tr>
             </tbody>

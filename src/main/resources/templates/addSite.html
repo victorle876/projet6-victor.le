@@ -23,8 +23,29 @@
                 <input aria-describedby="WarningNomSite" class="form-control" id="exampleInputNomSite"
                        th:field="*{nomSite}"
                        type="text">
-                <small class="form-text text-muted" id="WarningNomSecteur"
+                <small class="form-text text-muted" id="WarningNomSite"
                        th:errors="*{nomSite}" th:if="${#fields.hasErrors('nomSite')}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="exampleInputNombreSecteur">Nombre de secteurs</label>
+            <div class="col-sm-10">
+                <input aria-describedby="WarningNomSite" class="form-control" id="exampleInputNombreSecteur"
+                       th:field="*{nombreSecteur}"
+                       type="int">
+                <small class="form-text text-muted" id="WarningNombreSecteur"
+                       th:errors="*{nomSecteur}" th:if="${#fields.hasErrors('nombreSecteur')}"></small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="exampleInputPays">Pays</label>
+            <div class="col-sm-10">
+                <input aria-describedby="WarningPays" class="form-control" id="exampleInputPays"
+                       th:field="*{pays}"
+                       type="text">
+                <small class="form-text text-muted" id="WarningPays"
+                       th:errors="*{pays}" th:if="${#fields.hasErrors('pays')}"></small>
             </div>
         </div>
         <div class="row">

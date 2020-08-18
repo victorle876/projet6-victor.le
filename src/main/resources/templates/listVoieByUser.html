@@ -31,7 +31,7 @@
             <tr th:each="voie, rowStat: ${voiesbyuser}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${voie.nomVoie}"/>
-                <td th:text="${voie.site.nomSite}"/>
+                <td th:text="${voie.secteur.nomSecteur}"/>
                 <td th:text="${voie.cotation}"/>
                 <td th:text="${voie.hauteur}"/>
                 <td th:text="${voie.distance}"/>
