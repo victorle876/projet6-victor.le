@@ -87,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(24 * 60 * 60)
                 .and()
                 .exceptionHandling()
-        ;
+        ; //
     }
 
     PersistentTokenRepository persistentTokenRepository(){
