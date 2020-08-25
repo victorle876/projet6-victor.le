@@ -12,5 +12,9 @@ import java.util.List;
 public interface SiteRepository extends JpaRepository<Site, Long> {
     List<Site> findByUtilisateurAndTopoIsNull (Utilisateur utilisateur1); // site
     List<Site> findByUtilisateur (Utilisateur utilisateur1);
+    List<Site> findByNomSiteIsContaining(String nomSite);
+    List<Site> findByNombreSecteurIgnoreCaseContaining(String nombreSecteur);
+    List<Site> findByPaysIgnoreCaseContaining(String pays);
+    List<Site> findByNombreSecteurIgnoreCaseContainingAndPaysIgnoreCaseContaining(String nombreSecteur, String pays);
     List<Site> findByNomSiteIgnoreCaseContainingOrNombreSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(String nomSite, String nombreSecteur, String Pays);
 }

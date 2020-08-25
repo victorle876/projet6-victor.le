@@ -79,12 +79,45 @@ public class SiteService {
         return siteTrouve;
     }
 
-    public List<Site> findSiteByNom(String recherche) throws UsernameNotFoundException {
-        List<Site>  siteTrouve = this.siteRepository.findByNomSiteIgnoreCaseContainingOrNombreSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(recherche,recherche,recherche);
+    public List<Site> findSiteByAll(String recherche,String recherche1, String recherche2) throws UsernameNotFoundException {
+        List<Site>  siteTrouveByAll = this.siteRepository.findByNomSiteIgnoreCaseContainingOrNombreSecteurIgnoreCaseContainingOrPaysIgnoreCaseContaining(recherche,recherche1,recherche2);
+        if (siteTrouveByAll == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouveByAll;
+    }
+
+    public List<Site> findSiteByNombreSecteur(String recherche1) throws UsernameNotFoundException {
+        List<Site>  siteTrouveByNombreSecteur = this.siteRepository.findByNombreSecteurIgnoreCaseContaining(recherche1);
+        if (siteTrouveByNombreSecteur == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouveByNombreSecteur;
+    }
+
+    public List<Site> findSiteByPays(String recherche2) throws UsernameNotFoundException {
+        List<Site>  siteTrouveByPays = this.siteRepository.findByPaysIgnoreCaseContaining(recherche2);
+        if (siteTrouveByPays == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouveByPays;
+    }
+
+    public List<Site> findSiteByNombreSecteurAndPays(String recherche1, String recherche2) throws UsernameNotFoundException {
+        List<Site>  siteTrouve = this.siteRepository.findByNombreSecteurIgnoreCaseContainingAndPaysIgnoreCaseContaining(recherche1,recherche2);
         if (siteTrouve == null){
             throw new RuntimeException("Site introuvable");
         }
         return siteTrouve;
+    }
+
+    public List<Site> findSiteByNom(String recherche) throws UsernameNotFoundException {
+        List<Site>  siteTrouveByNom = this.siteRepository.findByNomSiteIsContaining(recherche);
+        System.out.println("ici2");
+        if (siteTrouveByNom == null){
+            throw new RuntimeException("Site introuvable");
+        }
+        return siteTrouveByNom;
     }
 
 }

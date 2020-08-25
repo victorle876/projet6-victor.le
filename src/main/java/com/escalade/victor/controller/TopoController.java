@@ -364,13 +364,39 @@ public class TopoController {
      * * @return la page "SearchforSite"
      */
     @RequestMapping(value = "/SearchSiteList", method = RequestMethod.POST)
-    public String saveTopoSearchList1(Model model, Site SiteEnrecherche, String recherche) {
+    public String saveTopoSearchList1(Model model, Site SiteEnrecherche) {
         String nomSite = SiteEnrecherche.getNomSite();
+        String pays = SiteEnrecherche.getPays();
+        String nombreSecteur = SiteEnrecherche.getNombreSecteur();
         logger.info(nomSite);
-        recherche = (nomSite);
-        List<Site> SiteRecherche = this.siteService.findSiteByNom(recherche);
-        logger.info(this.topoService.findTopoBySecteurOrNom(recherche));
-        model.addAttribute("sitesearch", this.siteService.findSiteByNom(recherche));
+        String recherche = nomSite;
+        String recherche1 = nombreSecteur;
+        String recherche2 = pays;
+        List<Site> SiteRechercheByNom = this.siteService.findSiteByNom(recherche);
+        logger.info(SiteRechercheByNom);
+        List<Site> SiteRechercheByNombreSecteur = this.siteService.findSiteByNombreSecteur(recherche1);
+        List<Site> SiteRechercheByPays = this.siteService.findSiteByPays(recherche1);
+        List<Site> SiteRechercheByNombreSecteurAndPays = this.siteService.findSiteByNombreSecteurAndPays(recherche1,recherche2);
+        List<Site> SiteRechercheByAll = this.siteService.findSiteByAll(recherche,recherche1,recherche2);
+        if (recherche != null)
+        {
+            model.addAttribute("sitesearch", this.siteService.findSiteByNom(recherche));
+        }
+        if (recherche1 != null)
+        {
+            model.addAttribute("sitesearch", this.siteService.findSiteByNombreSecteur(recherche1));
+        }
+        if (recherche2 != null)
+        {
+            model.addAttribute("sitesearch", this.siteService.findSiteByPays(recherche2));
+        }
+
+        if ((recherche2 != null) && (recherche1 != null))
+        {
+            model.addAttribute("sitesearch", this.siteService.findSiteByNombreSecteurAndPays(recherche1,recherche2));
+        }
+
+   //     model.addAttribute("sitesearch", this.siteService.findSiteByAll(recherche,recherche1,recherche2));
         return "searchListSite";
     }
 

@@ -38,6 +38,9 @@
                         <th:block th:if="${topo.isavailable == true}">
                             <button class="btn btn-primary" type="submit">Reserver</button>
                         </th:block>
+                        <th:block th:if="${topo.isavailable == false}">
+                            Reserve
+                        </th:block>
                     </form>
                 </td>
             </tr>

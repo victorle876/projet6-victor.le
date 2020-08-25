@@ -24,6 +24,7 @@
             <th>Nom du site</th>
             <th>Topologie du site</th>
             <th>Ajouter Commentaire</th>
+            <th>Officiel des amis de l'escalde</th>
             <th>Detail</th>
             <th>Editer</th>
             </thead>
@@ -34,6 +35,10 @@
                 <td th:text="${site.topo.nomTopologie}"/>
                 <td><a class="btn btn-primary" role="button" th:href="@{/site/addCommentaireSite/{id}(id=${site.id})}">Ajouter
                     commentaire</a>
+                <td>
+                     <div th:if="${site.isofficiel== true}"> oui
+                     </div>
+                </td>
                 <td><a th:href="@{/site/detailsSite?id={id}(id=${site.id})}">Détails</a></td>
                 <td><a th:href="@{/site/editionSite/{id}(id=${site.id})}">Editer</a></td>
                 </td>

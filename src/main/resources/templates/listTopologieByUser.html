@@ -37,11 +37,14 @@
                 <td><a th:href="@{/topo/editionTopo/{id}(id=${topo.id})}">Editer</a></td>
                 <td><a th:href="@{/topo/addSiteTopo/{id}(id=${topo.id})}">Ajouter</a></td>
                 <td>
-                        <div th:if="${topo.ispublic == false}">
-                            <a class="btn btn-primary"
-                               role="button" th:href="@{/topo/makeTopoPublic/{id}(id=${topo.id})}" type="submit"
-                               value="Submit">Publier</a>
-                        </div>
+                    <div th:if="${topo.ispublic == false}">
+                        <a class="btn btn-primary"
+                           role="button" th:href="@{/topo/makeTopoPublic/{id}(id=${topo.id})}" type="submit"
+                           value="Submit">Publier</a>
+                    </div>
+                    <div th:if="${topo.ispublic == true}">
+                        deja publie
+                    </div>
                 </td>
             </tr>
             </tbody>
